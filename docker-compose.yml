@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
 
-  sample:
+  web:
     container_name: transit_frontend
     build:
       context: .
