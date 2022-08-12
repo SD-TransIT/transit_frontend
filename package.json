@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@fontsource/mulish": "^4.5.12",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,7 +13,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.47",
     "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
+    "@types/react-router-dom": "^5.3.3",
     "@types/react-table": "^7.7.12",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
@@ -22,6 +23,7 @@
     "browserslist": "^4.18.1",
     "camelcase": "^6.2.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "classnames": "^2.3.1",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^10.0.0",
@@ -38,7 +40,6 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
-    "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
@@ -50,13 +51,13 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.0",
     "react-refresh": "^0.11.0",
+    "react-router-dom": "^6.3.0",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
     "semver": "^7.3.5",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
-    "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4",
@@ -151,6 +152,10 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
-    "eslint-config-airbnb-typescript": "^17.0.0"
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8"
   }
 }
