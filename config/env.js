@@ -78,7 +78,6 @@ function getClientEnvironment(publicUrl) {
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
         // Useful for setting base url for backend endpoints
-        // Most importantly, it switches url into the correct backend host.
         REACT_APP_API_URL: process.env.REACT_APP_API_URL || 'http://localhost:8000/api/',
         // We support configuring the sockjs pathname during development.
         // These settings let a developer run multiple simultaneous projects.
