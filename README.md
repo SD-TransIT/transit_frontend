@@ -4,6 +4,18 @@ This is frontend side of TransIt project. Backend service can be found [here](ht
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and ejected.
 
+## Prerequisites
+
+Node.js (Version 18.7.0)
+Npm (Version 8.15.0)
+
+## Application configuration for development
+
+To configure the application, navigate to project directory and run the following commands:
+
+npm config set engine-strict true
+npm install
+
 ## Available Scripts
 
 In the project directory, you can run:

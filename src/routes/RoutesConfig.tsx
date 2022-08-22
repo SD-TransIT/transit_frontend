@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ReportsPage } from '../pages/reports/reports';
 import { ManualUploadPage } from '../pages/menuUpload/menuUpload';
 import { ExcelUploadPage } from '../pages/excelUpload/excelUpload';
-import { Paths } from './types';
+import { Paths } from './paths';
 
 export const RoutesConfig = () => {
   return (
