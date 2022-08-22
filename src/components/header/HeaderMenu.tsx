@@ -1,29 +1,8 @@
 import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { Paths } from '../../routes/RoutesConfig';
-
-type Menu = {
-  dashboard: {
-    title: string;
-  };
-  reports: {
-    title: string;
-  };
-  manualUpload: {
-    title: string;
-  };
-  excelUpload: {
-    title: string;
-  };
-};
-
-const menuOptions: Menu = {
-  dashboard: { title: 'Dashboard' },
-  reports: { title: 'Reports' },
-  manualUpload: { title: 'Manual Upload' },
-  excelUpload: { title: 'Excel Upload' },
-};
+import { Paths } from '../../routes/types';
+import { menuOptions } from './types';
 
 const linkStyle = 'flex h-full items-center px-5 hover:bg-transit-green';
 
@@ -33,16 +12,16 @@ export const HeaderMenu = () => {
   const currentRoute: null | keyof typeof Paths = useMemo(() => {
     switch (true) {
       case location.pathname.startsWith(Paths.dashboard): {
-        return 'dashboard';
+        return menuOptions.dashboard.id;
       }
       case location.pathname.startsWith(Paths.reports): {
-        return 'reports';
+        return menuOptions.reports.id;
       }
       case location.pathname.startsWith(Paths.manual_upload): {
-        return 'manual_upload';
+        return menuOptions.manualUpload.id;
       }
       case location.pathname.startsWith(Paths.excel_upload): {
-        return 'excel_upload';
+        return menuOptions.excelUpload.id;
       }
     }
 
@@ -57,12 +36,13 @@ export const HeaderMenu = () => {
           className={classNames(
             {
               'border-b-4 border-transit-green-dark':
-                currentRoute === 'dashboard',
-              'border-b-4 border-transparent': currentRoute !== 'dashboard',
+                currentRoute === menuOptions.dashboard.id,
+              'border-b-4 border-transparent':
+                currentRoute !== menuOptions.dashboard.id,
             },
             linkStyle,
           )}
-          to="/dashboard"
+          to={menuOptions.dashboard.path}
         >
           {menuOptions.dashboard.title}
         </Link>
@@ -71,12 +51,14 @@ export const HeaderMenu = () => {
         data-testid="reports-link"
         className={classNames(
           {
-            'border-b-4 border-transit-green-dark': currentRoute === 'reports',
-            'border-b-4 border-transparent': currentRoute !== 'reports',
+            'border-b-4 border-transit-green-dark':
+              currentRoute === menuOptions.reports.id,
+            'border-b-4 border-transparent':
+              currentRoute !== menuOptions.reports.id,
           },
           linkStyle,
         )}
-        to="/reports"
+        to={menuOptions.reports.path}
       >
         {menuOptions.reports.title}
       </Link>
@@ -85,12 +67,13 @@ export const HeaderMenu = () => {
         className={classNames(
           {
             'border-b-4 border-transit-green-dark':
-              currentRoute === 'manual_upload',
-            'border-b-4 border-transparent': currentRoute !== 'manual_upload',
+              currentRoute === menuOptions.manualUpload.id,
+            'border-b-4 border-transparent':
+              currentRoute !== menuOptions.manualUpload.id,
           },
           linkStyle,
         )}
-        to="/manual_upload"
+        to={menuOptions.manualUpload.path}
       >
         {menuOptions.manualUpload.title}
       </Link>
@@ -99,12 +82,13 @@ export const HeaderMenu = () => {
         className={classNames(
           {
             'border-b-4 border-transit-green-dark':
-              currentRoute === 'excel_upload',
-            'border-b-4 border-transparent': currentRoute !== 'excel_upload',
+              currentRoute === menuOptions.excelUpload.id,
+            'border-b-4 border-transparent':
+              currentRoute !== menuOptions.excelUpload.id,
           },
           linkStyle,
         )}
-        to="/excel_upload"
+        to={menuOptions.excelUpload.path}
       >
         {menuOptions.excelUpload.title}
       </Link>

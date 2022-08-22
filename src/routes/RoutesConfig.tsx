@@ -3,13 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ReportsPage } from '../pages/reports/reports';
 import { ManualUploadPage } from '../pages/menuUpload/menuUpload';
 import { ExcelUploadPage } from '../pages/excelUpload/excelUpload';
-
-export enum Paths {
-  dashboard = '/dashboard',
-  reports = '/reports',
-  manual_upload = '/manual_upload',
-  excel_upload = '/excel_upload',
-}
+import { Paths } from './types';
 
 export const RoutesConfig = () => {
   return (
