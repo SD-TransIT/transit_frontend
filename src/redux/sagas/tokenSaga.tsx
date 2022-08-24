@@ -1,10 +1,11 @@
+import {
+  all, call, put, takeLatest,
+} from 'redux-saga/effects';
 import apiClient from '../../utils/apiClient';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { IToken } from '../../models/token/IToken';
 import { fetchTokenFailure, fetchTokenSuccess } from '../actions/token/tokenActions';
-import { TokenActionTypes } from '../actions/token/tokenActionTypes';
+import TokenActionTypes from '../actions/token/tokenActionTypes';
 import { ITokenInput, ITokenRefreshInput } from '../../models/token/ITokenInput';
-
 
 const postToken = async (payload: ITokenInput) => {
   const { data } = await apiClient.post(
@@ -38,7 +39,7 @@ function* fetchTokenSaga(action: any) {
     action.payload.callback(response.token);
   } catch (error: any) {
     yield put(fetchTokenFailure(error));
-    yield put({ type: TokenActionTypes.FETCH_TOKEN_FAILURE, error: error });
+    yield put({ type: TokenActionTypes.FETCH_TOKEN_FAILURE, error });
   }
 }
 
@@ -52,19 +53,19 @@ function* refreshTokenSaga(action: any) {
 
     yield put(fetchTokenSuccess(response));
     yield put({ type: TokenActionTypes.REFRESH_TOKEN_SUCCESS, token: response });
-    
+
     localStorage.setItem('token', JSON.stringify(response));
 
     action.payload.callback(response.token);
   } catch (error: any) {
     yield put(fetchTokenFailure(error));
-    yield put({ type: TokenActionTypes.REFRESH_TOKEN_FAILURE, error: error });
+    yield put({ type: TokenActionTypes.REFRESH_TOKEN_FAILURE, error });
   }
 }
-  
+
 function* tokenSaga() {
   yield all([takeLatest(TokenActionTypes.FETCH_TOKEN_REQUEST, fetchTokenSaga)]);
   yield all([takeLatest(TokenActionTypes.REFRESH_TOKEN_REQUEST, refreshTokenSaga)]);
 }
-  
+
 export default tokenSaga;

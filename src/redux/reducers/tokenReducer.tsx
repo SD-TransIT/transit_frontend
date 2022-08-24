@@ -1,4 +1,4 @@
-import { TokenActionTypes } from '../actions/token/tokenActionTypes';
+import TokenActionTypes from '../actions/token/tokenActionTypes';
 import { TokenActions, TokenState } from '../types/type';
 
 const initialState: TokenState = {
@@ -21,7 +21,7 @@ const tokenReducer = (action: TokenActions, state: TokenState = initialState) =>
         token: null,
         error: null,
       };
-    case TokenActionTypes.FETCH_TOKEN_SUCCESS:  
+    case TokenActionTypes.FETCH_TOKEN_SUCCESS:
       return {
         ...state,
         fetchingToken: false,
@@ -45,7 +45,7 @@ const tokenReducer = (action: TokenActions, state: TokenState = initialState) =>
         token: null,
         error: null,
       };
-    case TokenActionTypes.REFRESH_TOKEN_SUCCESS:  
+    case TokenActionTypes.REFRESH_TOKEN_SUCCESS:
       return {
         ...state,
         fetchingToken: false,

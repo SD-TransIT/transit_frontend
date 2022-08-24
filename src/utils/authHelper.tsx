@@ -1,6 +1,6 @@
 import jwt_decode from 'jwt-decode';
 
-export function isAuthenticatedProperly(): boolean {
+export default function isAuthenticatedProperly(): boolean {
   const isAuthenticated = !!localStorage.getItem('token');
   if (isAuthenticated) {
     const token = JSON.parse(localStorage.getItem('token') as string);
@@ -8,11 +8,10 @@ export function isAuthenticatedProperly(): boolean {
     const dateNow = new Date();
     const epochDateNow = Math.round(dateNow.getTime() / 1000);
     const decodedToken = jwt_decode(token.access) as any;
-    if (decodedToken.exp < epochDateNow) {  
+    if (decodedToken.exp < epochDateNow) {
       isValid = false;
     }
     return isValid;
-  } else {
-    return false;
   }
+  return false;
 }

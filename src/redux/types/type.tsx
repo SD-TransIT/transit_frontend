@@ -1,6 +1,6 @@
 import { IToken } from '../../models/token/IToken';
 import { ITokenInput, ITokenRefreshInput } from '../../models/token/ITokenInput';
-import { TokenActionTypes } from '../actions/token/tokenActionTypes';
+import TokenActionTypes from '../actions/token/tokenActionTypes';
 
 export interface TokenState {
   fetchingToken: boolean;
@@ -47,7 +47,6 @@ export type FetchTokenFailure = {
   type: typeof TokenActionTypes.FETCH_TOKEN_FAILURE;
   payload: FetchTokenFailurePayload;
 };
-
 
 export interface RefreshTokenRequest {
   type: typeof TokenActionTypes.REFRESH_TOKEN_REQUEST;

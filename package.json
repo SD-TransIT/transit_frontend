@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@fontsource/mulish": "^4.5.12",
+    "@headlessui/react": "^1.6.6",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@reduxjs/toolkit": "^1.8.5",
     "@svgr/webpack": "^5.5.0",
@@ -83,6 +84,8 @@
     "extends": [
       "react-app",
       "react-app/jest",
+      "airbnb",
+      "airbnb/hooks",
       "airbnb-typescript"
     ],
     "parserOptions": {

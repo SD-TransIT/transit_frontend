@@ -1,4 +1,4 @@
-export enum TokenActionTypes {
+enum TokenActionTypes {
   FETCH_TOKEN_REQUEST = 'FETCH_TOKEN_REQUEST',
   FETCH_TOKEN_SUCCESS = 'FETCH_TOKEN_SUCCESS',
   FETCH_TOKEN_FAILURE = 'FETCH_TOKEN_FAILURE',
@@ -6,4 +6,5 @@ export enum TokenActionTypes {
   REFRESH_TOKEN_SUCCESS = 'REFRESH_TOKEN_SUCCESS',
   REFRESH_TOKEN_FAILURE = 'REFRESH_TOKEN_FAILURE',
 }
-  
+
+export default TokenActionTypes;

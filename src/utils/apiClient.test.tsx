@@ -2,19 +2,14 @@ import { AxiosError } from 'axios';
 import apiClient from './apiClient';
 import { NoErrorThrownError, getError } from './getError';
 
-
 describe('apiClient', () => {
-  test('should return 200', async () => {
-    return apiClient.get('http://httpstat.us/200')
-      .then(response => expect(response.status).toEqual(200));
-  });
+  test('should return 200', async () => apiClient.get('http://httpstat.us/200')
+    .then((response) => expect(response.status).toEqual(200)));
 
-  test('should return 201', async () => {
-    return apiClient.get('http://httpstat.us/201')
-      .then(response => expect(response.status).toEqual(201));
-  });
+  test('should return 201', async () => apiClient.get('http://httpstat.us/201')
+    .then((response) => expect(response.status).toEqual(201)));
 
-  test('should return 404',  async () => {
+  test('should return 404', async () => {
     const error = await getError(async () => apiClient.get('http://httpstat.us/404'));
     expect(error).not.toBeInstanceOf(NoErrorThrownError);
     expect(error).toBeInstanceOf(AxiosError);

@@ -1,4 +1,4 @@
-import { TokenActionTypes } from './tokenActionTypes';
+import TokenActionTypes from './tokenActionTypes';
 import {
   FetchTokenFailure,
   FetchTokenFailurePayload,
