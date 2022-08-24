@@ -1,7 +1,9 @@
-export type AddButtonType = {
-  onClick: () => void
+export type SubmitButtonType = {
+  onClick: () => void,
+  title?: string
 };
 
 export type CancelButtonType = {
   onClick: () => void,
+  title?: string
 };

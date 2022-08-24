@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
 import Dialog from '../../../../shared/dialog/Dialog';
 import MockObserverImplementation from '../../test-utils';
 
@@ -18,21 +19,21 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should not be visible when is not open.', () => {
     render(
-        <Dialog isOpen={false} onClose={mockOnClose} />,
+      <Dialog isOpen={false} onClose={mockOnClose} />,
     );
     expect(screen.queryByTestId(DIALOG_TEST_ID)).not.toBeInTheDocument();
   });
 
   test('Should match snapshot when Dialog has add and cancel button.', async () => {
     render(
-          <Dialog
-            isOpen={true}
-            onClose={mockOnClose}
-             onAddClick={mockOnAdd}
-             onCancelClick={mockOnCancel}
-          >
-            {mockDialogBody}
-          </Dialog>,
+      <Dialog
+        isOpen
+        onClose={mockOnClose}
+        onSubmitClick={mockOnAdd}
+        onCancelClick={mockOnCancel}
+      >
+        {mockDialogBody}
+      </Dialog>,
     );
     expect(screen.getByTestId(DIALOG_BODY_TEST_ID)).toHaveTextContent(mockDialogBody);
     expect(screen.getByTestId(ADD_BUTTON_TEST_ID)).toHaveTextContent('Add');
@@ -42,13 +43,13 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should call the onCancelClick function after clicking the "Cancel" button.', () => {
     render(
-          <Dialog
-            isOpen={true}
-              onClose={mockOnClose}
-              onCancelClick={mockOnCancel}
-          >
-            {mockDialogBody}
-          </Dialog>,
+      <Dialog
+        isOpen
+        onClose={mockOnClose}
+        onCancelClick={mockOnCancel}
+      >
+        {mockDialogBody}
+      </Dialog>,
     );
     fireEvent.click(screen.getByTestId(CANCEL_BUTTON_TEST_ID));
     expect(mockOnCancel).toBeCalled();

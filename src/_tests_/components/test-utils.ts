@@ -11,7 +11,7 @@ export default class MockObserverImplementation {
     this.rootMargin = '';
     this.thresholds = [];
   }
-
+/* eslint-disable */
   disconnect() {}
 
   observe() {}

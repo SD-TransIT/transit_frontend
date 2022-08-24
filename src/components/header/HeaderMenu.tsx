@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { Paths } from '../../routes/paths';
@@ -6,7 +6,7 @@ import { menuOptions } from './menuOptions';
 
 const linkStyle = 'flex h-full items-center px-5 hover:bg-transit-green';
 
-export const HeaderMenu = () => {
+function HeaderMenu() {
   const location = useLocation();
 
   const currentRoute: null | keyof typeof Paths = useMemo(() => {
@@ -23,9 +23,8 @@ export const HeaderMenu = () => {
       case location.pathname.startsWith(Paths.excel_upload): {
         return menuOptions.excelUpload.id;
       }
+      default: return null;
     }
-
-    return null;
   }, [location.pathname]);
 
   return (
@@ -94,4 +93,6 @@ export const HeaderMenu = () => {
       </Link>
     </div>
   );
-};
+}
+
+export default HeaderMenu;

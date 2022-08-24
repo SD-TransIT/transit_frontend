@@ -1,3 +1,5 @@
-export const ReportsPage = () => {
+function ReportsPage() {
   return null;
-};
+}
+
+export default ReportsPage;

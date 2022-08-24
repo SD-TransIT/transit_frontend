@@ -1,3 +1,5 @@
-export const ExcelUploadPage = () => {
+function ExcelUploadPage() {
   return null;
-};
+}
+
+export default ExcelUploadPage;

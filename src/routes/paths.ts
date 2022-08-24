@@ -1,3 +1,4 @@
+/* eslint-disable */
 export enum Paths {
   dashboard = '/dashboard',
   reports = '/reports',
