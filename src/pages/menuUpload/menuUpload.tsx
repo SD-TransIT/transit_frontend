@@ -1,3 +1,5 @@
-export const ManualUploadPage = () => {
+function ManualUploadPage() {
   return null;
-};
+}
+
+export default ManualUploadPage;

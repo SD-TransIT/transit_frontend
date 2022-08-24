@@ -1,7 +1,8 @@
-import { Logo } from '../logo/Logo';
-import { HeaderMenu } from './HeaderMenu';
+import React from 'react';
+import Logo from '../logo/Logo';
+import HeaderMenu from './HeaderMenu';
 
-export const Header = () => {
+function Header() {
   return (
     <div className="flex flex-row justify-between bg-transit-white h-header shadow-header px-20">
       <div className="w-1/5">
@@ -12,4 +13,6 @@ export const Header = () => {
       </div>
     </div>
   );
-};
+}
+
+export default Header;

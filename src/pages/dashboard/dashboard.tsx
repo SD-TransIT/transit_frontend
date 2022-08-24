@@ -1,3 +1,5 @@
-export const DashboardPage = () => {
+function DashboardPage() {
   return null;
-};
+}
+
+export default DashboardPage;
