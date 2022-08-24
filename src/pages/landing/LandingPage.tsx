@@ -1,3 +1,5 @@
-export const LandingPage = () => {
+function LandingPage() {
   return null;
-};
+}
+
+export default LandingPage;

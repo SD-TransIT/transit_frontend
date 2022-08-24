@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { SignInPage } from '../../../pages/signIn/SignInPage';
+import React from 'react';
+import SignInPage from '../../../pages/signIn/SignInPage';
 
 describe('Unit tests for the SignInPage component.', () => {
   const SIGN_IN_PAGE_TEST_ID = 'sign-in-page';

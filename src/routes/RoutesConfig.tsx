@@ -5,8 +5,8 @@ import ReportsPage from '../pages/reports/reports';
 import ManualUploadPage from '../pages/menuUpload/menuUpload';
 import ExcelUploadPage from '../pages/excelUpload/excelUpload';
 import { Paths } from './paths';
-import { SignInPage } from '../pages/signIn/SignInPage';
-import { LandingPage } from '../pages/landing/LandingPage';
+import SignInPage from '../pages/signIn/SignInPage';
+import LandingPage from '../pages/landing/LandingPage';
 
 function RoutesConfig() {
   return (
