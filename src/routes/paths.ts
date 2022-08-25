@@ -1,6 +1,7 @@
 /* eslint-disable */
 export enum Paths {
-  login = '/login',
+  landing = '/',
+  sign_in = '/sign_in',
   dashboard = '/dashboard',
   reports = '/reports',
   manual_upload = '/manual_upload',

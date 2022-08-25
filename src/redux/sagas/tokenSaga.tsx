@@ -45,10 +45,8 @@ function* fetchTokenSaga(action: any) {
 
 function* refreshTokenSaga(action: any) {
   try {
-    const token = JSON.parse(localStorage.getItem('token') as string);
-
     const response: { token: IToken } = yield call(refreshToken, {
-      refresh: token.refresh,
+      refresh: action.payload.values.refresh,
     });
 
     yield put(fetchTokenSuccess(response));
