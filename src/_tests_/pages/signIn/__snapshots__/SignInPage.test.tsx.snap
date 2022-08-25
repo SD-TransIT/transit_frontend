@@ -6,7 +6,7 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
   data-testid="sign-in-page"
 >
   <div
-    class="sm:w-1/2 bg-hero-image bg-no-repeat bg-cover"
+    class="sm:w-1/2 bg-hero-image bg-no-repeat bg-cover bg-center"
   />
   <div
     class="w-full sm:w-1/2"
