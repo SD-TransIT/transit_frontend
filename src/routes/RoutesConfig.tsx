@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import DashboardPage from '../pages/dashboard/dashboard';
 import ReportsPage from '../pages/reports/reports';
 import ManualUploadPage from '../pages/menuUpload/menuUpload';
@@ -7,7 +7,6 @@ import ExcelUploadPage from '../pages/excelUpload/excelUpload';
 import SignInPage from '../pages/signIn/SignInPage';
 import LandingPage from '../pages/landing/LandingPage';
 import { Paths } from './paths';
-
 import ProtectedRoute, { ProtectedRouteProps } from './ProtectedRoute';
 
 const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
