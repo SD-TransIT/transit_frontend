@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../logo/Logo';
+import Logout from '../logout/Logout';
 import HeaderMenu from './HeaderMenu';
 
 function Header() {
@@ -10,6 +11,9 @@ function Header() {
       </div>
       <div className="w-3/5">
         <HeaderMenu />
+      </div>
+      <div className="w-1/5">
+        <Logout />
       </div>
     </div>
   );

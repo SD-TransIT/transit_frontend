@@ -1,7 +1,8 @@
 import jwt_decode from 'jwt-decode';
+import { sessionToken } from '../redux/reducers/tokenReducer';
 
 export default function isAuthenticated(): boolean {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem(sessionToken);
   if (token) {
     const tokenJson = JSON.parse(token);
     let isValid: boolean = true;

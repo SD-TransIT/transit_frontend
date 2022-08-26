@@ -9,6 +9,7 @@ import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redu
 import SubmitButton from '../../shared/buttons/SubmitButton';
 import { ITokenInput } from '../../models/token/ITokenInput';
 import Input from '../../shared/inputs/input';
+import { sessionToken } from '../../redux/reducers/tokenReducer';
 import { Paths } from '../../routes/paths';
 
 interface ISignInFormProps {
@@ -29,7 +30,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   };
 
   const refreshToken = () => {
-    const token = JSON.parse(localStorage.getItem('token') as string);
+    const token = JSON.parse(localStorage.getItem(sessionToken) as string);
     const data: any = {
       values: {
         refresh: token.refresh,
@@ -40,7 +41,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   };
 
   useEffect(() => {
-    const isToken = !!localStorage.getItem('token');
+    const isToken = !!localStorage.getItem(sessionToken);
     if (isAuthenticatedProperly()) {
       navigate(Paths.landing);
     } else if (isToken) {
