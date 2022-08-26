@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Logout component. Should match snapshot. 1`] = `
+<div
+  class="flex justify-end h-full items-center pr-2"
+  data-testid="logout"
+>
+  <button
+    class="flex flex-row gap-3"
+    type="button"
+  >
+    <img
+      alt="logout"
+      class="m-auto"
+      src="vector.svg"
+    />
+    <p>
+      Logout
+    </p>
+  </button>
+</div>
+`;

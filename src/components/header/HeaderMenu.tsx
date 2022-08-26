@@ -28,7 +28,7 @@ function HeaderMenu() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-row h-full">
+    <div className="flex flex-row h-full justify-center">
       <div>
         <Link
           data-testid="dashboard-link"
