@@ -1,22 +1,51 @@
-import { Routes, Route } from 'react-router-dom';
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import DashboardPage from '../pages/dashboard/dashboard';
 import ReportsPage from '../pages/reports/reports';
 import ManualUploadPage from '../pages/menuUpload/menuUpload';
 import ExcelUploadPage from '../pages/excelUpload/excelUpload';
-import { Paths } from './paths';
 import SignInPage from '../pages/signIn/SignInPage';
 import LandingPage from '../pages/landing/LandingPage';
+import ProtectedRoute from './ProtectedRoute';
+import { Paths } from './paths';
 
 function RoutesConfig() {
   return (
     <Routes>
-      <Route path={Paths.landing} element={<LandingPage />} />
-      <Route path={Paths.dashboard} element={<DashboardPage />} />
-      <Route path={Paths.reports} element={<ReportsPage />} />
-      <Route path={Paths.manual_upload} element={<ManualUploadPage />} />
-      <Route path={Paths.excel_upload} element={<ExcelUploadPage />} />
-      <Route path={Paths.sign_in} element={<SignInPage />} />
+      <Route
+        path={Paths.sign_in}
+        element={<SignInPage />}
+      />
+      <Route
+        path={Paths.landing}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<LandingPage />} />
+        }
+      />
+      <Route
+        path={Paths.dashboard}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<DashboardPage />} />
+        }
+      />
+      <Route
+        path={Paths.reports}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ReportsPage />} />
+        }
+      />
+      <Route
+        path={Paths.manual_upload}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ManualUploadPage />} />
+        }
+      />
+      <Route
+        path={Paths.excel_upload}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ExcelUploadPage />} />
+        }
+      />
     </Routes>
   );
 }

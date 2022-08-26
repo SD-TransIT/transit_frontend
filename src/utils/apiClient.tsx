@@ -15,6 +15,6 @@ export const handleSuccess = (response: any): any => response;
 export const handleError = (error: any): any => Promise.reject(error);
 
 apiClient.interceptors.response.use(handleSuccess, handleError);
-apiClient.interceptors.request.use(config => config, handleError);
+apiClient.interceptors.request.use((config) => config, handleError);
 
 export default apiClient;

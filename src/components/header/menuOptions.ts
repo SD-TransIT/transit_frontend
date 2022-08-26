@@ -1,7 +1,7 @@
 import { Paths } from '../../routes/paths';
 import { Menu } from './types';
 
-export const menuOptions: Menu = {
+const menuOptions: Menu = {
   dashboard: { id: 'dashboard', title: 'Dashboard', path: Paths.dashboard },
   reports: { id: 'reports', title: 'Reports', path: Paths.reports },
   manualUpload: {
@@ -15,3 +15,5 @@ export const menuOptions: Menu = {
     path: Paths.excel_upload,
   },
 };
+
+export default menuOptions;
