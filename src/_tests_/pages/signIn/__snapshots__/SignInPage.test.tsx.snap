@@ -6,48 +6,77 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
   data-testid="sign-in-page"
 >
   <div
-    class="sm:w-1/2 bg-hero-image bg-no-repeat bg-cover bg-center"
+    class="sm:w-1/2 bg-hero-image bg-no-repeat bg-cover"
   />
   <div
     class="w-full sm:w-1/2"
   >
     <div
-      class="form-floating"
+      class="flex h-screen"
     >
-      <label
-        for="floatingInput"
+      <div
+        class="bg-transit-white m-auto w-full max-w-lg h-full max-h-96"
       >
-        <input
-          class="form-control"
-          id="floatingInput"
-          name="username"
-          placeholder="Username"
-        />
-        Username
-      </label>
+        <form
+          class="rounded-lg px-8 pt-6 pb-8 mb-4 space-y-4 "
+        >
+          <h1
+            class="text-4xl"
+          >
+            Sign in
+          </h1>
+          <p
+            class="text-sm"
+          >
+            Sign up on the internal platform
+          </p>
+          <div
+            class="mb-4"
+          >
+            <label
+              for="floatingInput"
+            >
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12"
+                id="floatingInput"
+                name="username"
+                placeholder="Username"
+                type="text"
+              />
+            </label>
+          </div>
+          <div
+            class="mb-6"
+          >
+            <label
+              for="floatingInput"
+            >
+              <input
+                class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline h-12"
+                id="floatingInput"
+                name="password"
+                placeholder="Password"
+                type="password"
+              />
+            </label>
+          </div>
+          <button
+            class="gap-2 bg-transit-green-dark px-4 py-2 rounded text-transit-white w-full h-12"
+            data-testid="add-button"
+            type="button"
+          >
+            <p
+              class="text-center"
+            >
+              Sign in
+            </p>
+          </button>
+          <p>
+            Not registered? Create account
+          </p>
+        </form>
+      </div>
     </div>
-    <div
-      class="form-floating mt-3"
-    >
-      <label
-        for="floatingPassword"
-      >
-        <input
-          class="form-control"
-          id="floatingPassword"
-          name="password"
-          placeholder="Password"
-          type="password"
-        />
-        Password
-      </label>
-    </div>
-    <button
-      class="w-100 btn btn-lg btn-warning"
-      type="button"
-    >
-      Sign in
-    </button>
   </div>
 </div>
 `;

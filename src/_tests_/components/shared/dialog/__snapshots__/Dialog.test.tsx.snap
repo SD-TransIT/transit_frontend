@@ -47,7 +47,9 @@ exports[`Unit test for the Dialog component. Should match snapshot when Dialog h
             data-testid="add-button"
             type="button"
           >
-            <p>
+            <p
+              class="text-center"
+            >
               Add
             </p>
           </button>

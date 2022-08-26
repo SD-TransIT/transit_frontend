@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import isAuthenticatedProperly from '../../utils/authHelper';
 import { fetchTokenRequest, refreshTokenRequest } from '../../redux/actions/token/tokenActions';
 import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redux/types/type';
 import SubmitButton from '../../shared/buttons/SubmitButton';
 import { ITokenInput } from '../../models/token/ITokenInput';
 import Input from '../../shared/inputs/input';
+import { Paths } from '../../routes/paths';
 
-function SignInForm(props: any) {
-  const { refresh, signIn } = props;
+interface ISignInFormProps {
+  signIn: (params: FetchTokenRequestPayload) => void;
+  refresh: (params: RefreshTokenRequestPayload) => void;
+}
 
+type AuthAction = {
+  type: string,
+  err?: unknown
+};
+
+function SignInForm({ refresh, signIn }: ISignInFormProps) {
   const navigate = useNavigate();
 
   const callback = () => {
-    navigate('/');
+    navigate(Paths.landing);
   };
 
   const refreshToken = () => {
@@ -32,7 +42,7 @@ function SignInForm(props: any) {
   useEffect(() => {
     const isToken = !!localStorage.getItem('token');
     if (isAuthenticatedProperly()) {
-      navigate('/');
+      navigate(Paths.landing);
     } else if (isToken) {
       refreshToken();
     }
@@ -52,12 +62,12 @@ function SignInForm(props: any) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (formValues: any) => {
-    login(formValues);
+  const onSubmit = (formValues: FieldValues) => {
+    login(formValues as ITokenInput);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="rounded px-8 pt-6 pb-8 mb-4 space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg px-8 pt-6 pb-8 mb-4 space-y-4 ">
       <h1 className="text-4xl">Sign in</h1>
       <p className="text-sm">Sign up on the internal platform</p>
       <div className="mb-4">
@@ -87,7 +97,7 @@ function SignInForm(props: any) {
       </div>
       <SubmitButton
         onClick={handleSubmit(onSubmit)}
-        title="Log in"
+        title="Sign in"
         className="gap-2 bg-transit-green-dark px-4 py-2 rounded text-transit-white w-full h-12"
       />
 
@@ -96,7 +106,7 @@ function SignInForm(props: any) {
   );
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, never, AuthAction>): ISignInFormProps => ({
   signIn: (params: FetchTokenRequestPayload) => dispatch(fetchTokenRequest(params)),
   refresh: (params: RefreshTokenRequestPayload) => dispatch(refreshTokenRequest(params)),
 });
