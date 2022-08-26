@@ -162,7 +162,10 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/lodash": "^4.14.184",
+=======
+>>>>>>> d0a59ad5d32178430a9580eda2f8c5b917a3e76b
     "@types/react-redux": "^7.1.24",
     "@types/redux-logger": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^5.33.1",

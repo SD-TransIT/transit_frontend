@@ -6,12 +6,8 @@ import ManualUploadPage from '../pages/menuUpload/menuUpload';
 import ExcelUploadPage from '../pages/excelUpload/excelUpload';
 import SignInPage from '../pages/signIn/SignInPage';
 import LandingPage from '../pages/landing/LandingPage';
+import ProtectedRoute from './ProtectedRoute';
 import { Paths } from './paths';
-import ProtectedRoute, { ProtectedRouteProps } from './ProtectedRoute';
-
-const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-  authenticationPath: '/sign_in',
-};
 
 function RoutesConfig() {
   return (
@@ -22,28 +18,33 @@ function RoutesConfig() {
       />
       <Route
         path={Paths.landing}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<LandingPage />} />}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<LandingPage />} />
+        }
       />
       <Route
         path={Paths.dashboard}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<DashboardPage />} />}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<DashboardPage />} />
+        }
       />
       <Route
         path={Paths.reports}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ReportsPage />} />}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ReportsPage />} />
+        }
       />
       <Route
         path={Paths.manual_upload}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ManualUploadPage />} />}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ManualUploadPage />} />
+        }
       />
       <Route
         path={Paths.excel_upload}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<ExcelUploadPage />} />}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ExcelUploadPage />} />
+        }
       />
     </Routes>
   );
