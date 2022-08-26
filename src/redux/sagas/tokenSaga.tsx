@@ -6,6 +6,7 @@ import { IToken } from '../../models/token/IToken';
 import { fetchTokenFailure, fetchTokenSuccess } from '../actions/token/tokenActions';
 import TokenActionTypes from '../actions/token/tokenActionTypes';
 import { ITokenInput, ITokenRefreshInput } from '../../models/token/ITokenInput';
+import { sessionToken } from '../reducers/tokenReducer';
 
 const postToken = async (payload: ITokenInput) => {
   const { data } = await apiClient.post(
@@ -34,7 +35,7 @@ function* fetchTokenSaga(action: any) {
     yield put(fetchTokenSuccess(response));
     yield put({ type: TokenActionTypes.FETCH_TOKEN_SUCCESS, token: response });
 
-    localStorage.setItem('token', JSON.stringify(response));
+    localStorage.setItem(sessionToken, JSON.stringify(response));
 
     action.payload.callback(response.token);
   } catch (error: any) {
@@ -52,7 +53,7 @@ function* refreshTokenSaga(action: any) {
     yield put(fetchTokenSuccess(response));
     yield put({ type: TokenActionTypes.REFRESH_TOKEN_SUCCESS, token: response });
 
-    localStorage.setItem('token', JSON.stringify(response));
+    localStorage.setItem(sessionToken, JSON.stringify(response));
 
     action.payload.callback(response.token);
   } catch (error: any) {

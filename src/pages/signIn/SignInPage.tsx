@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import isAuthenticated from '../../utils/authHelper';
 import { fetchTokenRequest, refreshTokenRequest } from '../../redux/actions/token/tokenActions';
 import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redux/types/type';
+import { sessionToken } from '../../redux/reducers/tokenReducer';
 
 function SignInPage(props: any) {
   const usernameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -18,7 +19,7 @@ function SignInPage(props: any) {
   };
 
   const refreshToken = () => {
-    const token = JSON.parse(localStorage.getItem('token') as string);
+    const token = JSON.parse(localStorage.getItem(sessionToken) as string);
     const data: any = {
       values: {
         refresh: token.refresh,
@@ -29,7 +30,7 @@ function SignInPage(props: any) {
   };
 
   useEffect(() => {
-    const isToken = !!localStorage.getItem('token');
+    const isToken = !!localStorage.getItem(sessionToken);
     if (isAuthenticated()) {
       navigate('/');
     } else if (isToken) {

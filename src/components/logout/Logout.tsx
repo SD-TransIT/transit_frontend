@@ -1,16 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { sessionToken } from '../../redux/reducers/tokenReducer';
+import { Paths } from '../../routes/paths';
 import vector from '../../shared/images/vector.svg';
 
 function Logout() {
   const navigate = useNavigate();
 
   const callback = () => {
-    navigate('/sign_in');
+    navigate(Paths.sign_in);
   };
 
   const logoutUser = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem(sessionToken);
     callback();
   };
 

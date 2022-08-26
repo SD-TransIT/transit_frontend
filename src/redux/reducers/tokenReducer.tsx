@@ -1,6 +1,8 @@
 import TokenActionTypes from '../actions/token/tokenActionTypes';
 import { TokenActions, TokenState } from '../types/type';
 
+export const sessionToken: string = 'token';
+
 const initialState: TokenState = {
   fetchingToken: false,
   fetchedToken: false,
@@ -30,7 +32,7 @@ const tokenReducer = (action: TokenActions, state: TokenState = initialState) =>
         error: null,
       };
     case TokenActionTypes.FETCH_TOKEN_FAILURE:
-      localStorage.removeItem('token');
+      localStorage.removeItem(sessionToken);
       return {
         ...state,
         fetchingToken: false,
@@ -54,7 +56,7 @@ const tokenReducer = (action: TokenActions, state: TokenState = initialState) =>
         error: null,
       };
     case TokenActionTypes.REFRESH_TOKEN_FAILURE:
-      localStorage.removeItem('token');
+      localStorage.removeItem(sessionToken);
       return {
         ...state,
         fetchingToken: false,
