@@ -19,6 +19,12 @@ module.exports = {
       "transit-grey": {
         DEFAULT: "#F2F2F2",
       },
+      "transit-white": {
+        DEFAULT: "#FFFFFF",
+      },
+      "transit-red": {
+        DEFAULT: "#FF0000",
+      },
     },
     extend: {
       height: {
