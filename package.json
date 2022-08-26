@@ -2,6 +2,7 @@
   "name": "transit_frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@fontsource/mulish": "^4.5.12",
