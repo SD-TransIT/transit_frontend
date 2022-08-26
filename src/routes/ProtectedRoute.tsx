@@ -1,6 +1,6 @@
-import { Navigate } from 'react-router-dom';
 import React from 'react';
-import isAuthenticatedProperly from '../utils/authHelper';
+import { Navigate } from 'react-router-dom';
+import isAuthenticated from '../utils/authHelper';
 import Header from '../components/header/Header';
 
 export type ProtectedRouteProps = {
@@ -9,7 +9,7 @@ export type ProtectedRouteProps = {
 };
 
 export default function ProtectedRoute({ authenticationPath, outlet }: ProtectedRouteProps) {
-  if (isAuthenticatedProperly()) {
+  if (isAuthenticated()) {
     return (
       <>
         <Header />

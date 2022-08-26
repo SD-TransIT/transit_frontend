@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import isAuthenticatedProperly from '../../utils/authHelper';
+import isAuthenticated from '../../utils/authHelper';
 import { fetchTokenRequest, refreshTokenRequest } from '../../redux/actions/token/tokenActions';
 import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redux/types/type';
 
@@ -30,7 +30,7 @@ function SignInPage(props: any) {
 
   useEffect(() => {
     const isToken = !!localStorage.getItem('token');
-    if (isAuthenticatedProperly()) {
+    if (isAuthenticated()) {
       navigate('/');
     } else if (isToken) {
       refreshToken();
