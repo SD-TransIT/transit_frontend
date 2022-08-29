@@ -8,6 +8,8 @@ import SignInPage from '../pages/signIn/SignInPage';
 import LandingPage from '../pages/landing/LandingPage';
 import ProtectedRoute from './ProtectedRoute';
 import { Paths } from './paths';
+import Forbidden from '../components/shared/Forbidden';
+import Unauthorized from '../components/shared/Unauthorized';
 
 function RoutesConfig() {
   return (
@@ -45,6 +47,16 @@ function RoutesConfig() {
         element={
           <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ExcelUploadPage />} />
         }
+      />
+      <Route
+        path={Paths.unauthorized}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<Unauthorized />} />
+          }
+      />
+      <Route
+        path={Paths.forbidden}
+        element={<Forbidden />}
       />
     </Routes>
   );
