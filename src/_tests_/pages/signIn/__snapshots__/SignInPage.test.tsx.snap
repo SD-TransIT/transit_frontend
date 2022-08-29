@@ -6,48 +6,103 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
   data-testid="sign-in-page"
 >
   <div
-    class="sm:w-1/2 bg-hero-image bg-no-repeat bg-cover bg-center"
+    class="sm:w-1/2 bg-hero-image bg-no-repeat bg-cover"
   />
   <div
     class="w-full sm:w-1/2"
   >
     <div
-      class="form-floating"
+      class="flex h-screen"
     >
-      <label
-        for="floatingInput"
+      <div
+        class="bg-transit-white m-auto w-full max-w-lg h-full max-h-96 rounded-lg py-8 px-4 gap-y-4"
       >
-        <input
-          class="form-control"
-          id="floatingInput"
-          name="username"
-          placeholder="Username"
-        />
-        Username
-      </label>
+        <form>
+          <div
+            class="flex flex-col gap-6"
+          >
+            <div
+              class="flex flex-col gap-2"
+            >
+              <p
+                class="text-2xl"
+              >
+                Sign in
+              </p>
+              <p
+                class="text-sm text-transit-black-light"
+              >
+                Sign up on the internal platform
+              </p>
+            </div>
+            <div
+              class="h-12"
+            >
+              <label
+                for="floatingInput"
+              >
+                <input
+                  class="border border-transit-black-light rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2"
+                  id="floatingInput"
+                  name="username"
+                  placeholder="Username"
+                  type="text"
+                />
+              </label>
+              <div
+                class="pb-2"
+              />
+            </div>
+            <div
+              class="h-12"
+            >
+              <label
+                for="floatingInput"
+              >
+                <input
+                  class="border border-transit-black-light rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2"
+                  id="floatingInput"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                />
+              </label>
+              <div
+                class="pb-2"
+              />
+            </div>
+            <div
+              class="h-12"
+            >
+              <button
+                class="flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full"
+                data-testid="add-button"
+                type="button"
+              >
+                <p
+                  class="text-center"
+                >
+                  Sign in
+                </p>
+              </button>
+            </div>
+            <div
+              class="flex flex-row gap-px"
+            >
+              <p>
+                Not registered?
+              </p>
+              <a
+                class="text-transit-green-dark text-decoration-line: underline"
+                href="/"
+              >
+                Create an account
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <div
-      class="form-floating mt-3"
-    >
-      <label
-        for="floatingPassword"
-      >
-        <input
-          class="form-control"
-          id="floatingPassword"
-          name="password"
-          placeholder="Password"
-          type="password"
-        />
-        Password
-      </label>
-    </div>
-    <button
-      class="w-100 btn btn-lg btn-warning"
-      type="button"
-    >
-      Sign in
-    </button>
   </div>
 </div>
 `;

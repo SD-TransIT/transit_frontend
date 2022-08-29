@@ -43,11 +43,13 @@ exports[`Unit test for the Dialog component. Should match snapshot when Dialog h
             </p>
           </button>
           <button
-            class="inline-flex items-center gap-2 bg-transit-green-dark px-4 py-2 rounded text-transit-white"
+            class="flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full"
             data-testid="add-button"
             type="button"
           >
-            <p>
+            <p
+              class="text-center"
+            >
               Add
             </p>
           </button>
