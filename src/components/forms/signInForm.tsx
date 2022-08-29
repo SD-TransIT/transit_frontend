@@ -20,7 +20,7 @@ interface ISignInFormProps {
 
 type AuthAction = {
   type: string,
-  err?: unknown
+  error?: unknown
 };
 
 function SignInForm({ refresh, signIn }: ISignInFormProps) {
@@ -78,7 +78,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
           </div>
           <div className="h-12">
             <Input
-                // eslint-disable-next-line react/jsx-props-no-spreading
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...register('username', { required: true })}
               className=""
               name="username"
@@ -93,7 +93,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
 
           <div className="h-12">
             <Input
-                // eslint-disable-next-line react/jsx-props-no-spreading
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...register('password', { required: true })}
               className=""
               name="password"
@@ -109,11 +109,12 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             <SubmitButton
               onClick={handleSubmit(onSubmit)}
               title="Sign in"
-              className=""
             />
           </div>
-
-          <p>Not registered? Create account</p>
+          <div className="flex flex-row gap-px">
+            Not registered?
+            <a className="text-transit-green-dark text-decoration-line: underline" href="/">Create an account</a>
+          </div>
         </div>
       </form>
     </div>

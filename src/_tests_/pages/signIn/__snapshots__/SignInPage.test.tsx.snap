@@ -86,9 +86,17 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
                 </p>
               </button>
             </div>
-            <p>
-              Not registered? Create account
-            </p>
+            <div
+              class="flex flex-row gap-px"
+            >
+              Not registered?
+              <a
+                class="text-transit-green-dark text-decoration-line: underline"
+                href="/"
+              >
+                Create an account
+              </a>
+            </div>
           </div>
         </form>
       </div>
