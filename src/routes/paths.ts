@@ -6,4 +6,6 @@ export enum Paths {
   reports = '/reports',
   manual_upload = '/manual_upload',
   excel_upload = '/excel_upload',
+  forbidden = '/403',
+  unauthorized = '/401'
 }
