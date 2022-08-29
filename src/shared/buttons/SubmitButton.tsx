@@ -1,12 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
 import { SubmitButtonType } from './types';
 
-function SubmitButton({ onClick, title = 'Add', className = 'inline-flex items-center gap-2 bg-transit-green-dark px-4 py-2 rounded text-transit-white' }: SubmitButtonType) {
+const style = 'flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full';
+
+function SubmitButton({ onClick, title = 'Add', className }: SubmitButtonType) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={className}
+      className={classNames(style, className)}
       data-testid="add-button"
     >
       <p className="text-center">{title}</p>

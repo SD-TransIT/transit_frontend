@@ -10,6 +10,7 @@ import SubmitButton from '../../shared/buttons/SubmitButton';
 import { ITokenInput } from '../../models/token/ITokenInput';
 import Input from '../../shared/inputs/input';
 import { sessionToken } from '../../redux/reducers/tokenReducer';
+import ValidationError from '../shared/ValidationError';
 import { Paths } from '../../routes/paths';
 
 interface ISignInFormProps {
@@ -68,42 +69,54 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg px-8 pt-6 pb-8 mb-4 space-y-4 ">
-      <h1 className="text-4xl">Sign in</h1>
-      <p className="text-sm">Sign up on the internal platform</p>
-      <div className="mb-4">
-        <Input
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...register('username', { required: true })}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12"
-          name="username"
-          id="floatingInput"
-          placeholder="Username"
-          type="text"
-        />
-        {errors.username && <span className="text-transit-red">This is required</span>}
-      </div>
+    <div className="bg-transit-white m-auto w-full max-w-lg h-full max-h-96 rounded-lg py-8 px-4 gap-y-4">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <p className="text-2xl">Sign in</p>
+            <p className="text-sm text-transit-black-light">Sign up on the internal platform</p>
+          </div>
+          <div className="h-12">
+            <Input
+                // eslint-disable-next-line react/jsx-props-no-spreading
+              {...register('username', { required: true })}
+              className=""
+              name="username"
+              id="floatingInput"
+              placeholder="Username"
+              type="text"
+            />
+            <div className="pb-2">
+              {errors.username && <ValidationError value="This field is required" />}
+            </div>
+          </div>
 
-      <div className="mb-6">
-        <Input
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...register('password', { required: true })}
-          className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline h-12"
-          name="password"
-          id="floatingInput"
-          placeholder="Password"
-          type="password"
-        />
-        {errors.password && <span className="text-transit-red">This is required</span>}
-      </div>
-      <SubmitButton
-        onClick={handleSubmit(onSubmit)}
-        title="Sign in"
-        className="gap-2 bg-transit-green-dark px-4 py-2 rounded text-transit-white w-full h-12"
-      />
+          <div className="h-12">
+            <Input
+                // eslint-disable-next-line react/jsx-props-no-spreading
+              {...register('password', { required: true })}
+              className=""
+              name="password"
+              id="floatingInput"
+              placeholder="Password"
+              type="password"
+            />
+            <div className="pb-2">
+              {errors.password && <ValidationError value="This field is required" />}
+            </div>
+          </div>
+          <div className="h-12">
+            <SubmitButton
+              onClick={handleSubmit(onSubmit)}
+              title="Sign in"
+              className=""
+            />
+          </div>
 
-      <p>Not registered? Create account</p>
-    </form>
+          <p>Not registered? Create account</p>
+        </div>
+      </form>
+    </div>
   );
 }
 
