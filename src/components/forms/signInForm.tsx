@@ -90,7 +90,6 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               {errors.username && <ValidationError value="This field is required" />}
             </div>
           </div>
-
           <div className="h-12">
             <Input
               // eslint-disable-next-line react/jsx-props-no-spreading
@@ -112,7 +111,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             />
           </div>
           <div className="flex flex-row gap-px">
-            Not registered?
+            <p>Not registered?</p>
             <a className="text-transit-green-dark text-decoration-line: underline" href="/">Create an account</a>
           </div>
         </div>
