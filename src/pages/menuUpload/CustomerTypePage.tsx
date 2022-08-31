@@ -29,17 +29,15 @@ function CustomerTypePage() {
         <Searcher refetch={refetch} />
       </div>
       <div>
-        {customerTypes === undefined ? (
-          <div />
-        ) : (
-          customerTypes.map((customer_type: ICustomerType) => (
+        {
+          customerTypes && customerTypes.map((customer_type: ICustomerType) => (
             <div key={customer_type.id}>
               {customer_type.id}
               {' '}
               {customer_type.customer_type_name}
             </div>
           ))
-        )}
+        }
       </div>
     </div>
   );
