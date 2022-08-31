@@ -12,9 +12,9 @@ import { refreshToken } from './tokenSaga';
 
 const getCustomerType = async (parameters: any) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const additionaParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
+  const additionalParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
   const { data } = await apiClient.get(
-    `customer_type/${additionaParamString}`,
+    `customer_type/${additionalParamString}`,
     {
       headers: {
         'Content-type': 'application/json',
