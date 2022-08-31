@@ -1,5 +1,5 @@
 import TokenActionTypes from '../actions/token/tokenActionTypes';
-import { TokenActions, TokenState } from '../types/type';
+import { TokenActions, TokenState } from '../types/tokenType';
 
 export const sessionToken: string = 'token';
 

@@ -3,9 +3,9 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from '@reduxjs/toolkit';
-import isAuthenticatedProperly from '../../utils/authHelper';
+import isAuthenticated from '../../utils/authHelper';
 import { fetchTokenRequest, refreshTokenRequest } from '../../redux/actions/token/tokenActions';
-import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redux/types/type';
+import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redux/types/tokenType';
 import SubmitButton from '../../shared/buttons/SubmitButton';
 import { ITokenInput } from '../../models/token/ITokenInput';
 import Input from '../../shared/inputs/input';
@@ -30,20 +30,24 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
     navigate(Paths.landing);
   };
 
+  const callbackRefresh = () => {
+    navigate(-1);
+  };
+
   const refreshToken = () => {
     const token = JSON.parse(localStorage.getItem(sessionToken) as string);
     const data: any = {
       values: {
         refresh: token.refresh,
       },
-      callback,
+      callback: callbackRefresh,
     };
     refresh(data);
   };
 
   useEffect(() => {
     const isToken = !!localStorage.getItem(sessionToken);
-    if (isAuthenticatedProperly()) {
+    if (isAuthenticated()) {
       navigate(Paths.landing);
     } else if (isToken) {
       refreshToken();
