@@ -16,7 +16,7 @@ const postToken = async (payload: ITokenInput) => {
   return data;
 };
 
-const refreshToken = async (payload: ITokenRefreshInput) => {
+export const refreshToken = async (payload: ITokenRefreshInput) => {
   const { data } = await apiClient.post(
     'token/refresh/',
     { refresh: payload.refresh },

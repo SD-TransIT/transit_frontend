@@ -7,6 +7,7 @@ import ExcelUploadPage from '../pages/excelUpload/excelUpload';
 import SignInPage from '../pages/signIn/SignInPage';
 import LandingPage from '../pages/landing/LandingPage';
 import ProtectedRoute from './ProtectedRoute';
+import CustomerTypePage from '../pages/menuUpload/CustomerTypePage';
 import { Paths } from './paths';
 import Forbidden from '../components/shared/Forbidden';
 import Unauthorized from '../components/shared/Unauthorized';
@@ -40,6 +41,12 @@ function RoutesConfig() {
         path={Paths.manual_upload}
         element={
           <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ManualUploadPage />} />
+        }
+      />
+      <Route
+        path={Paths.customer_type}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<CustomerTypePage />} />
         }
       />
       <Route

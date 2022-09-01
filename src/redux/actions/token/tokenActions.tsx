@@ -12,7 +12,7 @@ import {
   RefreshTokenRequestPayload,
   RefreshTokenSuccess,
   RefreshTokenSuccessPayload,
-} from '../../types/type';
+} from '../../types/tokenType';
 
 export const fetchTokenRequest = (
   payload: FetchTokenRequestPayload,

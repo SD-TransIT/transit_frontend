@@ -5,6 +5,7 @@ export enum Paths {
   dashboard = '/dashboard',
   reports = '/reports',
   manual_upload = '/manual_upload',
+  customer_type = `/manual_upload/customer_type`,
   excel_upload = '/excel_upload',
   forbidden = '/403',
   unauthorized = '/401'

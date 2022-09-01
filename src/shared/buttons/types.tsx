@@ -8,3 +8,9 @@ export type CancelButtonType = {
   onClick: () => void,
   title?: string
 };
+
+export type ClearButtonType = {
+  onClick: () => void,
+  title?: string,
+  className?: string
+};
