@@ -1,8 +1,8 @@
 import React from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { FiSearch } from 'react-icons/fi';
 import ClearButton from '../../shared/buttons/ClearButton';
 import SubmitButton from '../../shared/buttons/SubmitButton';
-import SearchIcon from '../../shared/images/SearchIcon';
 import Input from '../../shared/inputs/input';
 
 interface SearcherProps {
@@ -24,7 +24,9 @@ function Searcher({ refetch }: SearcherProps) {
     <div className="p-32 space-x-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="relative inline-block w-10/12">
-          <SearchIcon />
+          <div className="inline-block flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <FiSearch />
+          </div>
           <Input
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('search', { required: false })}
