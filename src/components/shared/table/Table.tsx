@@ -47,11 +47,11 @@ function Table({ columns, data, children }: TableProps) {
   return (
     <div className="w-full h-full">
       <div className="flex flex-col m-auto bg-transit-white">
-        <div className="flex flex-row justify-between items-center w-content p-2">
+        <div className="flex flex-row justify-between items-center w-content px-4 py-2">
           {children}
         </div>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <table {...getTableProps()} className="">
+        <table {...getTableProps()}>
           <thead className="bg-transit-grey">
             {headerGroups.map((headerGroup) => {
               const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
@@ -60,7 +60,7 @@ function Table({ columns, data, children }: TableProps) {
                 <tr {...restHeaderGroupProps} key={key} className="">
                   {headerGroup.headers.map((column) => (
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                    <th {...column.getHeaderProps()} key={column.id} className="flex text-left items-center h-10 pl-2">
+                    <th {...column.getHeaderProps()} key={column.id} className="flex text-left items-center h-10 pl-4">
                       {column.render('Header')}
                     </th>
                   ))}
@@ -76,7 +76,7 @@ function Table({ columns, data, children }: TableProps) {
               // eslint-disable-next-line react/jsx-props-no-spreading
                 <tr {...row.getRowProps()} key={row.id} className="flex flex-row text-left items-center even:bg-transit-grey-light h-12 font-normal">
                   {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                  {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="flex flex-row px-2">{cell.render('Cell')}</td>)}
+                  {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="flex flex-row px-4">{cell.render('Cell')}</td>)}
                 </tr>
               );
             })}

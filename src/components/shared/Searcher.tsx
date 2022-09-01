@@ -21,7 +21,7 @@ function Searcher({ refetch }: SearcherProps) {
   };
 
   return (
-    <div className="p-32 space-x-4">
+    <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="relative inline-block w-10/12">
           <div className="inline-block flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">

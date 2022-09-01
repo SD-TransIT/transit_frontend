@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldValues } from 'react-hook-form';
+import { AiOutlinePlus } from 'react-icons/ai';
 import { getCustomerTypeRequest } from '../../redux/actions/customerType/customerTypeActions';
 import { RootState } from '../../redux/reducers/rootReducer';
-import { ICustomerType } from '../../models/customerType/ICustomerType';
 import Searcher from '../../components/shared/Searcher';
+import Table from '../../components/shared/table/Table';
+import { ColumnType } from '../../components/shared/table/types';
+import AddItemButton from '../../shared/buttons/AddItemButton';
 
 function CustomerTypePage() {
   const dispatch = useDispatch();
@@ -23,22 +26,31 @@ function CustomerTypePage() {
     dispatch(getCustomerTypeRequest(formValues as any));
   };
 
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: 'Id',
+      accessor: 'id',
+    },
+    {
+      Header: 'Name',
+      accessor: 'customer_type_name',
+    },
+  ], []);
+
   return (
-    <div>
+    <div className="flex flex-col m-auto p-20 gap-5">
       <div>
+        <p className="text-2xl text-transit-black">Customer Type</p>
+      </div>
+      <div className="p-4 bg-transit-white">
         <Searcher refetch={refetch} />
       </div>
-      <div>
-        {
-          customerTypes && customerTypes.map((customer_type: ICustomerType) => (
-            <div key={customer_type.id}>
-              {customer_type.id}
-              {' '}
-              {customer_type.customer_type_name}
-            </div>
-          ))
-        }
-      </div>
+      <Table columns={columns} data={customerTypes}>
+        <p>{`${customerTypes?.length} Results`}</p>
+        <AddItemButton onClick={() => {}} className="w-fit p-2">
+          <AiOutlinePlus className="text-transit-white" />
+        </AddItemButton>
+      </Table>
     </div>
   );
 }
