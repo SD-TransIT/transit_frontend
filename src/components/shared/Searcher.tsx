@@ -43,7 +43,6 @@ function Searcher({ refetch }: SearcherProps) {
                 search: '',
               });
             }}
-            title="Clear"
           />
         </div>
         <div className="inline-block w-1/12">
