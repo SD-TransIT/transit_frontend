@@ -38,19 +38,29 @@ function CustomerTypePage() {
   ], []);
 
   return (
-    <div className="flex flex-col m-auto p-20 gap-5">
+    <div className="flex flex-col m-auto px-10 py-10 md:px-20 lg:px-40 gap-5">
       <div>
         <p className="text-2xl text-transit-black">Customer Type</p>
       </div>
       <div className="p-4 bg-transit-white">
         <Searcher refetch={refetch} />
       </div>
-      <Table columns={columns} data={customerTypes}>
-        <p>{`${customerTypes?.length} Results`}</p>
-        <AddItemButton onClick={() => {}} className="w-fit p-2">
-          <AiOutlinePlus className="text-transit-white" />
-        </AddItemButton>
-      </Table>
+      {customerTypes === undefined ? (
+        <Table columns={columns} data={[{ }]}>
+          <p>0 Results</p>
+          <AddItemButton onClick={() => { }} className="w-fit p-2">
+            <AiOutlinePlus className="text-transit-white" />
+          </AddItemButton>
+        </Table>
+      ) : (
+        <Table columns={columns} data={customerTypes}>
+          <p>{`${customerTypes?.length} Results`}</p>
+          <AddItemButton onClick={() => { }} className="w-fit p-2">
+            <AiOutlinePlus className="text-transit-white" />
+          </AddItemButton>
+        </Table>
+      )}
+
     </div>
   );
 }
