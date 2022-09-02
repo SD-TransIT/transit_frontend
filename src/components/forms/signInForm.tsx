@@ -84,7 +84,6 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             <Input
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...register('username', { required: true })}
-              className=""
               name="username"
               id="floatingInput"
               placeholder="Username"
@@ -98,7 +97,6 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             <Input
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...register('password', { required: true })}
-              className=""
               name="password"
               id="floatingInput"
               placeholder="Password"

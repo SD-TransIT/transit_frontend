@@ -86,7 +86,7 @@ function Table({
                   // eslint-disable-next-line react/jsx-props-no-spreading
                   {...row.getRowProps()}
                   key={row.id}
-                  className="flex flex-row text-left items-center even:bg-transit-grey-light h-12 font-normal hover:bg-transit-green-light"
+                  className="flex flex-row text-left items-center even:bg-transit-grey-light h-12 font-normal hover:bg-transit-green"
                   onMouseEnter={() => {
                     setTableRowsState((tableState) => {
                       const nextTableState = [...tableState];

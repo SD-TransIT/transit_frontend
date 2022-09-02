@@ -9,7 +9,6 @@ module.exports = {
       "transit-green": {
         DEFAULT: "#E0EEEF",
         dark: "#017E84",
-        light: "#E0EEEF",
       },
       "transit-black": {
         DEFAULT: "#333232",

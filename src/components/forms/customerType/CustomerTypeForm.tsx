@@ -11,7 +11,7 @@ interface CustomerTypeFormProps {
   onSubmit: (formValues: FieldValues) => void;
   onCancel: () => void;
   title: string;
-  initialFormValue: any;
+  initialFormValue: FieldValues;
 }
 
 function CustomerTypeForm({
@@ -41,7 +41,6 @@ function CustomerTypeForm({
               <Input
               // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register('customerTypeName', { required: true })}
-                className=""
                 name="customerTypeName"
                 id="floatingInput"
                 placeholder="Customer Type"
