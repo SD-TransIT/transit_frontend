@@ -31,7 +31,7 @@ function ManualUploadPage() {
     <PageBody title={PageHeader.manual_upload}>
       <div className="grid grid-cols-2 gap-x-8 gap-y-4">
         {manualUploadForms?.map((tile: IManualUploadFormsType) => (
-          <button type="button" className={menuTileStyle} onClick={() => { callback(tile.label); }}>
+          <button type="button" key={tile.label} className={menuTileStyle} onClick={() => callback(tile.label)}>
             <p>{tile.name}</p>
           </button>
         ))}

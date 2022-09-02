@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DashboardPage from '../pages/dashboard/dashboard';
 import ReportsPage from '../pages/reports/reports';
-import ManualUploadPage from '../pages/menuUpload/MenuUpload';
 import ExcelUploadPage from '../pages/excelUpload/excelUpload';
 import SignInPage from '../pages/signIn/SignInPage';
 import LandingPage from '../pages/landing/LandingPage';
@@ -22,6 +21,7 @@ import PODVariancePage from '../pages/menuUpload/PODVariancePage';
 import ShipmentPage from '../pages/menuUpload/ShipmentPage';
 import SupplierMasterPage from '../pages/menuUpload/SupplierMasterPage';
 import TransportDetailsPage from '../pages/menuUpload/TransportDetailsPage';
+import ManualUploadPage from '../pages/menuUpload/MenuUploadPage';
 
 function RoutesConfig() {
   return (
