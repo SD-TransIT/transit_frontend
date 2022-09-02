@@ -11,6 +11,8 @@ import { ColumnType } from '../../components/shared/table/types';
 import AddItemButton from '../../shared/buttons/AddItemButton';
 import CustomerTypeForm from '../../components/forms/customerType/CustomerTypeForm';
 import Dialog from '../../shared/dialog/Dialog';
+import PageBody from '../../components/shared/PageBody';
+import PageHeader from '../types';
 
 function CustomerTypePage() {
   const [displayModal, setDisplayModal] = useState(false);
@@ -74,10 +76,7 @@ function CustomerTypePage() {
   ], []);
 
   return (
-    <div className="flex flex-col m-auto px-10 py-10 md:px-20 lg:px-40 gap-5">
-      <div>
-        <p className="text-2xl text-transit-black">Customer Type</p>
-      </div>
+    <PageBody title={PageHeader.customer_type}>
       <div className="p-4 bg-transit-white">
         <Searcher refetch={refetch} />
       </div>
@@ -124,8 +123,7 @@ function CustomerTypePage() {
           </AddItemButton>
         </Table>
       )}
-
-    </div>
+    </PageBody>
   );
 }
 

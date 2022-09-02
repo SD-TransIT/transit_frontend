@@ -7,3 +7,22 @@ body {
     font-weight: 600;
     letter-spacing: 0.0275em;
 }
+
+@layer components {
+  /* native HTML button */
+  button.menu-tile {
+    @apply flex;
+    @apply justify-start;
+    @apply py-4;
+    @apply px-6;
+    @apply bg-transit-white;
+    @apply rounded;
+    @apply border;
+    @apply border-transit-grey;
+    @apply font-normal;
+    @apply text-transit-black;
+    @apply hover:border-x;
+    @apply hover:border-transit-green-dark;
+    @apply hover:text-transit-green-dark;
+  }
+}
