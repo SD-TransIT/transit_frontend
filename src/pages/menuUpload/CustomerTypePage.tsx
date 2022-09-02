@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { PostCustomerTypeRequestPayload, PutCustomerTypeRequestPayload } from '../../redux/types/customerType';
-import { getCustomerTypeRequest, postCustomerTypeRequest, putCustomerTypeRequest } from '../../redux/actions/customerType/customerTypeActions';
+import {
+  DeleteCustomerTypeRequestPayload,
+  PostCustomerTypeRequestPayload,
+  PutCustomerTypeRequestPayload,
+} from '../../redux/types/customerType';
+import {
+  deleteCustomerTypeRequest,
+  getCustomerTypeRequest,
+  postCustomerTypeRequest,
+  putCustomerTypeRequest,
+} from '../../redux/actions/customerType/customerTypeActions';
 import { RootState } from '../../redux/reducers/rootReducer';
 import Searcher from '../../components/shared/Searcher';
 import Table from '../../components/shared/table/Table';
@@ -17,7 +26,9 @@ import PageHeader from '../types';
 function CustomerTypePage() {
   const [displayModal, setDisplayModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
   const [objectToEdit, setObjectToEdit] = useState({ id: null, customerTypeName: '' });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const toggleModal = () => {
     setDisplayModal(!displayModal);
@@ -32,6 +43,16 @@ function CustomerTypePage() {
       }));
     }
     setDisplayEditModal(!displayEditModal);
+  };
+
+  const toggleDeleteModal = (object?:any) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
   };
 
   const dispatch = useDispatch();
@@ -64,6 +85,15 @@ function CustomerTypePage() {
     toggleEditModal();
   };
 
+  const onSubmitDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    dispatch(deleteCustomerTypeRequest(paramsToPass as DeleteCustomerTypeRequestPayload));
+    toggleDeleteModal();
+  };
+
   const columns: ColumnType[] = React.useMemo(() => [
     {
       Header: 'Id',
@@ -91,6 +121,7 @@ function CustomerTypePage() {
             onCancel={toggleModal}
             title="New Customer Type"
             initialFormValue={{}}
+            mode="Add"
           />,
         ]}
       />
@@ -105,18 +136,44 @@ function CustomerTypePage() {
             onCancel={toggleEditModal}
             title="Edit Customer Type"
             initialFormValue={objectToEdit}
+            mode="Edit"
+          />,
+        ]}
+      />
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <CustomerTypeForm
+            onSubmit={onSubmitDelete}
+            onCancel={toggleDeleteModal}
+            title="Delete Customer Type"
+            initialFormValue={objectToDelete}
+            mode="Delete"
           />,
         ]}
       />
       {customerTypes === undefined ? (
-        <Table columns={columns} data={[{ }]} editAction={toggleEditModal}>
+        <Table
+          columns={columns}
+          data={[{ }]}
+          editAction={toggleEditModal}
+          deleteAction={toggleDeleteModal}
+        >
           <p>0 Results</p>
           <AddItemButton onClick={toggleModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
         </Table>
       ) : (
-        <Table columns={columns} data={customerTypes} editAction={toggleEditModal}>
+        <Table
+          columns={columns}
+          data={customerTypes}
+          editAction={toggleEditModal}
+          deleteAction={toggleDeleteModal}
+        >
           <p>{`${customerTypes?.length} Results`}</p>
           <AddItemButton onClick={toggleModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />

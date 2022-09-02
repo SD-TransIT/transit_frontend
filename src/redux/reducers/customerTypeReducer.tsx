@@ -76,6 +76,21 @@ const customerTypeReducer = (
         customerType: null,
         error: action.payload,
       };
+    case CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_REQUEST:
+      return {
+        ...state,
+        error: null,
+      };
+    case CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_SUCCESS:
+      return {
+        ...state,
+        error: null,
+      };
+    case CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return {
         ...state,

@@ -12,10 +12,11 @@ interface CustomerTypeFormProps {
   onCancel: () => void;
   title: string;
   initialFormValue: any;
+  mode: string
 }
 
 function CustomerTypeForm({
-  onSubmit, onCancel, title, initialFormValue,
+  onSubmit, onCancel, title, initialFormValue, mode,
 }: CustomerTypeFormProps) {
   const {
     register,
@@ -26,37 +27,63 @@ function CustomerTypeForm({
   return (
     <>
       <div className="bg-transit-white w-full rounded-lg py-4">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-6">
-            <div className="gap-3 py-4">
-              <p className="float-left text-2xl">{title}</p>
-              <IconContext.Provider
-                // eslint-disable-next-line
-                value={{ className: 'float-right h-8 w-12 justify-end' }}
-              >
-                <RiCloseFill onClick={onCancel} />
-              </IconContext.Provider>
-            </div>
-            <div className="h-12">
-              <Input
-              // eslint-disable-next-line react/jsx-props-no-spreading
-                {...register('customerTypeName', { required: true })}
-                className=""
-                name="customerTypeName"
-                id="floatingInput"
-                placeholder="Customer Type"
-                type="text"
-              />
-              <div className="pb-2">
-                {errors.customerTypeName && <ValidationError value="This field is required" />}
+        { mode === 'Delete' ? (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-6">
+              <div className="gap-3 py-4">
+                <p className="float-left text-2xl">{title}</p>
+                <IconContext.Provider
+              // eslint-disable-next-line
+              value={{ className: 'float-right h-8 w-12 justify-end' }}
+                >
+                  <RiCloseFill onClick={onCancel} />
+                </IconContext.Provider>
+              </div>
+              <div className="h-12">
+                <p className="float text-center text-base">Are you sure you want to delete this item?</p>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-6">
+              <div className="gap-3 py-4">
+                <p className="float-left text-2xl">{title}</p>
+                <IconContext.Provider
+                // eslint-disable-next-line
+                value={{ className: 'float-right h-8 w-12 justify-end' }}
+                >
+                  <RiCloseFill onClick={onCancel} />
+                </IconContext.Provider>
+              </div>
+              <div className="h-12">
+                <Input
+              // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...register('customerTypeName', { required: true })}
+                  className=""
+                  name="customerTypeName"
+                  id="floatingInput"
+                  placeholder="Customer Type"
+                  type="text"
+                />
+                <div className="pb-2">
+                  {errors.customerTypeName && <ValidationError value="This field is required" />}
+                </div>
+              </div>
+            </div>
+          </form>
+        )}
       </div>
       <div className="flex justify-end text-xl py-2">
-        <CancelButton onClick={onCancel} className="w-fit p-2" />
-        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit p-2" title={title.includes('New') ? 'Add' : 'Edit'} />
+        <CancelButton
+          onClick={onCancel}
+          className="w-fit p-2"
+        />
+        <SubmitButton
+          onClick={handleSubmit(onSubmit)}
+          className="w-fit p-2"
+          title={mode}
+        />
       </div>
     </>
   );

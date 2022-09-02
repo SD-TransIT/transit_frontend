@@ -18,6 +18,7 @@ export type TableProps = {
   data: Array<object>;
   children: React.ReactNode
   editAction?: (row?:any) => void;
+  deleteAction?: (row?:any) => void;
 };
 
 export interface ColumnType extends ColumnInterface {
