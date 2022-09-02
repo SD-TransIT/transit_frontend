@@ -1,19 +1,12 @@
 import React, { ForwardedRef } from 'react';
 import classNames from 'classnames';
-
-interface Props {
-  className: string,
-  id: string,
-  name: string,
-  placeholder: string,
-  type: string,
-}
+import { InputProps } from './types';
 
 const style = 'border border-transit-black-light rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2';
 
 const Input = React.forwardRef(({
-  className, id, name, placeholder, type, ...props
-}: Props, ref: ForwardedRef<HTMLInputElement>) => (
+  id, name, placeholder, type, className = '', ...props
+}: InputProps, ref: ForwardedRef<HTMLInputElement>) => (
   <label htmlFor="floatingInput">
     <input
       // eslint-disable-next-line react/jsx-props-no-spreading

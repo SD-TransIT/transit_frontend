@@ -24,17 +24,17 @@ import PageBody from '../../components/shared/PageBody';
 import PageHeader from '../types';
 
 function CustomerTypePage() {
-  const [displayModal, setDisplayModal] = useState(false);
+  const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
   const [objectToEdit, setObjectToEdit] = useState({ id: null, customerTypeName: '' });
   const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
-  const toggleModal = () => {
-    setDisplayModal(!displayModal);
+  const toggleAddModal = () => {
+    setDisplayAddModal(!displayAddModal);
   };
 
-  const toggleEditModal = (object?:any) => {
+  const toggleEditModal = (object?:FieldValues) => {
     if (object) {
       setObjectToEdit((prevState) => ({
         ...prevState,
@@ -45,7 +45,7 @@ function CustomerTypePage() {
     setDisplayEditModal(!displayEditModal);
   };
 
-  const toggleDeleteModal = (object?:any) => {
+  const toggleDeleteModal = (object?:FieldValues) => {
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
@@ -73,7 +73,7 @@ function CustomerTypePage() {
 
   const onSubmitAdd = (formValues: FieldValues) => {
     dispatch(postCustomerTypeRequest(formValues as PostCustomerTypeRequestPayload));
-    toggleModal();
+    toggleAddModal();
   };
 
   const onSubmitEdit = (formValues: FieldValues) => {
@@ -111,14 +111,14 @@ function CustomerTypePage() {
         <Searcher refetch={refetch} />
       </div>
       <Dialog
-        isOpen={displayModal}
-        onClose={toggleModal}
+        isOpen={displayAddModal}
+        onClose={toggleAddModal}
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
           <CustomerTypeForm
             onSubmit={onSubmitAdd}
-            onCancel={toggleModal}
+            onCancel={toggleAddModal}
             title="New Customer Type"
             initialFormValue={{}}
             mode="Add"
@@ -163,7 +163,7 @@ function CustomerTypePage() {
           deleteAction={toggleDeleteModal}
         >
           <p>0 Results</p>
-          <AddItemButton onClick={toggleModal} className="w-fit p-2">
+          <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
         </Table>
@@ -175,7 +175,7 @@ function CustomerTypePage() {
           deleteAction={toggleDeleteModal}
         >
           <p>{`${customerTypes?.length} Results`}</p>
-          <AddItemButton onClick={toggleModal} className="w-fit p-2">
+          <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
         </Table>

@@ -33,8 +33,8 @@ function CustomerTypeForm({
               <div className="gap-3 py-4">
                 <p className="float-left text-2xl">{title}</p>
                 <IconContext.Provider
-              // eslint-disable-next-line
-              value={{ className: 'float-right h-8 w-12 justify-end' }}
+                  // eslint-disable-next-line
+                  value={{ className: 'float-right h-8 w-12 justify-end' }}
                 >
                   <RiCloseFill onClick={onCancel} />
                 </IconContext.Provider>
@@ -58,9 +58,8 @@ function CustomerTypeForm({
               </div>
               <div className="h-12">
                 <Input
-              // eslint-disable-next-line react/jsx-props-no-spreading
+                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register('customerTypeName', { required: true })}
-                  className=""
                   name="customerTypeName"
                   id="floatingInput"
                   placeholder="Customer Type"
