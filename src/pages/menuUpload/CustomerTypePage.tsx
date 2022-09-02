@@ -17,7 +17,9 @@ import PageHeader from '../types';
 function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
   const [objectToEdit, setObjectToEdit] = useState({ id: null, customerTypeName: '' });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const toggleAddModal = () => {
     setDisplayAddModal(!displayAddModal);
@@ -32,6 +34,16 @@ function CustomerTypePage() {
       }));
     }
     setDisplayEditModal(!displayEditModal);
+  };
+
+  const toggleDeleteModal = (object?:FieldValues) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
   };
 
   const dispatch = useDispatch();
@@ -64,6 +76,15 @@ function CustomerTypePage() {
     toggleEditModal();
   };
 
+  const onSubmitDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    dispatch(deleteCustomerTypeRequest(paramsToPass as DeleteCustomerTypeRequestPayload));
+    toggleDeleteModal();
+  };
+
   const columns: ColumnType[] = React.useMemo(() => [
     {
       Header: 'Id',
@@ -91,6 +112,8 @@ function CustomerTypePage() {
             onCancel={toggleAddModal}
             title="New Customer Type"
             initialFormValue={{}}
+            submitButtonText="Add"
+            mode="Add"
           />,
         ]}
       />
@@ -105,18 +128,46 @@ function CustomerTypePage() {
             onCancel={toggleEditModal}
             title="Edit Customer Type"
             initialFormValue={objectToEdit}
+            submitButtonText="Save"
+            mode="Edit"
+          />,
+        ]}
+      />
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <CustomerTypeForm
+            onSubmit={onSubmitDelete}
+            onCancel={toggleDeleteModal}
+            title="Delete Customer Type"
+            initialFormValue={objectToDelete}
+            submitButtonText="Yes"
+            mode="Delete"
           />,
         ]}
       />
       {customerTypes === undefined ? (
-        <Table columns={columns} data={[{ }]} editAction={toggleEditModal}>
+        <Table
+          columns={columns}
+          data={[{ }]}
+          editAction={toggleEditModal}
+          deleteAction={toggleDeleteModal}
+        >
           <p>0 Results</p>
           <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
         </Table>
       ) : (
-        <Table columns={columns} data={customerTypes} editAction={toggleEditModal}>
+        <Table
+          columns={columns}
+          data={customerTypes}
+          editAction={toggleEditModal}
+          deleteAction={toggleDeleteModal}
+        >
           <p>{`${customerTypes?.length} Results`}</p>
           <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />

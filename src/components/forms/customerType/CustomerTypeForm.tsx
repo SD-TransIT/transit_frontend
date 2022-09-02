@@ -12,10 +12,12 @@ interface CustomerTypeFormProps {
   onCancel: () => void;
   title: string;
   initialFormValue: FieldValues;
+  submitButtonText: string;
+  mode: string
 }
 
 function CustomerTypeForm({
-  onSubmit, onCancel, title, initialFormValue,
+  onSubmit, onCancel, title, initialFormValue, submitButtonText, mode
 }: CustomerTypeFormProps) {
   const {
     register,
@@ -26,6 +28,24 @@ function CustomerTypeForm({
   return (
     <>
       <div className="bg-transit-white w-full rounded-lg py-4">
+      { mode === 'Delete' ? (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-6">
+              <div className="gap-3 py-4">
+                <p className="float-left text-2xl">{title}</p>
+                <IconContext.Provider
+                  // eslint-disable-next-line
+                  value={{ className: 'float-right h-8 w-12 justify-end' }}
+                >
+                  <RiCloseFill onClick={onCancel} />
+                </IconContext.Provider>
+              </div>
+              <div className="h-12">
+                <p className="float text-center text-base">Are you sure you want to delete this item?</p>
+              </div>
+            </div>
+          </form>
+        ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-1">
             <div className="gap-2 py-4">
@@ -53,10 +73,11 @@ function CustomerTypeForm({
             </div>
           </div>
         </form>
+        )}
       </div>
       <div className="flex justify-end text-lg font-medium py-2 gap-2">
         <CancelButton onClick={onCancel} className="w-fit" />
-        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={title.includes('New') ? 'Add' : 'Edit'} />
+        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
       </div>
     </>
   );
