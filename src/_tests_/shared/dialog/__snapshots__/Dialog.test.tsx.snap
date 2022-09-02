@@ -16,43 +16,45 @@ exports[`Unit test for the Dialog component. Should match snapshot when Dialog h
     class="fixed inset-0 flex items-center justify-center"
   >
     <div
-      class="max-h-screen md:w-2/5 lg:w-2/6 p-4 transform bg-transit-white rounded-xl flex flex-col opacity-0 scale-95"
+      class="max-h-screen md:w-2/5 lg:w-2/6 p-2 transform bg-transit-white rounded-xl flex flex-col opacity-0 scale-95"
       id="headlessui-dialog-panel-:r3:"
     >
       <div
-        class="overflow-auto py-4 px-4 flex flex-col gap-3"
+        class="overflow-auto px-4 flex flex-col gap-3"
         id="headlessui-description-:r4:"
       >
-        <div
-          class="flex justify-start text-xl"
-          data-testid="dialog-body"
-        >
-          Mock Dialog Body
-        </div>
-        <div
-          class="flex justify-between gap-3 text-xl"
-        >
-          <button
-            class="inline-flex items-center gap-2 bg-transit-white px-4 py-2 rounded text-transit-green-dark border border-solid border-transit-green-dark"
-            data-testid="cancel-button"
-            tabindex="0"
-            type="button"
+        <div>
+          <div
+            class="flex justify-start text-xl"
+            data-testid="dialog-body"
           >
-            <p>
-              Cancel
-            </p>
-          </button>
-          <button
-            class="flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full"
-            data-testid="add-button"
-            type="button"
+            Mock Dialog Body
+          </div>
+          <div
+            class="flex justify-between gap-3 text-xl"
           >
-            <p
-              class="text-center"
+            <button
+              class="inline-flex items-center gap-2 bg-transit-white px-4 py-2 rounded text-transit-green-dark"
+              data-testid="cancel-button"
+              tabindex="0"
+              type="button"
             >
-              Add
-            </p>
-          </button>
+              <p>
+                Cancel
+              </p>
+            </button>
+            <button
+              class="flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full"
+              data-testid="add-button"
+              type="button"
+            >
+              <p
+                class="text-center"
+              >
+                Add
+              </p>
+            </button>
+          </div>
         </div>
       </div>
     </div>

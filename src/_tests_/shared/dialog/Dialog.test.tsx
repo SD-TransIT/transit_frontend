@@ -19,7 +19,7 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should not be visible when is not open.', () => {
     render(
-      <Dialog isOpen={false} onClose={mockOnClose} />,
+      <Dialog isOpen={false} setCustomDialogContent={false} onClose={mockOnClose} />,
     );
     expect(screen.queryByTestId(DIALOG_TEST_ID)).not.toBeInTheDocument();
   });
@@ -28,6 +28,7 @@ describe('Unit test for the Dialog component.', () => {
     render(
       <Dialog
         isOpen
+        setCustomDialogContent={false}
         onClose={mockOnClose}
         onSubmitClick={mockOnAdd}
         onCancelClick={mockOnCancel}
@@ -45,6 +46,7 @@ describe('Unit test for the Dialog component.', () => {
     render(
       <Dialog
         isOpen
+        setCustomDialogContent={false}
         onClose={mockOnClose}
         onCancelClick={mockOnCancel}
       >

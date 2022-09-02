@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   useFlexLayout,
   usePagination,
   useSortBy,
   useTable,
 } from 'react-table';
-import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
+import {
+  RiArrowLeftSLine, RiArrowRightSLine, RiPencilLine, RiDeleteBin7Line,
+} from 'react-icons/ri';
+import { IconContext } from 'react-icons';
 import PaginationButton from '../../../shared/buttons/PaginationButton';
 import { TableInstanceWithHooks, TableProps } from './types';
 
-function Table({ columns, data, children }: TableProps) {
+function Table({
+  columns, data, children, editAction,
+}: TableProps) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -44,6 +49,10 @@ function Table({ columns, data, children }: TableProps) {
     return result;
   }, [pageIndex, pageSize, page]);
 
+  const initTableRowsState = new Array(rows.length).fill(false);
+
+  const [tableRowsState, setTableRowsState] = useState(initTableRowsState);
+
   return (
     <div className="w-full h-full">
       <div className="flex flex-col m-auto bg-transit-white">
@@ -70,13 +79,42 @@ function Table({ columns, data, children }: TableProps) {
           </thead>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <tbody {...getTableBodyProps()} className="w-full">
-            {page.map((row) => {
+            {page.map((row, index) => {
               prepareRow(row);
               return (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-                <tr {...row.getRowProps()} key={row.id} className="flex flex-row text-left items-center even:bg-transit-grey-light h-12 font-normal">
+                <tr
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...row.getRowProps()}
+                  key={row.id}
+                  className="flex flex-row text-left items-center even:bg-transit-grey-light h-12 font-normal hover:bg-transit-green-light"
+                  onMouseEnter={() => {
+                    setTableRowsState((tableState) => {
+                      const nextTableState = [...tableState];
+                      nextTableState[index] = true;
+                      return nextTableState;
+                    });
+                  }}
+                  onMouseLeave={() => {
+                    setTableRowsState((tableState) => {
+                      const nextTableState = [...tableState];
+                      nextTableState[index] = false;
+                      return nextTableState;
+                    });
+                  }}
+                >
                   {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                   {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="flex flex-row px-4">{cell.render('Cell')}</td>)}
+                  <td className="flex flex-row px-4 gap-6">
+                    {tableRowsState[index] ? (
+                      <IconContext.Provider
+                        // eslint-disable-next-line
+                        value={{ className: 'float-right p-1 w-8 h-8 justify-end bg-transit-white rounded-full' }}
+                      >
+                        <RiPencilLine onClick={() => editAction?.(row.values)} />
+                        <RiDeleteBin7Line />
+                      </IconContext.Provider>
+                    ) : ''}
+                  </td>
                 </tr>
               );
             })}

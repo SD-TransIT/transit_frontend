@@ -5,6 +5,7 @@ const initialState: CustomerTypeState = {
   fetchingCustomerType: false,
   fetchedCustomerType: false,
   customerTypes: [],
+  customerType: null,
   error: null,
 };
 
@@ -37,6 +38,42 @@ const customerTypeReducer = (
         ...state,
         fetchingCustomerType: false,
         customerTypes: [],
+        error: action.payload,
+      };
+    case CustomerTypeActionTypes.POST_CUSTOMER_TYPE_REQUEST:
+      return {
+        ...state,
+        customerType: null,
+        error: null,
+      };
+    case CustomerTypeActionTypes.POST_CUSTOMER_TYPE_SUCCESS:
+      return {
+        ...state,
+        customerType: action.payload,
+        error: null,
+      };
+    case CustomerTypeActionTypes.POST_CUSTOMER_TYPE_FAILURE:
+      return {
+        ...state,
+        customerType: null,
+        error: action.payload,
+      };
+    case CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_REQUEST:
+      return {
+        ...state,
+        customerType: null,
+        error: null,
+      };
+    case CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_SUCCESS:
+      return {
+        ...state,
+        customerType: action.payload,
+        error: null,
+      };
+    case CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_FAILURE:
+      return {
+        ...state,
+        customerType: null,
         error: action.payload,
       };
     default:

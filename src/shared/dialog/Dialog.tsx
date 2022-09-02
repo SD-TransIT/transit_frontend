@@ -7,6 +7,7 @@ import { DialogType } from './types';
 function Dialog({
   children,
   isOpen,
+  setCustomDialogContent,
   onClose,
   onSubmitClick,
   onCancelClick,
@@ -28,23 +29,29 @@ function Dialog({
             leaveTo="opacity-0 scale-95"
           >
             <DialogHeadlessui.Panel
-              className="max-h-screen md:w-2/5 lg:w-2/6 p-4 transform bg-transit-white rounded-xl flex flex-col"
+              className="max-h-screen md:w-2/5 lg:w-2/6 p-2 transform bg-transit-white rounded-xl flex flex-col"
             >
               <DialogHeadlessui.Description
                 as="div"
-                className="overflow-auto py-4 px-4 flex flex-col gap-3"
+                className="overflow-auto px-4 flex flex-col gap-3"
               >
-                <div className="flex justify-start text-xl" data-testid="dialog-body">
-                  {children}
-                </div>
-                <div className="flex justify-between gap-3 text-xl">
-                  {onCancelClick && (
-                    <CancelButton onClick={onCancelClick} title={customCancelButtonTitle} />
-                  )}
-                  {onSubmitClick && (
-                    <SubmitButton onClick={onSubmitClick} title={customSubmitButtonTitle} />
-                  )}
-                </div>
+                {setCustomDialogContent === false ? (
+                  <div>
+                    <div className="flex justify-start text-xl" data-testid="dialog-body">
+                      {children}
+                    </div>
+                    <div className="flex justify-between gap-3 text-xl">
+                      {onCancelClick && (
+                      <CancelButton onClick={onCancelClick} title={customCancelButtonTitle} />
+                      )}
+                      {onSubmitClick && (
+                      <SubmitButton onClick={onSubmitClick} title={customSubmitButtonTitle} />
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  children
+                )}
               </DialogHeadlessui.Description>
             </DialogHeadlessui.Panel>
           </Transition.Child>
