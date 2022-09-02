@@ -18,6 +18,12 @@ import {
   PutCustomerTypeSuccessPayload,
   PutCustomerTypeError,
   PutCustomerTypeErrorPayload,
+  DeleteCustomerTypeRequest,
+  DeleteCustomerTypeRequestPayload,
+  DeleteCustomerTypeSuccess,
+  DeleteCustomerTypeSuccessPayload,
+  DeleteCustomerTypeError,
+  DeleteCustomerTypeErrorPayload,
 } from '../../types/customerType';
 
 export const getCustomerTypeRequest = (
@@ -80,5 +86,26 @@ export const putCustomerTypeFailure = (
   payload: PutCustomerTypeErrorPayload,
 ): PutCustomerTypeError => ({
   type: CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_FAILURE,
+  payload,
+});
+
+export const deleteCustomerTypeRequest = (
+  payload: DeleteCustomerTypeRequestPayload,
+): DeleteCustomerTypeRequest => ({
+  type: CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_REQUEST,
+  payload,
+});
+
+export const deleteCustomerTypeSuccess = (
+  payload: DeleteCustomerTypeSuccessPayload,
+): DeleteCustomerTypeSuccess => ({
+  type: CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_SUCCESS,
+  payload,
+});
+
+export const deleteCustomerTypeFailure = (
+  payload: DeleteCustomerTypeErrorPayload,
+): DeleteCustomerTypeError => ({
+  type: CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_FAILURE,
   payload,
 });

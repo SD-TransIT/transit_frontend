@@ -45,6 +45,17 @@ export interface PutCustomerTypeErrorPayload {
   error: string;
 }
 
+export interface DeleteCustomerTypeRequestPayload {
+  payload: ICustomerType;
+}
+
+export interface DeleteCustomerTypeSuccessPayload {
+}
+
+export interface DeleteCustomerTypeErrorPayload {
+  error: string;
+}
+
 export interface GetCustomerTypeRequest {
   type: typeof CustomerTypeActionTypes.GET_CUSTOMER_TYPE_REQUEST;
   payload: GetCustomerTypeRequestPayload;
@@ -90,6 +101,21 @@ export type PutCustomerTypeError = {
   payload: PutCustomerTypeErrorPayload;
 };
 
+export interface DeleteCustomerTypeRequest {
+  type: typeof CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_REQUEST;
+  payload: DeleteCustomerTypeRequestPayload;
+}
+
+export type DeleteCustomerTypeSuccess = {
+  type: typeof CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_SUCCESS;
+  payload: DeleteCustomerTypeSuccessPayload;
+};
+
+export type DeleteCustomerTypeError = {
+  type: typeof CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_FAILURE;
+  payload: DeleteCustomerTypeErrorPayload;
+};
+
 export type CustomerTypeActions =
     | GetCustomerTypeRequest
     | GetCustomerTypeSuccess
@@ -99,4 +125,7 @@ export type CustomerTypeActions =
     | PostCustomerTypeError
     | PutCustomerTypeRequest
     | PutCustomerTypeSuccess
-    | PutCustomerTypeError;
+    | PutCustomerTypeError
+    | DeleteCustomerTypeRequest
+    | DeleteCustomerTypeSuccess
+    | DeleteCustomerTypeError;

@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { PostCustomerTypeRequestPayload, PutCustomerTypeRequestPayload } from '../../redux/types/customerType';
-import { getCustomerTypeRequest, postCustomerTypeRequest, putCustomerTypeRequest } from '../../redux/actions/customerType/customerTypeActions';
+import {
+  DeleteCustomerTypeRequestPayload,
+  PostCustomerTypeRequestPayload,
+  PutCustomerTypeRequestPayload,
+} from '../../redux/types/customerType';
+import {
+  deleteCustomerTypeRequest,
+  getCustomerTypeRequest,
+  postCustomerTypeRequest,
+  putCustomerTypeRequest,
+} from '../../redux/actions/customerType/customerTypeActions';
 import { RootState } from '../../redux/reducers/rootReducer';
 import Searcher from '../../components/shared/Searcher';
 import Table from '../../components/shared/table/Table';

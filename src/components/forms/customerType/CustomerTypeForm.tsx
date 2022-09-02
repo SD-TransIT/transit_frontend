@@ -28,7 +28,7 @@ function CustomerTypeForm({
   return (
     <>
       <div className="bg-transit-white w-full rounded-lg py-4">
-      { mode === 'Delete' ? (
+        { mode === 'Delete' ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="gap-3 py-4">
