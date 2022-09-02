@@ -7,16 +7,16 @@ import ValidationError from '../../shared/ValidationError';
 import SubmitButton from '../../../shared/buttons/SubmitButton';
 import CancelButton from '../../../shared/buttons/CancelButton';
 
-interface AddCustomerTypeFormProps {
+interface CustomerTypeFormProps {
   onSubmit: (formValues: FieldValues) => void;
   onCancel: () => void;
   title: string;
   initialFormValue: any;
 }
 
-function AddCustomerTypeForm({
+function CustomerTypeForm({
   onSubmit, onCancel, title, initialFormValue,
-}: AddCustomerTypeFormProps) {
+}: CustomerTypeFormProps) {
   const {
     register,
     handleSubmit,
@@ -56,10 +56,10 @@ function AddCustomerTypeForm({
       </div>
       <div className="flex justify-end text-xl py-2">
         <CancelButton onClick={onCancel} className="w-fit p-2" />
-        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit p-2" />
+        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit p-2" title={title.includes('New') ? 'Add' : 'Edit'} />
       </div>
     </>
   );
 }
 
-export default AddCustomerTypeForm;
+export default CustomerTypeForm;
