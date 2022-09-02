@@ -1,6 +1,7 @@
 export type DialogType = {
   children?: React.ReactNode,
-  isOpen: boolean
+  isOpen: boolean,
+  setCustomDialogContent: boolean
   onClose: () => void,
   onSubmitClick?: () => void,
   onCancelClick?: () => void,

@@ -6,7 +6,8 @@ export type SubmitButtonType = {
 
 export type CancelButtonType = {
   onClick: () => void,
-  title?: string
+  title?: string,
+  className?: string
 };
 
 export type ClearButtonType = {

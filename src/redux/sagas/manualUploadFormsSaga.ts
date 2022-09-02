@@ -3,12 +3,10 @@ import {
 } from 'redux-saga/effects';
 import apiClient from '../../utils/apiClient';
 import { sessionToken } from '../reducers/tokenReducer';
-import isAuthenticated from '../../utils/authHelper';
-import { IToken } from '../../models/token/IToken';
-import { refreshToken } from './tokenSaga';
 import { IManualUploadFormsType } from '../../models/manualUploadForms/IManualUploadForms';
 import { getManualUploadFormsFailure, getManualUploadFormsSuccess } from '../actions/menuUpload/menuUploadActions';
 import ManualUploadActionTypes from '../actions/menuUpload/menuUploadTypes';
+import refreshAccessToken from './utils';
 
 const getManualUploadForms = async () => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
@@ -27,13 +25,7 @@ const getManualUploadForms = async () => {
 
 function* getManualUploadFormsSaga() {
   try {
-    if (isAuthenticated() === false) {
-      const { refresh } = JSON.parse(localStorage.getItem(sessionToken) as string);
-      const responseRefresh: { token: IToken } = yield call(refreshToken, {
-        refresh,
-      });
-      localStorage.setItem(sessionToken, JSON.stringify(responseRefresh));
-    }
+    yield call(refreshAccessToken);
     const response:
     { manualUploadForms: [IManualUploadFormsType] } = yield call(getManualUploadForms);
     yield put(getManualUploadFormsSuccess(response));

@@ -5,6 +5,7 @@ export interface CustomerTypeState {
   fetchingCustomerType: boolean;
   fetchedCustomerType: boolean;
   customerTypes: ICustomerType [] | [];
+  customerType: ICustomerType | null;
   error: string | null;
 }
 
@@ -17,6 +18,30 @@ export interface GetCustomerTypeSuccessPayload {
 }
 
 export interface GetCustomerTypeErrorPayload {
+  error: string;
+}
+
+export interface PostCustomerTypeRequestPayload {
+  payload: ICustomerType;
+}
+
+export interface PostCustomerTypeSuccessPayload {
+  customerType: ICustomerType;
+}
+
+export interface PostCustomerTypeErrorPayload {
+  error: string;
+}
+
+export interface PutCustomerTypeRequestPayload {
+  payload: ICustomerType;
+}
+
+export interface PutCustomerTypeSuccessPayload {
+  customerType: ICustomerType;
+}
+
+export interface PutCustomerTypeErrorPayload {
   error: string;
 }
 
@@ -35,7 +60,43 @@ export type GetCustomerTypeError = {
   payload: GetCustomerTypeErrorPayload;
 };
 
+export interface PostCustomerTypeRequest {
+  type: typeof CustomerTypeActionTypes.POST_CUSTOMER_TYPE_REQUEST;
+  payload: PostCustomerTypeRequestPayload;
+}
+
+export type PostCustomerTypeSuccess = {
+  type: typeof CustomerTypeActionTypes.POST_CUSTOMER_TYPE_SUCCESS;
+  payload: PostCustomerTypeSuccessPayload;
+};
+
+export type PostCustomerTypeError = {
+  type: typeof CustomerTypeActionTypes.POST_CUSTOMER_TYPE_FAILURE;
+  payload: PostCustomerTypeErrorPayload;
+};
+
+export interface PutCustomerTypeRequest {
+  type: typeof CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_REQUEST;
+  payload: PutCustomerTypeRequestPayload;
+}
+
+export type PutCustomerTypeSuccess = {
+  type: typeof CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_SUCCESS;
+  payload: PutCustomerTypeSuccessPayload;
+};
+
+export type PutCustomerTypeError = {
+  type: typeof CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_FAILURE;
+  payload: PutCustomerTypeErrorPayload;
+};
+
 export type CustomerTypeActions =
     | GetCustomerTypeRequest
     | GetCustomerTypeSuccess
-    | GetCustomerTypeError;
+    | GetCustomerTypeError
+    | PostCustomerTypeRequest
+    | PostCustomerTypeSuccess
+    | PostCustomerTypeError
+    | PutCustomerTypeRequest
+    | PutCustomerTypeSuccess
+    | PutCustomerTypeError;

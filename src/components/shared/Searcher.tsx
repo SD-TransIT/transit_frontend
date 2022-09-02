@@ -42,6 +42,7 @@ function Searcher({ refetch }: SearcherProps) {
               reset({
                 search: '',
               });
+              refetch({});
             }}
           />
         </div>
