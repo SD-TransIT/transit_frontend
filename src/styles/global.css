@@ -25,4 +25,61 @@ body {
     @apply hover:border-transit-green-dark;
     @apply hover:text-transit-green-dark;
   }
+
+  .add-item {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply bg-transit-green-dark;
+    @apply rounded;
+    @apply text-transit-white;
+    @apply w-full;
+    @apply h-full;
+  }
+
+  .cancel-button {
+    @apply inline-flex;
+    @apply items-center;
+    @apply gap-2;
+    @apply bg-transit-white;
+    @apply px-4;
+    @apply py-2; 
+    @apply rounded;
+    @apply text-transit-green-dark;
+    @apply border;
+    @apply border-transit-green-dark;
+  }
+
+  .clear-button {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply p-2;
+    @apply bg-transit-white;
+    @apply rounded;
+    @apply text-transit-green-dark;
+    @apply w-full;
+    @apply h-full;
+  }
+
+  .pagination-button {
+    @apply bg-transit-white;
+    @apply shadow-paginationButton;
+    @apply rounded-md;
+    @apply disabled:bg-transit-grey-disabled;
+  }
+
+  .submit-button {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply bg-transit-green-dark;
+    @apply rounded;
+    @apply text-transit-white;
+    @apply w-full;
+    @apply h-full;
+    @apply px-4;
+    @apply py-2;
+    @apply shadow-submitButton
+  }
 }

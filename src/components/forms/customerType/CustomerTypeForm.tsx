@@ -53,9 +53,9 @@ function CustomerTypeForm({
           </div>
         </form>
       </div>
-      <div className="flex justify-end text-xl py-2">
-        <CancelButton onClick={onCancel} className="w-fit p-2" />
-        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit p-2" title={title.includes('New') ? 'Add' : 'Edit'} />
+      <div className="flex justify-end text-lg font-medium py-2 gap-2">
+        <CancelButton onClick={onCancel} className="w-fit" />
+        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={title.includes('New') ? 'Add' : 'Edit'} />
       </div>
     </>
   );

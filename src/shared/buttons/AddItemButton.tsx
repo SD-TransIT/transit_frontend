@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { AddItemButtonType } from './types';
 
-const style = 'flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full';
+const style = 'add-item';
 
 function AddItemButton({
   onClick, children, title = 'Add Item', className,

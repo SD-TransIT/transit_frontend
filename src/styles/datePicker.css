@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .date-picker {
+        @apply flex;
+        @apply border;
+        @apply rounded;
+        @apply w-full;
+        @apply h-full;
+        @apply px-2;
+    }
+
+    .calendar-icons {
+        @apply absolute;
+        @apply flex;
+        @apply justify-end;
+        @apply self-center;
+        @apply mx-4;
+        @apply text-transit-blue-light;
+        @apply text-xl;
+    }
+};
+
+@layer components {
+    /* native HTML button */
+    button.date-button {
+        @apply flex;
+        @apply justify-end;
+        @apply w-full;
+        @apply h-full;
+    }
+    /* native HTML input */
+    input.date-input {
+        @apply w-full;
+        @apply px-4;
+        @apply py-2;
+        @apply text-start;
+        @apply rounded;
+        @apply shadow-dateInput;
+        @apply border;
+        @apply border-transparent;
+        @apply hover:border;
+        @apply hover:border-transit-grey-superLight;
+        @apply focus:outline-none;
+        @apply focus:outline-2;
+        @apply focus:shadow-dateInputFocus;
+        @apply text-transit-blue-light;
+    }
+}

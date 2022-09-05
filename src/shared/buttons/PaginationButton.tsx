@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { PaginationButtonType } from './types';
 
-const style = 'bg-transit-white shadow-paginationButton rounded-md disabled:bg-transit-grey-disabled';
+const style = 'pagination-button';
 
 function PaginationButton({
   onClick, children, disabled = false, className,

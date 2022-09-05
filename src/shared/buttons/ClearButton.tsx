@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { ClearButtonType } from './types';
 
-const style = 'p-2 flex justify-center items-center bg-transit-white rounded text-transit-green-dark w-full h-full';
+const style = 'clear-button';
 
 function ClearButton({ onClick, title = 'Clear', className }: ClearButtonType) {
   return (
