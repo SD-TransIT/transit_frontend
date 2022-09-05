@@ -13,7 +13,7 @@ import PaginationButton from '../../../shared/buttons/PaginationButton';
 import { TableInstanceWithHooks, TableProps } from './types';
 
 function Table({
-  columns, data, children, editAction,
+  columns, data, children, editAction, deleteAction,
 }: TableProps) {
   const {
     getTableProps,
@@ -108,10 +108,10 @@ function Table({
                     {tableRowsState[index] ? (
                       <IconContext.Provider
                         // eslint-disable-next-line
-                        value={{ className: 'float-right p-1 w-8 h-8 justify-end bg-transit-white rounded-full' }}
+                        value={{ className: 'float-right p-1 w-8 h-8 justify-end bg-transit-white rounded-full hover:bg-transit-green-dark' }}
                       >
                         <RiPencilLine onClick={() => editAction?.(row.values)} />
-                        <RiDeleteBin7Line />
+                        <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />
                       </IconContext.Provider>
                     ) : ''}
                   </td>

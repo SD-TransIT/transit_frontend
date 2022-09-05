@@ -7,16 +7,19 @@ import {
   getCustomerTypeSuccess, getCustomerTypeFailure,
   postCustomerTypeSuccess, postCustomerTypeFailure,
   putCustomerTypeSuccess, putCustomerTypeFailure,
+  deleteCustomerTypeSuccess, deleteCustomerTypeFailure,
 } from '../actions/customerType/customerTypeActions';
 import { ICustomerType } from '../../models/customerType/ICustomerType';
 import CustomerTypeActionTypes from '../actions/customerType/customerTypeTypes';
 import refreshAccessToken from './utils';
 
+const customerTypeUrl = 'customer_type/';
+
 const getCustomerType = async (parameters: any) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const additionalParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
   const { data } = await apiClient.get(
-    `customer_type/${additionalParamString}`,
+    `${customerTypeUrl}${additionalParamString}`,
     {
       headers: {
         'Content-type': 'application/json',
@@ -30,7 +33,7 @@ const getCustomerType = async (parameters: any) => {
 const postCustomerType = async (payload: ICustomerType) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.post(
-    'customer_type/',
+    customerTypeUrl,
     { customer_type_name: payload.customer_type_name },
     {
       headers: {
@@ -45,8 +48,22 @@ const postCustomerType = async (payload: ICustomerType) => {
 const putCustomerType = async (payload: ICustomerType, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.put(
-    `customer_type/${id}/`,
+    `${customerTypeUrl}${id}/`,
     { customer_type_name: payload.customer_type_name },
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
+
+const deleteCustomerType = async (id: number) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.delete(
+    `${customerTypeUrl}${id}/`,
     {
       headers: {
         'Content-type': 'application/json',
@@ -127,10 +144,42 @@ function* putCustomerTypeSaga(action: any) {
   }
 }
 
+function* deleteCustomerTypeSaga(action: any) {
+  try {
+    yield call(refreshAccessToken);
+    const responseDelete: { customerType: ICustomerType } = yield call(
+      deleteCustomerType,
+      action.payload.id,
+    );
+    const responseGet: { customerType: ICustomerType } = yield call(getCustomerType, {
+      searcher: action.payload?.search ?? null,
+    });
+    yield put(deleteCustomerTypeSuccess(responseDelete));
+    yield put({
+      type: CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_SUCCESS,
+      customerTypes: responseGet,
+    });
+  } catch (error: any) {
+    const responseGet: { customerType: ICustomerType } = yield call(getCustomerType, {
+      searcher: action.payload?.search ?? null,
+    });
+    yield put(deleteCustomerTypeFailure(error));
+    yield put({
+      type: CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_FAILURE,
+      customerTypes: responseGet,
+      error,
+    });
+  }
+}
+
 function* customerTypeSaga() {
   yield all([takeLatest(CustomerTypeActionTypes.GET_CUSTOMER_TYPE_REQUEST, getCustomerTypeSaga)]);
   yield all([takeLatest(CustomerTypeActionTypes.POST_CUSTOMER_TYPE_REQUEST, postCustomerTypeSaga)]);
   yield all([takeLatest(CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_REQUEST, putCustomerTypeSaga)]);
+  yield all([takeLatest(
+    CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_REQUEST,
+    deleteCustomerTypeSaga,
+  )]);
 }
 
 export default customerTypeSaga;
