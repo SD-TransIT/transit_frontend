@@ -172,8 +172,6 @@ function CustomerTypePage() {
         <Table
           columns={columns}
           data={[{ }]}
-          editAction={toggleEditModal}
-          deleteAction={toggleDeleteModal}
         >
           <p>0 Results</p>
           <AddItemButton onClick={toggleAddModal} className="w-fit p-2">

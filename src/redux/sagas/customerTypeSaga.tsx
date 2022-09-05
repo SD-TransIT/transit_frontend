@@ -13,11 +13,13 @@ import { ICustomerType } from '../../models/customerType/ICustomerType';
 import CustomerTypeActionTypes from '../actions/customerType/customerTypeTypes';
 import refreshAccessToken from './utils';
 
+const customerTypeUrl = 'customer_type/';
+
 const getCustomerType = async (parameters: any) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const additionalParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
   const { data } = await apiClient.get(
-    `customer_type/${additionalParamString}`,
+    `${customerTypeUrl}${additionalParamString}`,
     {
       headers: {
         'Content-type': 'application/json',
@@ -31,7 +33,7 @@ const getCustomerType = async (parameters: any) => {
 const postCustomerType = async (payload: ICustomerType) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.post(
-    'customer_type/',
+    customerTypeUrl,
     { customer_type_name: payload.customer_type_name },
     {
       headers: {
@@ -46,7 +48,7 @@ const postCustomerType = async (payload: ICustomerType) => {
 const putCustomerType = async (payload: ICustomerType, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.put(
-    `customer_type/${id}/`,
+    `${customerTypeUrl}${id}/`,
     { customer_type_name: payload.customer_type_name },
     {
       headers: {
@@ -61,7 +63,7 @@ const putCustomerType = async (payload: ICustomerType, id: number) => {
 const deleteCustomerType = async (id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.delete(
-    `customer_type/${id}/`,
+    `${customerTypeUrl}${id}/`,
     {
       headers: {
         'Content-type': 'application/json',
