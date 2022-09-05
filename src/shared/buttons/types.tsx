@@ -29,3 +29,9 @@ export type AddItemButtonType = {
   title?: string
   className?: string
 };
+
+export type DeleteButtonType = {
+  onClick: () => void,
+  title?: string,
+  className?: string
+};

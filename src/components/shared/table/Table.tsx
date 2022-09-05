@@ -108,7 +108,7 @@ function Table({
                     {tableRowsState[index] ? (
                       <IconContext.Provider
                         // eslint-disable-next-line
-                        value={{ className: 'float-right p-1 w-8 h-8 justify-end bg-transit-white rounded-full' }}
+                        value={{ className: 'float-right p-1 w-8 h-8 justify-end bg-transit-white rounded-full hover:bg-transit-green-dark' }}
                       >
                         <RiPencilLine onClick={() => editAction?.(row.values)} />
                         <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />

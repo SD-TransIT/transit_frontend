@@ -94,6 +94,15 @@ function CustomerTypePage() {
     toggleDeleteModal();
   };
 
+  const onDeleteSubmitEdit = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToEdit) {
+      paramsToPass.id = objectToEdit.id;
+    }
+    dispatch(deleteCustomerTypeRequest(paramsToPass as DeleteCustomerTypeRequestPayload));
+    toggleEditModal();
+  };
+
   const columns: ColumnType[] = React.useMemo(() => [
     {
       Header: 'Id',
@@ -139,6 +148,7 @@ function CustomerTypePage() {
             initialFormValue={objectToEdit}
             submitButtonText="Save"
             mode="Edit"
+            onDelete={onDeleteSubmitEdit}
           />,
         ]}
       />
@@ -153,7 +163,7 @@ function CustomerTypePage() {
             onCancel={toggleDeleteModal}
             title="Delete Customer Type"
             initialFormValue={objectToDelete}
-            submitButtonText="Yes"
+            submitButtonText="Delete"
             mode="Delete"
           />,
         ]}

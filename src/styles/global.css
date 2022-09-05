@@ -48,6 +48,29 @@ body {
     @apply text-transit-green-dark;
     @apply border;
     @apply border-transit-green-dark;
+    @apply hover:bg-transit-grey-100;
+    @apply active:outline-2;
+    @apply active:shadow-cancelButtonFocus;
+    @apply active:border;
+    @apply active:border-transit-green-secondary;
+  }
+
+  .delete-button {
+    @apply inline-flex;
+    @apply items-center;
+    @apply gap-2;
+    @apply bg-transit-white;
+    @apply px-4;
+    @apply py-2; 
+    @apply rounded;
+    @apply text-transit-red;
+    @apply hover:bg-transit-grey-100;
+    @apply active:outline-2;
+    @apply active:shadow-deleteButtonFocus;
+    @apply border;
+    @apply border-transparent;
+    @apply active:border;
+    @apply active:border-transit-red;
   }
 
   .clear-button {
@@ -60,6 +83,10 @@ body {
     @apply text-transit-green-dark;
     @apply w-full;
     @apply h-full;
+    @apply hover:underline;
+    @apply hover:underline-offset-1;
+    @apply active:underline;
+    @apply active:underline-offset-1;
   }
 
   .pagination-button {
@@ -80,6 +107,13 @@ body {
     @apply h-full;
     @apply px-4;
     @apply py-2;
-    @apply shadow-submitButton
+    @apply shadow-submitButton;
+    @apply hover:bg-transit-green-secondary;
+    @apply border;
+    @apply border-transparent;
+    @apply active:outline-2;
+    @apply active:shadow-cancelButtonFocus;
+    @apply active:border;
+    @apply active:border-transit-green-secondary;
   }
 }
