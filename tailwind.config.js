@@ -17,6 +17,7 @@ module.exports = {
         DEFAULT: "#FFFFFF",
       },
       "transit-grey": {
+        superLight: "#D3D3D3",
         light: "#F9FAFC",
         DEFAULT: "#F2F2F2",
         dark: "#687182",
@@ -25,6 +26,9 @@ module.exports = {
       "transit-red": {
         DEFAULT: "#FF0000",
       },
+      "transit-blue": {
+        light: "#A1A9B8"
+      }
     },
     extend: {
       height: {
@@ -34,7 +38,9 @@ module.exports = {
         header:
           "0px 1px 2px rgba(58, 58, 68, 0.24), 0px 2px 4px rgba(90, 91, 106, 0.24)",
         paginationButton:
-        "0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(70, 79, 96, 0.16), 0px 2px 5px rgba(89, 96, 120, 0.1);"
+          "0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(70, 79, 96, 0.16), 0px 2px 5px rgba(89, 96, 120, 0.1);",
+        dateInput: "0px 1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px rgba(104, 113, 130, 0.16)",
+        dateInputFocus: "0px 1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px rgba(104, 113, 130, 0.16), 0px 0px 0px 4px rgba(1, 126, 132, 0.45)"
       },
       borderColor: {
         transparent: "rgba(90, 91, 106, 0.0)",
