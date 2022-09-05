@@ -34,7 +34,7 @@ exports[`Unit test for the Dialog component. Should match snapshot when Dialog h
             class="flex justify-between gap-3 text-xl"
           >
             <button
-              class="inline-flex items-center gap-2 bg-transit-white px-4 py-2 rounded text-transit-green-dark"
+              class="cancel-button"
               data-testid="cancel-button"
               tabindex="0"
               type="button"
@@ -44,7 +44,7 @@ exports[`Unit test for the Dialog component. Should match snapshot when Dialog h
               </p>
             </button>
             <button
-              class="flex justify-center items-center bg-transit-green-dark rounded text-transit-white w-full h-full"
+              class="submit-button"
               data-testid="add-button"
               type="button"
             >
