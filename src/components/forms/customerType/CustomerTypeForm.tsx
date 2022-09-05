@@ -27,8 +27,8 @@ function CustomerTypeForm({
     <>
       <div className="bg-transit-white w-full rounded-lg py-4">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-6">
-            <div className="gap-3 py-4">
+          <div className="flex flex-col gap-1">
+            <div className="gap-2 py-4">
               <p className="float-left text-2xl">{title}</p>
               <IconContext.Provider
                 // eslint-disable-next-line
@@ -38,12 +38,13 @@ function CustomerTypeForm({
               </IconContext.Provider>
             </div>
             <div className="h-12">
+              <p className="text-sm">Customer Type Name</p>
               <Input
               // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register('customerTypeName', { required: true })}
                 name="customerTypeName"
                 id="floatingInput"
-                placeholder="Customer Type"
+                placeholder="Customer Type Name"
                 type="text"
               />
               <div className="pb-2">
