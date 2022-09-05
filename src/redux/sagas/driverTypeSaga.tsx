@@ -8,13 +8,13 @@ import { IDriver } from '../../models/driver/IDriver';
 import DriverActionTypes from '../actions/driver/driverTypes';
 import { getDriverFailure, getDriverSuccess } from '../actions/driver/driverActions';
 
-const customerTypeUrl = 'driver/';
+const driverUrl = 'driver/';
 
 const getDriver = async (parameters: any) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const additionalParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
   const { data } = await apiClient.get(
-    `${customerTypeUrl}${additionalParamString}`,
+    `${driverUrl}${additionalParamString}`,
     {
       headers: {
         'Content-type': 'application/json',
