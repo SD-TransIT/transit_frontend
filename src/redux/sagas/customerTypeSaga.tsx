@@ -87,9 +87,13 @@ function* postCustomerTypeSaga(action: any) {
       customerTypes: responseGet,
     });
   } catch (error: any) {
+    const responseGet: { customerType: ICustomerType } = yield call(getCustomerType, {
+      searcher: action.payload?.search ?? null,
+    });
     yield put(postCustomerTypeFailure(error));
     yield put({
       type: CustomerTypeActionTypes.POST_CUSTOMER_TYPE_FAILURE,
+      customerTypes: responseGet,
       error,
     });
   }
@@ -111,9 +115,13 @@ function* putCustomerTypeSaga(action: any) {
       customerTypes: responseGet,
     });
   } catch (error: any) {
+    const responseGet: { customerType: ICustomerType } = yield call(getCustomerType, {
+      searcher: action.payload?.search ?? null,
+    });
     yield put(putCustomerTypeFailure(error));
     yield put({
       type: CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_FAILURE,
+      customerTypes: responseGet,
       error,
     });
   }
