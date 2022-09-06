@@ -90,7 +90,12 @@ function SupplierMasterPage() {
           </AddItemButton>
         </Table>
       ) : (
-        <Table columns={columns} data={supplierMasterTypes} editAction={() => {}}>
+        <Table
+          columns={columns}
+          data={supplierMasterTypes}
+          editAction={() => { }}
+          deleteAction={() => { }}
+        >
           <p>{`${supplierMasterTypes?.length} Results`}</p>
           <AddItemButton onClick={() => {}} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
