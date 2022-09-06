@@ -30,8 +30,10 @@ function SupplierMasterPage() {
 
   const columns: ColumnType[] = React.useMemo(() => [
     {
-      Header: 'Id',
+      Header: 'ID',
       accessor: 'id',
+      width: 30,
+      maxWidth: 30,
     },
     {
       Header: 'SupplierName',
@@ -73,7 +75,6 @@ function SupplierMasterPage() {
       Header: 'GPS coordinates',
       accessor: 'latitude_longitude',
     },
-
   ], []);
 
   return (
