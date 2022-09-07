@@ -4,7 +4,7 @@ import { SupplierMasterActions, SupplierMasterState } from '../types/supplierMas
 const initialState: SupplierMasterState = {
   fetchingSupplierMaster: false,
   fetchedSupplierMaster: false,
-  supplierMasterTypes: [],
+  supplierMasters: [],
   supplierMaster: null,
   error: null,
 };
@@ -22,7 +22,7 @@ const supplierMasterReducer = (
         ...state,
         fetchingSupplierMaster: true,
         fetchedSupplierMaster: false,
-        supplierMasterTypes: [],
+        supplierMasters: [],
         error: null,
       };
     case SupplierMasterActionTypes.GET_SUPPLIER_MASTER_SUCCESS:
@@ -30,14 +30,14 @@ const supplierMasterReducer = (
         ...state,
         fetchingSupplierMaster: false,
         fetchedSupplierMaster: true,
-        supplierMasterTypes: action.payload,
+        supplierMasters: action.payload,
         error: null,
       };
     case SupplierMasterActionTypes.GET_SUPPLIER_MASTER_FAILURE:
       return {
         ...state,
         fetchingSupplierMaster: false,
-        supplierMasterTypes: [],
+        supplierMasters: [],
         error: action.payload,
       };
     case SupplierMasterActionTypes.POST_SUPPLIER_MASTER_REQUEST:

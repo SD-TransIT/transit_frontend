@@ -65,13 +65,13 @@ const putSupplierMaster = async (payload: ISupplierMaster, id: number) => {
 function* getSupplierMasterSaga(action: any) {
   try {
     yield call(refreshAccessToken);
-    const response: { supplierMasterTypes: [ISupplierMaster] } = yield call(getSupplierMaster, {
+    const response: { supplierMasters: [ISupplierMaster] } = yield call(getSupplierMaster, {
       searcher: action.payload?.search ?? null,
     });
     yield put(getSupplierMasterSuccess(response));
     yield put({
       type: SupplierMasterActionTypes.GET_SUPPLIER_MASTER_SUCCESS,
-      supplierMasterTypes: response,
+      supplierMasters: response,
     });
   } catch (error: any) {
     yield put(getSupplierMasterFailure(error));
@@ -92,7 +92,7 @@ function* postSupplierMasterSaga(action: any) {
     yield put({
       type: SupplierMasterActionTypes.POST_SUPPLIER_MASTER_SUCCESS,
       supplierMaster: responsePost,
-      supplierMasterTypes: responseGet,
+      supplierMasters: responseGet,
     });
   } catch (error: any) {
     yield put(postSupplierMasterFailure(error));
@@ -116,7 +116,7 @@ function* putSupplierMasterSaga(action: any) {
     yield put({
       type: SupplierMasterActionTypes.PUT_SUPPLIER_MASTER_SUCCESS,
       supplierMaster: responsePut,
-      supplierMasterTypes: responseGet,
+      supplierMasters: responseGet,
     });
   } catch (error: any) {
     yield put(putSupplierMasterFailure(error));

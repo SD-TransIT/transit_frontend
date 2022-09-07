@@ -4,7 +4,7 @@ import SupplierMasterActionTypes from '../actions/supplierMaster/supplierMasterT
 export interface SupplierMasterState {
   fetchingSupplierMaster: boolean;
   fetchedSupplierMaster: boolean;
-  supplierMasterTypes: ISupplierMaster [] | [];
+  supplierMasters: ISupplierMaster [] | [];
   supplierMaster: ISupplierMaster | null;
   error: string | null;
 }
@@ -14,7 +14,7 @@ export interface GetSupplierMasterRequestPayload {
 }
 
 export interface GetSupplierMasterSuccessPayload {
-  supplierMasterTypes: [ISupplierMaster];
+  supplierMasters: [ISupplierMaster];
 }
 
 export interface GetSupplierMasterErrorPayload {

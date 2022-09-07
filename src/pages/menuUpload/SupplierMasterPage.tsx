@@ -15,7 +15,7 @@ function SupplierMasterPage() {
   const dispatch = useDispatch();
 
   const {
-    supplierMasterTypes,
+    supplierMasters,
   } = useSelector(
     (state: RootState) => state.supplierMaster,
   );
@@ -82,7 +82,7 @@ function SupplierMasterPage() {
       <div className="p-4 bg-transit-white">
         <Searcher refetch={refetch} />
       </div>
-      {supplierMasterTypes === undefined ? (
+      {supplierMasters === undefined ? (
         <Table columns={columns} data={[{ }]} editAction={() => {}}>
           <p>0 Results</p>
           <AddItemButton onClick={() => {}} className="w-fit p-2">
@@ -92,11 +92,11 @@ function SupplierMasterPage() {
       ) : (
         <Table
           columns={columns}
-          data={supplierMasterTypes}
+          data={supplierMasters}
           editAction={() => { }}
           deleteAction={() => { }}
         >
-          <p>{`${supplierMasterTypes?.length} Results`}</p>
+          <p>{`${supplierMasters?.length} Results`}</p>
           <AddItemButton onClick={() => {}} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
