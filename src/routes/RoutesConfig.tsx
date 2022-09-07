@@ -13,7 +13,7 @@ import Unauthorized from '../components/shared/Unauthorized';
 import CostFormPage from '../pages/menuUpload/CostFormPage';
 import CustomerMasterPage from '../pages/menuUpload/CustomerMasterPage';
 import DriverMasterPage from '../pages/menuUpload/DriverMasterPage';
-import ItemMasterPage from '../pages/menuUpload/ItemMasterPage';
+import ItemMasterPage from '../pages/menuUpload/itemMaster/ItemMasterPage';
 import ItemDetailsPage from '../pages/menuUpload/ItemDetailsPage';
 import ModeOfTransportMasterPage from '../pages/menuUpload/ModeOfTransportMasterPage';
 import OrderDetailsPage from '../pages/menuUpload/OrderDetailsPage';
