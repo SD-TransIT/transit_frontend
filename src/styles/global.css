@@ -77,7 +77,8 @@ body {
     @apply flex;
     @apply justify-center;
     @apply items-center;
-    @apply p-2;
+    @apply px-4;
+    @apply py-2;
     @apply bg-transit-white;
     @apply rounded;
     @apply text-transit-green-dark;

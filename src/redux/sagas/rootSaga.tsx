@@ -3,6 +3,7 @@ import tokenSaga from './tokenSaga';
 import customerTypeSaga from './customerTypeSaga';
 import manualUploadFormsSaga from './manualUploadFormsSaga';
 import driverSaga from './driverSaga';
+import supplierMasterSaga from './supplierMasterSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     fork(customerTypeSaga),
     fork(manualUploadFormsSaga),
     fork(driverSaga),
+    fork(supplierMasterSaga),
   ]);
 }
