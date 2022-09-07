@@ -29,7 +29,7 @@ function Dialog({
             leaveTo="opacity-0 scale-95"
           >
             <DialogHeadlessui.Panel
-              className="max-h-screen md:w-2/5 lg:w-2/6 p-2 transform bg-transit-white rounded-xl flex flex-col"
+              className="max-h-screen md:w-2/5 md:min-w-fit lg:w-2/6 lg:min-w-fit p-2 transform bg-transit-white rounded-xl flex flex-col"
             >
               <DialogHeadlessui.Description
                 as="div"
