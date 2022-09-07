@@ -35,8 +35,8 @@ const getSupplierMaster = async (parameters: any) => {
 const postSupplierMaster = async (payload: ISupplierMaster) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.post(
-    `${supplierUrl}`,
-    { supplier_master_name: payload.supplier_master_name },
+    supplierUrl,
+    payload,
     {
       headers: {
         'Content-type': 'application/json',
@@ -51,7 +51,7 @@ const putSupplierMaster = async (payload: ISupplierMaster, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.put(
     `${supplierUrl}${id}/`,
-    { supplier_master_name: payload.supplier_master_name },
+    payload,
     {
       headers: {
         'Content-type': 'application/json',
@@ -82,9 +82,10 @@ function* getSupplierMasterSaga(action: any) {
 function* postSupplierMasterSaga(action: any) {
   try {
     yield call(refreshAccessToken);
-    const responsePost: { supplierMaster: ISupplierMaster } = yield call(postSupplierMaster, {
-      supplier_master_name: action.payload.supplierMasterName,
-    });
+    const responsePost: { supplierMaster: ISupplierMaster } = yield call(
+      postSupplierMaster,
+      action.payload,
+    );
     const responseGet: { supplierMaster: ISupplierMaster } = yield call(getSupplierMaster, {
       searcher: action.payload?.search ?? null,
     });
@@ -106,9 +107,11 @@ function* postSupplierMasterSaga(action: any) {
 function* putSupplierMasterSaga(action: any) {
   try {
     yield call(refreshAccessToken);
-    const responsePut: { supplierMaster: ISupplierMaster } = yield call(putSupplierMaster, {
-      supplier_master_name: action.payload.supplierMasterName,
-    }, action.payload.id);
+    const responsePut: { supplierMaster: ISupplierMaster } = yield call(
+      putSupplierMaster,
+      action.payload,
+      action.payload.id,
+    );
     const responseGet: { supplierMaster: ISupplierMaster } = yield call(getSupplierMaster, {
       searcher: action.payload?.search ?? null,
     });

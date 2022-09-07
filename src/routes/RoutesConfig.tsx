@@ -19,7 +19,7 @@ import ModeOfTransportMasterPage from '../pages/menuUpload/ModeOfTransportMaster
 import OrderDetailsPage from '../pages/menuUpload/OrderDetailsPage';
 import PODVariancePage from '../pages/menuUpload/PODVariancePage';
 import ShipmentPage from '../pages/menuUpload/ShipmentPage';
-import SupplierMasterPage from '../pages/menuUpload/SupplierMasterPage';
+import SupplierMasterPage from '../pages/menuUpload/supplierMaster/SupplierMasterPage';
 import TransportDetailsPage from '../pages/menuUpload/TransportDetailsPage';
 import ManualUploadPage from '../pages/menuUpload/MenuUploadPage';
 
