@@ -6,23 +6,31 @@ import PageBody from '../../../components/shared/PageBody';
 import Searcher from '../../../components/shared/Searcher';
 import Table from '../../../components/shared/table/Table';
 import { ColumnType } from '../../../components/shared/table/types';
-import { getSupplierMasterRequest, postSupplierMasterRequest, putSupplierMasterRequest } from '../../../redux/actions/supplierMaster/supplierMasterActions';
+import {
+  deleteSupplierMasterRequest,
+  getSupplierMasterRequest,
+  postSupplierMasterRequest,
+  putSupplierMasterRequest,
+} from '../../../redux/actions/supplierMaster/supplierMasterActions';
 import { RootState } from '../../../redux/reducers/rootReducer';
 import AddItemButton from '../../../shared/buttons/AddItemButton';
 import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
 import SupplierMasterForm from '../../../components/forms/supplierMaster/SupplierMasterForm';
 import supplierColumns from './columnsSupplier';
-import { PostSupplierMasterRequestPayload, PutSupplierMasterRequestPayload } from '../../../redux/types/supplierMasterType';
+import { DeleteSupplierMasterRequestPayload, PostSupplierMasterRequestPayload, PutSupplierMasterRequestPayload } from '../../../redux/types/supplierMasterType';
 import { ISupplierMaster } from '../../../models/supplierMaster/ISupplierMasterType';
 
 function SupplierMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
   const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>({
     id: undefined,
     name: '',
+
   });
+  const [objectToDelete, setObjectToDelete] = useState<ISupplierMaster>({ id: undefined, name: '' });
 
   const dispatch = useDispatch();
 
@@ -66,6 +74,16 @@ function SupplierMasterPage() {
     setDisplayEditModal(!displayEditModal);
   };
 
+  const toggleDeleteModal = (object?: ISupplierMaster) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
+  };
+
   const onSubmitAdd = (formValues: FieldValues) => {
     dispatch(postSupplierMasterRequest(formValues as PostSupplierMasterRequestPayload));
     toggleAddModal();
@@ -77,6 +95,24 @@ function SupplierMasterPage() {
       paramsToPass.id = objectToEdit.id;
     }
     dispatch(putSupplierMasterRequest(paramsToPass as PutSupplierMasterRequestPayload));
+    toggleEditModal();
+  };
+
+  const onDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    dispatch(deleteSupplierMasterRequest(paramsToPass as DeleteSupplierMasterRequestPayload));
+    toggleDeleteModal();
+  };
+
+  const onDeleteSubmitEdit = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToEdit) {
+      paramsToPass.id = objectToEdit.id;
+    }
+    dispatch(deleteSupplierMasterRequest(paramsToPass as DeleteSupplierMasterRequestPayload));
     toggleEditModal();
   };
 
@@ -98,7 +134,7 @@ function SupplierMasterPage() {
             columns={columns}
             data={supplierMasters}
             editAction={toggleEditModal}
-            deleteAction={() => { }}
+            deleteAction={toggleDeleteModal}
           >
             <p>{`${supplierMasters?.length} Results`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
@@ -120,6 +156,23 @@ function SupplierMasterPage() {
             initialFormValue={objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            onDelete={onDeleteSubmitEdit}
+          />,
+        ]}
+      />
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <SupplierMasterForm
+            onSubmit={onDelete}
+            onCancel={toggleDeleteModal}
+            title="Delete Supplier Master"
+            initialFormValue={objectToDelete}
+            submitButtonText="Delete"
+            mode="Delete"
           />,
         ]}
       />

@@ -45,6 +45,17 @@ export interface PutSupplierMasterErrorPayload {
   error: string;
 }
 
+export interface DeleteSupplierMasterRequestPayload {
+  payload: ISupplierMaster;
+}
+
+export interface DeleteSupplierMasterSuccessPayload {
+}
+
+export interface DeleteSupplierMasterErrorPayload {
+  error: string;
+}
+
 export interface GetSupplierMasterRequest {
   type: typeof SupplierMasterActionTypes.GET_SUPPLIER_MASTER_REQUEST;
   payload: GetSupplierMasterRequestPayload;
@@ -90,6 +101,21 @@ export type PutSupplierMasterError = {
   payload: PutSupplierMasterErrorPayload;
 };
 
+export interface DeleteSupplierMasterRequest {
+  type: typeof SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_REQUEST;
+  payload: DeleteSupplierMasterRequestPayload;
+}
+
+export type DeleteSupplierMasterSuccess = {
+  type: typeof SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_SUCCESS;
+  payload: DeleteSupplierMasterSuccessPayload;
+};
+
+export type DeleteSupplierMasterError = {
+  type: typeof SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_FAILURE;
+  payload: DeleteSupplierMasterErrorPayload;
+};
+
 export type SupplierMasterActions =
     | GetSupplierMasterRequest
     | GetSupplierMasterSuccess
@@ -99,4 +125,7 @@ export type SupplierMasterActions =
     | PostSupplierMasterError
     | PutSupplierMasterRequest
     | PutSupplierMasterSuccess
-    | PutSupplierMasterError;
+    | PutSupplierMasterError
+    | DeleteSupplierMasterRequest
+    | DeleteSupplierMasterSuccess
+    | DeleteSupplierMasterError;

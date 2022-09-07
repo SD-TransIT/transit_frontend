@@ -1,4 +1,10 @@
 import {
+  DeleteSupplierMasterError,
+  DeleteSupplierMasterErrorPayload,
+  DeleteSupplierMasterRequest,
+  DeleteSupplierMasterRequestPayload,
+  DeleteSupplierMasterSuccess,
+  DeleteSupplierMasterSuccessPayload,
   GetSupplierMasterError,
   GetSupplierMasterErrorPayload,
   GetSupplierMasterRequest,
@@ -80,5 +86,26 @@ export const putSupplierMasterFailure = (
   payload: PutSupplierMasterErrorPayload,
 ): PutSupplierMasterError => ({
   type: SupplierMasterActionTypes.PUT_SUPPLIER_MASTER_FAILURE,
+  payload,
+});
+
+export const deleteSupplierMasterRequest = (
+  payload: DeleteSupplierMasterRequestPayload,
+): DeleteSupplierMasterRequest => ({
+  type: SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_REQUEST,
+  payload,
+});
+
+export const deleteSupplierMasterSuccess = (
+  payload: DeleteSupplierMasterSuccessPayload,
+): DeleteSupplierMasterSuccess => ({
+  type: SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_SUCCESS,
+  payload,
+});
+
+export const deleteSupplierMasterFailure = (
+  payload: DeleteSupplierMasterErrorPayload,
+): DeleteSupplierMasterError => ({
+  type: SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_FAILURE,
   payload,
 });
