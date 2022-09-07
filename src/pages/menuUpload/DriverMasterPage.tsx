@@ -42,7 +42,7 @@ function DriverMasterPage() {
 
   const toggleEditModal = (object?:FieldValues, data?:any) => {
     if (object && object.id !== undefined) {
-      const record = data.find((d:any) => d.id === object.id);
+      const record = data.find((data_record:any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({
         ...prevState,
         id: object.id,
