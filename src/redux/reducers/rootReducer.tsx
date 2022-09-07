@@ -4,6 +4,7 @@ import customerTypeReducer from './customerTypeReducer';
 import manualUploadFormsReducer from './manualUploadForms';
 import driverReducer from './driverReducer';
 import supplierMasterReducer from './supplierMasterReducer';
+import transporterReducer from './transporterReducer';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   manualUploadForms: manualUploadFormsReducer,
   driver: driverReducer,
   supplierMaster: supplierMasterReducer,
+  transporter: transporterReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

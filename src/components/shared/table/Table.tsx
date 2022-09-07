@@ -111,7 +111,7 @@ function Table({
                         <IconContext.Provider
                           // eslint-disable-next-line
                           value={{ className: 'w-8 h-8 p-1 bg-transit-white rounded-full text-transit-green-dark' }}>
-                          <RiPencilLine onClick={() => editAction?.(row.values)} />
+                          <RiPencilLine onClick={() => editAction?.(row.values, data)} />
                           <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />
                         </IconContext.Provider>
                       </div>

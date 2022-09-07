@@ -8,6 +8,13 @@ body {
     letter-spacing: 0.0275em;
 }
 
+@layer utilities {
+  .required-field::after {
+    @apply text-transit-red;
+    content: '*';
+  }
+}
+
 @layer components {
   /* native HTML button */
   button.menu-tile {

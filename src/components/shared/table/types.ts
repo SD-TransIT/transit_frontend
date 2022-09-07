@@ -17,7 +17,7 @@ export type TableProps = {
   columns: Array<Column<object>>;
   data: Array<object>;
   children: React.ReactNode
-  editAction?: (row?:any) => void;
+  editAction?: (row?:any, data?:any) => void;
   deleteAction?: (row?:any) => void;
 };
 
