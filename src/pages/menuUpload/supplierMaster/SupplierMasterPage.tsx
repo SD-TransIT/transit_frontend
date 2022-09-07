@@ -22,15 +22,7 @@ function SupplierMasterPage() {
   const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>({
     id: undefined,
     name: '',
-    address_1: '',
-    address_2: '',
-    address_3: '',
-    city: '',
-    state: '',
-    country: '',
-    phone: '',
-    email: '',
-    latitude_longitude: '',
+
   });
 
   const dispatch = useDispatch();

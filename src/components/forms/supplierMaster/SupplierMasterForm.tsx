@@ -42,7 +42,7 @@ function SupplierMasterForm({
                   id="floatingInput"
                   placeholder="Supplier Name"
                   type="text"
-                  className="h-9 border-transit-grey-300 placeholder-grey-300"
+                  className="h-9 placeholder-grey-300"
                   isInvalid={Boolean(errors.name)}
                 />
                 {errors.name && <ValidationError value="This field is required" />}
