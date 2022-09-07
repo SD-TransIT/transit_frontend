@@ -13,6 +13,17 @@ body {
     @apply text-transit-red;
     content: '*';
   }
+
+  .table-action-icons {
+    @apply w-8;
+    @apply h-8;
+    @apply p-1;
+    @apply bg-transit-white;
+    @apply hover:bg-transit-green-dark;
+    @apply rounded-full;
+    @apply text-transit-green-dark;
+    @apply hover:text-transit-white;
+  }
 }
 
 @layer components {
