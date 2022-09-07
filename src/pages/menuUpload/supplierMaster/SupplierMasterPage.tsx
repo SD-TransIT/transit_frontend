@@ -22,7 +22,6 @@ function SupplierMasterPage() {
   const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>({
     id: undefined,
     name: '',
-
   });
 
   const dispatch = useDispatch();
