@@ -1,6 +1,6 @@
 import { FieldValues } from 'react-hook-form';
 
-export type CustomerTypeFormProps = {
+export type ManualFormProps = {
   onSubmit: (formValues: FieldValues) => void;
   onCancel: () => void;
   title: string;
