@@ -51,7 +51,7 @@ function CustomerTypeForm({
                 </IconContext.Provider>
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium">Customer Type Name</p>
+                <p className="text-xs text-transit-black-secondary font-medium required-field">Customer Type Name</p>
                 <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register('customerTypeName', { required: true })}

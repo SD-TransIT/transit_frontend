@@ -53,7 +53,7 @@ function DriverForm({
                 </IconContext.Provider>
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium">Transporter</p>
+                <p className="text-xs text-transit-black-secondary font-medium required-field">Transporter</p>
                 <Controller
                   rules={{ required: true }}
                   control={control}
@@ -67,7 +67,7 @@ function DriverForm({
                 {errors.transporter && <ValidationError value="This field is required" />}
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium">Driver Name</p>
+                <p className="text-xs text-transit-black-secondary font-medium required-field">Driver Name</p>
                 <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register('name', { required: true })}
