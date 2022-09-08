@@ -1,7 +1,7 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from '../../utils/apiClient';
+import apiClient from '../utils/apiClient';
 import { sessionToken } from '../reducers/tokenReducer';
 import {
   getCustomerTypeSuccess, getCustomerTypeFailure,
@@ -9,7 +9,7 @@ import {
   putCustomerTypeSuccess, putCustomerTypeFailure,
   deleteCustomerTypeSuccess, deleteCustomerTypeFailure,
 } from '../actions/customerType/customerTypeActions';
-import { ICustomerType } from '../../models/customerType/ICustomerType';
+import { ICustomerType } from '../models/customerType/ICustomerType';
 import CustomerTypeActionTypes from '../actions/customerType/customerTypeTypes';
 import refreshAccessToken from './utils';
 

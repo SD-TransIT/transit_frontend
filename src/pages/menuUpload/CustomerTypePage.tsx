@@ -6,14 +6,14 @@ import {
   DeleteCustomerTypeRequestPayload,
   PostCustomerTypeRequestPayload,
   PutCustomerTypeRequestPayload,
-} from '../../redux/types/customerType';
+} from '../../types/customerType';
 import {
   deleteCustomerTypeRequest,
   getCustomerTypeRequest,
   postCustomerTypeRequest,
   putCustomerTypeRequest,
-} from '../../redux/actions/customerType/customerTypeActions';
-import { RootState } from '../../redux/reducers/rootReducer';
+} from '../../actions/customerType/customerTypeActions';
+import { RootState } from '../../reducers/rootReducer';
 import Searcher from '../../components/shared/Searcher';
 import Table from '../../components/shared/table/Table';
 import { ColumnType } from '../../components/shared/table/types';

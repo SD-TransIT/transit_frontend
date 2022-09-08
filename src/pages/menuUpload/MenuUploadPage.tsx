@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PageBody from '../../components/shared/PageBody';
 import { IManualUploadFormsType } from '../../models/manualUploadForms/IManualUploadForms';
-import { getManualUploadFormsRequest } from '../../redux/actions/menuUpload/menuUploadActions';
-import { RootState } from '../../redux/reducers/rootReducer';
+import { getManualUploadFormsRequest } from '../../actions/menuUpload/menuUploadActions';
+import { RootState } from '../../reducers/rootReducer';
 import PageHeader from '../types';
 
 function ManualUploadPage() {

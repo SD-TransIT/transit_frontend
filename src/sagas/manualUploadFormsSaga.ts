@@ -1,9 +1,9 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from '../../utils/apiClient';
+import apiClient from '../utils/apiClient';
 import { sessionToken } from '../reducers/tokenReducer';
-import { IManualUploadFormsType } from '../../models/manualUploadForms/IManualUploadForms';
+import { IManualUploadFormsType } from '../models/manualUploadForms/IManualUploadForms';
 import { getManualUploadFormsFailure, getManualUploadFormsSuccess } from '../actions/menuUpload/menuUploadActions';
 import ManualUploadActionTypes from '../actions/menuUpload/menuUploadTypes';
 import refreshAccessToken from './utils';

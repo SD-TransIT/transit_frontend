@@ -11,8 +11,8 @@ import {
   getSupplierMasterRequest,
   postSupplierMasterRequest,
   putSupplierMasterRequest,
-} from '../../../redux/actions/supplierMaster/supplierMasterActions';
-import { RootState } from '../../../redux/reducers/rootReducer';
+} from '../../../actions/supplierMaster/supplierMasterActions';
+import { RootState } from '../../../reducers/rootReducer';
 import AddItemButton from '../../../shared/buttons/AddItemButton';
 import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
@@ -22,7 +22,7 @@ import {
   DeleteSupplierMasterRequestPayload,
   PostSupplierMasterRequestPayload,
   PutSupplierMasterRequestPayload,
-} from '../../../redux/types/supplierMasterType';
+} from '../../../types/supplierMasterType';
 import { ISupplierMaster } from '../../../models/supplierMaster/ISupplierMasterType';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };

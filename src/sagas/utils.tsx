@@ -1,5 +1,5 @@
-import { IToken } from '../../models/token/IToken';
-import isAuthenticated from '../../utils/authHelper';
+import { IToken } from '../models/token/IToken';
+import isAuthenticated from '../utils/authHelper';
 import { sessionToken } from '../reducers/tokenReducer';
 import { refreshToken } from './tokenSaga';
 

@@ -1,4 +1,4 @@
-import { ICustomerType } from '../../models/customerType/ICustomerType';
+import { ICustomerType } from '../models/customerType/ICustomerType';
 import CustomerTypeActionTypes from '../actions/customerType/customerTypeTypes';
 
 export interface CustomerTypeState {

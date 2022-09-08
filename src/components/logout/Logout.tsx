@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sessionToken } from '../../redux/reducers/tokenReducer';
+import { sessionToken } from '../../reducers/tokenReducer';
 import { Paths } from '../../routes/paths';
 import vector from '../../shared/images/vector.svg';
 

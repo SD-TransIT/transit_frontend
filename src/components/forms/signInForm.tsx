@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import isAuthenticated from '../../utils/authHelper';
-import { fetchTokenRequest, refreshTokenRequest } from '../../redux/actions/token/tokenActions';
-import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../redux/types/tokenType';
+import { fetchTokenRequest, refreshTokenRequest } from '../../actions/token/tokenActions';
+import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../types/tokenType';
 import SubmitButton from '../../shared/buttons/SubmitButton';
 import { ITokenInput } from '../../models/token/ITokenInput';
 import Input from '../../shared/inputs/input';
-import { sessionToken } from '../../redux/reducers/tokenReducer';
+import { sessionToken } from '../../reducers/tokenReducer';
 import ValidationError from '../shared/ValidationError';
 import { Paths } from '../../routes/paths';
 

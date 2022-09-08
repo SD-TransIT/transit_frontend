@@ -85,6 +85,12 @@ const hasJsxRuntime = (() => {
   }
 })();
 
+// We are currently in: /transit_frontend/config/webpack.config.js
+// ROOT: /transit_frontend
+const ROOT = path.resolve(__dirname, '..');
+// SRC: /transit_frontend/src
+const SRC = path.resolve(__dirname, '../src');
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
@@ -319,6 +325,19 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        root: ROOT,
+        src: SRC,
+        actions: path.resolve(SRC, 'actions'),
+        components: path.resolve(SRC, 'components'),
+        models: path.resolve(SRC, 'models'),
+        pages: path.resolve(SRC, 'pages'),
+        reducers: path.resolve(SRC, 'reducers'),
+        routes: path.resolve(SRC, 'routes'),
+        sagas: path.resolve(SRC, 'sagas'),
+        shared: path.resolve(SRC, 'shared'),
+        styles: path.resolve(SRC, 'styles'),
+        types: path.resolve(SRC, 'types'),
+        utils: path.resolve(SRC, 'utils'),
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).

@@ -1,8 +1,8 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import { ISupplierMaster } from '../../models/supplierMaster/ISupplierMasterType';
-import apiClient from '../../utils/apiClient';
+import { ISupplierMaster } from '../models/supplierMaster/ISupplierMasterType';
+import apiClient from '../utils/apiClient';
 import {
   deleteSupplierMasterFailure,
   deleteSupplierMasterSuccess,

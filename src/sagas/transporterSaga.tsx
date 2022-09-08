@@ -1,10 +1,10 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from '../../utils/apiClient';
+import apiClient from '../utils/apiClient';
 import { sessionToken } from '../reducers/tokenReducer';
 import refreshAccessToken from './utils';
-import { ITransporter } from '../../models/transporter/ITransporter';
+import { ITransporter } from '../models/transporter/ITransporter';
 import TransporterActionTypes from '../actions/transporter/transporterTypes';
 import { getTransporterFailure, getTransporterSuccess } from '../actions/transporter/transporterActions';
 

@@ -1,4 +1,4 @@
-import { ISupplierMaster } from '../../models/supplierMaster/ISupplierMasterType';
+import { ISupplierMaster } from '../models/supplierMaster/ISupplierMasterType';
 import SupplierMasterActionTypes from '../actions/supplierMaster/supplierMasterTypes';
 
 export interface SupplierMasterState {

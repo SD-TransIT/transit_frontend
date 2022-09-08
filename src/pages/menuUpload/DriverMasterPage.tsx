@@ -10,13 +10,13 @@ import { ColumnType } from '../../components/shared/table/types';
 import {
   deleteDriverRequest, getDriverRequest,
   postDriverRequest, putDriverRequest,
-} from '../../redux/actions/driver/driverActions';
-import { RootState } from '../../redux/reducers/rootReducer';
+} from '../../actions/driver/driverActions';
+import { RootState } from '../../reducers/rootReducer';
 import {
   DeleteDriverRequestPayload,
   PostDriverRequestPayload,
   PutDriverRequestPayload,
-} from '../../redux/types/driverType';
+} from '../../types/driverType';
 import AddItemButton from '../../shared/buttons/AddItemButton';
 import Dialog from '../../shared/dialog/Dialog';
 import PageHeader from '../types';

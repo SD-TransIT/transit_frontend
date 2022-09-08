@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import SignInPage from '../../../pages/signIn/SignInPage';
-import store from '../../../redux/store';
+import store from '../../../store';
 
 describe('Unit tests for the SignInPage component.', () => {
   const SIGN_IN_PAGE_TEST_ID = 'sign-in-page';

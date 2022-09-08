@@ -1,10 +1,10 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from '../../utils/apiClient';
+import apiClient from '../utils/apiClient';
 import { sessionToken } from '../reducers/tokenReducer';
 import refreshAccessToken from './utils';
-import { IItem } from '../../models/item/IItem';
+import { IItem } from '../models/item/IItem';
 import ItemActionTypes from '../actions/item/itemTypes';
 import {
   deleteItemFailure,

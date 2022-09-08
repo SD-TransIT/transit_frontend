@@ -1,8 +1,8 @@
 import React from 'react';
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
-import { getTransporter } from '../../redux/sagas/transporterSaga';
-import refreshAccessToken from '../../redux/sagas/utils';
+import { getTransporter } from '../../sagas/transporterSaga';
+import refreshAccessToken from '../../sagas/utils';
 
 type PickerProp = {
   field: ControllerRenderProps<FieldValues, 'transporter'>;
