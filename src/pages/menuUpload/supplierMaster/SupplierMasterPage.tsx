@@ -18,19 +18,21 @@ import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
 import SupplierMasterForm from '../../../components/forms/supplierMaster/SupplierMasterForm';
 import supplierColumns from './columnsSupplier';
-import { DeleteSupplierMasterRequestPayload, PostSupplierMasterRequestPayload, PutSupplierMasterRequestPayload } from '../../../redux/types/supplierMasterType';
+import {
+  DeleteSupplierMasterRequestPayload,
+  PostSupplierMasterRequestPayload,
+  PutSupplierMasterRequestPayload,
+} from '../../../redux/types/supplierMasterType';
 import { ISupplierMaster } from '../../../models/supplierMaster/ISupplierMasterType';
+
+const clearValues: ISupplierMaster = { id: undefined, name: '' };
 
 function SupplierMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>({
-    id: undefined,
-    name: '',
-
-  });
-  const [objectToDelete, setObjectToDelete] = useState<ISupplierMaster>({ id: undefined, name: '' });
+  const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>(clearValues);
+  const [objectToDelete, setObjectToDelete] = useState<ISupplierMaster>(clearValues);
 
   const dispatch = useDispatch();
 
@@ -123,7 +125,7 @@ function SupplierMasterPage() {
           <Searcher refetch={refetch} />
         </div>
         {supplierMasters === undefined ? (
-          <Table columns={columns} data={[{ }]} editAction={() => {}}>
+          <Table columns={columns} data={[{ }]}>
             <p>0 Results</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
@@ -153,7 +155,7 @@ function SupplierMasterPage() {
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
             title={displayAddModal ? 'New Supplier Master' : 'Edit Supplier Master'}
-            initialFormValue={objectToEdit}
+            initialFormValue={displayAddModal ? clearValues : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? 'Add' : 'Edit'}
             onDelete={onDeleteSubmitEdit}
