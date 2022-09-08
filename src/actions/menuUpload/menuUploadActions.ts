@@ -1,4 +1,3 @@
-import ManualUploadActionTypes from 'actions/menuUpload/menuUploadTypes';
 import {
   GetManualUploadFormsError,
   GetManualUploadFormsErrorPayload,
@@ -7,6 +6,8 @@ import {
   GetManualUploadFormsSuccess,
   GetManualUploadFormsSuccessPayload,
 } from 'types/manualUploadType';
+
+import ManualUploadActionTypes from 'actions/menuUpload/menuUploadTypes';
 
 export const getManualUploadFormsRequest = (
   payload: GetManualUploadFormsRequestPayload,

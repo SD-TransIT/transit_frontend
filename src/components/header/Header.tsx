@@ -1,7 +1,8 @@
 import React from 'react';
+
+import HeaderMenu from 'components/header/HeaderMenu';
 import Logo from 'components/logo/Logo';
 import Logout from 'components/logout/Logout';
-import HeaderMenu from 'components/header/HeaderMenu';
 
 function Header() {
   return (

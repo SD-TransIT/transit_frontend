@@ -1,17 +1,19 @@
+import { ICustomerType } from 'models/customerType/ICustomerType';
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from 'utils/apiClient';
-import { sessionToken } from 'reducers/tokenReducer';
-import {
-  getCustomerTypeSuccess, getCustomerTypeFailure,
-  postCustomerTypeSuccess, postCustomerTypeFailure,
-  putCustomerTypeSuccess, putCustomerTypeFailure,
-  deleteCustomerTypeSuccess, deleteCustomerTypeFailure,
-} from 'actions/customerType/customerTypeActions';
-import { ICustomerType } from 'models/customerType/ICustomerType';
-import CustomerTypeActionTypes from 'actions/customerType/customerTypeTypes';
 import refreshAccessToken from 'sagas/utils';
+
+import {
+  deleteCustomerTypeFailure,
+  deleteCustomerTypeSuccess, getCustomerTypeFailure,
+  getCustomerTypeSuccess, postCustomerTypeFailure,
+  postCustomerTypeSuccess, putCustomerTypeFailure,
+  putCustomerTypeSuccess,
+} from 'actions/customerType/customerTypeActions';
+import CustomerTypeActionTypes from 'actions/customerType/customerTypeTypes';
+import { sessionToken } from 'reducers/tokenReducer';
+import apiClient from 'utils/apiClient';
 
 const customerTypeUrl = 'customer_type/';
 

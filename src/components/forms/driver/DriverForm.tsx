@@ -1,14 +1,16 @@
 import React from 'react';
+
 import { Controller, useForm } from 'react-hook-form';
-import { RiCloseFill } from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import Input from 'shared/inputs/input';
-import ValidationError from 'components/shared/ValidationError';
-import SubmitButton from 'shared/buttons/SubmitButton';
+import { RiCloseFill } from 'react-icons/ri';
 import CancelButton from 'shared/buttons/CancelButton';
-import { ManualFormProps } from 'components/forms/types';
 import DeleteButton from 'shared/buttons/DeleteButton';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import Input from 'shared/inputs/input';
+
+import { ManualFormProps } from 'components/forms/types';
 import TransporterPicker from 'components/pickers/TransporterPicker';
+import ValidationError from 'components/shared/ValidationError';
 
 function DriverForm({
   onSubmit, onCancel, title, initialFormValue, submitButtonText, mode, onDelete,

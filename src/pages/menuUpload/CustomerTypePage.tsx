@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+import PageHeader from 'pages/types';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import {
   DeleteCustomerTypeRequestPayload,
   PostCustomerTypeRequestPayload,
   PutCustomerTypeRequestPayload,
 } from 'types/customerType';
+
 import {
   deleteCustomerTypeRequest,
   getCustomerTypeRequest,
   postCustomerTypeRequest,
   putCustomerTypeRequest,
 } from 'actions/customerType/customerTypeActions';
-import { RootState } from 'reducers/rootReducer';
+import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
+import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
-import AddItemButton from 'shared/buttons/AddItemButton';
-import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
-import Dialog from 'shared/dialog/Dialog';
-import PageBody from 'components/shared/PageBody';
-import PageHeader from 'pages/types';
+import { RootState } from 'reducers/rootReducer';
 
 function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);

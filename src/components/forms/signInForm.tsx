@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import { ThunkDispatch } from '@reduxjs/toolkit';
-import isAuthenticated from 'utils/authHelper';
-import { fetchTokenRequest, refreshTokenRequest } from 'actions/token/tokenActions';
-import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'types/tokenType';
-import SubmitButton from 'shared/buttons/SubmitButton';
 import { ITokenInput } from 'models/token/ITokenInput';
-import Input from 'shared/inputs/input';
-import { sessionToken } from 'reducers/tokenReducer';
-import ValidationError from 'components/shared/ValidationError';
+import { FieldValues, useForm } from 'react-hook-form';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Paths } from 'routes/paths';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import Input from 'shared/inputs/input';
+import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'types/tokenType';
+
+import { fetchTokenRequest, refreshTokenRequest } from 'actions/token/tokenActions';
+import ValidationError from 'components/shared/ValidationError';
+import { sessionToken } from 'reducers/tokenReducer';
+import isAuthenticated from 'utils/authHelper';
 
 interface ISignInFormProps {
   signIn: (params: FetchTokenRequestPayload) => void;

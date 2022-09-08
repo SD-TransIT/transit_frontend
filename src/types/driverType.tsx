@@ -1,4 +1,5 @@
 import { IDriver } from 'models/driver/IDriver';
+
 import DriverActionTypes from 'actions/driver/driverTypes';
 
 export interface DriverState {

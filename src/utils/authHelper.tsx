@@ -1,4 +1,5 @@
 import jwt_decode from 'jwt-decode';
+
 import { sessionToken } from 'reducers/tokenReducer';
 
 export default function isAuthenticated(): boolean {

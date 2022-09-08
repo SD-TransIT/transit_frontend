@@ -1,4 +1,3 @@
-import TokenActionTypes from 'actions/token/tokenActionTypes';
 import {
   FetchTokenFailure,
   FetchTokenFailurePayload,
@@ -13,6 +12,8 @@ import {
   RefreshTokenSuccess,
   RefreshTokenSuccessPayload,
 } from 'types/tokenType';
+
+import TokenActionTypes from 'actions/token/tokenActionTypes';
 
 export const fetchTokenRequest = (
   payload: FetchTokenRequestPayload,

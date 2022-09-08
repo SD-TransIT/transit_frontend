@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+
+import { IconContext } from 'react-icons';
+import {
+  RiArrowLeftSLine, RiArrowRightSLine,
+  RiDeleteBin7Line,
+  RiPencilLine,
+} from 'react-icons/ri';
 import {
   useFlexLayout,
   usePagination,
   useSortBy,
   useTable,
 } from 'react-table';
-import {
-  RiArrowLeftSLine, RiArrowRightSLine,
-  RiPencilLine, RiDeleteBin7Line,
-} from 'react-icons/ri';
-import { IconContext } from 'react-icons';
 import PaginationButton from 'shared/buttons/PaginationButton';
-import { TableInstanceWithHooks, TableProps } from 'types';
+
+import { TableInstanceWithHooks, TableProps } from 'components/shared/table/types';
 
 function Table({
   columns, data, children, editAction, deleteAction,

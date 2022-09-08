@@ -1,12 +1,13 @@
+import { IManualUploadFormsType } from 'models/manualUploadForms/IManualUploadForms';
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from 'utils/apiClient';
-import { sessionToken } from 'reducers/tokenReducer';
-import { IManualUploadFormsType } from 'models/manualUploadForms/IManualUploadForms';
+import refreshAccessToken from 'sagas/utils';
+
 import { getManualUploadFormsFailure, getManualUploadFormsSuccess } from 'actions/menuUpload/menuUploadActions';
 import ManualUploadActionTypes from 'actions/menuUpload/menuUploadTypes';
-import refreshAccessToken from 'sagas/utils';
+import { sessionToken } from 'reducers/tokenReducer';
+import apiClient from 'utils/apiClient';
 
 const getManualUploadForms = async () => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;

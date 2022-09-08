@@ -1,5 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import React from 'react';
+
+import { render, screen } from '@testing-library/react';
+
 import Unauthorized from 'components/shared/Unauthorized';
 
 describe('Unit tests for the Unauthorized component.', () => {

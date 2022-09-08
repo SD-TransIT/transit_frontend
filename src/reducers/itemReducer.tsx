@@ -1,5 +1,6 @@
-import ItemActionTypes from 'actions/item/itemTypes';
 import { ItemActions, ItemState } from 'types/itemType';
+
+import ItemActionTypes from 'actions/item/itemTypes';
 
 const initialState: ItemState = {
   fetchingItem: false,

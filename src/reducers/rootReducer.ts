@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import tokenReducer from 'reducers/tokenReducer';
+
 import customerTypeReducer from 'reducers/customerTypeReducer';
-import manualUploadFormsReducer from 'reducers/manualUploadForms';
 import driverReducer from 'reducers/driverReducer';
+import itemReducer from 'reducers/itemReducer';
+import manualUploadFormsReducer from 'reducers/manualUploadForms';
 import supplierMasterReducer from 'reducers/supplierMasterReducer';
+import tokenReducer from 'reducers/tokenReducer';
 import transporterReducer from 'reducers/transporterReducer';
 import itemReducer from 'reducers/itemReducer';
 import modeOfTransportReducer from 'reducers/modeOfTransport';

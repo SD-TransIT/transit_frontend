@@ -1,8 +1,9 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import SignInPage from 'pages/signIn/SignInPage';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import store from 'store';
 
 describe('Unit tests for the SignInPage component.', () => {

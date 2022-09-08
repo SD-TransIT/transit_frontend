@@ -1,5 +1,6 @@
-import CustomerTypeActionTypes from 'actions/customerType/customerTypeTypes';
 import { CustomerTypeActions, CustomerTypeState } from 'types/customerType';
+
+import CustomerTypeActionTypes from 'actions/customerType/customerTypeTypes';
 
 const initialState: CustomerTypeState = {
   fetchingCustomerType: false,
