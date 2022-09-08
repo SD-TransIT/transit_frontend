@@ -6,6 +6,7 @@ import driverReducer from './driverReducer';
 import supplierMasterReducer from './supplierMasterReducer';
 import transporterReducer from './transporterReducer';
 import itemReducer from './itemReducer';
+import modeOfTransportReducer from './modeOfTransport';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   supplierMaster: supplierMasterReducer,
   transporter: transporterReducer,
   item: itemReducer,
+  modeOfTransport: modeOfTransportReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

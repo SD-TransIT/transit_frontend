@@ -6,6 +6,7 @@ import driverSaga from './driverSaga';
 import supplierMasterSaga from './supplierMasterSaga';
 import TransporterSaga from './transporterSaga';
 import ItemSaga from './itemSaga';
+import modeOfTransportSaga from './modeOfTransport';
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     fork(supplierMasterSaga),
     fork(TransporterSaga),
     fork(ItemSaga),
+    fork(modeOfTransportSaga),
   ]);
 }

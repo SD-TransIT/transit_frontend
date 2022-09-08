@@ -15,7 +15,7 @@ import CustomerMasterPage from '../pages/menuUpload/CustomerMasterPage';
 import DriverMasterPage from '../pages/menuUpload/DriverMasterPage';
 import ItemMasterPage from '../pages/menuUpload/itemMaster/ItemMasterPage';
 import ItemDetailsPage from '../pages/menuUpload/ItemDetailsPage';
-import ModeOfTransportMasterPage from '../pages/menuUpload/ModeOfTransportMasterPage';
+import ModeOfTransportMasterPage from '../pages/menuUpload/modeOfTransport/ModeOfTransportMasterPage';
 import OrderDetailsPage from '../pages/menuUpload/OrderDetailsPage';
 import PODVariancePage from '../pages/menuUpload/PODVariancePage';
 import ShipmentPage from '../pages/menuUpload/ShipmentPage';
