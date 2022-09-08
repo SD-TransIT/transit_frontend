@@ -3,11 +3,10 @@ import customerTypeSaga from 'sagas/customerTypeSaga';
 import driverSaga from 'sagas/driverSaga';
 import ItemSaga from 'sagas/itemSaga';
 import manualUploadFormsSaga from 'sagas/manualUploadFormsSaga';
+import modeOfTransportSaga from 'sagas/modeOfTransport';
 import supplierMasterSaga from 'sagas/supplierMasterSaga';
 import tokenSaga from 'sagas/tokenSaga';
 import TransporterSaga from 'sagas/transporterSaga';
-import ItemSaga from 'sagas/itemSaga';
-import modeOfTransportSaga from 'sagas/modeOfTransport';
 
 export default function* rootSaga() {
   yield all([

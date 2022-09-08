@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
+
+import { IModeOfTransport } from 'models/modeOfTransport/IModeOfTransport';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import ModeOfTransportForm from '../../../components/forms/modeOfTransport/ModeOfTransportForm';
-import PageBody from '../../../components/shared/PageBody';
-import Searcher from '../../../components/shared/Searcher';
-import Table from '../../../components/shared/table/Table';
-import { ColumnType } from '../../../components/shared/table/types';
-import { IModeOfTransport } from '../../../models/modeOfTransport/IModeOfTransport';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
+import { PostModeOfTransportRequestPayload, PutModeOfTransportRequestPayload } from 'types/modeOfTransportType';
+
 import {
   getModeOfTransportRequest,
   postModeOfTransportRequest,
   putModeOfTransportRequest,
-} from '../../../redux/actions/modeOfTransport/modeOfTransportAction';
-import { RootState } from '../../../redux/reducers/rootReducer';
-import { PostModeOfTransportRequestPayload, PutModeOfTransportRequestPayload } from '../../../redux/types/modeOfTransportType';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import Dialog from '../../../shared/dialog/Dialog';
+} from 'actions/modeOfTransport/modeOfTransportAction';
+import ModeOfTransportForm from 'components/forms/modeOfTransport/ModeOfTransportForm';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import { RootState } from 'reducers/rootReducer';
+
 import PageHeader from '../../types';
+
 import modeOfTransportColumns from './columnsModesOfTransport';
 
 function ModeOfTransportMasterPage() {

@@ -1,5 +1,5 @@
-import { IModeOfTransport } from '../../models/modeOfTransport/IModeOfTransport';
 import ModeOfTransportActionTypes from '../actions/modeOfTransport/modeOfTransportTypes';
+import { IModeOfTransport } from '../models/modeOfTransport/IModeOfTransport';
 
 export interface ModeOfTransportState {
   fetchingModeOfTransport: boolean;

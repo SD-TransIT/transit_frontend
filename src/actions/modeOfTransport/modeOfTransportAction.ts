@@ -18,6 +18,7 @@ import {
   PutModeOfTransportSuccess,
   PutModeOfTransportSuccessPayload,
 } from '../../types/modeOfTransportType';
+
 import ModeOfTransportActionTypes from './modeOfTransportTypes';
 
 export const getModeOfTransportRequest = (

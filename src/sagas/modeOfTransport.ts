@@ -1,8 +1,7 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import { IModeOfTransport } from '../../models/modeOfTransport/IModeOfTransport';
-import apiClient from '../../utils/apiClient';
+
 import {
   getModeOfTransportFailure,
   getModeOfTransportSuccess,
@@ -12,7 +11,10 @@ import {
   putModeOfTransportSuccess,
 } from '../actions/modeOfTransport/modeOfTransportAction';
 import ModeOfTransportActionTypes from '../actions/modeOfTransport/modeOfTransportTypes';
+import { IModeOfTransport } from '../models/modeOfTransport/IModeOfTransport';
 import { sessionToken } from '../reducers/tokenReducer';
+import apiClient from '../utils/apiClient';
+
 import refreshAccessToken from './utils';
 
 const modeOfTransportUrl = 'mode_of_transport/';

@@ -4,11 +4,10 @@ import customerTypeReducer from 'reducers/customerTypeReducer';
 import driverReducer from 'reducers/driverReducer';
 import itemReducer from 'reducers/itemReducer';
 import manualUploadFormsReducer from 'reducers/manualUploadForms';
+import modeOfTransportReducer from 'reducers/modeOfTransport';
 import supplierMasterReducer from 'reducers/supplierMasterReducer';
 import tokenReducer from 'reducers/tokenReducer';
 import transporterReducer from 'reducers/transporterReducer';
-import itemReducer from 'reducers/itemReducer';
-import modeOfTransportReducer from 'reducers/modeOfTransport';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
