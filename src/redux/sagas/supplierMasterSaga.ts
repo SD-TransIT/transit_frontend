@@ -4,6 +4,8 @@ import {
 import { ISupplierMaster } from '../../models/supplierMaster/ISupplierMasterType';
 import apiClient from '../../utils/apiClient';
 import {
+  deleteSupplierMasterFailure,
+  deleteSupplierMasterSuccess,
   getSupplierMasterFailure,
   getSupplierMasterSuccess,
   postSupplierMasterFailure,
@@ -52,6 +54,20 @@ const putSupplierMaster = async (payload: ISupplierMaster, id: number) => {
   const { data } = await apiClient.put(
     `${supplierUrl}${id}/`,
     payload,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
+
+const deleteSupplierMaster = async (id: number) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.delete(
+    `${supplierUrl}${id}/`,
     {
       headers: {
         'Content-type': 'application/json',
@@ -130,6 +146,34 @@ function* putSupplierMasterSaga(action: any) {
   }
 }
 
+function* deleteSupplierMasterSaga(action: any) {
+  try {
+    yield call(refreshAccessToken);
+    const responseDelete: { driver: ISupplierMaster } = yield call(
+      deleteSupplierMaster,
+      action.payload.id,
+    );
+    const responseGet: { drivers: ISupplierMaster } = yield call(getSupplierMaster, {
+      searcher: action.payload?.search ?? null,
+    });
+    yield put(deleteSupplierMasterSuccess(responseDelete));
+    yield put({
+      type: SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_SUCCESS,
+      supplierMasters: responseGet,
+    });
+  } catch (error: any) {
+    const responseGet: { drivers: ISupplierMaster } = yield call(getSupplierMaster, {
+      searcher: action.payload?.search ?? null,
+    });
+    yield put(deleteSupplierMasterFailure(error));
+    yield put({
+      type: SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_FAILURE,
+      supplierMasters: responseGet,
+      error,
+    });
+  }
+}
+
 function* supplierMasterSaga() {
   yield all([
     takeLatest(SupplierMasterActionTypes.GET_SUPPLIER_MASTER_REQUEST, getSupplierMasterSaga),
@@ -140,6 +184,10 @@ function* supplierMasterSaga() {
   yield all([
     takeLatest(SupplierMasterActionTypes.PUT_SUPPLIER_MASTER_REQUEST, putSupplierMasterSaga),
   ]);
+  yield all([takeLatest(
+    SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_REQUEST,
+    deleteSupplierMasterSaga,
+  )]);
 }
 
 export default supplierMasterSaga;

@@ -107,10 +107,10 @@ function Table({
                     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                     {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="font-normal text-sm">{cell.render('Cell')}</td>)}
                     {tableRowsState[index] && (
-                      <div className="flex flex-row sticky right-0 z-1000 gap-2">
+                      <div className="flex flex-row sticky right-2 z-1000 gap-2">
                         <IconContext.Provider
                           // eslint-disable-next-line
-                          value={{ className: 'w-8 h-8 p-1 bg-transit-white rounded-full text-transit-green-dark' }}>
+                          value={{ className: 'table-action-icons' }}>
                           <RiPencilLine onClick={() => editAction?.(row.values, data)} />
                           <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />
                         </IconContext.Provider>
