@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import HeaderMenu from '../../../components/header/HeaderMenu';
+import HeaderMenu from 'components/header/HeaderMenu';
 
 describe('Unit tests for the HeaderMenu component.', () => {
   const DASHBOARD_TEST_ID = 'dashboard-link';

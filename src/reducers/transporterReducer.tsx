@@ -1,5 +1,5 @@
-import TransporterActionTypes from '../actions/transporter/transporterTypes';
-import { TransporterActions, TransporterState } from '../types/transporterType';
+import TransporterActionTypes from 'actions/transporter/transporterTypes';
+import { TransporterActions, TransporterState } from 'types/transporterType';
 
 const initialState: TransporterState = {
   fetchingTransporter: false,

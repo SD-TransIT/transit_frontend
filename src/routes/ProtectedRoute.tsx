@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import isAuthenticated from '../utils/authHelper';
-import Header from '../components/header/Header';
+import isAuthenticated from 'utils/authHelper';
+import Header from 'components/header/Header';
 
 export type ProtectedRouteProps = {
   authenticationPath: string;

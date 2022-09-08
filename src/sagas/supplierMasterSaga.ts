@@ -1,8 +1,8 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import { ISupplierMaster } from '../models/supplierMaster/ISupplierMasterType';
-import apiClient from '../utils/apiClient';
+import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
+import apiClient from 'utils/apiClient';
 import {
   deleteSupplierMasterFailure,
   deleteSupplierMasterSuccess,
@@ -12,10 +12,10 @@ import {
   postSupplierMasterSuccess,
   putSupplierMasterFailure,
   putSupplierMasterSuccess,
-} from '../actions/supplierMaster/supplierMasterActions';
-import SupplierMasterActionTypes from '../actions/supplierMaster/supplierMasterTypes';
-import { sessionToken } from '../reducers/tokenReducer';
-import refreshAccessToken from './utils';
+} from 'actions/supplierMaster/supplierMasterActions';
+import SupplierMasterActionTypes from 'actions/supplierMaster/supplierMasterTypes';
+import { sessionToken } from 'reducers/tokenReducer';
+import refreshAccessToken from 'sagas/utils';
 
 const supplierUrl = 'supplier/';
 

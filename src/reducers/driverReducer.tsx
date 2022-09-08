@@ -1,5 +1,5 @@
-import DriverActionTypes from '../actions/driver/driverTypes';
-import { DriverActions, DriverState } from '../types/driverType';
+import DriverActionTypes from 'actions/driver/driverTypes';
+import { DriverActions, DriverState } from 'types/driverType';
 
 const initialState: DriverState = {
   fetchingDriver: false,

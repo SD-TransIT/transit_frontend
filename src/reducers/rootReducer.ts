@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import tokenReducer from './tokenReducer';
-import customerTypeReducer from './customerTypeReducer';
-import manualUploadFormsReducer from './manualUploadForms';
-import driverReducer from './driverReducer';
-import supplierMasterReducer from './supplierMasterReducer';
-import transporterReducer from './transporterReducer';
-import itemReducer from './itemReducer';
-import modeOfTransportReducer from './modeOfTransport';
+import tokenReducer from 'reducers/tokenReducer';
+import customerTypeReducer from 'reducers/customerTypeReducer';
+import manualUploadFormsReducer from 'reducers/manualUploadForms';
+import driverReducer from 'reducers/driverReducer';
+import supplierMasterReducer from 'reducers/supplierMasterReducer';
+import transporterReducer from 'reducers/transporterReducer';
+import itemReducer from 'reducers/itemReducer';
+import modeOfTransportReducer from 'reducers/modeOfTransport';
 
 const rootReducer = combineReducers({
   token: tokenReducer,

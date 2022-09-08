@@ -1,18 +1,18 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from '../utils/apiClient';
-import { sessionToken } from '../reducers/tokenReducer';
-import refreshAccessToken from './utils';
-import { IDriver } from '../models/driver/IDriver';
-import DriverActionTypes from '../actions/driver/driverTypes';
+import apiClient from 'utils/apiClient';
+import { sessionToken } from 'reducers/tokenReducer';
+import refreshAccessToken from 'sagas/utils';
+import { IDriver } from 'models/driver/IDriver';
+import DriverActionTypes from 'actions/driver/driverTypes';
 import {
   deleteDriverFailure,
   deleteDriverSuccess,
   getDriverFailure, getDriverSuccess,
   postDriverFailure, postDriverSuccess,
   putDriverFailure, putDriverSuccess,
-} from '../actions/driver/driverActions';
+} from 'actions/driver/driverActions';
 
 const driverUrl = 'driver/';
 

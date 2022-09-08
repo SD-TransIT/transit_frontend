@@ -2,28 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import PageBody from '../../../components/shared/PageBody';
-import Searcher from '../../../components/shared/Searcher';
-import Table from '../../../components/shared/table/Table';
-import { ColumnType } from '../../../components/shared/table/types';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
 import {
   deleteSupplierMasterRequest,
   getSupplierMasterRequest,
   postSupplierMasterRequest,
   putSupplierMasterRequest,
-} from '../../../actions/supplierMaster/supplierMasterActions';
-import { RootState } from '../../../reducers/rootReducer';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import Dialog from '../../../shared/dialog/Dialog';
-import PageHeader from '../../types';
-import SupplierMasterForm from '../../../components/forms/supplierMaster/SupplierMasterForm';
-import supplierColumns from './columnsSupplier';
+} from 'actions/supplierMaster/supplierMasterActions';
+import { RootState } from 'reducers/rootReducer';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
+import PageHeader from 'pages/types';
+import SupplierMasterForm from 'components/forms/supplierMaster/SupplierMasterForm';
+import supplierColumns from 'pages/menuUpload/supplierMaster/columnsSupplier';
 import {
   DeleteSupplierMasterRequestPayload,
   PostSupplierMasterRequestPayload,
   PutSupplierMasterRequestPayload,
-} from '../../../types/supplierMasterType';
-import { ISupplierMaster } from '../../../models/supplierMaster/ISupplierMasterType';
+} from 'types/supplierMasterType';
+import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };
 

@@ -1,4 +1,4 @@
-import TransporterActionTypes from './transporterTypes';
+import TransporterActionTypes from 'actions/transporter/transporterTypes';
 import {
   GetTransporterRequest,
   GetTransporterRequestPayload,
@@ -24,7 +24,7 @@ import {
   DeleteTransporterSuccessPayload,
   DeleteTransporterError,
   DeleteTransporterErrorPayload,
-} from '../../types/transporterType';
+} from 'types/transporterType';
 
 export const getTransporterRequest = (
   payload: GetTransporterRequestPayload,

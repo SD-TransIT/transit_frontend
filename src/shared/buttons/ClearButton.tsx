@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ClearButtonType } from './types';
+import { ClearButtonType } from 'types';
 
 const style = 'clear-button';
 

@@ -1,8 +1,8 @@
 import { Dialog as DialogHeadlessui, Transition } from '@headlessui/react';
 import React, { Fragment, useRef } from 'react';
-import CancelButton from '../buttons/CancelButton';
-import SubmitButton from '../buttons/SubmitButton';
-import { DialogType } from './types';
+import CancelButton from 'shared/buttons/CancelButton';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import { DialogType } from 'shared/dialog/types';
 
 function Dialog({
   children,

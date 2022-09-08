@@ -1,4 +1,4 @@
-import CustomerTypeActionTypes from './customerTypeTypes';
+import CustomerTypeActionTypes from 'actions/customerType/customerTypeTypes';
 import {
   GetCustomerTypeRequest,
   GetCustomerTypeRequestPayload,
@@ -24,7 +24,7 @@ import {
   DeleteCustomerTypeSuccessPayload,
   DeleteCustomerTypeError,
   DeleteCustomerTypeErrorPayload,
-} from '../../types/customerType';
+} from 'types/customerType';
 
 export const getCustomerTypeRequest = (
   payload: GetCustomerTypeRequestPayload,

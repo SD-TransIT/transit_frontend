@@ -2,12 +2,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { RiCloseFill } from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import Input from '../../../shared/inputs/input';
-import SubmitButton from '../../../shared/buttons/SubmitButton';
-import CancelButton from '../../../shared/buttons/CancelButton';
-import ValidationError from '../../shared/ValidationError';
-import DeleteButton from '../../../shared/buttons/DeleteButton';
-import SupplierFormType from './types';
+import Input from 'shared/inputs/input';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import CancelButton from 'shared/buttons/CancelButton';
+import ValidationError from 'components/shared/ValidationError';
+import DeleteButton from 'shared/buttons/DeleteButton';
+import SupplierFormType from 'components/forms/supplierMaster/types';
 
 function SupplierMasterForm({
   onSubmit, onCancel, title, submitButtonText, initialFormValue, mode, onDelete,

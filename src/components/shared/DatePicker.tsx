@@ -1,9 +1,9 @@
 import DatePicker from 'react-datepicker';
 import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import '../../styles/datePicker.css';
+import 'styles/datePicker.css';
 import { RiCalendarLine } from 'react-icons/ri';
-import { DatePickerCustomInputType, DatePickType } from './types';
+import { DatePickerCustomInputType, DatePickType } from 'types';
 
 function DatePickerCustomInput({ onClick, onChange, value }: DatePickerCustomInputType) {
   return (

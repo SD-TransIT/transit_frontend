@@ -338,6 +338,7 @@ module.exports = function (webpackEnv) {
         styles: path.resolve(SRC, 'styles'),
         types: path.resolve(SRC, 'types'),
         utils: path.resolve(SRC, 'utils'),
+        _tests_: path.resolve(SRC, '_tests_'),
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).

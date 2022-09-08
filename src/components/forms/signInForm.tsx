@@ -3,15 +3,15 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from '@reduxjs/toolkit';
-import isAuthenticated from '../../utils/authHelper';
-import { fetchTokenRequest, refreshTokenRequest } from '../../actions/token/tokenActions';
-import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from '../../types/tokenType';
-import SubmitButton from '../../shared/buttons/SubmitButton';
-import { ITokenInput } from '../../models/token/ITokenInput';
-import Input from '../../shared/inputs/input';
-import { sessionToken } from '../../reducers/tokenReducer';
-import ValidationError from '../shared/ValidationError';
-import { Paths } from '../../routes/paths';
+import isAuthenticated from 'utils/authHelper';
+import { fetchTokenRequest, refreshTokenRequest } from 'actions/token/tokenActions';
+import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'types/tokenType';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import { ITokenInput } from 'models/token/ITokenInput';
+import Input from 'shared/inputs/input';
+import { sessionToken } from 'reducers/tokenReducer';
+import ValidationError from 'components/shared/ValidationError';
+import { Paths } from 'routes/paths';
 
 interface ISignInFormProps {
   signIn: (params: FetchTokenRequestPayload) => void;

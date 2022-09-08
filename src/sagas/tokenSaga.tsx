@@ -1,12 +1,12 @@
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
-import apiClient from '../utils/apiClient';
-import { IToken } from '../models/token/IToken';
-import { fetchTokenFailure, fetchTokenSuccess } from '../actions/token/tokenActions';
-import TokenActionTypes from '../actions/token/tokenActionTypes';
-import { ITokenInput, ITokenRefreshInput } from '../models/token/ITokenInput';
-import { sessionToken } from '../reducers/tokenReducer';
+import apiClient from 'utils/apiClient';
+import { IToken } from 'models/token/IToken';
+import { fetchTokenFailure, fetchTokenSuccess } from 'actions/token/tokenActions';
+import TokenActionTypes from 'actions/token/tokenActionTypes';
+import { ITokenInput, ITokenRefreshInput } from 'models/token/ITokenInput';
+import { sessionToken } from 'reducers/tokenReducer';
 
 const postToken = async (payload: ITokenInput) => {
   const { data } = await apiClient.post(

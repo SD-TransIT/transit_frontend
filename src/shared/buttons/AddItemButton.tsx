@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { AddItemButtonType } from './types';
+import { AddItemButtonType } from 'types';
 
 const style = 'add-item';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageBodyType } from './types';
+import { PageBodyType } from 'types';
 
 function PageBody({ title, children }: PageBodyType) {
   return (

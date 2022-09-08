@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { DeleteButtonType } from './types';
+import { DeleteButtonType } from 'types';
 
 const style = 'delete-button';
 

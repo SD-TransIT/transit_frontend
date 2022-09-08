@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import { sessionToken } from '../reducers/tokenReducer';
+import { sessionToken } from 'reducers/tokenReducer';
 
 export default function isAuthenticated(): boolean {
   const token = localStorage.getItem(sessionToken);

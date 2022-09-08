@@ -1,5 +1,5 @@
-import { ITransporter } from '../models/transporter/ITransporter';
-import TransporterActionTypes from '../actions/transporter/transporterTypes';
+import { ITransporter } from 'models/transporter/ITransporter';
+import TransporterActionTypes from 'actions/transporter/transporterTypes';
 
 export interface TransporterState {
   fetchingTransporter: boolean;

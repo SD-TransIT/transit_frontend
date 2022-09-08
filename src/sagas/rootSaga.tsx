@@ -1,12 +1,12 @@
 import { all, fork } from 'redux-saga/effects';
-import tokenSaga from './tokenSaga';
-import customerTypeSaga from './customerTypeSaga';
-import manualUploadFormsSaga from './manualUploadFormsSaga';
-import driverSaga from './driverSaga';
-import supplierMasterSaga from './supplierMasterSaga';
-import TransporterSaga from './transporterSaga';
-import ItemSaga from './itemSaga';
-import modeOfTransportSaga from './modeOfTransport';
+import tokenSaga from 'sagas/tokenSaga';
+import customerTypeSaga from 'sagas/customerTypeSaga';
+import manualUploadFormsSaga from 'sagas/manualUploadFormsSaga';
+import driverSaga from 'sagas/driverSaga';
+import supplierMasterSaga from 'sagas/supplierMasterSaga';
+import TransporterSaga from 'sagas/transporterSaga';
+import ItemSaga from 'sagas/itemSaga';
+import modeOfTransportSaga from 'sagas/modeOfTransport';
 
 export default function* rootSaga() {
   yield all([

@@ -1,4 +1,4 @@
-import ItemActionTypes from './itemTypes';
+import ItemActionTypes from 'actions/item/itemTypes';
 import {
   GetItemRequest,
   GetItemRequestPayload,
@@ -24,7 +24,7 @@ import {
   DeleteItemSuccessPayload,
   DeleteItemError,
   DeleteItemErrorPayload,
-} from '../../types/itemType';
+} from 'types/itemType';
 
 export const getItemRequest = (
   payload: GetItemRequestPayload,

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { PaginationButtonType } from './types';
+import { PaginationButtonType } from 'types';
 
 const style = 'pagination-button';
 

@@ -10,8 +10,8 @@ import {
   RiPencilLine, RiDeleteBin7Line,
 } from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import PaginationButton from '../../../shared/buttons/PaginationButton';
-import { TableInstanceWithHooks, TableProps } from './types';
+import PaginationButton from 'shared/buttons/PaginationButton';
+import { TableInstanceWithHooks, TableProps } from 'types';
 
 function Table({
   columns, data, children, editAction, deleteAction,

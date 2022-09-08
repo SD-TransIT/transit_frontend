@@ -1,7 +1,7 @@
-import { IToken } from '../models/token/IToken';
-import isAuthenticated from '../utils/authHelper';
-import { sessionToken } from '../reducers/tokenReducer';
-import { refreshToken } from './tokenSaga';
+import { IToken } from 'models/token/IToken';
+import isAuthenticated from 'utils/authHelper';
+import { sessionToken } from 'reducers/tokenReducer';
+import { refreshToken } from 'sagas/tokenSaga';
 
 const refreshAccessToken = async () => {
   if (isAuthenticated() === false) {

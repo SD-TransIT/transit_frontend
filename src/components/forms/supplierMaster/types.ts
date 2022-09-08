@@ -1,4 +1,4 @@
-import { ISupplierMaster } from '../../../models/supplierMaster/ISupplierMasterType';
+import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
 
 type SupplierFormType = {
   onSubmit: (formValues: ISupplierMaster) => void;

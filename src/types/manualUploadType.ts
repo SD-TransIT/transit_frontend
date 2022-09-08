@@ -1,5 +1,5 @@
-import { IManualUploadFormsType } from '../models/manualUploadForms/IManualUploadForms';
-import ManualUploadActionTypes from '../actions/menuUpload/menuUploadTypes';
+import { IManualUploadFormsType } from 'models/manualUploadForms/IManualUploadForms';
+import ManualUploadActionTypes from 'actions/menuUpload/menuUploadTypes';
 
 export interface ManualUploadFormsState {
   fetchingManualUploadForms: boolean;

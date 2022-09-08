@@ -1,6 +1,6 @@
-import { IToken } from '../models/token/IToken';
-import { ITokenInput, ITokenRefreshInput } from '../models/token/ITokenInput';
-import TokenActionTypes from '../actions/token/tokenActionTypes';
+import { IToken } from 'models/token/IToken';
+import { ITokenInput, ITokenRefreshInput } from 'models/token/ITokenInput';
+import TokenActionTypes from 'actions/token/tokenActionTypes';
 
 export interface TokenState {
   fetchingToken: boolean;

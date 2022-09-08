@@ -6,22 +6,22 @@ import {
   DeleteCustomerTypeRequestPayload,
   PostCustomerTypeRequestPayload,
   PutCustomerTypeRequestPayload,
-} from '../../types/customerType';
+} from 'types/customerType';
 import {
   deleteCustomerTypeRequest,
   getCustomerTypeRequest,
   postCustomerTypeRequest,
   putCustomerTypeRequest,
-} from '../../actions/customerType/customerTypeActions';
-import { RootState } from '../../reducers/rootReducer';
-import Searcher from '../../components/shared/Searcher';
-import Table from '../../components/shared/table/Table';
-import { ColumnType } from '../../components/shared/table/types';
-import AddItemButton from '../../shared/buttons/AddItemButton';
-import CustomerTypeForm from '../../components/forms/customerType/CustomerTypeForm';
-import Dialog from '../../shared/dialog/Dialog';
-import PageBody from '../../components/shared/PageBody';
-import PageHeader from '../types';
+} from 'actions/customerType/customerTypeActions';
+import { RootState } from 'reducers/rootReducer';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
+import Dialog from 'shared/dialog/Dialog';
+import PageBody from 'components/shared/PageBody';
+import PageHeader from 'pages/types';
 
 function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);

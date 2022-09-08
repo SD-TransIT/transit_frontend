@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { SubmitButtonType } from './types';
+import { SubmitButtonType } from 'shared/buttons/types';
 
 const style = 'submit-button';
 

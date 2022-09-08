@@ -1,5 +1,5 @@
-import ManualUploadActionTypes from '../actions/menuUpload/menuUploadTypes';
-import { ManualUploadFormsActions, ManualUploadFormsState } from '../types/manualUploadType';
+import ManualUploadActionTypes from 'actions/menuUpload/menuUploadTypes';
+import { ManualUploadFormsActions, ManualUploadFormsState } from 'types/manualUploadType';
 
 const initialState: ManualUploadFormsState = {
   fetchingManualUploadForms: false,

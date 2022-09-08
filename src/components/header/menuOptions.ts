@@ -1,5 +1,5 @@
-import { Paths } from '../../routes/paths';
-import { Menu } from './types';
+import { Paths } from 'routes/paths';
+import { Menu } from 'types';
 
 const menuOptions: Menu = {
   dashboard: { id: 'dashboard', title: 'Dashboard', path: Paths.dashboard },

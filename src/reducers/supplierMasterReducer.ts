@@ -1,5 +1,5 @@
-import SupplierMasterActionTypes from '../actions/supplierMaster/supplierMasterTypes';
-import { SupplierMasterActions, SupplierMasterState } from '../types/supplierMasterType';
+import SupplierMasterActionTypes from 'actions/supplierMaster/supplierMasterTypes';
+import { SupplierMasterActions, SupplierMasterState } from 'types/supplierMasterType';
 
 const initialState: SupplierMasterState = {
   fetchingSupplierMaster: false,

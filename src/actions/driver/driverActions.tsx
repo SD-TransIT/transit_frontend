@@ -1,4 +1,4 @@
-import DriverActionTypes from './driverTypes';
+import DriverActionTypes from 'actions/driver/driverTypes';
 import {
   GetDriverRequest,
   GetDriverRequestPayload,
@@ -24,7 +24,7 @@ import {
   DeleteDriverSuccessPayload,
   DeleteDriverError,
   DeleteDriverErrorPayload,
-} from '../../types/driverType';
+} from 'types/driverType';
 
 export const getDriverRequest = (
   payload: GetDriverRequestPayload,

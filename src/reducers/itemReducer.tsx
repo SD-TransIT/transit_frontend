@@ -1,5 +1,5 @@
-import ItemActionTypes from '../actions/item/itemTypes';
-import { ItemActions, ItemState } from '../types/itemType';
+import ItemActionTypes from 'actions/item/itemTypes';
+import { ItemActions, ItemState } from 'types/itemType';
 
 const initialState: ItemState = {
   fetchingItem: false,
