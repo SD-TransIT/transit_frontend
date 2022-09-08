@@ -1,4 +1,10 @@
 import {
+  DeleteModeOfTransportError,
+  DeleteModeOfTransportErrorPayload,
+  DeleteModeOfTransportRequest,
+  DeleteModeOfTransportRequestPayload,
+  DeleteModeOfTransportSuccess,
+  DeleteModeOfTransportSuccessPayload,
   GetModeOfTransportError,
   GetModeOfTransportErrorPayload,
   GetModeOfTransportRequest,
@@ -80,5 +86,26 @@ export const putModeOfTransportFailure = (
   payload: PutModeOfTransportErrorPayload,
 ): PutModeOfTransportError => ({
   type: ModeOfTransportActionTypes.PUT_MODE_OF_TRANSPORT_FAILURE,
+  payload,
+});
+
+export const deleteModeOfTransportRequest = (
+  payload: DeleteModeOfTransportRequestPayload,
+): DeleteModeOfTransportRequest => ({
+  type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_REQUEST,
+  payload,
+});
+
+export const deleteModeOfTransportSuccess = (
+  payload: DeleteModeOfTransportSuccessPayload,
+): DeleteModeOfTransportSuccess => ({
+  type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_SUCCESS,
+  payload,
+});
+
+export const deleteModeOfTransportFailure = (
+  payload: DeleteModeOfTransportErrorPayload,
+): DeleteModeOfTransportError => ({
+  type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_FAILURE,
   payload,
 });

@@ -4,6 +4,8 @@ import {
 import { IModeOfTransport } from '../../models/modeOfTransport/IModeOfTransport';
 import apiClient from '../../utils/apiClient';
 import {
+  deleteModeOfTransportFailure,
+  deleteModeOfTransportSuccess,
   getModeOfTransportFailure,
   getModeOfTransportSuccess,
   postModeOfTransportFailure,
@@ -52,6 +54,20 @@ const putModeOfTransport = async (payload: IModeOfTransport, id: number) => {
   const { data } = await apiClient.put(
     `${modeOfTransportUrl}${id}/`,
     payload,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
+
+const deleteModeOfTransport = async (id: number) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.delete(
+    `${modeOfTransportUrl}${id}/`,
     {
       headers: {
         'Content-type': 'application/json',
@@ -130,6 +146,34 @@ function* putModeOfTransportSaga(action: any) {
   }
 }
 
+function* deleteModeOfTransportSaga(action: any) {
+  try {
+    yield call(refreshAccessToken);
+    const responseDelete: { driver: IModeOfTransport } = yield call(
+      deleteModeOfTransport,
+      action.payload.id,
+    );
+    const responseGet: { drivers: IModeOfTransport } = yield call(getModeOfTransport, {
+      searcher: action.payload?.search ?? null,
+    });
+    yield put(deleteModeOfTransportSuccess(responseDelete));
+    yield put({
+      type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_SUCCESS,
+      modes: responseGet,
+    });
+  } catch (error: any) {
+    const responseGet: { drivers: IModeOfTransport } = yield call(getModeOfTransport, {
+      searcher: action.payload?.search ?? null,
+    });
+    yield put(deleteModeOfTransportFailure(error));
+    yield put({
+      type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_FAILURE,
+      modes: responseGet,
+      error,
+    });
+  }
+}
+
 function* modeOfTransportSaga() {
   yield all([
     takeLatest(ModeOfTransportActionTypes.GET_MODE_OF_TRANSPORT_REQUEST, getModeOfTransportSaga),
@@ -140,6 +184,10 @@ function* modeOfTransportSaga() {
   yield all([
     takeLatest(ModeOfTransportActionTypes.PUT_MODE_OF_TRANSPORT_REQUEST, putModeOfTransportSaga),
   ]);
+  yield all([takeLatest(
+    ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_REQUEST,
+    deleteModeOfTransportSaga,
+  )]);
 }
 
 export default modeOfTransportSaga;
