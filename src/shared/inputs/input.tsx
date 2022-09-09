@@ -13,7 +13,7 @@ const Input = React.forwardRef(({
     <input
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
-      className={classNames({ 'border-transit-red': isInvalid }, style, className)}
+      className={classNames({ 'border-transit-red-primary': isInvalid }, style, className)}
       name={name}
       id={id}
       placeholder={placeholder}

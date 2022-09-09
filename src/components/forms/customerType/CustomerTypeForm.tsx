@@ -62,6 +62,7 @@ function CustomerTypeForm({
                   placeholder="Customer Type Name"
                   type="text"
                   className="h-9 border-transit-grey-300 placeholder-grey-300"
+                  isInvalid={Boolean(errors.customerTypeName)}
                 />
                 {errors.customerTypeName && <ValidationError value="This field is required" />}
               </div>
