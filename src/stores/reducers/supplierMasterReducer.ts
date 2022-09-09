@@ -76,6 +76,21 @@ const supplierMasterReducer = (
         supplierMaster: null,
         error: action.payload,
       };
+    case SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_REQUEST:
+      return {
+        ...state,
+        error: null,
+      };
+    case SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_SUCCESS:
+      return {
+        ...state,
+        error: null,
+      };
+    case SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return {
         ...state,
