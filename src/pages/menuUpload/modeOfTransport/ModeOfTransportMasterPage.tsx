@@ -13,12 +13,17 @@ import { IModeOfTransport } from 'models/modeOfTransport/IModeOfTransport';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import {
+  deleteModeOfTransportRequest,
   getModeOfTransportRequest,
   postModeOfTransportRequest,
   putModeOfTransportRequest,
 } from 'stores/actions/modeOfTransport/modeOfTransportAction';
 import { RootState } from 'stores/reducers/rootReducer';
-import { PostModeOfTransportRequestPayload, PutModeOfTransportRequestPayload } from 'stores/types/modeOfTransportType';
+import {
+  DeleteModeOfTransportRequestPayload,
+  PostModeOfTransportRequestPayload,
+  PutModeOfTransportRequestPayload,
+} from 'stores/types/modeOfTransportType';
 
 import PageHeader from '../../types';
 
@@ -27,7 +32,9 @@ import modeOfTransportColumns from './columnsModesOfTransport';
 function ModeOfTransportMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
   const [objectToEdit, setObjectToEdit] = useState<IModeOfTransport>();
+  const [objectToDelete, setObjectToDelete] = useState<IModeOfTransport>();
 
   const dispatch = useDispatch();
 
@@ -63,6 +70,16 @@ function ModeOfTransportMasterPage() {
     setDisplayEditModal(!displayEditModal);
   };
 
+  const toggleDeleteModal = (object?: IModeOfTransport) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
+  };
+
   const onSubmitAdd = (formValues: FieldValues) => {
     dispatch(postModeOfTransportRequest(formValues as PostModeOfTransportRequestPayload));
     toggleAddModal();
@@ -74,6 +91,24 @@ function ModeOfTransportMasterPage() {
       paramsToPass.id = objectToEdit.id;
     }
     dispatch(putModeOfTransportRequest(paramsToPass as PutModeOfTransportRequestPayload));
+    toggleEditModal();
+  };
+
+  const onDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    dispatch(deleteModeOfTransportRequest(paramsToPass as DeleteModeOfTransportRequestPayload));
+    toggleDeleteModal();
+  };
+
+  const onDeleteSubmitEdit = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToEdit) {
+      paramsToPass.id = objectToEdit.id;
+    }
+    dispatch(deleteModeOfTransportRequest(paramsToPass as DeleteModeOfTransportRequestPayload));
     toggleEditModal();
   };
 
@@ -95,7 +130,7 @@ function ModeOfTransportMasterPage() {
             columns={columns}
             data={modes}
             editAction={toggleEditModal}
-            deleteAction={() => { }}
+            deleteAction={toggleDeleteModal}
           >
             <p>{`${modes?.length} Results`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
@@ -117,7 +152,23 @@ function ModeOfTransportMasterPage() {
             initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? 'Add' : 'Edit'}
-            onDelete={() => {}}
+            onDelete={onDeleteSubmitEdit}
+          />,
+        ]}
+      />
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <ModeOfTransportForm
+            onSubmit={onDelete}
+            onCancel={toggleDeleteModal}
+            title="Delete Mode of Transport"
+            initialFormValue={objectToDelete}
+            submitButtonText="Delete"
+            mode="Delete"
           />,
         ]}
       />
