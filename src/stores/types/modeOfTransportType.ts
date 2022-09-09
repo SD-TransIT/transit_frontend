@@ -45,6 +45,17 @@ export interface PutModeOfTransportErrorPayload {
   error: string;
 }
 
+export interface DeleteModeOfTransportRequestPayload {
+  payload: IModeOfTransport;
+}
+
+export interface DeleteModeOfTransportSuccessPayload {
+}
+
+export interface DeleteModeOfTransportErrorPayload {
+  error: string;
+}
+
 export interface GetModeOfTransportRequest {
   type: typeof ModeOfTransportActionTypes.GET_MODE_OF_TRANSPORT_REQUEST;
   payload: GetModeOfTransportRequestPayload;
@@ -90,6 +101,21 @@ export type PutModeOfTransportError = {
   payload: PutModeOfTransportErrorPayload;
 };
 
+export interface DeleteModeOfTransportRequest {
+  type: typeof ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_REQUEST;
+  payload: DeleteModeOfTransportRequestPayload;
+}
+
+export type DeleteModeOfTransportSuccess = {
+  type: typeof ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_SUCCESS;
+  payload: DeleteModeOfTransportSuccessPayload;
+};
+
+export type DeleteModeOfTransportError = {
+  type: typeof ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_FAILURE;
+  payload: DeleteModeOfTransportErrorPayload;
+};
+
 export type ModeOfTransportActions =
     | GetModeOfTransportRequest
     | GetModeOfTransportSuccess
@@ -99,4 +125,7 @@ export type ModeOfTransportActions =
     | PostModeOfTransportError
     | PutModeOfTransportRequest
     | PutModeOfTransportSuccess
-    | PutModeOfTransportError;
+    | PutModeOfTransportError
+    | DeleteModeOfTransportRequest
+    | DeleteModeOfTransportSuccess
+    | DeleteModeOfTransportError;

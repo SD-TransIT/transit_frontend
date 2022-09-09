@@ -76,6 +76,21 @@ const modeOfTransportReducer = (
         mode: null,
         error: action.payload,
       };
+    case ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_REQUEST:
+      return {
+        ...state,
+        error: null,
+      };
+    case ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_SUCCESS:
+      return {
+        ...state,
+        error: null,
+      };
+    case ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return {
         ...state,
