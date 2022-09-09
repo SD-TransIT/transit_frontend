@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { Route, Routes } from 'react-router-dom';
+
+import Forbidden from 'components/shared/Forbidden';
+import Unauthorized from 'components/shared/Unauthorized';
 import DashboardPage from 'pages/dashboard/dashboard';
 import ExcelUploadPage from 'pages/excelUpload/excelUpload';
 import LandingPage from 'pages/landing/LandingPage';
@@ -18,12 +22,8 @@ import SupplierMasterPage from 'pages/menuUpload/supplierMaster/SupplierMasterPa
 import TransportDetailsPage from 'pages/menuUpload/TransportDetailsPage';
 import ReportsPage from 'pages/reports/reports';
 import SignInPage from 'pages/signIn/SignInPage';
-import { Route, Routes } from 'react-router-dom';
 import { Paths } from 'routes/paths';
 import ProtectedRoute from 'routes/ProtectedRoute';
-
-import Forbidden from 'components/shared/Forbidden';
-import Unauthorized from 'components/shared/Unauthorized';
 
 function RoutesConfig() {
   return (

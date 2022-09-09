@@ -1,7 +1,8 @@
 import React from 'react';
 
-import MockObserverImplementation from '_tests_/test-utils';
 import { fireEvent, render, screen } from '@testing-library/react';
+
+import MockObserverImplementation from '_tests_/test-utils';
 import Dialog from 'shared/dialog/Dialog';
 
 describe('Unit test for the Dialog component.', () => {

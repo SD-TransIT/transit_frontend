@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 
 import { ThunkDispatch } from '@reduxjs/toolkit';
-import { ITokenInput } from 'models/token/ITokenInput';
 import { FieldValues, useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import ValidationError from 'components/shared/ValidationError';
+import { ITokenInput } from 'models/token/ITokenInput';
 import { Paths } from 'routes/paths';
 import SubmitButton from 'shared/buttons/SubmitButton';
 import Input from 'shared/inputs/input';
-import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'types/tokenType';
-
-import { fetchTokenRequest, refreshTokenRequest } from 'actions/token/tokenActions';
-import ValidationError from 'components/shared/ValidationError';
-import { sessionToken } from 'reducers/tokenReducer';
+import { fetchTokenRequest, refreshTokenRequest } from 'stores/actions/token/tokenActions';
+import { sessionToken } from 'stores/reducers/tokenReducer';
+import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'stores/types/tokenType';
 import isAuthenticated from 'utils/authHelper';
 
 interface ISignInFormProps {

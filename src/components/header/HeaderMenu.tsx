@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
-import { Paths } from 'routes/paths';
 
 import menuOptions from 'components/header/menuOptions';
+import { Paths } from 'routes/paths';
 
 const linkStyle = 'flex h-full items-center px-5 hover:bg-transit-green';
 

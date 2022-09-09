@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
+
 import { Paths } from 'routes/paths';
 import vector from 'shared/images/vector.svg';
-
-import { sessionToken } from 'reducers/tokenReducer';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 
 function Logout() {
   const navigate = useNavigate();

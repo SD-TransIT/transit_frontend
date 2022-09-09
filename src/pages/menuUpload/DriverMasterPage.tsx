@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-import PageHeader from 'pages/types';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import AddItemButton from 'shared/buttons/AddItemButton';
-import Dialog from 'shared/dialog/Dialog';
-import {
-  DeleteDriverRequestPayload,
-  PostDriverRequestPayload,
-  PutDriverRequestPayload,
-} from 'types/driverType';
 
-import {
-  deleteDriverRequest, getDriverRequest,
-  postDriverRequest, putDriverRequest,
-} from 'actions/driver/driverActions';
 import DriverForm from 'components/forms/driver/DriverForm';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
-import { RootState } from 'reducers/rootReducer';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
+import {
+  deleteDriverRequest, getDriverRequest,
+  postDriverRequest, putDriverRequest,
+} from 'stores/actions/driver/driverActions';
+import { RootState } from 'stores/reducers/rootReducer';
+import {
+  DeleteDriverRequestPayload,
+  PostDriverRequestPayload,
+  PutDriverRequestPayload,
+} from 'stores/types/driverType';
 
 function DriverMasterPage() {
   const dispatch = useDispatch();

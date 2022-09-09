@@ -3,13 +3,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { IconContext } from 'react-icons';
 import { RiCloseFill } from 'react-icons/ri';
+
+import { ManualFormProps } from 'components/forms/types';
+import ValidationError from 'components/shared/ValidationError';
 import CancelButton from 'shared/buttons/CancelButton';
 import DeleteButton from 'shared/buttons/DeleteButton';
 import SubmitButton from 'shared/buttons/SubmitButton';
 import Input from 'shared/inputs/input';
-
-import { ManualFormProps } from 'components/forms/types';
-import ValidationError from 'components/shared/ValidationError';
 
 function CustomerTypeForm({
   onSubmit, onCancel, title, initialFormValue, submitButtonText, mode, onDelete,

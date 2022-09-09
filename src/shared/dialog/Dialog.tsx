@@ -1,6 +1,7 @@
 import React, { Fragment, useRef } from 'react';
 
 import { Dialog as DialogHeadlessui, Transition } from '@headlessui/react';
+
 import CancelButton from 'shared/buttons/CancelButton';
 import SubmitButton from 'shared/buttons/SubmitButton';
 import { DialogType } from 'shared/dialog/types';

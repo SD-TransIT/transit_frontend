@@ -1,6 +1,7 @@
 import React from 'react';
 
 import classNames from 'classnames';
+
 import { CancelButtonType } from 'shared/buttons/types';
 
 const style = 'cancel-button';
