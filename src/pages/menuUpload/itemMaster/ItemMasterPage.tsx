@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
+
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import PageBody from '../../../components/shared/PageBody';
-import Searcher from '../../../components/shared/Searcher';
-import Table from '../../../components/shared/table/Table';
-import { ColumnType } from '../../../components/shared/table/types';
-import { getItemRequest } from '../../../redux/actions/item/itemActions';
-import { RootState } from '../../../redux/reducers/rootReducer';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import PageHeader from '../../types';
-import itemColumns from './columnsItem';
+
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import itemColumns from 'pages/menuUpload/itemMaster/columnsItem';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import { getItemRequest } from 'stores/actions/item/itemActions';
+import { RootState } from 'stores/reducers/rootReducer';
 
 function ItemMasterPage() {
   const dispatch = useDispatch();

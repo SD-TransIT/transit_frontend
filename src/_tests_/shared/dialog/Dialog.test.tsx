@@ -1,7 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import Dialog from '../../../shared/dialog/Dialog';
-import MockObserverImplementation from '../../test-utils';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import MockObserverImplementation from '_tests_/test-utils';
+import Dialog from 'shared/dialog/Dialog';
 
 describe('Unit test for the Dialog component.', () => {
   const DIALOG_TEST_ID = 'dialog';

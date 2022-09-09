@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
+
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import DriverForm from '../../components/forms/driver/DriverForm';
-import PageBody from '../../components/shared/PageBody';
-import Searcher from '../../components/shared/Searcher';
-import Table from '../../components/shared/table/Table';
-import { ColumnType } from '../../components/shared/table/types';
+
+import DriverForm from 'components/forms/driver/DriverForm';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import {
   deleteDriverRequest, getDriverRequest,
   postDriverRequest, putDriverRequest,
-} from '../../redux/actions/driver/driverActions';
-import { RootState } from '../../redux/reducers/rootReducer';
+} from 'stores/actions/driver/driverActions';
+import { RootState } from 'stores/reducers/rootReducer';
 import {
   DeleteDriverRequestPayload,
   PostDriverRequestPayload,
   PutDriverRequestPayload,
-} from '../../redux/types/driverType';
-import AddItemButton from '../../shared/buttons/AddItemButton';
-import Dialog from '../../shared/dialog/Dialog';
-import PageHeader from '../types';
+} from 'stores/types/driverType';
 
 function DriverMasterPage() {
   const dispatch = useDispatch();

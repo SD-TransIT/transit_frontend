@@ -1,12 +1,15 @@
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
-import { RiCloseFill } from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import Input from '../../../shared/inputs/input';
-import SubmitButton from '../../../shared/buttons/SubmitButton';
+import { RiCloseFill } from 'react-icons/ri';
+
 import CancelButton from '../../../shared/buttons/CancelButton';
-import ValidationError from '../../shared/ValidationError';
 import DeleteButton from '../../../shared/buttons/DeleteButton';
+import SubmitButton from '../../../shared/buttons/SubmitButton';
+import Input from '../../../shared/inputs/input';
+import ValidationError from '../../shared/ValidationError';
+
 import ModeOfTransportFormType from './types';
 
 function ModeOfTransportForm({

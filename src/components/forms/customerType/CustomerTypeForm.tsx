@@ -1,13 +1,15 @@
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
-import { RiCloseFill } from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import Input from '../../../shared/inputs/input';
-import ValidationError from '../../shared/ValidationError';
-import SubmitButton from '../../../shared/buttons/SubmitButton';
-import CancelButton from '../../../shared/buttons/CancelButton';
-import { ManualFormProps } from '../types';
-import DeleteButton from '../../../shared/buttons/DeleteButton';
+import { RiCloseFill } from 'react-icons/ri';
+
+import { ManualFormProps } from 'components/forms/types';
+import ValidationError from 'components/shared/ValidationError';
+import CancelButton from 'shared/buttons/CancelButton';
+import DeleteButton from 'shared/buttons/DeleteButton';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import Input from 'shared/inputs/input';
 
 function CustomerTypeForm({
   onSubmit, onCancel, title, initialFormValue, submitButtonText, mode, onDelete,

@@ -1,6 +1,8 @@
-import './styles/global.css';
 import React from 'react';
-import RoutesConfig from './routes/RoutesConfig';
+
+import RoutesConfig from 'routes/RoutesConfig';
+
+import 'styles/global.css';
 
 function App() {
   return (

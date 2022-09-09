@@ -42,7 +42,7 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
                 for="floatingInput"
               >
                 <input
-                  class="text-sm border border-transit-black-light rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2"
+                  class="text-sm border border-transit-grey-300 rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2"
                   id="floatingInput"
                   name="username"
                   placeholder="Username"
@@ -60,7 +60,7 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
                 for="floatingInput"
               >
                 <input
-                  class="text-sm border border-transit-black-light rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2"
+                  class="text-sm border border-transit-grey-300 rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2"
                   id="floatingInput"
                   name="password"
                   placeholder="Password"
