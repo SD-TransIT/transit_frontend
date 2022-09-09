@@ -84,10 +84,10 @@ function ItemForm({
                     id="floatingInput"
                     placeholder="Volume"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.volume)}
                   />
-                  {errors.volume && errors.volume.type === 'validate' && <ValidationError value="Please enter number" />}
+                  {errors.volume && errors.volume.type === 'validate' && <ValidationError value="Please enter a number" />}
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="text-xs text-transit-black-secondary font-medium">Cost (Local Currency)</p>
@@ -100,10 +100,10 @@ function ItemForm({
                     id="floatingInput"
                     placeholder="Cost"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.cost)}
                   />
-                  {errors.cost && errors.cost.type === 'validate' && <ValidationError value="Please enter number" />}
+                  {errors.cost && errors.cost.type === 'validate' && <ValidationError value="Please enter a number" />}
                 </div>
               </div>
               <div className="flex flex-row gap-2">
@@ -118,10 +118,10 @@ function ItemForm({
                     id="floatingInput"
                     placeholder="Weight"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.weight)}
                   />
-                  {errors.weight && errors.weight.type === 'validate' && <ValidationError value="Please enter number" />}
+                  {errors.weight && errors.weight.type === 'validate' && <ValidationError value="Please enter a number" />}
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="text-xs text-transit-black-secondary font-medium ">Category</p>
@@ -132,7 +132,7 @@ function ItemForm({
                     id="floatingInput"
                     placeholder="Category"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -144,7 +144,7 @@ function ItemForm({
                     id="floatingInput"
                     placeholder="Sub Category"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                   />
                 </div>
               </div>

@@ -6,5 +6,5 @@ export interface IItem {
   weight?: string;
   category?: string;
   sub_category?: string;
-  conditions: any;
+  conditions: string | object;
 }

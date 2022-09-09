@@ -13,7 +13,9 @@ import {
   getItemRequest, postItemRequest, putItemRequest, deleteItemRequest,
 } from '../../../redux/actions/item/itemActions';
 import { RootState } from '../../../redux/reducers/rootReducer';
-import { PostItemRequestPayload, PutItemRequestPayload, DeleteItemRequestPayload } from '../../../redux/types/itemType';
+import {
+  PostItemRequestPayload, PutItemRequestPayload, DeleteItemRequestPayload, GetItemRequestPayload,
+} from '../../../redux/types/itemType';
 import AddItemButton from '../../../shared/buttons/AddItemButton';
 import PageHeader from '../../types';
 import itemColumns from './columnsItem';
@@ -42,7 +44,7 @@ function ItemMasterPage() {
   }, [dispatch]);
 
   const refetch = (formValues: FieldValues) => {
-    dispatch(getItemRequest(formValues as any));
+    dispatch(getItemRequest(formValues as GetItemRequestPayload));
   };
 
   const toggleAddModal = () => {
@@ -120,7 +122,7 @@ function ItemMasterPage() {
         {items === undefined ? (
           <Table columns={columns} data={[{ }]}>
             <p>0 Results</p>
-            <AddItemButton onClick={() => {}} className="w-fit p-2">
+            <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
           </Table>

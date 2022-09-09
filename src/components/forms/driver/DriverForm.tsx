@@ -53,7 +53,7 @@ function DriverForm({
                 </IconContext.Provider>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                <div className="flex flex-col gap-2 w-1/2">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">Transporter</p>
                   <Controller
                     rules={{ required: true }}
@@ -68,7 +68,7 @@ function DriverForm({
                   />
                   {errors.transporter && <ValidationError value="This field is required" />}
                 </div>
-                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                <div className="flex flex-col gap-2 w-1/2">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">Driver Name</p>
                   <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -77,35 +77,35 @@ function DriverForm({
                     id="floatingInput"
                     placeholder="Driver Name"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value="This field is required" />}
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                <div className="flex flex-col gap-2 w-1/2">
                   <p className="text-xs text-transit-black-secondary font-medium">ePOD Username</p>
                   <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('username', { required: false })}
+                    {...register('username')}
                     name="username"
                     id="floatingInput"
                     placeholder="Username"
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                <div className="flex flex-col gap-2 w-1/2">
                   <p className="text-xs text-transit-black-secondary font-medium">ePOD Password</p>
                   <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('password', { required: false })}
+                    {...register('password')}
                     name="password"
                     id="floatingInput"
                     placeholder="Password"
                     type="password"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    className="h-9 placeholder-grey-300"
                   />
                 </div>
               </div>

@@ -1,14 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
-import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 import { getTransporter } from '../../redux/sagas/transporterSaga';
 import refreshAccessToken from '../../redux/sagas/utils';
-
-type PickerProp = {
-  field: ControllerRenderProps<FieldValues, 'transporter'>;
-  isInvalid: boolean;
-};
+import { PickerProp } from './types';
 
 function TransporterPicker({ field, isInvalid }: PickerProp) {
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
