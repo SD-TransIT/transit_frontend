@@ -17,3 +17,8 @@ export type DatePickerCustomInputType = {
   onChange?: () => void,
   value?: string
 };
+
+export type FormHeaderType = {
+  onClick?: () => void,
+  title: string
+};
