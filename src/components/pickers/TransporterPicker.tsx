@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
@@ -6,9 +7,10 @@ import refreshAccessToken from '../../redux/sagas/utils';
 
 type PickerProp = {
   field: ControllerRenderProps<FieldValues, 'transporter'>;
+  isInvalid: boolean;
 };
 
-function TransporterPicker({ field }: PickerProp) {
+function TransporterPicker({ field, isInvalid }: PickerProp) {
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
     loadedOptions: any,
@@ -39,6 +41,7 @@ function TransporterPicker({ field }: PickerProp) {
       getOptionLabel={(transporter: any) => transporter.name}
       getOptionValue={(transporter: any) => transporter.id}
       isClearable
+      className={classNames({ 'border border-transit-red rounded': isInvalid })}
     />
   );
 }

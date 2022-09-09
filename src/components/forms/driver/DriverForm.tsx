@@ -52,56 +52,62 @@ function DriverForm({
                   <RiCloseFill onClick={onCancel} />
                 </IconContext.Provider>
               </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium required-field">Transporter</p>
-                <Controller
-                  rules={{ required: true }}
-                  control={control}
-                  render={({ field }) => (
-                    <TransporterPicker
-                      field={field}
-                    />
-                  )}
-                  name="transporter"
-                />
-                {errors.transporter && <ValidationError value="This field is required" />}
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium required-field">Driver Name</p>
-                <Input
+              <div className="flex flex-row gap-2">
+                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">Transporter</p>
+                  <Controller
+                    rules={{ required: true }}
+                    control={control}
+                    render={({ field }) => (
+                      <TransporterPicker
+                        field={field}
+                        isInvalid={Boolean(errors.transporter)}
+                      />
+                    )}
+                    name="transporter"
+                  />
+                  {errors.transporter && <ValidationError value="This field is required" />}
+                </div>
+                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">Driver Name</p>
+                  <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('name', { required: true })}
-                  name="name"
-                  id="floatingInput"
-                  placeholder="Driver Name"
-                  type="text"
-                  className="h-9 border-transit-grey-300 placeholder-grey-300"
-                />
-                {errors.name && <ValidationError value="This field is required" />}
+                    {...register('name', { required: true })}
+                    name="name"
+                    id="floatingInput"
+                    placeholder="Driver Name"
+                    type="text"
+                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                    isInvalid={Boolean(errors.name)}
+                  />
+                  {errors.name && <ValidationError value="This field is required" />}
+                </div>
               </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium">ePOD Username</p>
-                <Input
+              <div className="flex flex-row gap-2">
+                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                  <p className="text-xs text-transit-black-secondary font-medium">ePOD Username</p>
+                  <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('username', { required: false })}
-                  name="username"
-                  id="floatingInput"
-                  placeholder="Username"
-                  type="text"
-                  className="h-9 border-transit-grey-300 placeholder-grey-300"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-xs text-transit-black-secondary font-medium">ePOD Password</p>
-                <Input
+                    {...register('username', { required: false })}
+                    name="username"
+                    id="floatingInput"
+                    placeholder="Username"
+                    type="text"
+                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-2" style={{ width: '50%' }}>
+                  <p className="text-xs text-transit-black-secondary font-medium">ePOD Password</p>
+                  <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('password', { required: false })}
-                  name="password"
-                  id="floatingInput"
-                  placeholder="Password"
-                  type="password"
-                  className="h-9 border-transit-grey-300 placeholder-grey-300"
-                />
+                    {...register('password', { required: false })}
+                    name="password"
+                    id="floatingInput"
+                    placeholder="Password"
+                    type="password"
+                    className="h-9 border-transit-grey-300 placeholder-grey-300"
+                  />
+                </div>
               </div>
             </div>
           </form>
