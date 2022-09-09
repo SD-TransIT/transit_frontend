@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
-import {
-  DeleteCustomerTypeRequestPayload,
-  PostCustomerTypeRequestPayload,
-  PutCustomerTypeRequestPayload,
-} from '../../redux/types/customerType';
+import { useDispatch, useSelector } from 'react-redux';
+
+import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import {
   deleteCustomerTypeRequest,
   getCustomerTypeRequest,
   postCustomerTypeRequest,
   putCustomerTypeRequest,
-} from '../../redux/actions/customerType/customerTypeActions';
-import { RootState } from '../../redux/reducers/rootReducer';
-import Searcher from '../../components/shared/Searcher';
-import Table from '../../components/shared/table/Table';
-import { ColumnType } from '../../components/shared/table/types';
-import AddItemButton from '../../shared/buttons/AddItemButton';
-import CustomerTypeForm from '../../components/forms/customerType/CustomerTypeForm';
-import Dialog from '../../shared/dialog/Dialog';
-import PageBody from '../../components/shared/PageBody';
-import PageHeader from '../types';
+} from 'stores/actions/customerType/customerTypeActions';
+import { RootState } from 'stores/reducers/rootReducer';
+import {
+  DeleteCustomerTypeRequestPayload,
+  PostCustomerTypeRequestPayload,
+  PutCustomerTypeRequestPayload,
+} from 'stores/types/customerType';
 
 function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);

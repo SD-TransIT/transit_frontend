@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import PageBody from '../../components/shared/PageBody';
-import { IManualUploadFormsType } from '../../models/manualUploadForms/IManualUploadForms';
-import { getManualUploadFormsRequest } from '../../redux/actions/menuUpload/menuUploadActions';
-import { RootState } from '../../redux/reducers/rootReducer';
-import PageHeader from '../types';
+
+import PageBody from 'components/shared/PageBody';
+import { IManualUploadFormsType } from 'models/manualUploadForms/IManualUploadForms';
+import PageHeader from 'pages/types';
+import { getManualUploadFormsRequest } from 'stores/actions/menuUpload/menuUploadActions';
+import { RootState } from 'stores/reducers/rootReducer';
 
 function ManualUploadPage() {
   const dispatch = useDispatch();

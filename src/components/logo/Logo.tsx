@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../../shared/images/logo.svg';
+
+import logo from 'shared/images/logo.svg';
 
 function Logo() {
   return (

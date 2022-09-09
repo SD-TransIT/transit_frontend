@@ -1,27 +1,29 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import DashboardPage from '../pages/dashboard/dashboard';
-import ReportsPage from '../pages/reports/reports';
-import ExcelUploadPage from '../pages/excelUpload/excelUpload';
-import SignInPage from '../pages/signIn/SignInPage';
-import LandingPage from '../pages/landing/LandingPage';
-import ProtectedRoute from './ProtectedRoute';
-import CustomerTypePage from '../pages/menuUpload/CustomerTypePage';
-import { Paths } from './paths';
-import Forbidden from '../components/shared/Forbidden';
-import Unauthorized from '../components/shared/Unauthorized';
-import CostFormPage from '../pages/menuUpload/CostFormPage';
-import CustomerMasterPage from '../pages/menuUpload/CustomerMasterPage';
-import DriverMasterPage from '../pages/menuUpload/DriverMasterPage';
-import ItemMasterPage from '../pages/menuUpload/itemMaster/ItemMasterPage';
-import ItemDetailsPage from '../pages/menuUpload/ItemDetailsPage';
-import ModeOfTransportMasterPage from '../pages/menuUpload/modeOfTransport/ModeOfTransportMasterPage';
-import OrderDetailsPage from '../pages/menuUpload/OrderDetailsPage';
-import PODVariancePage from '../pages/menuUpload/PODVariancePage';
-import ShipmentPage from '../pages/menuUpload/ShipmentPage';
-import SupplierMasterPage from '../pages/menuUpload/supplierMaster/SupplierMasterPage';
-import TransportDetailsPage from '../pages/menuUpload/TransportDetailsPage';
-import ManualUploadPage from '../pages/menuUpload/MenuUploadPage';
+
+import { Route, Routes } from 'react-router-dom';
+
+import Forbidden from 'components/shared/Forbidden';
+import Unauthorized from 'components/shared/Unauthorized';
+import DashboardPage from 'pages/dashboard/dashboard';
+import ExcelUploadPage from 'pages/excelUpload/excelUpload';
+import LandingPage from 'pages/landing/LandingPage';
+import CostFormPage from 'pages/menuUpload/CostFormPage';
+import CustomerMasterPage from 'pages/menuUpload/CustomerMasterPage';
+import CustomerTypePage from 'pages/menuUpload/CustomerTypePage';
+import DriverMasterPage from 'pages/menuUpload/DriverMasterPage';
+import ItemDetailsPage from 'pages/menuUpload/ItemDetailsPage';
+import ItemMasterPage from 'pages/menuUpload/itemMaster/ItemMasterPage';
+import ManualUploadPage from 'pages/menuUpload/MenuUploadPage';
+import ModeOfTransportMasterPage from 'pages/menuUpload/modeOfTransport/ModeOfTransportMasterPage';
+import OrderDetailsPage from 'pages/menuUpload/OrderDetailsPage';
+import PODVariancePage from 'pages/menuUpload/PODVariancePage';
+import ShipmentPage from 'pages/menuUpload/ShipmentPage';
+import SupplierMasterPage from 'pages/menuUpload/supplierMaster/SupplierMasterPage';
+import TransportDetailsPage from 'pages/menuUpload/TransportDetailsPage';
+import ReportsPage from 'pages/reports/reports';
+import SignInPage from 'pages/signIn/SignInPage';
+import { Paths } from 'routes/paths';
+import ProtectedRoute from 'routes/ProtectedRoute';
 
 function RoutesConfig() {
   return (

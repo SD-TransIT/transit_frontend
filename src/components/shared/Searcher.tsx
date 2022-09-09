@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { FieldValues, useForm } from 'react-hook-form';
 import { FiSearch } from 'react-icons/fi';
-import ClearButton from '../../shared/buttons/ClearButton';
-import SubmitButton from '../../shared/buttons/SubmitButton';
-import Input from '../../shared/inputs/input';
+
+import ClearButton from 'shared/buttons/ClearButton';
+import SubmitButton from 'shared/buttons/SubmitButton';
+import Input from 'shared/inputs/input';
 
 interface SearcherProps {
   refetch: (params: FieldValues) => void;

@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
+
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { useSelector, useDispatch } from 'react-redux';
-import PageBody from '../../../components/shared/PageBody';
-import Searcher from '../../../components/shared/Searcher';
-import Table from '../../../components/shared/table/Table';
-import { ColumnType } from '../../../components/shared/table/types';
+import { useDispatch, useSelector } from 'react-redux';
+
+import SupplierMasterForm from 'components/forms/supplierMaster/SupplierMasterForm';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
+import supplierColumns from 'pages/menuUpload/supplierMaster/columnsSupplier';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import {
   deleteSupplierMasterRequest,
   getSupplierMasterRequest,
   postSupplierMasterRequest,
   putSupplierMasterRequest,
-} from '../../../redux/actions/supplierMaster/supplierMasterActions';
-import { RootState } from '../../../redux/reducers/rootReducer';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import Dialog from '../../../shared/dialog/Dialog';
-import PageHeader from '../../types';
-import SupplierMasterForm from '../../../components/forms/supplierMaster/SupplierMasterForm';
-import supplierColumns from './columnsSupplier';
+} from 'stores/actions/supplierMaster/supplierMasterActions';
+import { RootState } from 'stores/reducers/rootReducer';
 import {
   DeleteSupplierMasterRequestPayload,
   PostSupplierMasterRequestPayload,
   PutSupplierMasterRequestPayload,
-} from '../../../redux/types/supplierMasterType';
-import { ISupplierMaster } from '../../../models/supplierMaster/ISupplierMasterType';
+} from 'stores/types/supplierMasterType';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };
 

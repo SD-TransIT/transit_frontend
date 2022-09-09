@@ -1,5 +1,6 @@
 import React from 'react';
-import { ValidationErrorType } from './types';
+
+import { ValidationErrorType } from 'components/shared/types';
 
 function ValidationError({ value }: ValidationErrorType) {
   return (

@@ -1,14 +1,17 @@
 import React from 'react';
-import Select, { GroupBase } from 'react-select';
+
 import classNames from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
-import { RiCloseFill } from 'react-icons/ri';
 import { IconContext } from 'react-icons';
-import Input from '../../../shared/inputs/input';
-import SubmitButton from '../../../shared/buttons/SubmitButton';
+import { RiCloseFill } from 'react-icons/ri';
+import Select, { GroupBase } from 'react-select';
+
 import CancelButton from '../../../shared/buttons/CancelButton';
-import ValidationError from '../../shared/ValidationError';
 import DeleteButton from '../../../shared/buttons/DeleteButton';
+import SubmitButton from '../../../shared/buttons/SubmitButton';
+import Input from '../../../shared/inputs/input';
+import ValidationError from '../../shared/ValidationError';
+
 import ItemFormType from './types';
 
 const conditionsOptions = [

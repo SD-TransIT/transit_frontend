@@ -1,4 +1,4 @@
-import { Paths } from '../../routes/paths';
+import { Paths } from 'routes/paths';
 
 export type Menu = {
   dashboard: {

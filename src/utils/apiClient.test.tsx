@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
-import apiClient from './apiClient';
-import { NoErrorThrownError, getError } from './getError';
+
+import apiClient from 'utils/apiClient';
+import { getError, NoErrorThrownError } from 'utils/getError';
 
 describe('apiClient', () => {
   test('should return 200', async () => apiClient.get('http://httpstat.us/200')

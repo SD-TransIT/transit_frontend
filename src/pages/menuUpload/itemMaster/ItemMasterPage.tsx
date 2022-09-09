@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
+
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import Dialog from '../../../shared/dialog/Dialog';
+
+import {
+  deleteItemRequest,
+  getItemRequest, postItemRequest,
+  putItemRequest,
+} from 'stores/actions/item/itemActions';
+import { RootState } from 'stores/reducers/rootReducer';
+import {
+  DeleteItemRequestPayload, GetItemRequestPayload,
+  PostItemRequestPayload, PutItemRequestPayload,
+} from 'stores/types/itemType';
+
 import ItemForm from '../../../components/forms/item/ItemForm';
 import PageBody from '../../../components/shared/PageBody';
 import Searcher from '../../../components/shared/Searcher';
 import Table from '../../../components/shared/table/Table';
 import { ColumnType } from '../../../components/shared/table/types';
 import { IItem } from '../../../models/item/IItem';
-import {
-  getItemRequest, postItemRequest, putItemRequest, deleteItemRequest,
-} from '../../../redux/actions/item/itemActions';
-import { RootState } from '../../../redux/reducers/rootReducer';
-import {
-  PostItemRequestPayload, PutItemRequestPayload, DeleteItemRequestPayload, GetItemRequestPayload,
-} from '../../../redux/types/itemType';
 import AddItemButton from '../../../shared/buttons/AddItemButton';
+import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
+
 import itemColumns from './columnsItem';
 
 const clearValues: IItem = { id: undefined, name: '', conditions: '' };
