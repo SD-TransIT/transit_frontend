@@ -28,16 +28,13 @@ import {
   PutModeOfTransportRequestPayload,
 } from 'stores/types/modeOfTransportType';
 import { getRequest } from 'utils/apiClient';
+import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import PageHeader from '../../types';
 
 import modeOfTransportColumns from './columnsModesOfTransport';
 
 function ModeOfTransportMasterPage() {
-  const DEFAULT_OFFSET = 10;
-  const FIRST_PAGE = 1;
-  const EMPTY_SEARCHER = '';
-
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);

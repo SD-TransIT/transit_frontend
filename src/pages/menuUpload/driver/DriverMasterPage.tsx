@@ -26,14 +26,11 @@ import {
   PutDriverRequestPayload,
 } from 'stores/types/driverType';
 import { getRequest } from 'utils/apiClient';
+import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import driverColumns from './columnsDriver';
 
 function DriverMasterPage() {
-  const DEFAULT_OFFSET = 10;
-  const FIRST_PAGE = 1;
-  const EMPTY_SEARCHER = '';
-
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
