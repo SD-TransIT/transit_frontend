@@ -60,7 +60,7 @@ function Table({
   }, [gotoPage, search]);
 
   useEffect(() => {
-    if ((stateSearchRef.current !== search && pageIndex !== 0)) {
+    if (stateSearchRef.current !== search && pageIndex !== 0) {
       tableStateUpdateRef.current = true;
       gotoPage(0);
     } else {
