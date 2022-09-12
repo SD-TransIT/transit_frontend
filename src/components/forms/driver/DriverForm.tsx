@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
-import { IconContext } from 'react-icons';
-import { RiCloseFill } from 'react-icons/ri';
 
 import { ManualFormProps } from 'components/forms/types';
 import TransporterPicker from 'components/pickers/TransporterPicker';
+import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
+import FormHeader from 'components/shared/FormHeader';
 import ValidationError from 'components/shared/ValidationError';
 import CancelButton from 'shared/buttons/CancelButton';
 import DeleteButton from 'shared/buttons/DeleteButton';
@@ -28,32 +28,14 @@ function DriverForm({
         { mode === 'Delete' ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row justify-between">
-                <p className="float-left text-[21px] text-transit-black font-semibold">{title}</p>
-                <IconContext.Provider
-                // eslint-disable-next-line
-                value={{ className: 'float-right h-8 w-12 justify-end' }}
-                >
-                  <RiCloseFill onClick={onCancel} />
-                </IconContext.Provider>
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="float text-left text-[15px] text-transit-black font-medium">Are you sure you want to delete this item?</p>
-              </div>
+              <FormHeader title={title} onClick={onCancel} />
+              <ConfirmDeleteMessage />
             </div>
           </form>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row justify-between">
-                <p className="float-left text-[21px] text-transit-black font-semibold">{title}</p>
-                <IconContext.Provider
-                  // eslint-disable-next-line
-                  value={{ className: 'float-right h-8 w-12 justify-end' }}
-                >
-                  <RiCloseFill onClick={onCancel} />
-                </IconContext.Provider>
-              </div>
+              <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/2">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">Transporter</p>

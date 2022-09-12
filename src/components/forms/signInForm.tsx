@@ -90,6 +90,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               id="floatingInput"
               placeholder="Username"
               type="text"
+              isInvalid={Boolean(errors.username)}
             />
             <div className="pb-2">
               {errors.username && <ValidationError value="This field is required" />}
@@ -103,6 +104,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               id="floatingInput"
               placeholder="Password"
               type="password"
+              isInvalid={Boolean(errors.password)}
             />
             <div className="pb-2">
               {errors.password && <ValidationError value="This field is required" />}

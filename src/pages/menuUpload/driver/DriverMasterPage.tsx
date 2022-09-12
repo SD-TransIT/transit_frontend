@@ -6,40 +6,36 @@ import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DriverForm from 'components/forms/driver/DriverForm';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import {
-  deleteItemRequest,
-  postItemRequest,
-  putItemRequest,
-} from 'stores/actions/item/itemActions';
+  deleteDriverRequest, postDriverRequest, putDriverRequest,
+} from 'stores/actions/driver/driverActions';
 import { RootState } from 'stores/reducers/rootReducer';
-import { itemUrl } from 'stores/sagas/itemSaga';
+import { driverUrl } from 'stores/sagas/driverSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
-  DeleteItemRequestPayload, PostItemRequestPayload, PutItemRequestPayload,
-} from 'stores/types/itemType';
+  DeleteDriverRequestPayload,
+  PostDriverRequestPayload,
+  PutDriverRequestPayload,
+} from 'stores/types/driverType';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
-import ItemForm from '../../../components/forms/item/ItemForm';
-import PageBody from '../../../components/shared/PageBody';
-import Searcher from '../../../components/shared/Searcher';
-import Table from '../../../components/shared/table/Table';
-import { ColumnType } from '../../../components/shared/table/types';
-import { IItem } from '../../../models/item/IItem';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import Dialog from '../../../shared/dialog/Dialog';
-import PageHeader from '../../types';
+import driverColumns from './columnsDriver';
 
-import itemColumns from './columnsItem';
-
-const clearValues: IItem = { id: undefined, name: '', conditions: '' };
-
-function ItemMasterPage() {
+function DriverMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  const [objectToEdit, setObjectToEdit] = useState<IItem>(clearValues);
-  const [objectToDelete, setObjectToDelete] = useState<IItem>(clearValues);
+  const [objectToEdit, setObjectToEdit] = useState({ id: null });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
@@ -52,13 +48,13 @@ function ItemMasterPage() {
 
   const dispatch = useDispatch();
 
-  const {
-    item,
-  } = useSelector(
-    (state: RootState) => state.item,
-  );
+  const columns: ColumnType[] = React.useMemo(() => driverColumns, []);
 
-  const columns: ColumnType[] = React.useMemo(() => itemColumns, []);
+  const {
+    driver,
+  } = useSelector(
+    (state: RootState) => state.driver,
+  );
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
@@ -73,7 +69,7 @@ function ItemMasterPage() {
     try {
       if (fetchId === fetchIdRef.current) {
         await refreshAccessToken();
-        const result = await getRequest(itemUrl, {
+        const result = await getRequest(driverUrl, {
           page: pageNumber,
           searcher: search,
         }, true);
@@ -90,13 +86,13 @@ function ItemMasterPage() {
   }, []);
 
   useEffect(() => {
-    if (item !== undefined) {
+    if (driver !== undefined) {
       setPage(FIRST_PAGE);
       setSearcher(EMPTY_SEARCHER);
       fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item]);
+  }, [driver]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
@@ -107,24 +103,21 @@ function ItemMasterPage() {
     setDisplayAddModal(!displayAddModal);
   };
 
-  const toggleEditModal = (object?: IItem) => {
-    if (object) {
+  const toggleEditModal = (object?:FieldValues, datas?:any) => {
+    if (object && object.id !== undefined) {
+      const record = datas.find((data_record:any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({
         ...prevState,
         id: object.id,
-        name: object.name,
-        volume: object.volume,
-        cost: object.cost,
-        weight: object.weight,
-        category: object.category,
-        sub_category: object.sub_category,
-        conditions: { label: object.conditions, name: object.conditions },
+        name: record.name,
+        username: record.username,
+        transporter: { id: record.transporter, name: record.transporter_name },
       }));
     }
     setDisplayEditModal(!displayEditModal);
   };
 
-  const toggleDeleteModal = (object?: IItem) => {
+  const toggleDeleteModal = (object?:FieldValues) => {
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
@@ -136,18 +129,18 @@ function ItemMasterPage() {
 
   const onSubmitAdd = (formValues: FieldValues) => {
     const payload = formValues;
-    payload.conditions = formValues.conditions.value;
-    dispatch(postItemRequest(formValues as PostItemRequestPayload));
+    payload.transporter = formValues.transporter.id;
+    dispatch(postDriverRequest(payload as PostDriverRequestPayload));
     toggleAddModal();
   };
 
   const onSubmitEdit = (formValues: FieldValues) => {
-    const paramsToPass = formValues;
+    const payload = formValues;
     if (objectToEdit) {
-      paramsToPass.id = objectToEdit.id;
+      payload.id = objectToEdit.id;
     }
-    paramsToPass.conditions = formValues.conditions.value;
-    dispatch(putItemRequest(paramsToPass as PutItemRequestPayload));
+    payload.transporter = formValues.transporter.id;
+    dispatch(putDriverRequest(payload as PutDriverRequestPayload));
     toggleEditModal();
   };
 
@@ -156,7 +149,7 @@ function ItemMasterPage() {
     if (objectToDelete) {
       paramsToPass.id = objectToDelete.id;
     }
-    dispatch(deleteItemRequest(paramsToPass as DeleteItemRequestPayload));
+    dispatch(deleteDriverRequest(paramsToPass as DeleteDriverRequestPayload));
     toggleDeleteModal();
   };
 
@@ -165,13 +158,13 @@ function ItemMasterPage() {
     if (objectToEdit) {
       paramsToPass.id = objectToEdit.id;
     }
-    dispatch(deleteItemRequest(paramsToPass as DeleteItemRequestPayload));
+    dispatch(deleteDriverRequest(paramsToPass as DeleteDriverRequestPayload));
     toggleEditModal();
   };
 
   return (
     <>
-      <PageBody title={PageHeader.item_master}>
+      <PageBody title={PageHeader.driver_master}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
@@ -209,11 +202,11 @@ function ItemMasterPage() {
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
-          <ItemForm
+          <DriverForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Item Master' : 'Edit Item Master'}
-            initialFormValue={displayAddModal ? clearValues : objectToEdit}
+            title={displayAddModal ? 'New Driver Master' : 'Edit Driver Master'}
+            initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? 'Add' : 'Edit'}
             onDelete={onDeleteSubmitEdit}
@@ -226,10 +219,10 @@ function ItemMasterPage() {
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
-          <ItemForm
+          <DriverForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Item Master"
+            title="Delete Driver Master"
             initialFormValue={objectToDelete}
             submitButtonText="Delete"
             mode="Delete"
@@ -240,4 +233,4 @@ function ItemMasterPage() {
   );
 }
 
-export default ItemMasterPage;
+export default DriverMasterPage;

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -16,16 +18,19 @@ import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import {
   deleteSupplierMasterRequest,
-  getSupplierMasterRequest,
   postSupplierMasterRequest,
   putSupplierMasterRequest,
 } from 'stores/actions/supplierMaster/supplierMasterActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { supplierUrl } from 'stores/sagas/supplierMasterSaga';
+import refreshAccessToken from 'stores/sagas/utils';
 import {
   DeleteSupplierMasterRequestPayload,
   PostSupplierMasterRequestPayload,
   PutSupplierMasterRequestPayload,
 } from 'stores/types/supplierMasterType';
+import { getRequest } from 'utils/apiClient';
+import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };
 
@@ -36,22 +41,66 @@ function SupplierMasterPage() {
   const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>(clearValues);
   const [objectToDelete, setObjectToDelete] = useState<ISupplierMaster>(clearValues);
 
+  const [pageCount, setPageCount] = useState(0);
+  const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
+  const [page, setPage] = useState(FIRST_PAGE);
+  const [data, setData] = useState([]);
+  const [searcher, setSearcher] = useState(EMPTY_SEARCHER);
+
+  const isCleanupRef = useRef(false);
+  const fetchIdRef = useRef(0);
+
   const dispatch = useDispatch();
 
   const columns: ColumnType[] = React.useMemo(() => supplierColumns, []);
 
   const {
-    supplierMasters,
+    supplierMaster,
   } = useSelector(
     (state: RootState) => state.supplierMaster,
   );
 
-  useEffect(() => {
-    dispatch(getSupplierMasterRequest({ payload: {} }));
-  }, [dispatch]);
+  const calculatePagesCount = (pageSize: number, totalCount: number) => (
+    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
+  );
 
-  const refetch = (formValues: FieldValues) => {
-    dispatch(getSupplierMasterRequest(formValues as any));
+  const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
+    /* eslint-disable-next-line no-plusplus */
+    const fetchId = ++fetchIdRef.current;
+
+    isCleanupRef.current = false;
+
+    try {
+      if (fetchId === fetchIdRef.current) {
+        await refreshAccessToken();
+        const result = await getRequest(supplierUrl, {
+          page: pageNumber,
+          searcher: search,
+        }, true);
+
+        setPage(pageNumber);
+        setData(result.results);
+        setPageCount(calculatePagesCount(DEFAULT_OFFSET, result.count));
+        setNumberOfAvailableData(result.count);
+      }
+    } catch (error) {
+      setData(data);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (supplierMaster !== undefined) {
+      setPage(FIRST_PAGE);
+      setSearcher(EMPTY_SEARCHER);
+      fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [supplierMaster]);
+
+  const refetch = (formValues: any) => {
+    setPage(FIRST_PAGE);
+    setSearcher(formValues.search);
   };
 
   const toggleAddModal = () => {
@@ -126,7 +175,7 @@ function SupplierMasterPage() {
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
-        {supplierMasters === undefined ? (
+        {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
             <p>0 Results</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
@@ -136,11 +185,18 @@ function SupplierMasterPage() {
         ) : (
           <Table
             columns={columns}
-            data={supplierMasters}
+            data={data}
             editAction={toggleEditModal}
             deleteAction={toggleDeleteModal}
+            fetchData={fetchData}
+            search={searcher}
+            isCleanupRef={isCleanupRef}
+            pageCount={pageCount}
+            numberOfAvailableData={numberOfAvailableData}
+            defaultOffset={DEFAULT_OFFSET}
+            currentPage={page}
           >
-            <p>{`${supplierMasters?.length} Results`}</p>
+            <p>{`${numberOfAvailableData} Results`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>

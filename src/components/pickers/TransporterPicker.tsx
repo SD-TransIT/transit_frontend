@@ -3,10 +3,12 @@ import React from 'react';
 import classNames from 'classnames';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
-import { getTransporter } from 'stores/sagas/transporterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import { getRequest } from 'utils/apiClient';
 
 import { PickerProp } from './types';
+
+const transporterUrl = 'transporter/';
 
 function TransporterPicker({ field, isInvalid }: PickerProp) {
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
@@ -15,7 +17,7 @@ function TransporterPicker({ field, isInvalid }: PickerProp) {
     { page } : any,
   ) => {
     await refreshAccessToken();
-    const response = await getTransporter({ page, searcher: searchQuery }, true);
+    const response = await getRequest(transporterUrl, { page, searcher: searchQuery }, true);
     const isNext: boolean = response.next !== null;
 
     return {

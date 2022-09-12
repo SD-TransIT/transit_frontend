@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { IconContext } from 'react-icons';
-import { RiCloseFill } from 'react-icons/ri';
 
 import { ManualFormProps } from 'components/forms/types';
+import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
+import FormHeader from 'components/shared/FormHeader';
 import ValidationError from 'components/shared/ValidationError';
 import CancelButton from 'shared/buttons/CancelButton';
 import DeleteButton from 'shared/buttons/DeleteButton';
@@ -26,45 +26,27 @@ function CustomerTypeForm({
         { mode === 'Delete' ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row justify-between">
-                <p className="float-left text-[21px] text-transit-black font-semibold">{title}</p>
-                <IconContext.Provider
-                  // eslint-disable-next-line
-                  value={{ className: 'float-right h-8 w-12 justify-end' }}
-                >
-                  <RiCloseFill onClick={onCancel} />
-                </IconContext.Provider>
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="float text-left text-[15px] text-transit-black font-medium">Are you sure you want to delete this item?</p>
-              </div>
+              <FormHeader title={title} onClick={onCancel} />
+              <ConfirmDeleteMessage />
             </div>
           </form>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row justify-between">
-                <p className="float-left text-[21px] text-transit-black font-semibold">{title}</p>
-                <IconContext.Provider
-                  // eslint-disable-next-line
-                  value={{ className: 'float-right h-8 w-12 justify-end' }}
-                >
-                  <RiCloseFill onClick={onCancel} />
-                </IconContext.Provider>
-              </div>
+              <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-col gap-2">
                 <p className="text-xs text-transit-black-secondary font-medium required-field">Customer Type Name</p>
                 <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('customerTypeName', { required: true })}
-                  name="customerTypeName"
+                  {...register('customer_type_name', { required: true })}
+                  name="customer_type_name"
                   id="floatingInput"
                   placeholder="Customer Type Name"
                   type="text"
                   className="h-9 border-transit-grey-300 placeholder-grey-300"
-                  isInvalid={Boolean(errors.customerTypeName)}
+                  isInvalid={Boolean(errors.customer_type_name)}
                 />
-                {errors.customerTypeName && <ValidationError value="This field is required" />}
+                {errors.customer_type_name && <ValidationError value="This field is required" />}
               </div>
             </div>
           </form>

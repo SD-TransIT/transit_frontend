@@ -6,40 +6,38 @@ import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
+import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
+import PageBody from 'components/shared/PageBody';
+import Searcher from 'components/shared/Searcher';
+import Table from 'components/shared/table/Table';
+import { ColumnType } from 'components/shared/table/types';
+import PageHeader from 'pages/types';
+import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import {
-  deleteItemRequest,
-  postItemRequest,
-  putItemRequest,
-} from 'stores/actions/item/itemActions';
+  deleteCustomerTypeRequest,
+  postCustomerTypeRequest,
+  putCustomerTypeRequest,
+} from 'stores/actions/customerType/customerTypeActions';
 import { RootState } from 'stores/reducers/rootReducer';
-import { itemUrl } from 'stores/sagas/itemSaga';
+import { customerTypeUrl } from 'stores/sagas/customerTypeSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
-  DeleteItemRequestPayload, PostItemRequestPayload, PutItemRequestPayload,
-} from 'stores/types/itemType';
+  DeleteCustomerTypeRequestPayload,
+  PostCustomerTypeRequestPayload,
+  PutCustomerTypeRequestPayload,
+} from 'stores/types/customerType';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
-import ItemForm from '../../../components/forms/item/ItemForm';
-import PageBody from '../../../components/shared/PageBody';
-import Searcher from '../../../components/shared/Searcher';
-import Table from '../../../components/shared/table/Table';
-import { ColumnType } from '../../../components/shared/table/types';
-import { IItem } from '../../../models/item/IItem';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import Dialog from '../../../shared/dialog/Dialog';
-import PageHeader from '../../types';
+import customerTypeColumns from './columnsCustomerType';
 
-import itemColumns from './columnsItem';
-
-const clearValues: IItem = { id: undefined, name: '', conditions: '' };
-
-function ItemMasterPage() {
+function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  const [objectToEdit, setObjectToEdit] = useState<IItem>(clearValues);
-  const [objectToDelete, setObjectToDelete] = useState<IItem>(clearValues);
+  const [objectToEdit, setObjectToEdit] = useState({ id: null, customerTypeName: '' });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
@@ -50,15 +48,15 @@ function ItemMasterPage() {
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
 
+  const columns: ColumnType[] = React.useMemo(() => customerTypeColumns, []);
+
   const dispatch = useDispatch();
 
   const {
-    item,
+    customerType,
   } = useSelector(
-    (state: RootState) => state.item,
+    (state: RootState) => state.customerType,
   );
-
-  const columns: ColumnType[] = React.useMemo(() => itemColumns, []);
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
@@ -73,7 +71,7 @@ function ItemMasterPage() {
     try {
       if (fetchId === fetchIdRef.current) {
         await refreshAccessToken();
-        const result = await getRequest(itemUrl, {
+        const result = await getRequest(customerTypeUrl, {
           page: pageNumber,
           searcher: search,
         }, true);
@@ -90,13 +88,13 @@ function ItemMasterPage() {
   }, []);
 
   useEffect(() => {
-    if (item !== undefined) {
+    if (customerType !== undefined) {
       setPage(FIRST_PAGE);
       setSearcher(EMPTY_SEARCHER);
       fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item]);
+  }, [customerType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
@@ -107,24 +105,18 @@ function ItemMasterPage() {
     setDisplayAddModal(!displayAddModal);
   };
 
-  const toggleEditModal = (object?: IItem) => {
+  const toggleEditModal = (object?:FieldValues) => {
     if (object) {
       setObjectToEdit((prevState) => ({
         ...prevState,
         id: object.id,
-        name: object.name,
-        volume: object.volume,
-        cost: object.cost,
-        weight: object.weight,
-        category: object.category,
-        sub_category: object.sub_category,
-        conditions: { label: object.conditions, name: object.conditions },
+        customer_type_name: object.customer_type_name,
       }));
     }
     setDisplayEditModal(!displayEditModal);
   };
 
-  const toggleDeleteModal = (object?: IItem) => {
+  const toggleDeleteModal = (object?:FieldValues) => {
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
@@ -135,9 +127,7 @@ function ItemMasterPage() {
   };
 
   const onSubmitAdd = (formValues: FieldValues) => {
-    const payload = formValues;
-    payload.conditions = formValues.conditions.value;
-    dispatch(postItemRequest(formValues as PostItemRequestPayload));
+    dispatch(postCustomerTypeRequest(formValues as PostCustomerTypeRequestPayload));
     toggleAddModal();
   };
 
@@ -146,8 +136,7 @@ function ItemMasterPage() {
     if (objectToEdit) {
       paramsToPass.id = objectToEdit.id;
     }
-    paramsToPass.conditions = formValues.conditions.value;
-    dispatch(putItemRequest(paramsToPass as PutItemRequestPayload));
+    dispatch(putCustomerTypeRequest(paramsToPass as PutCustomerTypeRequestPayload));
     toggleEditModal();
   };
 
@@ -156,7 +145,7 @@ function ItemMasterPage() {
     if (objectToDelete) {
       paramsToPass.id = objectToDelete.id;
     }
-    dispatch(deleteItemRequest(paramsToPass as DeleteItemRequestPayload));
+    dispatch(deleteCustomerTypeRequest(paramsToPass as DeleteCustomerTypeRequestPayload));
     toggleDeleteModal();
   };
 
@@ -165,13 +154,13 @@ function ItemMasterPage() {
     if (objectToEdit) {
       paramsToPass.id = objectToEdit.id;
     }
-    dispatch(deleteItemRequest(paramsToPass as DeleteItemRequestPayload));
+    dispatch(deleteCustomerTypeRequest(paramsToPass as DeleteCustomerTypeRequestPayload));
     toggleEditModal();
   };
 
   return (
     <>
-      <PageBody title={PageHeader.item_master}>
+      <PageBody title={PageHeader.customer_type}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
@@ -209,11 +198,11 @@ function ItemMasterPage() {
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
-          <ItemForm
+          <CustomerTypeForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Item Master' : 'Edit Item Master'}
-            initialFormValue={displayAddModal ? clearValues : objectToEdit}
+            title={displayAddModal ? 'New Customer Type' : 'Edit Customer Type'}
+            initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? 'Add' : 'Edit'}
             onDelete={onDeleteSubmitEdit}
@@ -226,10 +215,10 @@ function ItemMasterPage() {
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
-          <ItemForm
+          <CustomerTypeForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Item Master"
+            title="Delete Customer Type"
             initialFormValue={objectToDelete}
             submitButtonText="Delete"
             mode="Delete"
@@ -240,4 +229,4 @@ function ItemMasterPage() {
   );
 }
 
-export default ItemMasterPage;
+export default CustomerTypePage;
