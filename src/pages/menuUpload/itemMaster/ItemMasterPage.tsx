@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -6,14 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   deleteItemRequest,
-  getItemRequest, postItemRequest,
+  postItemRequest,
   putItemRequest,
 } from 'stores/actions/item/itemActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import refreshAccessToken from 'stores/sagas/utils';
 import {
-  DeleteItemRequestPayload, GetItemRequestPayload,
-  PostItemRequestPayload, PutItemRequestPayload,
+  DeleteItemRequestPayload, PostItemRequestPayload, PutItemRequestPayload,
 } from 'stores/types/itemType';
+import { getRequest } from 'utils/apiClient';
 
 import ItemForm from '../../../components/forms/item/ItemForm';
 import PageBody from '../../../components/shared/PageBody';
@@ -30,28 +33,77 @@ import itemColumns from './columnsItem';
 const clearValues: IItem = { id: undefined, name: '', conditions: '' };
 
 function ItemMasterPage() {
+  const DEFAULT_OFFSET = 10;
+  const FIRST_PAGE = 1;
+  const EMPTY_SEARCHER = '';
+  const itemUrl = 'item/';
+
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
   const [objectToEdit, setObjectToEdit] = useState<IItem>(clearValues);
   const [objectToDelete, setObjectToDelete] = useState<IItem>(clearValues);
 
+  const [pageCount, setPageCount] = useState(0);
+  const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
+  const [page, setPage] = useState(FIRST_PAGE);
+  const [data, setData] = useState([]);
+  const [searcher, setSearcher] = useState(EMPTY_SEARCHER);
+
+  const isCleanupRef = useRef(false);
+  const fetchIdRef = useRef(0);
+
   const dispatch = useDispatch();
 
   const {
-    items,
+    item,
   } = useSelector(
     (state: RootState) => state.item,
   );
 
   const columns: ColumnType[] = React.useMemo(() => itemColumns, []);
 
-  useEffect(() => {
-    dispatch(getItemRequest({ payload: {} }));
-  }, [dispatch]);
+  const calculatePagesCount = (pageSize: number, totalCount: number) => (
+    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
+  );
 
-  const refetch = (formValues: FieldValues) => {
-    dispatch(getItemRequest(formValues as GetItemRequestPayload));
+  const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
+    /* eslint-disable-next-line no-plusplus */
+    const fetchId = ++fetchIdRef.current;
+
+    isCleanupRef.current = false;
+
+    try {
+      if (fetchId === fetchIdRef.current) {
+        await refreshAccessToken();
+        const result = await getRequest(itemUrl, {
+          page: pageNumber,
+          searcher: search,
+        }, true);
+
+        setPage(pageNumber);
+        setData(result.results);
+        setPageCount(calculatePagesCount(DEFAULT_OFFSET, result.count));
+        setNumberOfAvailableData(result.count);
+      }
+    } catch (error) {
+      setData(data);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (item !== undefined) {
+      setPage(FIRST_PAGE);
+      setSearcher(EMPTY_SEARCHER);
+      fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item]);
+
+  const refetch = (formValues: any) => {
+    setPage(FIRST_PAGE);
+    setSearcher(formValues.search);
   };
 
   const toggleAddModal = () => {
@@ -126,7 +178,7 @@ function ItemMasterPage() {
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
-        {items === undefined ? (
+        {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
             <p>0 Results</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
@@ -136,11 +188,18 @@ function ItemMasterPage() {
         ) : (
           <Table
             columns={columns}
-            data={items}
+            data={data}
             editAction={toggleEditModal}
             deleteAction={toggleDeleteModal}
+            fetchData={fetchData}
+            search={searcher}
+            isCleanupRef={isCleanupRef}
+            pageCount={pageCount}
+            numberOfAvailableData={numberOfAvailableData}
+            defaultOffset={DEFAULT_OFFSET}
+            currentPage={page}
           >
-            <p>{`${items?.length} Results`}</p>
+            <p>{`${numberOfAvailableData} Results`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>

@@ -11,75 +11,17 @@ import {
   putDriverFailure, putDriverSuccess,
 } from 'stores/actions/driver/driverActions';
 import DriverActionTypes from 'stores/actions/driver/driverTypes';
-import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import apiClient from 'utils/apiClient';
+import {
+  deleteRequest, getRequest, postRequest, putRequest,
+} from 'utils/apiClient';
 
 const driverUrl = 'driver/';
-
-const getDriver = async (parameters: any) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const additionalParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
-  const { data } = await apiClient.get(
-    `${driverUrl}${additionalParamString}`,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return Object.prototype.hasOwnProperty.call(data, 'results') ? data.results : data;
-};
-
-const postDriver = async (payload: IDriver) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const { data } = await apiClient.post(
-    driverUrl,
-    payload,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return data;
-};
-
-const putDriver = async (payload: IDriver, id: number) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const { data } = await apiClient.put(
-    `${driverUrl}${id}/`,
-    payload,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return data;
-};
-
-const deleteDriver = async (id: number) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const { data } = await apiClient.delete(
-    `${driverUrl}${id}/`,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return data;
-};
 
 function* getDriverSaga(action: any) {
   try {
     yield call(refreshAccessToken);
-    const response: { drivers: [IDriver] } = yield call(getDriver, {
+    const response: { drivers: [IDriver] } = yield call(getRequest, driverUrl, {
       searcher: action.payload?.search ?? null,
     });
     yield put(getDriverSuccess(response));
@@ -93,24 +35,20 @@ function* getDriverSaga(action: any) {
 function* postDriverSaga(action: any) {
   try {
     yield call(refreshAccessToken);
-    const responsePost: { driver: IDriver } = yield call(postDriver, action.payload);
-    const responseGet: { driver: IDriver } = yield call(getDriver, {
-      searcher: action.payload?.search ?? null,
-    });
+    const responsePost: { driver: IDriver } = yield call(
+      postRequest,
+      driverUrl,
+      action.payload,
+    );
     yield put(postDriverSuccess(responsePost));
     yield put({
       type: DriverActionTypes.POST_DRIVER_SUCCESS,
       driver: responsePost,
-      drivers: responseGet,
     });
   } catch (error: any) {
-    const responseGet: { customerType: IDriver } = yield call(getDriver, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(postDriverFailure(error));
     yield put({
       type: DriverActionTypes.POST_DRIVER_FAILURE,
-      drivers: responseGet,
       error,
     });
   }
@@ -120,27 +58,20 @@ function* putDriverSaga(action: any) {
   try {
     yield call(refreshAccessToken);
     const responsePut: { driver: IDriver } = yield call(
-      putDriver,
+      putRequest,
+      driverUrl,
       action.payload,
       action.payload.id,
     );
-    const responseGet: { drivers: IDriver } = yield call(getDriver, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(putDriverSuccess(responsePut));
     yield put({
       type: DriverActionTypes.PUT_DRIVER_SUCCESS,
       driver: responsePut,
-      drivers: responseGet,
     });
   } catch (error: any) {
-    const responseGet: { drivers: IDriver } = yield call(getDriver, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(putDriverFailure(error));
     yield put({
       type: DriverActionTypes.PUT_DRIVER_FAILURE,
-      drivers: responseGet,
       error,
     });
   }
@@ -150,25 +81,19 @@ function* deleteDriverSaga(action: any) {
   try {
     yield call(refreshAccessToken);
     const responseDelete: { driver: IDriver } = yield call(
-      deleteDriver,
+      deleteRequest,
+      driverUrl,
       action.payload.id,
     );
-    const responseGet: { drivers: IDriver } = yield call(getDriver, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(deleteDriverSuccess(responseDelete));
     yield put({
       type: DriverActionTypes.DELETE_DRIVER_SUCCESS,
-      drivers: responseGet,
+      driver: null,
     });
   } catch (error: any) {
-    const responseGet: { drivers: IDriver } = yield call(getDriver, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(deleteDriverFailure(error));
     yield put({
       type: DriverActionTypes.DELETE_DRIVER_FAILURE,
-      drivers: responseGet,
       error,
     });
   }

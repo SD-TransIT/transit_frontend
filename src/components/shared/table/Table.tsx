@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { IconContext } from 'react-icons';
 import {
@@ -18,6 +18,11 @@ import PaginationButton from 'shared/buttons/PaginationButton';
 
 function Table({
   columns, data, children, editAction, deleteAction,
+  search = '',
+  fetchData,
+  pageCount: controlledPageCount,
+  numberOfAvailableData = data.length,
+  defaultOffset,
 }: TableProps) {
   const {
     getTableProps,
@@ -28,20 +33,55 @@ function Table({
     prepareRow,
     nextPage,
     previousPage,
-    setPageSize,
     canPreviousPage,
     pageOptions,
     canNextPage,
+    gotoPage,
     state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
+      manualPagination: true,
+      initialState: { pageIndex: 0, pageSize: defaultOffset },
+      pageCount: controlledPageCount,
+      autoResetPage: false,
     },
     useFlexLayout,
     useSortBy,
     usePagination,
   ) as TableInstanceWithHooks<Object>;
+
+  const tableStateUpdateRef = useRef(false);
+  const stateSearchRef = useRef(search);
+
+  useEffect(() => {
+    gotoPage(0);
+  }, [gotoPage, search]);
+
+  useEffect(() => {
+    if ((stateSearchRef.current !== search && pageIndex !== 0)) {
+      tableStateUpdateRef.current = true;
+      gotoPage(0);
+    } else {
+      tableStateUpdateRef.current = true;
+      // eslint-disable-next-line
+      fetchData && fetchData(pageIndex + 1, pageSize, search);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchData, pageIndex, pageSize, search]);
+
+  useEffect(() => {
+    if (!tableStateUpdateRef.current) {
+      gotoPage(0);
+    }
+  }, [data, gotoPage]);
+
+  useEffect(() => {
+    stateSearchRef.current = search;
+    tableStateUpdateRef.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   const firstRowNumberOnPage = React.useMemo(() => {
     const result = (pageIndex * pageSize) + 1;
@@ -127,25 +167,9 @@ function Table({
         </div>
         <div className="flex flex-row justify-between items-center h-10 text-transit-grey-dark p-2 text-xs">
           <div>
-            <p>{`${firstRowNumberOnPage}-${lastRowNumberOnPage} of ${rows.length}`}</p>
+            <p>{`${firstRowNumberOnPage}-${lastRowNumberOnPage} of ${numberOfAvailableData}`}</p>
           </div>
           <div className="flex flex-row gap-2">
-            <div className="flex flex-row">
-              <p>Rows per page</p>
-              <select
-                className="bg-transit-white"
-                value={pageSize}
-                onChange={(e) => {
-                  setPageSize(Number(e.target.value));
-                }}
-              >
-                {[10, 20, 30, 40, 50].map((pageSizeValue) => (
-                  <option key={pageSizeValue} value={pageSizeValue}>
-                    {pageSizeValue}
-                  </option>
-                ))}
-              </select>
-            </div>
             <div className="flex gap-2">
               <PaginationButton onClick={() => previousPage()} disabled={!canPreviousPage}>
                 <RiArrowLeftSLine className="text-xs" />

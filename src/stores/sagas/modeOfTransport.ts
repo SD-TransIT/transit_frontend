@@ -3,7 +3,9 @@ import {
 } from 'redux-saga/effects';
 
 import { IModeOfTransport } from '../../models/modeOfTransport/IModeOfTransport';
-import apiClient from '../../utils/apiClient';
+import {
+  deleteRequest, getRequest, postRequest, putRequest,
+} from '../../utils/apiClient';
 import {
   deleteModeOfTransportFailure,
   deleteModeOfTransportSuccess,
@@ -15,75 +17,15 @@ import {
   putModeOfTransportSuccess,
 } from '../actions/modeOfTransport/modeOfTransportAction';
 import ModeOfTransportActionTypes from '../actions/modeOfTransport/modeOfTransportTypes';
-import { sessionToken } from '../reducers/tokenReducer';
 
 import refreshAccessToken from './utils';
 
 const modeOfTransportUrl = 'mode_of_transport/';
 
-const getModeOfTransport = async (parameters: any) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const additionalParamString = parameters.searcher !== null ? `?search=${parameters.searcher}` : '';
-  const { data } = await apiClient.get(
-    `${modeOfTransportUrl}${additionalParamString}`,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return Object.prototype.hasOwnProperty.call(data, 'results') ? data.results : data;
-};
-
-const postModeOfTransport = async (payload: IModeOfTransport) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const { data } = await apiClient.post(
-    modeOfTransportUrl,
-    payload,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return data;
-};
-
-const putModeOfTransport = async (payload: IModeOfTransport, id: number) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const { data } = await apiClient.put(
-    `${modeOfTransportUrl}${id}/`,
-    payload,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return data;
-};
-
-const deleteModeOfTransport = async (id: number) => {
-  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const { data } = await apiClient.delete(
-    `${modeOfTransportUrl}${id}/`,
-    {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return data;
-};
-
 function* getModeOfTransportSaga(action: any) {
   try {
     yield call(refreshAccessToken);
-    const response: { modes: [IModeOfTransport] } = yield call(getModeOfTransport, {
+    const response: { modes: [IModeOfTransport] } = yield call(getRequest, modeOfTransportUrl, {
       searcher: action.payload?.search ?? null,
     });
     yield put(getModeOfTransportSuccess(response));
@@ -101,17 +43,14 @@ function* postModeOfTransportSaga(action: any) {
   try {
     yield call(refreshAccessToken);
     const responsePost: { mode: IModeOfTransport } = yield call(
-      postModeOfTransport,
+      postRequest,
+      modeOfTransportUrl,
       action.payload,
     );
-    const responseGet: { mode: IModeOfTransport } = yield call(getModeOfTransport, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(postModeOfTransportSuccess(responsePost));
     yield put({
       type: ModeOfTransportActionTypes.POST_MODE_OF_TRANSPORT_SUCCESS,
       mode: responsePost,
-      modes: responseGet,
     });
   } catch (error: any) {
     yield put(postModeOfTransportFailure(error));
@@ -126,18 +65,15 @@ function* putModeOfTransportSaga(action: any) {
   try {
     yield call(refreshAccessToken);
     const responsePut: { mode: IModeOfTransport } = yield call(
-      putModeOfTransport,
+      putRequest,
+      modeOfTransportUrl,
       action.payload,
       action.payload.id,
     );
-    const responseGet: { mode: IModeOfTransport } = yield call(getModeOfTransport, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(putModeOfTransportSuccess(responsePut));
     yield put({
       type: ModeOfTransportActionTypes.PUT_MODE_OF_TRANSPORT_SUCCESS,
       mode: responsePut,
-      modes: responseGet,
     });
   } catch (error: any) {
     yield put(putModeOfTransportFailure(error));
@@ -152,25 +88,19 @@ function* deleteModeOfTransportSaga(action: any) {
   try {
     yield call(refreshAccessToken);
     const responseDelete: { driver: IModeOfTransport } = yield call(
-      deleteModeOfTransport,
+      deleteRequest,
+      modeOfTransportUrl,
       action.payload.id,
     );
-    const responseGet: { drivers: IModeOfTransport } = yield call(getModeOfTransport, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(deleteModeOfTransportSuccess(responseDelete));
     yield put({
       type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_SUCCESS,
-      modes: responseGet,
+      mode: null,
     });
   } catch (error: any) {
-    const responseGet: { drivers: IModeOfTransport } = yield call(getModeOfTransport, {
-      searcher: action.payload?.search ?? null,
-    });
     yield put(deleteModeOfTransportFailure(error));
     yield put({
       type: ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_FAILURE,
-      modes: responseGet,
       error,
     });
   }

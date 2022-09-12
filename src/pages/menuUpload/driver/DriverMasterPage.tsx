@@ -6,43 +6,39 @@ import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
-import SupplierMasterForm from 'components/forms/supplierMaster/SupplierMasterForm';
+import DriverForm from 'components/forms/driver/DriverForm';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
-import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
-import supplierColumns from 'pages/menuUpload/supplierMaster/columnsSupplier';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import {
-  deleteSupplierMasterRequest,
-  postSupplierMasterRequest,
-  putSupplierMasterRequest,
-} from 'stores/actions/supplierMaster/supplierMasterActions';
+  deleteDriverRequest, postDriverRequest, putDriverRequest,
+} from 'stores/actions/driver/driverActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
-  DeleteSupplierMasterRequestPayload,
-  PostSupplierMasterRequestPayload,
-  PutSupplierMasterRequestPayload,
-} from 'stores/types/supplierMasterType';
+  DeleteDriverRequestPayload,
+  PostDriverRequestPayload,
+  PutDriverRequestPayload,
+} from 'stores/types/driverType';
 import { getRequest } from 'utils/apiClient';
 
-const clearValues: ISupplierMaster = { id: undefined, name: '' };
+import driverColumns from './columnsDriver';
 
-function SupplierMasterPage() {
+function DriverMasterPage() {
   const DEFAULT_OFFSET = 10;
   const FIRST_PAGE = 1;
   const EMPTY_SEARCHER = '';
-  const supplierUrl = 'supplier/';
+  const driverUrl = 'driver/';
 
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  const [objectToEdit, setObjectToEdit] = useState<ISupplierMaster>(clearValues);
-  const [objectToDelete, setObjectToDelete] = useState<ISupplierMaster>(clearValues);
+  const [objectToEdit, setObjectToEdit] = useState({ id: null });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
@@ -55,12 +51,12 @@ function SupplierMasterPage() {
 
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => supplierColumns, []);
+  const columns: ColumnType[] = React.useMemo(() => driverColumns, []);
 
   const {
-    supplierMaster,
+    driver,
   } = useSelector(
-    (state: RootState) => state.supplierMaster,
+    (state: RootState) => state.driver,
   );
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
@@ -76,7 +72,7 @@ function SupplierMasterPage() {
     try {
       if (fetchId === fetchIdRef.current) {
         await refreshAccessToken();
-        const result = await getRequest(supplierUrl, {
+        const result = await getRequest(driverUrl, {
           page: pageNumber,
           searcher: search,
         }, true);
@@ -93,13 +89,13 @@ function SupplierMasterPage() {
   }, []);
 
   useEffect(() => {
-    if (supplierMaster !== undefined) {
+    if (driver !== undefined) {
       setPage(FIRST_PAGE);
       setSearcher(EMPTY_SEARCHER);
       fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [supplierMaster]);
+  }, [driver]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
@@ -110,27 +106,21 @@ function SupplierMasterPage() {
     setDisplayAddModal(!displayAddModal);
   };
 
-  const toggleEditModal = (object?: ISupplierMaster) => {
-    if (object) {
+  const toggleEditModal = (object?:FieldValues, datas?:any) => {
+    if (object && object.id !== undefined) {
+      const record = datas.find((data_record:any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({
         ...prevState,
         id: object.id,
-        name: object.name,
-        address_1: object.address_1,
-        address_2: object.address_2,
-        address_3: object.address_3,
-        city: object.city,
-        state: object.state,
-        country: object.country,
-        phone: object.phone,
-        email: object.email,
-        latitude_longitude: object.latitude_longitude,
+        name: record.name,
+        username: record.username,
+        transporter: { id: record.transporter, name: record.transporter_name },
       }));
     }
     setDisplayEditModal(!displayEditModal);
   };
 
-  const toggleDeleteModal = (object?: ISupplierMaster) => {
+  const toggleDeleteModal = (object?:FieldValues) => {
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
@@ -141,16 +131,19 @@ function SupplierMasterPage() {
   };
 
   const onSubmitAdd = (formValues: FieldValues) => {
-    dispatch(postSupplierMasterRequest(formValues as PostSupplierMasterRequestPayload));
+    const payload = formValues;
+    payload.transporter = formValues.transporter.id;
+    dispatch(postDriverRequest(payload as PostDriverRequestPayload));
     toggleAddModal();
   };
 
   const onSubmitEdit = (formValues: FieldValues) => {
-    const paramsToPass = formValues;
+    const payload = formValues;
     if (objectToEdit) {
-      paramsToPass.id = objectToEdit.id;
+      payload.id = objectToEdit.id;
     }
-    dispatch(putSupplierMasterRequest(paramsToPass as PutSupplierMasterRequestPayload));
+    payload.transporter = formValues.transporter.id;
+    dispatch(putDriverRequest(payload as PutDriverRequestPayload));
     toggleEditModal();
   };
 
@@ -159,7 +152,7 @@ function SupplierMasterPage() {
     if (objectToDelete) {
       paramsToPass.id = objectToDelete.id;
     }
-    dispatch(deleteSupplierMasterRequest(paramsToPass as DeleteSupplierMasterRequestPayload));
+    dispatch(deleteDriverRequest(paramsToPass as DeleteDriverRequestPayload));
     toggleDeleteModal();
   };
 
@@ -168,13 +161,13 @@ function SupplierMasterPage() {
     if (objectToEdit) {
       paramsToPass.id = objectToEdit.id;
     }
-    dispatch(deleteSupplierMasterRequest(paramsToPass as DeleteSupplierMasterRequestPayload));
+    dispatch(deleteDriverRequest(paramsToPass as DeleteDriverRequestPayload));
     toggleEditModal();
   };
 
   return (
     <>
-      <PageBody title={PageHeader.supplier_master}>
+      <PageBody title={PageHeader.driver_master}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
@@ -212,11 +205,11 @@ function SupplierMasterPage() {
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
-          <SupplierMasterForm
+          <DriverForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Supplier Master' : 'Edit Supplier Master'}
-            initialFormValue={displayAddModal ? clearValues : objectToEdit}
+            title={displayAddModal ? 'New Driver Master' : 'Edit Driver Master'}
+            initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? 'Add' : 'Edit'}
             onDelete={onDeleteSubmitEdit}
@@ -229,10 +222,10 @@ function SupplierMasterPage() {
         setCustomDialogContent
         // eslint-disable-next-line
         children={[
-          <SupplierMasterForm
+          <DriverForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Supplier Master"
+            title="Delete Driver Master"
             initialFormValue={objectToDelete}
             submitButtonText="Delete"
             mode="Delete"
@@ -243,4 +236,4 @@ function SupplierMasterPage() {
   );
 }
 
-export default SupplierMasterPage;
+export default DriverMasterPage;
