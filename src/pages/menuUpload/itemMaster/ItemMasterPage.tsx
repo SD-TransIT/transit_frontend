@@ -12,11 +12,13 @@ import {
   putItemRequest,
 } from 'stores/actions/item/itemActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
   DeleteItemRequestPayload, PostItemRequestPayload, PutItemRequestPayload,
 } from 'stores/types/itemType';
 import { getRequest } from 'utils/apiClient';
+import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import ItemForm from '../../../components/forms/item/ItemForm';
 import PageBody from '../../../components/shared/PageBody';
@@ -33,11 +35,6 @@ import itemColumns from './columnsItem';
 const clearValues: IItem = { id: undefined, name: '', conditions: '' };
 
 function ItemMasterPage() {
-  const DEFAULT_OFFSET = 10;
-  const FIRST_PAGE = 1;
-  const EMPTY_SEARCHER = '';
-  const itemUrl = 'item/';
-
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);

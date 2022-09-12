@@ -20,7 +20,7 @@ import ModeOfTransportActionTypes from '../actions/modeOfTransport/modeOfTranspo
 
 import refreshAccessToken from './utils';
 
-const modeOfTransportUrl = 'mode_of_transport/';
+export const modeOfTransportUrl = 'mode_of_transport/';
 
 function* getModeOfTransportSaga(action: any) {
   try {

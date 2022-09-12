@@ -16,7 +16,7 @@ import {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
-const customerTypeUrl = 'customer_type/';
+export const customerTypeUrl = 'customer_type/';
 
 function* getCustomerTypeSaga(action: any) {
   try {

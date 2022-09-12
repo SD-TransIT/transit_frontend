@@ -8,7 +8,7 @@ import TransporterActionTypes from 'stores/actions/transporter/transporterTypes'
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
-const transporterUrl = 'transporter/';
+export const transporterUrl = 'transporter/';
 
 function* getTransporterSaga(action: any) {
   try {

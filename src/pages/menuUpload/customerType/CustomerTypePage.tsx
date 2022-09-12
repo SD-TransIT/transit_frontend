@@ -20,6 +20,7 @@ import {
   putCustomerTypeRequest,
 } from 'stores/actions/customerType/customerTypeActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { customerTypeUrl } from 'stores/sagas/customerTypeSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
   DeleteCustomerTypeRequestPayload,
@@ -27,15 +28,11 @@ import {
   PutCustomerTypeRequestPayload,
 } from 'stores/types/customerType';
 import { getRequest } from 'utils/apiClient';
+import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import customerTypeColumns from './columnsCustomerType';
 
 function CustomerTypePage() {
-  const DEFAULT_OFFSET = 10;
-  const FIRST_PAGE = 1;
-  const EMPTY_SEARCHER = '';
-  const customerTypeUrl = 'customer_type/';
-
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);

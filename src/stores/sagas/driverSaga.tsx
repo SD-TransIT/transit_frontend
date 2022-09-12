@@ -16,7 +16,7 @@ import {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
-const driverUrl = 'driver/';
+export const driverUrl = 'driver/';
 
 function* getDriverSaga(action: any) {
   try {

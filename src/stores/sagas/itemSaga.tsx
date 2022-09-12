@@ -16,7 +16,7 @@ import {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
-const itemUrl = 'item/';
+export const itemUrl = 'item/';
 
 function* getItemSaga(action: any) {
   try {

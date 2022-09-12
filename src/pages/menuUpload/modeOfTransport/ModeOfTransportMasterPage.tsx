@@ -20,6 +20,7 @@ import {
   putModeOfTransportRequest,
 } from 'stores/actions/modeOfTransport/modeOfTransportAction';
 import { RootState } from 'stores/reducers/rootReducer';
+import { modeOfTransportUrl } from 'stores/sagas/modeOfTransport';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
   DeleteModeOfTransportRequestPayload,
@@ -36,7 +37,6 @@ function ModeOfTransportMasterPage() {
   const DEFAULT_OFFSET = 10;
   const FIRST_PAGE = 1;
   const EMPTY_SEARCHER = '';
-  const modeOfTransportUrl = 'mode_of_transport/';
 
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);

@@ -22,6 +22,7 @@ import {
   putSupplierMasterRequest,
 } from 'stores/actions/supplierMaster/supplierMasterActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { supplierUrl } from 'stores/sagas/supplierMasterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
   DeleteSupplierMasterRequestPayload,
@@ -29,15 +30,11 @@ import {
   PutSupplierMasterRequestPayload,
 } from 'stores/types/supplierMasterType';
 import { getRequest } from 'utils/apiClient';
+import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };
 
 function SupplierMasterPage() {
-  const DEFAULT_OFFSET = 10;
-  const FIRST_PAGE = 1;
-  const EMPTY_SEARCHER = '';
-  const supplierUrl = 'supplier/';
-
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);

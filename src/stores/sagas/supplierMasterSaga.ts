@@ -19,7 +19,7 @@ import {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
-const supplierUrl = 'supplier/';
+export const supplierUrl = 'supplier/';
 
 function* getSupplierMasterSaga(action: any) {
   try {

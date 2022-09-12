@@ -18,6 +18,7 @@ import {
   deleteDriverRequest, postDriverRequest, putDriverRequest,
 } from 'stores/actions/driver/driverActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { driverUrl } from 'stores/sagas/driverSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
   DeleteDriverRequestPayload,
@@ -32,7 +33,6 @@ function DriverMasterPage() {
   const DEFAULT_OFFSET = 10;
   const FIRST_PAGE = 1;
   const EMPTY_SEARCHER = '';
-  const driverUrl = 'driver/';
 
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);

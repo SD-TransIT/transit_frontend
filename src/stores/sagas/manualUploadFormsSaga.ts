@@ -8,7 +8,7 @@ import ManualUploadActionTypes from 'stores/actions/menuUpload/menuUploadTypes';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
-const availableFormsUrl = 'available_forms/';
+export const availableFormsUrl = 'available_forms/';
 
 function* getManualUploadFormsSaga() {
   try {
