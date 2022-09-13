@@ -1,15 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
 import menuOptions from 'components/header/menuOptions';
 import { Paths } from 'routes/paths';
+import { useIntl } from 'react-intl';
 
 const linkStyle = 'flex h-full items-center px-5 hover:bg-transit-green';
 
 function HeaderMenu() {
   const location = useLocation();
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const currentRoute: null | keyof typeof Paths = useMemo(() => {
     switch (true) {
@@ -45,7 +49,7 @@ function HeaderMenu() {
           )}
           to={menuOptions.dashboard.path}
         >
-          {menuOptions.dashboard.title}
+          {format(menuOptions.dashboard.title)}
         </Link>
       </div>
       <Link
@@ -61,7 +65,7 @@ function HeaderMenu() {
         )}
         to={menuOptions.reports.path}
       >
-        {menuOptions.reports.title}
+        {format(menuOptions.reports.title)}
       </Link>
       <Link
         data-testid="manual-upload-link"
@@ -76,7 +80,7 @@ function HeaderMenu() {
         )}
         to={menuOptions.manualUpload.path}
       >
-        {menuOptions.manualUpload.title}
+        {format(menuOptions.manualUpload.title)}
       </Link>
       <Link
         data-testid="excel-upload-link"
@@ -91,7 +95,7 @@ function HeaderMenu() {
         )}
         to={menuOptions.excelUpload.path}
       >
-        {menuOptions.excelUpload.title}
+        {format(menuOptions.excelUpload.title)}
       </Link>
     </div>
   );

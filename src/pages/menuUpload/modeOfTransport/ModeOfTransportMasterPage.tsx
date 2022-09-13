@@ -33,6 +33,7 @@ import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 import PageHeader from '../../types';
 
 import modeOfTransportColumns from './columnsModesOfTransport';
+import { useIntl } from 'react-intl';
 
 function ModeOfTransportMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -49,6 +50,9 @@ function ModeOfTransportMasterPage() {
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const dispatch = useDispatch();
 
@@ -207,7 +211,7 @@ function ModeOfTransportMasterPage() {
             title={displayAddModal ? 'New Mode of Transport Master' : 'Edit Mode of Transport Master'}
             initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}

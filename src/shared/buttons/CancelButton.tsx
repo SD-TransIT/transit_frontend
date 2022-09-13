@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
 
 import { CancelButtonType } from 'shared/buttons/types';
+import { useIntl } from 'react-intl';
 
 const style = 'cancel-button';
 
-function CancelButton({ onClick, title = 'Cancel', className }: CancelButtonType) {
+function CancelButton({ onClick, className }: CancelButtonType) {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   return (
     <button
       type="button"
@@ -14,7 +18,7 @@ function CancelButton({ onClick, title = 'Cancel', className }: CancelButtonType
       className={classNames(style, className)}
       data-testid="cancel-button"
     >
-      <p>{title}</p>
+      <p>{format('app.cancel')}</p>
     </button>
   );
 }

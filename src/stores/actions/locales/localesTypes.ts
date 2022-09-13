@@ -1,0 +1,7 @@
+enum LocaleActionTypes {
+    FETCH_LOCALE_REQUEST = 'FETCH_LOCALE_REQUEST',
+    FETCH_LOCALE_SUCCESS = 'FETCH_LOCALE_SUCCESS',
+    FETCH_LOCALE_FAILURE = 'FETCH_LOCALE_FAILURE'
+}
+
+export default LocaleActionTypes

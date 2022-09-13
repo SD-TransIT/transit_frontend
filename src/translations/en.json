@@ -1,0 +1,75 @@
+{
+    "hello": "Hello!",
+    "app.add": "Add",
+    "app.add_item": "Add Item",
+    "app.cancel": "Cancel",
+    "app.delete": "Delete",
+    "app.dashboard.label": "Dashboard",
+    "app.edit": "Edit",
+    "app.excel_upload.label": "Excel Upload",
+    "app.logout.label": "Logout",
+    "app.manual_upload.label": "Manual Upload",
+    "app.reports.label": "Reports",
+    "app.save": "Save",
+
+    "search.generate": "Generate",
+    "search.clear": "Clear",
+    "search.placeholder": "Enter Search String...",
+
+    "sign_in.create_an_account": "Create an account",
+    "sign_in.label": "Sign in",
+    "sign_in.massage": "Sign up on the internal platform",
+    "sign_in.not_registered": "Not registered?",
+    "sign_in.password.placeholder": "Password",
+    "sign_in.username.placeholder": "Username",
+
+    "supplier_master.header": "Supplier Master",
+
+    "table.of": "of",
+    "table.results.label": "Results",
+
+    "customer_type.header": "Customer Type",
+    "customer_master.header": "Customer Master",
+    "mode_of_transport.header": "Mode of Transport Master",
+    "item_master.header": "Item Master",
+    "item_details.header": "Item Details",
+    "transporter_details.header": "Transporter Details",
+    "driver_master.header": "Driver Master",
+    "order_details.header": "Order Details",
+    "shipment.header": "Shipment",
+    "cost_form.header": "Cost form",
+    "pod_variance.header": "POD Variance",
+
+    "supplier.column.id.label": "ID",
+    "supplier.column.name.label": "Supplier Name",
+    "supplier.column.address_1.label": "Address 1",
+    "supplier.column.address_2.label": "Address 2",
+    "supplier.column.address_3.label": "Address 3",
+    "supplier.column.city.label": "City",
+    "supplier.column.state.label": "State",
+    "supplier.column.country.label": "Country",
+    "supplier.column.email.label": "Email",
+    "supplier.column.phone_number.label": "Phone Number",
+    "supplier.column.gps.label": "GPS Coordinates",
+
+    "customer_type.column.id.label": "ID",
+    "customer_type.column.name": "Name",
+
+    "mode_of_transport.column.id.label": "ID",
+    "mode_of_transport.column.class.label": "Class",
+    "mode_of_transport.column.vehicle_type.label": "Vehicle Type",
+
+    "item_master.column.id.label": "ID",
+    "item_master.column.name.label": "Product Name",
+    "item_master.column.volume.label": "Volume (Cubic Meters)",
+    "item_master.column.cost.label": "Cost (Local Currency)",
+    "item_master.column.category.label": "Category",
+    "item_master.column.sub_category.label": "Sub-Category",
+    "item_master.column.weight.label": "Weight (Kgs)",
+    "item_master.column.conditions.label": "Ambience/Cold Chain",
+
+    "driver_master.column.id.label": "ID",
+    "driver_master.column.transport_name.label": "Transport Name",
+    "driver_master.column.driver_name.label": "Driver Name"
+
+}

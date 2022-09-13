@@ -165,7 +165,7 @@ function ItemForm({
         )}
       </div>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
-        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" title="Delete" /> }
+        {mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" />}
         <CancelButton onClick={onCancel} className="w-fit" />
         <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
       </div>

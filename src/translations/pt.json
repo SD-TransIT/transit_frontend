@@ -1,0 +1,42 @@
+{
+     "hello": "Oi!",
+     "app.add": "Adicionar",
+     "app.add_item": "Adicionar Item",
+     "app.cancel": "Cancelar",
+     "app.delete": "Excluir",
+     "app.dashboard.label": "Dashboard",
+     "app.edit": "Editar",
+     "app.excel_upload.label": "Upload do Excel",
+     "app.logout.label": "Sair",
+     "app.manual_upload.label": "Upload Manual",
+     "app.reports.label": "Relatórios",
+     "app.save": "Guardar",
+
+     "search.generate": "Gerar",
+     "search.clear": "Claro",
+     "search.placeholder": "Digite a string de pesquisa...",
+
+     "sign_in.create_an_account": "Crie a sua conta aqui",
+     "sign_in.label": "Entrar",
+     "sign_in.massage": "Inscreva-se na plataforma interna",
+     "sign_in.not_registered": "Não registrado?",
+     "sign_in.password.placeholder": "Senha",
+     "sign_in.username.placeholder": "Nome de usuário",
+
+     "supplier_master.header": "Mestre do fornecedor",
+
+     "table.of": "do",
+     "table.results.label": "Resultados",
+
+     "customer_type.header": "Mestre do tipo de cliente",
+     "customer_master.header": "Mestre do cliente",
+     "mode_of_transport.header": "Mestre De Transporte",
+     "item_master.header": "Item mestre",
+     "item_details.header": "Detalhes do item",
+     "transporter_details.header": "Detalhes do transportador",
+     "driver_master.header": "Mestre do motorista",
+     "order_details.header": "Detalhes do pedido",
+     "shipment.header": "Envio",
+     "cost_form.header": "Formulário de Custos",
+     "pod_variance.header": "Variação POD"
+}

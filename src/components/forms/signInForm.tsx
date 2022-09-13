@@ -14,18 +14,22 @@ import { fetchTokenRequest, refreshTokenRequest } from 'stores/actions/token/tok
 import { sessionToken } from 'stores/reducers/tokenReducer';
 import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'stores/types/tokenType';
 import isAuthenticated from 'utils/authHelper';
+import { useDispatch } from 'react-redux';
+import { fetchLocaleRequest, fetchLocaleSuccess } from 'stores/actions/locales/localesAction';
+import { FetchLocaleRequest } from 'stores/types/localesType';
 
 interface ISignInFormProps {
   signIn: (params: FetchTokenRequestPayload) => void;
   refresh: (params: RefreshTokenRequestPayload) => void;
+  dd: (params: FetchLocaleRequest) => void
 }
 
 type AuthAction = {
   type: string,
   error?: unknown
 };
-
-function SignInForm({ refresh, signIn }: ISignInFormProps) {
+// @ts-ignore
+function SignInForm({ refresh, signIn, dd }: ISignInFormProps) {
   const navigate = useNavigate();
 
   const callback = () => {
@@ -74,6 +78,11 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
     login(formValues as ITokenInput);
   };
 
+  const onLocaleChange = (event: any) => {
+    console.log('value', event.target.value)
+    dd(event.target.value)
+  }
+
   return (
     <div className="bg-transit-white m-auto w-full max-w-lg h-full max-h-96 rounded-lg py-8 px-4 gap-y-4">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,6 +129,13 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             <p>Not registered?</p>
             <a className="text-transit-green-dark text-decoration-line: underline" href="/">Create an account</a>
           </div>
+          <div>
+            <select onChange={onLocaleChange} >
+              <option value='en'>English</option>
+              <option value='fr'>French</option>
+              <option value='pt'>Portugese</option>
+            </select>
+          </div>
         </div>
       </form>
     </div>
@@ -129,6 +145,9 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, never, AuthAction>): ISignInFormProps => ({
   signIn: (params: FetchTokenRequestPayload) => dispatch(fetchTokenRequest(params)),
   refresh: (params: RefreshTokenRequestPayload) => dispatch(refreshTokenRequest(params)),
+  // @ts-ignore
+  dd: (params: FetchLocaleRequest) => dispatch(fetchLocaleRequest(params)),
+
 });
 
 export default connect(null, mapDispatchToProps)(SignInForm);

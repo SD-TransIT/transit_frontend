@@ -31,6 +31,7 @@ import {
 } from 'stores/types/supplierMasterType';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+import { useIntl } from 'react-intl';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };
 
@@ -49,6 +50,9 @@ function SupplierMasterPage() {
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const dispatch = useDispatch();
 
@@ -215,7 +219,7 @@ function SupplierMasterPage() {
             title={displayAddModal ? 'New Supplier Master' : 'Edit Supplier Master'}
             initialFormValue={displayAddModal ? clearValues : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}

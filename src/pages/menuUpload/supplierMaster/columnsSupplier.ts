@@ -6,7 +6,7 @@ const supplierColumns = [
     maxWidth: 30,
   },
   {
-    Header: 'SupplierName',
+    Header: `Supplier Name`,
     accessor: 'name',
   },
   {

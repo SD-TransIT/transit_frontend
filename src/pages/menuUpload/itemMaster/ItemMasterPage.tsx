@@ -4,6 +4,7 @@ import React, {
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -51,6 +52,9 @@ function ItemMasterPage() {
   const fetchIdRef = useRef(0);
 
   const dispatch = useDispatch();
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const {
     item,
@@ -215,7 +219,7 @@ function ItemMasterPage() {
             title={displayAddModal ? 'New Item Master' : 'Edit Item Master'}
             initialFormValue={displayAddModal ? clearValues : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}

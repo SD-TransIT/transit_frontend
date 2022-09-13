@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
 
 import { SubmitButtonType } from 'shared/buttons/types';
+import { useIntl } from 'react-intl';
 
 const style = 'submit-button';
 
-function SubmitButton({ onClick, title = 'Add', className }: SubmitButtonType) {
+function SubmitButton({ onClick, title, className }: SubmitButtonType) {
+
   return (
     <button
       type="button"

@@ -1,0 +1,78 @@
+{
+     "hello": "Bonżór!",
+
+     "app.add": "Ajouter",
+     "app.add_item": "Ajouter un article",
+     "app.cancel": "Annuler",
+     "app.dashboard.label": "Dashboard",
+     "app.delete": "Effacer",
+     "app.edit": "Éditer",
+     "app.excel_upload.label": "Téléchargement Excel",
+     "app.logout.label": "Connectez - Out",
+     "app.manual_upload.label": "Téléchargement manuel",
+     "app.reports.label": "Rapports",
+     "app.save": "Enregistrer",
+
+     "search.generate": "Générer",
+     "search.clear": "Clair",
+     "search.placeholder": "Entrez la chaîne de recherche...",
+
+     "sign_in.create_an_account": "Créer un compte",
+     "sign_in.label": "S'identifier",
+     "sign_in.massage": "Inscrivez-vous sur la plateforme interne",
+     "sign_in.not_registered": "Non enregistré?",
+     "sign_in.password.placeholder": "Mot de passe",
+     "sign_in.username.placeholder": "Nom d'utilisateur",
+
+     "supplier_master.header": "Fournisseur primaire",
+
+     "table.of": "de",
+     "table.results.label": "Résultats",
+
+     "customer_type.header": "Type de client",
+     "customer_master.header": "Fiche client",
+     "mode_of_transport.header": "Mode d'expédition standard",
+     "item_master.header": "Maître de l'article",
+     "item_details.header": "Détail de l'article",
+     "transporter_details.header": "Détails du convoyeur",
+     "driver_master.header": "Enregistrement du conducteur",
+     "order_details.header": "Commande / détail de la commande",
+     "shipment.header": "Chargement / Chargement / Expédition",
+     "cost_form.header": "Formulaire de coût",
+     "pod_variance.header": "Changement de lieu de livraison",
+
+     "supplier.column.id.label": "ID",
+     "supplier.column.name.label": "Nom du fournisseur",
+     "supplier.column.address_1.label": "Adresse 1",
+     "supplier.column.address_2.label": "Adresse 2",
+     "supplier.column.address_3.label": "Adresse 3",
+     "supplier.column.city.label": "Ville",
+     "supplier.column.state.label": "Etat",
+     "supplier.column.country.label": "Angola",
+     "supplier.column.email.label": "Email",
+     "supplier.column.phone_number.label": "Téléphone",
+     "supplier.column.gps.label": "Les coordonnées",
+
+     "customer_type.column.id.label": "ID",
+     "customer_type.column.name": "Prénom",
+
+     "mode_of_transport.column.id.label": "ID",
+     "mode_of_transport.column.class.label": "Classe",
+     "mode_of_transport.column.vehicle_type.label": "Type de véhicule",
+
+     "item_master.column.id.label": "ID",
+     "item_master.column.name.label": "Nom du produit",
+     "item_master.column.volume.label": "Le volume (Cubic Meters)",
+     "item_master.column.cost.label": "Coût (Monnaie locale)",
+     "item_master.column.category.label": "Catégorie",
+     "item_master.column.sub_category.label": "Sous-catégorie",
+     "item_master.column.weight.label": "Poids (Kgs)",
+     "item_master.column.conditions.label": "Ambience/Cold Chain",
+
+     "driver_master.column.id.label": "ID",
+     "driver_master.column.transport_name.label": "Nom du convoyeur",
+     "driver_master.column.driver_name.label": "Nom du conducteur"
+
+
+
+}
