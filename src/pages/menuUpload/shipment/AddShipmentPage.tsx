@@ -3,10 +3,10 @@ import React from 'react';
 import PageBody from 'components/shared/PageBody';
 import PageHeader from 'pages/types';
 
-function ShipmentPage() {
+function AddShipmentPage() {
   return (
-    <PageBody title={PageHeader.shipment}>{null}</PageBody>
+    <PageBody title={PageHeader.shipment_add}>{null}</PageBody>
   );
 }
 
-export default ShipmentPage;
+export default AddShipmentPage;

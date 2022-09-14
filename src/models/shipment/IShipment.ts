@@ -1,0 +1,31 @@
+export interface IShipment {
+  id?: number | undefined;
+  driver_name?: string;
+  transporter_name?: string;
+  vehicle_number?: string;
+  customer_name?: string;
+  order_names?: string [];
+  orders?: string [];
+  last_modified_date?: string;
+  ship_date?: string;
+  expected_delivery_date?: string;
+  delivery_date?: string;
+  timestamp?: string;
+  pod?: boolean;
+  delay_justified?: boolean;
+  transporter_base_cost?: string;
+  number_of_kilometers?: string;
+  transporter_per_diem?: string;
+  transporter_additional_cost?: string;
+  shipment_status?: number;
+  custom_route_number?: string;
+  gps_coordinates?: string;
+  description?: string;
+  ropo_number?: string;
+  signed_by?: string;
+  transporter_details: number;
+  driver: number;
+  supplier: number;
+  delivery_status: string;
+  pod_status: string;
+}

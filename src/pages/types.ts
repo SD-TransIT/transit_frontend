@@ -10,6 +10,8 @@ enum PageHeader {
   driver_master = 'Driver Master',
   order_details = 'Order Details',
   shipment = 'Shipment',
+  shipment_add = 'New Shipment',
+  shipment_edit = 'Edit Shipment',
   cost_form = 'Cost Form',
   pod_variance = 'POD Variance',
 }
