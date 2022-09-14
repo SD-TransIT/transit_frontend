@@ -6,22 +6,20 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
+import { defaultLocale, locale, messages } from '_tests_/test-utils';
 import SignInPage from 'pages/signIn/SignInPage';
+import { Paths } from 'routes/paths';
 import store from 'stores/store';
-import en from 'translations/en.json';
 
 describe('Unit tests for the SignInPage component.', () => {
   const SIGN_IN_PAGE_TEST_ID = 'sign-in-page';
-
-  const locale = 'en';
-  const messages = { en };
 
   test('Should match snapshot.', () => {
     render(
       <Provider store={store}>
         <CookiesProvider>
-          <MemoryRouter initialEntries={[{ pathname: '/sign_in', search: '/' }]}>
-            <IntlProvider locale={locale} defaultLocale="en" messages={messages[locale]}>
+          <MemoryRouter initialEntries={[{ pathname: Paths.sign_in, search: '/' }]}>
+            <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages[locale]}>
               <SignInPage />
             </IntlProvider>
           </MemoryRouter>

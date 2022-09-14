@@ -10,20 +10,20 @@ import pt from 'translations/pt.json';
 
 import 'styles/global.css';
 
-export const messages = {
-  en,
-  fr,
-  pt,
-};
+export const messages = { en, fr, pt };
 
 function App() {
   const [cookies] = useCookies();
 
+  const EN = 'en';
+
   return (
     <IntlProvider
-      locale={cookies.language.value}
+      locale={cookies.language === undefined ? EN : cookies.language.value}
       defaultLocale="en"
-      messages={messages[cookies.language.value as keyof typeof messages]}
+      messages={messages[cookies.language === undefined
+        ? EN : cookies.language.value as keyof typeof messages
+      ]}
     >
       <div className="bg-transit-grey w-screen h-screen">
         <RoutesConfig />

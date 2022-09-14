@@ -3,9 +3,8 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
-import MockObserverImplementation from '_tests_/test-utils';
+import MockObserverImplementation, { defaultLocale, locale, messages } from '_tests_/test-utils';
 import Dialog from 'shared/dialog/Dialog';
-import en from 'translations/en.json';
 
 describe('Unit test for the Dialog component.', () => {
   const DIALOG_TEST_ID = 'dialog';
@@ -16,9 +15,6 @@ describe('Unit test for the Dialog component.', () => {
   const mockOnClose = jest.fn();
   const mockOnAdd = jest.fn();
   const mockOnCancel = jest.fn();
-
-  const locale = 'en';
-  const messages = { en };
 
   beforeAll(() => {
     window.IntersectionObserver = MockObserverImplementation;
@@ -33,7 +29,7 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should match snapshot when Dialog has add and cancel button.', async () => {
     render(
-      <IntlProvider locale={locale} defaultLocale="en" messages={messages[locale]}>
+      <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages[locale]}>
         <Dialog
           isOpen
           setCustomDialogContent={false}
@@ -55,7 +51,7 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should call the onCancelClick function after clicking the "Cancel" button.', () => {
     render(
-      <IntlProvider locale={locale} defaultLocale="en" messages={messages[locale]}>
+      <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages[locale]}>
         <Dialog
           isOpen
           setCustomDialogContent={false}

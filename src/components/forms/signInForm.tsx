@@ -25,7 +25,7 @@ type AuthAction = {
   type: string,
   error?: unknown
 };
-// @ts-ignore
+
 function SignInForm({ refresh, signIn }: ISignInFormProps) {
   const navigate = useNavigate();
 
