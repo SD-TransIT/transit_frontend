@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import { FieldValues, useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,9 +25,12 @@ type AuthAction = {
   type: string,
   error?: unknown
 };
-
+// @ts-ignore
 function SignInForm({ refresh, signIn }: ISignInFormProps) {
   const navigate = useNavigate();
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const callback = () => {
     navigate(Paths.landing);
@@ -79,8 +83,8 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <p className="text-2xl">Sign in</p>
-            <p className="text-sm text-transit-black-light">Sign up on the internal platform</p>
+            <p className="text-2xl">{format('sign_in.label')}</p>
+            <p className="text-sm text-transit-black-light">{format('sign_in.massage')}</p>
           </div>
           <div className="h-12">
             <Input
@@ -88,12 +92,12 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               {...register('username', { required: true })}
               name="username"
               id="floatingInput"
-              placeholder="Username"
+              placeholder={format('sign_in.username.placeholder')}
               type="text"
               isInvalid={Boolean(errors.username)}
             />
             <div className="pb-2">
-              {errors.username && <ValidationError value="This field is required" />}
+              {errors.username && <ValidationError value={format('validation.error.field_required')} />}
             </div>
           </div>
           <div className="h-12">
@@ -102,23 +106,23 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               {...register('password', { required: true })}
               name="password"
               id="floatingInput"
-              placeholder="Password"
+              placeholder={format('sign_in.password.placeholder')}
               type="password"
               isInvalid={Boolean(errors.password)}
             />
             <div className="pb-2">
-              {errors.password && <ValidationError value="This field is required" />}
+              {errors.password && <ValidationError value={format('validation.error.field_required')} />}
             </div>
           </div>
           <div className="h-12">
             <SubmitButton
               onClick={handleSubmit(onSubmit)}
-              title="Sign in"
+              title={format('sign_in.label')}
             />
           </div>
           <div className="flex flex-row gap-px">
-            <p>Not registered?</p>
-            <a className="text-transit-green-dark text-decoration-line: underline" href="/">Create an account</a>
+            <p>{format('sign_in.not_registered')}</p>
+            <a className="text-transit-green-dark text-decoration-line: underline" href="/">{format('sign_in.create_an_account')}</a>
           </div>
         </div>
       </form>

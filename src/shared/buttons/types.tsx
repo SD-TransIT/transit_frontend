@@ -6,13 +6,11 @@ export type SubmitButtonType = {
 
 export type CancelButtonType = {
   onClick: () => void,
-  title?: string,
   className?: string
 };
 
 export type ClearButtonType = {
   onClick: () => void,
-  title?: string,
   className?: string
 };
 
@@ -26,12 +24,10 @@ export type PaginationButtonType = {
 export type AddItemButtonType = {
   onClick: () => void,
   children: React.ReactNode,
-  title?: string
   className?: string
 };
 
 export type DeleteButtonType = {
   onClick: () => void,
-  title?: string,
   className?: string
 };

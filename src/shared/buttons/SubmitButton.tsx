@@ -6,7 +6,7 @@ import { SubmitButtonType } from 'shared/buttons/types';
 
 const style = 'submit-button';
 
-function SubmitButton({ onClick, title = 'Add', className }: SubmitButtonType) {
+function SubmitButton({ onClick, title, className }: SubmitButtonType) {
   return (
     <button
       type="button"

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 
 import { AddItemButtonType } from 'shared/buttons/types';
 
 const style = 'add-item';
 
 function AddItemButton({
-  onClick, children, title = 'Add Item', className,
+  onClick, children, className,
 }: AddItemButtonType) {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   return (
     <button
       type="button"
@@ -16,7 +20,7 @@ function AddItemButton({
       className={classNames(style, className)}
     >
       {children}
-      <p className="pl-1">{title}</p>
+      <p className="pl-1">{format('app.add_item')}</p>
     </button>
   );
 }
