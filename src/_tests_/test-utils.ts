@@ -1,3 +1,5 @@
+import en from 'translations/en.json';
+
 // Mocked intersection observer for Headless UI Dialog component.
 export default class MockObserverImplementation {
   readonly root: Element | null;
@@ -22,3 +24,8 @@ export default class MockObserverImplementation {
 
   unobserve() {}
 }
+
+// Const values for Intl provider.
+export const locale = 'en';
+export const messages = { en };
+export const defaultLocale = "en"

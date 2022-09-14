@@ -2,16 +2,16 @@ import { Menu } from 'components/header/types';
 import { Paths } from 'routes/paths';
 
 const menuOptions: Menu = {
-  dashboard: { id: 'dashboard', title: 'Dashboard', path: Paths.dashboard },
-  reports: { id: 'reports', title: 'Reports', path: Paths.reports },
+  dashboard: { id: 'dashboard', title: 'app.dashboard.label', path: Paths.dashboard },
+  reports: { id: 'reports', title: 'app.reports.label', path: Paths.reports },
   manualUpload: {
     id: 'manual_upload',
-    title: 'Manual Upload',
+    title: 'app.manual_upload.label',
     path: Paths.manual_upload,
   },
   excelUpload: {
     id: 'excel_upload',
-    title: 'Excel Upload',
+    title: 'app.excel_upload.label',
     path: Paths.excel_upload,
   },
 };

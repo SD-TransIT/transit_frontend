@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 
 import { ClearButtonType } from 'shared/buttons/types';
 
 const style = 'clear-button';
 
-function ClearButton({ onClick, title = 'Clear', className }: ClearButtonType) {
+function ClearButton({ onClick, className }: ClearButtonType) {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   return (
     <button
       type="button"
@@ -14,7 +18,7 @@ function ClearButton({ onClick, title = 'Clear', className }: ClearButtonType) {
       className={classNames(style, className)}
       data-testid="clear-button"
     >
-      <p className="text-center">{title}</p>
+      <p className="text-center">{format('search.clear')}</p>
     </button>
   );
 }

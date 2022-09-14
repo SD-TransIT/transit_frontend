@@ -4,6 +4,7 @@ import React, {
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SupplierMasterForm from 'components/forms/supplierMaster/SupplierMasterForm';
@@ -12,7 +13,6 @@ import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
-import supplierColumns from 'pages/menuUpload/supplierMaster/columnsSupplier';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
@@ -50,9 +50,59 @@ function SupplierMasterPage() {
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
 
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => supplierColumns, []);
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: 'ID',
+      accessor: 'id',
+      width: 30,
+      maxWidth: 30,
+    },
+    {
+      Header: format('supplier_master.name.label'),
+      accessor: 'name',
+    },
+    {
+      Header: format('supplier_master.address_1.label'),
+      accessor: 'address_1',
+    },
+    {
+      Header: format('supplier_master.address_2.label'),
+      accessor: 'address_2',
+    },
+    {
+      Header: format('supplier_master.address_3.label'),
+      accessor: 'address_3',
+    },
+    {
+      Header: format('supplier_master.city.label'),
+      accessor: 'city',
+    },
+    {
+      Header: format('supplier_master.state.label'),
+      accessor: 'state',
+    },
+    {
+      Header: format('supplier_master.country.label'),
+      accessor: 'country',
+    },
+    {
+      Header: format('supplier_master.email.label'),
+      accessor: 'email',
+    },
+    {
+      Header: format('supplier_master.phone_number.label'),
+      accessor: 'phone',
+    },
+    {
+      Header: format('supplier_master.gps.label'),
+      accessor: 'latitude_longitude',
+    },
+  ], [format]);
 
   const {
     supplierMaster,
@@ -171,13 +221,16 @@ function SupplierMasterPage() {
 
   return (
     <>
-      <PageBody title={PageHeader.supplier_master}>
+      <PageBody title={format(PageHeader.supplier_master)}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
         {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
-            <p>0 Results</p>
+            <p>
+              0
+              {format('app.results')}
+            </p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -196,7 +249,7 @@ function SupplierMasterPage() {
             defaultOffset={DEFAULT_OFFSET}
             currentPage={page}
           >
-            <p>{`${numberOfAvailableData} Results`}</p>
+            <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -212,10 +265,10 @@ function SupplierMasterPage() {
           <SupplierMasterForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Supplier Master' : 'Edit Supplier Master'}
+            title={displayAddModal ? `${format('app.new')} ${format('supplier_master.header')}` : `${format('app.edit')} ${format('supplier_master.header')}`}
             initialFormValue={displayAddModal ? clearValues : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}
@@ -229,9 +282,9 @@ function SupplierMasterPage() {
           <SupplierMasterForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Supplier Master"
+            title={`${format('app.delete')} ${format('supplier')}`}
             initialFormValue={objectToDelete}
-            submitButtonText="Delete"
+            submitButtonText={format('app.delete')}
             mode="Delete"
           />,
         ]}

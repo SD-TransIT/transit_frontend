@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import { useIntl } from 'react-intl';
 
 import PageBody from 'components/shared/PageBody';
 import PageHeader from 'pages/types';
 
 function CostFormPage() {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   return (
-    <PageBody title={PageHeader.cost_form}>{null}</PageBody>
+    <PageBody title={format(PageHeader.cost_form)}>{null}</PageBody>
   );
 }
 
