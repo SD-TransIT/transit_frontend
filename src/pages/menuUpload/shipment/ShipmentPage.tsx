@@ -84,7 +84,7 @@ function ShipmentPage() {
       accessor: 'pod_status',
     },
     {
-      Header: format('shipment.pod_status.label'),
+      Header: format('shipment.pod.label'),
       accessor: 'pod',
     },
     {
