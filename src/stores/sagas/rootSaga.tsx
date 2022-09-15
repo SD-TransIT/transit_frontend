@@ -10,6 +10,7 @@ import tokenSaga from 'stores/sagas/tokenSaga';
 import TransporterSaga from 'stores/sagas/transporterSaga';
 
 import customerMasterSaga from './customerMasterSaga';
+import ShipmentSaga from './shipmentSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     fork(TransporterSaga),
     fork(ItemSaga),
     fork(modeOfTransportSaga),
+    fork(ShipmentSaga),
     fork(customerMasterSaga),
   ]);
 }

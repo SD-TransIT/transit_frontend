@@ -10,6 +10,7 @@ import tokenReducer from 'stores/reducers/tokenReducer';
 import transporterReducer from 'stores/reducers/transporterReducer';
 
 import customerMasterReducer from './customerMasterReducer';
+import shipmentReducer from './shipmentReducer';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   transporter: transporterReducer,
   item: itemReducer,
   modeOfTransport: modeOfTransportReducer,
+  shipment: shipmentReducer,
   customerMaster: customerMasterReducer,
 });
 

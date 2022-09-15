@@ -9,6 +9,8 @@ enum PageHeader {
   transporter_details = 'transporter_details.header',
   driver_master = 'driver_master.header',
   order_details = 'order_details.header',
+  shipment_add = 'shipment.add.header',
+  shipment_edit = 'shipment.edit.header',
   shipment = 'shipment.header',
   cost_form = 'cost_form.header',
   pod_variance = 'pod_variance.header',

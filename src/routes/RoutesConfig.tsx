@@ -17,7 +17,9 @@ import ManualUploadPage from 'pages/menuUpload/MenuUploadPage';
 import ModeOfTransportMasterPage from 'pages/menuUpload/modeOfTransport/ModeOfTransportMasterPage';
 import OrderDetailsPage from 'pages/menuUpload/OrderDetailsPage';
 import PODVariancePage from 'pages/menuUpload/PODVariancePage';
-import ShipmentPage from 'pages/menuUpload/ShipmentPage';
+import AddShipmentPage from 'pages/menuUpload/shipment/AddShipmentPage';
+import EditShipmentPage from 'pages/menuUpload/shipment/EditShipmentPage';
+import ShipmentPage from 'pages/menuUpload/shipment/ShipmentPage';
 import SupplierMasterPage from 'pages/menuUpload/supplierMaster/SupplierMasterPage';
 import TransportDetailsPage from 'pages/menuUpload/TransportDetailsPage';
 import ReportsPage from 'pages/reports/reports';
@@ -129,6 +131,18 @@ function RoutesConfig() {
         path={Paths.shipment_details}
         element={
           <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<ShipmentPage />} />
+          }
+      />
+      <Route
+        path={Paths.shipment_details_add}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<AddShipmentPage />} />
+          }
+      />
+      <Route
+        path={Paths.shipment_details_edit}
+        element={
+          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<EditShipmentPage />} />
           }
       />
       <Route

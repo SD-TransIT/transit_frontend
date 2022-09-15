@@ -18,6 +18,8 @@ export enum Paths {
   driver_master = `/manual_upload/driver`,
   order_details = `/manual_upload/order_details`,
   shipment_details = `/manual_upload/shipment_details`,
+  shipment_details_add = `/manual_upload/shipment_details/add`,
+  shipment_details_edit = `/manual_upload/shipment_details/edit`,
   cost_form = `/manual_upload/cost`,
   pod_variance = `/manual_upload/pod_variance`,
 }
