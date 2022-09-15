@@ -10,6 +10,7 @@ import tokenSaga from 'stores/sagas/tokenSaga';
 import TransporterSaga from 'stores/sagas/transporterSaga';
 
 import customerMasterSaga from './customerMasterSaga';
+import ItemDetailSaga from './itemDetailSaga';
 import ShipmentSaga from './shipmentSaga';
 
 export default function* rootSaga() {
@@ -24,5 +25,6 @@ export default function* rootSaga() {
     fork(modeOfTransportSaga),
     fork(ShipmentSaga),
     fork(customerMasterSaga),
+    fork(ItemDetailSaga),
   ]);
 }
