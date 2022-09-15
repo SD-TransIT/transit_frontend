@@ -36,59 +36,59 @@ function ShipmentPage() {
 
   const columns: ColumnType[] = React.useMemo(() => [
     {
-      Header: format('shipment.label.shipment_number'),
+      Header: format('shipment.shipment_number.label'),
       accessor: 'id',
       width: 100,
       maxWidth: 100,
     },
     {
-      Header: format('shipment.label.transporter_name'),
+      Header: format('shipment.transporter_name.label'),
       accessor: 'transporter_name',
     },
     {
-      Header: format('shipment.label.driver_name'),
+      Header: format('shipment.driver_name.label'),
       accessor: 'driver_name',
     },
     {
-      Header: format('shipment.label.vehicle_number'),
+      Header: format('shipment.vehicle_number.label'),
       accessor: 'vehicle_number',
     },
     {
-      Header: format('shipment.label.ship_date'),
+      Header: format('shipment.ship_date.label'),
       accessor: 'ship_date',
       width: 250,
       maxWidth: 250,
     },
     {
-      Header: format('shipment.label.expected_delivery_date'),
+      Header: format('shipment.expected_delivery_date.label'),
       accessor: 'expected_delivery_date',
       width: 250,
       maxWidth: 250,
     },
     {
-      Header: format('shipment.label.custom_route_number'),
+      Header: format('shipment.custom_route_number.label'),
       accessor: 'custom_route_number',
     },
     {
-      Header: format('shipment.label.custom_route_number'),
+      Header: format('shipment.delay_justified.label'),
       accessor: 'delay_justified',
     },
     {
-      Header: format('shipment.label.delivery_date'),
+      Header: format('shipment.delivery_date.label'),
       accessor: 'delivery_date',
       width: 250,
       maxWidth: 250,
     },
     {
-      Header: format('shipment.label.pod_status'),
+      Header: format('shipment.pod_status.label'),
       accessor: 'pod_status',
     },
     {
-      Header: format('shipment.label.pod_status'),
+      Header: format('shipment.pod_status.label'),
       accessor: 'pod',
     },
     {
-      Header: format('shipment.label.customer_name'),
+      Header: format('shipment.customer_name.label'),
       accessor: 'customer_name',
     },
   ], [format]);
