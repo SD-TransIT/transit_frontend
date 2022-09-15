@@ -11,7 +11,7 @@ import CostFormPage from 'pages/menuUpload/CostFormPage';
 import CustomerMasterPage from 'pages/menuUpload/customerMaster/CustomerMasterPage';
 import CustomerTypePage from 'pages/menuUpload/customerType/CustomerTypePage';
 import DriverMasterPage from 'pages/menuUpload/driver/DriverMasterPage';
-import ItemDetailsPage from 'pages/menuUpload/ItemDetailsPage';
+import ItemDetailsPage from 'pages/menuUpload/itemDetail/ItemDetailPage';
 import ItemMasterPage from 'pages/menuUpload/itemMaster/ItemMasterPage';
 import ManualUploadPage from 'pages/menuUpload/MenuUploadPage';
 import ModeOfTransportMasterPage from 'pages/menuUpload/modeOfTransport/ModeOfTransportMasterPage';
