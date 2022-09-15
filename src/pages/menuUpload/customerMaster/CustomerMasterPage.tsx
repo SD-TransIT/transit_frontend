@@ -93,8 +93,6 @@ function CustomerMasterPage() {
     },
   ], [format]);
 
-  // const dispatch = useDispatch();
-
   const {
     customer,
   } = useSelector(
