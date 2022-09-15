@@ -108,7 +108,7 @@ function* deleteItemDetailSaga(action: any) {
   }
 }
 
-function* ItemDetailSaga() {
+function* itemDetailSaga() {
   yield all([takeLatest(ItemDetailActionTypes.GET_ITEM_DETAIL_REQUEST, getItemDetailSaga)]);
   yield all([takeLatest(ItemDetailActionTypes.POST_ITEM_DETAIL_REQUEST, postItemDetailSaga)]);
   yield all([takeLatest(ItemDetailActionTypes.PUT_ITEM_DETAIL_REQUEST, putItemDetailSaga)]);
@@ -118,4 +118,4 @@ function* ItemDetailSaga() {
   )]);
 }
 
-export default ItemDetailSaga;
+export default itemDetailSaga;
