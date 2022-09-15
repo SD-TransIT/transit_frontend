@@ -14,7 +14,6 @@ function Dialog({
   onSubmitClick,
   onCancelClick,
   customSubmitButtonTitle,
-  customCancelButtonTitle,
 } : DialogType) {
   const initialFocusRef = useRef(null);
 
@@ -44,7 +43,7 @@ function Dialog({
                     </div>
                     <div className="flex justify-between gap-3 text-xl">
                       {onCancelClick && (
-                      <CancelButton onClick={onCancelClick} title={customCancelButtonTitle} />
+                        <CancelButton onClick={onCancelClick} />
                       )}
                       {onSubmitClick && (
                       <SubmitButton onClick={onSubmitClick} title={customSubmitButtonTitle} />

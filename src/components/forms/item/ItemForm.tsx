@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 import Select, { GroupBase } from 'react-select';
 
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
@@ -30,6 +31,9 @@ function ItemForm({
     formState: { errors },
   } = useForm({ defaultValues: initialFormValue });
 
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   return (
     <>
       <div className="bg-transit-white w-full rounded-lg pt-4">
@@ -46,21 +50,21 @@ function ItemForm({
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">Item Name</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_master.name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('name', { required: true })}
                     name="name"
                     id="floatingInput"
-                    placeholder="Supplier Name"
+                    placeholder={format('item_master.name.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
-                  {errors.name && <ValidationError value="This field is required" />}
+                  {errors.name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium">Volume (Cubic Meters)</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.volume.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('volume', {
@@ -68,15 +72,15 @@ function ItemForm({
                     })}
                     name="volume"
                     id="floatingInput"
-                    placeholder="Volume"
+                    placeholder={format('item_master.volume.placeholder')}
                     type="text"
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.volume)}
                   />
-                  {errors.volume && errors.volume.type === 'validate' && <ValidationError value="Please enter a number" />}
+                  {errors.volume && errors.volume.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium">Cost (Local Currency)</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.cost.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register(('cost'), {
@@ -84,17 +88,17 @@ function ItemForm({
                     })}
                     name="cost"
                     id="floatingInput"
-                    placeholder="Cost"
+                    placeholder={format('item_master.cost.placeholder')}
                     type="text"
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.cost)}
                   />
-                  {errors.cost && errors.cost.type === 'validate' && <ValidationError value="Please enter a number" />}
+                  {errors.cost && errors.cost.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
                 </div>
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium">Weight (Kgs)</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.weight.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register(('weight'), {
@@ -102,33 +106,33 @@ function ItemForm({
                     })}
                     name="weight"
                     id="floatingInput"
-                    placeholder="Weight"
+                    placeholder={format('item_master.weight.placeholder')}
                     type="text"
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.weight)}
                   />
-                  {errors.weight && errors.weight.type === 'validate' && <ValidationError value="Please enter a number" />}
+                  {errors.weight && errors.weight.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium ">Category</p>
+                  <p className="text-xs text-transit-black-secondary font-medium ">{format('item_master.category.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('category')}
                     name="category"
                     id="floatingInput"
-                    placeholder="Category"
+                    placeholder={format('item_master.category.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium">Sub Category</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.sub_category.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('sub_category')}
                     name="sub_category"
                     id="floatingInput"
-                    placeholder="Sub Category"
+                    placeholder={format('item_master.sub_category.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
                   />
@@ -136,7 +140,7 @@ function ItemForm({
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2" style={{ width: '207px' }}>
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">Conditions</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_master.conditions.label')}</p>
                   <Controller
                     rules={{ required: true }}
                     control={control}
@@ -151,7 +155,7 @@ function ItemForm({
                         value={value}
                         onChange={onChange}
                         options={conditionsOptions}
-                        placeholder="Conditions"
+                        placeholder={format('item_master.conditions.label')}
                         className={classNames({ 'border border-transit-red rounded': Boolean(errors.conditions) })}
                       />
                     )}
@@ -165,7 +169,7 @@ function ItemForm({
         )}
       </div>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
-        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" title="Delete" /> }
+        {mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" />}
         <CancelButton onClick={onCancel} className="w-fit" />
         <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
       </div>

@@ -4,6 +4,7 @@ import React, {
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
@@ -30,8 +31,6 @@ import {
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
-import customerTypeColumns from './columnsCustomerType';
-
 function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
@@ -48,7 +47,21 @@ function CustomerTypePage() {
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
 
-  const columns: ColumnType[] = React.useMemo(() => customerTypeColumns, []);
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: 'ID',
+      accessor: 'id',
+      width: 40,
+      maxWidth: 40,
+    },
+    {
+      Header: format('customer_type.column.name'),
+      accessor: 'customer_type_name',
+    },
+  ], [format]);
 
   const dispatch = useDispatch();
 
@@ -160,13 +173,16 @@ function CustomerTypePage() {
 
   return (
     <>
-      <PageBody title={PageHeader.customer_type}>
+      <PageBody title={format(PageHeader.customer_type)}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
         {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
-            <p>0 Results</p>
+            <p>
+              0
+              {format('app.results')}
+            </p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -185,7 +201,7 @@ function CustomerTypePage() {
             defaultOffset={DEFAULT_OFFSET}
             currentPage={page}
           >
-            <p>{`${numberOfAvailableData} Results`}</p>
+            <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -201,10 +217,10 @@ function CustomerTypePage() {
           <CustomerTypeForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Customer Type' : 'Edit Customer Type'}
+            title={displayAddModal ? `${format('app.new')} ${format('customer_type.header')}` : `${format('app.edit')} ${format('customer_type.header')}`}
             initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}
@@ -218,9 +234,9 @@ function CustomerTypePage() {
           <CustomerTypeForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Customer Type"
+            title={`${format('app.delete')} ${format('customer_type')}`}
             initialFormValue={objectToDelete}
-            submitButtonText="Delete"
+            submitButtonText={format('app.delete')}
             mode="Delete"
           />,
         ]}

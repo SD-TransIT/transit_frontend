@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { FiSearch } from 'react-icons/fi';
+import { useIntl } from 'react-intl';
 
 import ClearButton from 'shared/buttons/ClearButton';
 import SubmitButton from 'shared/buttons/SubmitButton';
@@ -17,6 +18,9 @@ function Searcher({ refetch }: SearcherProps) {
     handleSubmit,
     reset,
   } = useForm();
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const onSubmit = (formValues: FieldValues) => {
     refetch(formValues);
@@ -36,7 +40,7 @@ function Searcher({ refetch }: SearcherProps) {
               type="search"
               id="default-search"
               className="p-2 pl-10 text-sm rounded-lg"
-              placeholder="Enter Search String..."
+              placeholder={format('search.placeholder')}
             />
           </div>
           <div className="flex flex-row gap-4">
@@ -50,7 +54,7 @@ function Searcher({ refetch }: SearcherProps) {
             />
             <SubmitButton
               onClick={handleSubmit(onSubmit)}
-              title="Generate"
+              title={format('search.generate')}
             />
           </div>
         </div>
