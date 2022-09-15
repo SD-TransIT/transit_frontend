@@ -8,7 +8,7 @@ import DashboardPage from 'pages/dashboard/dashboard';
 import ExcelUploadPage from 'pages/excelUpload/excelUpload';
 import LandingPage from 'pages/landing/LandingPage';
 import CostFormPage from 'pages/menuUpload/CostFormPage';
-import CustomerMasterPage from 'pages/menuUpload/CustomerMasterPage';
+import CustomerMasterPage from 'pages/menuUpload/customerMaster/CustomerMasterPage';
 import CustomerTypePage from 'pages/menuUpload/customerType/CustomerTypePage';
 import DriverMasterPage from 'pages/menuUpload/driver/DriverMasterPage';
 import ItemDetailsPage from 'pages/menuUpload/ItemDetailsPage';

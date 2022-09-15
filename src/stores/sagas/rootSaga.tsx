@@ -9,6 +9,8 @@ import supplierMasterSaga from 'stores/sagas/supplierMasterSaga';
 import tokenSaga from 'stores/sagas/tokenSaga';
 import TransporterSaga from 'stores/sagas/transporterSaga';
 
+import customerMasterSaga from './customerMasterSaga';
+
 export default function* rootSaga() {
   yield all([
     fork(tokenSaga),
@@ -19,5 +21,6 @@ export default function* rootSaga() {
     fork(TransporterSaga),
     fork(ItemSaga),
     fork(modeOfTransportSaga),
+    fork(customerMasterSaga),
   ]);
 }
