@@ -8,8 +8,9 @@ import modeOfTransportSaga from 'stores/sagas/modeOfTransport';
 import supplierMasterSaga from 'stores/sagas/supplierMasterSaga';
 import tokenSaga from 'stores/sagas/tokenSaga';
 import TransporterSaga from 'stores/sagas/transporterSaga';
-import ShipmentSaga from './shipmentSaga';
+
 import customerMasterSaga from './customerMasterSaga';
+import ShipmentSaga from './shipmentSaga';
 
 export default function* rootSaga() {
   yield all([

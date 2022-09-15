@@ -8,8 +8,9 @@ import modeOfTransportReducer from 'stores/reducers/modeOfTransport';
 import supplierMasterReducer from 'stores/reducers/supplierMasterReducer';
 import tokenReducer from 'stores/reducers/tokenReducer';
 import transporterReducer from 'stores/reducers/transporterReducer';
-import shipmentReducer from './shipmentReducer';
+
 import customerMasterReducer from './customerMasterReducer';
+import shipmentReducer from './shipmentReducer';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
