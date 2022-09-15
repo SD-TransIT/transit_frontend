@@ -1,6 +1,3 @@
-// import ItemActionTypes from 'stores/actions/item/itemTypes';
-// import { ItemActions, ItemState } from 'stores/types/itemType';
-
 import ItemDetailActionTypes from 'stores/actions/item_detail/itemDetailTypes';
 import { ItemDetailActions, ItemDetailState } from 'stores/types/itemDetailType';
 
