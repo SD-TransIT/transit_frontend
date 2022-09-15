@@ -10,6 +10,7 @@ import tokenReducer from 'stores/reducers/tokenReducer';
 import transporterReducer from 'stores/reducers/transporterReducer';
 
 import customerMasterReducer from './customerMasterReducer';
+import itemDetailReducer from './itemDetailReducer';
 import shipmentReducer from './shipmentReducer';
 
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   modeOfTransport: modeOfTransportReducer,
   shipment: shipmentReducer,
   customerMaster: customerMasterReducer,
+  itemDetail: itemDetailReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

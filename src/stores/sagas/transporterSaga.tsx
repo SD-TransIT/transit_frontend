@@ -24,8 +24,8 @@ function* getTransporterSaga(action: any) {
   }
 }
 
-function* TransporterSaga() {
+function* transporterSaga() {
   yield all([takeLatest(TransporterActionTypes.GET_TRANSPORTER_REQUEST, getTransporterSaga)]);
 }
 
-export default TransporterSaga;
+export default transporterSaga;

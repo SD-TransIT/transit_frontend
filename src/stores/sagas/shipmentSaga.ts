@@ -99,7 +99,7 @@ function* deleteShipmentSaga(action: any) {
   }
 }
 
-function* ShipmentSaga() {
+function* shipmentSaga() {
   yield all([takeLatest(ShipmentActionTypes.GET_SHIPMENT_REQUEST, getShipmentSaga)]);
   yield all([takeLatest(ShipmentActionTypes.POST_SHIPMENT_REQUEST, postShipmentSaga)]);
   yield all([takeLatest(ShipmentActionTypes.PUT_SHIPMENT_REQUEST, putShipmentSaga)]);
@@ -109,4 +109,4 @@ function* ShipmentSaga() {
   )]);
 }
 
-export default ShipmentSaga;
+export default shipmentSaga;
