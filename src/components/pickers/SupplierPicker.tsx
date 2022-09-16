@@ -4,14 +4,13 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
+import { supplierUrl } from 'stores/sagas/supplierMasterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
-import { TransporterPickerProp } from './types';
+import { SupplierPickerProp } from './types';
 
-const transporterUrl = 'transporter/';
-
-function TransporterPicker({ field, isInvalid }: TransporterPickerProp) {
+function SupplierPicker({ field, isInvalid }: SupplierPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -21,7 +20,7 @@ function TransporterPicker({ field, isInvalid }: TransporterPickerProp) {
     { page } : any,
   ) => {
     await refreshAccessToken();
-    const response = await getRequest(transporterUrl, { page, searcher: searchQuery }, true);
+    const response = await getRequest(supplierUrl, { page, searcher: searchQuery }, true);
     const isNext: boolean = response.next !== null;
 
     return {
@@ -37,17 +36,17 @@ function TransporterPicker({ field, isInvalid }: TransporterPickerProp) {
     <AsyncPaginate
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...field}
-      placeholder={format('transporter')}
+      placeholder={format('supplier_master')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
       }}
-      getOptionLabel={(transporter: any) => transporter.name}
-      getOptionValue={(transporter: any) => transporter.id}
+      getOptionLabel={(supplier: any) => supplier.name}
+      getOptionValue={(supplier: any) => supplier.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded': isInvalid })}
     />
   );
 }
 
-export default TransporterPicker;
+export default SupplierPicker;

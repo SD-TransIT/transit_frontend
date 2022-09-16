@@ -9,6 +9,9 @@ import DeleteButton from '../../../shared/buttons/DeleteButton';
 import SubmitButton from '../../../shared/buttons/SubmitButton';
 
 import ShipmentBaseData from './ShipmentBaseData';
+import ShipmentDetailsData from './ShipmentDetailsData';
+import ShipmentImagesData from './ShipmentImagesData';
+import ShipmentOrderData from './ShipmentOrderData';
 import ShipmentFormType from './types';
 
 function ShipmentForm({
@@ -20,6 +23,8 @@ function ShipmentForm({
     handleSubmit,
     // eslint-disable-next-line
     formState: { errors },
+    watch,
+    setValue,
   } = useForm({ defaultValues: initialFormValue });
 
   return (
@@ -32,13 +37,37 @@ function ShipmentForm({
               control={control}
               register={register}
               errors={errors}
+              watch={watch}
+              setValue={setValue}
             />
-
+            <ShipmentOrderData
+              control={control}
+              register={register}
+              errors={errors}
+              watch={watch}
+              setValue={setValue}
+            />
+            <p className="float-left text-[21px] text-transit-black font-semibold">Delivery Details</p>
+            <ShipmentDetailsData
+              control={control}
+              register={register}
+              errors={errors}
+              watch={watch}
+              setValue={setValue}
+            />
+            <p className="float-left text-[21px] text-transit-black font-semibold" />
+            <ShipmentImagesData
+              control={control}
+              register={register}
+              errors={errors}
+              watch={watch}
+              setValue={setValue}
+            />
           </div>
         </form>
       </div>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
-        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" title="Delete" /> }
+        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" /> }
         <CancelButton onClick={onCancel} className="w-fit" />
         <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
       </div>
