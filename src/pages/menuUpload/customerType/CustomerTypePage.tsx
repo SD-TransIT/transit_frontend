@@ -1,11 +1,11 @@
 import React, {
-  useCallback, useRef, useState,
+  useCallback, useEffect, useRef, useState,
 } from 'react';
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CustomerTypeForm from 'components/forms/customerType/CustomerTypeForm';
 import PageBody from 'components/shared/PageBody';
@@ -20,6 +20,7 @@ import {
   postCustomerTypeRequest,
   putCustomerTypeRequest,
 } from 'stores/actions/customerType/customerTypeActions';
+import { RootState } from 'stores/reducers/rootReducer';
 import { customerTypeUrl } from 'stores/sagas/customerTypeSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import {
@@ -64,6 +65,12 @@ function CustomerTypePage() {
 
   const dispatch = useDispatch();
 
+  const {
+    customerType,
+  } = useSelector(
+    (state: RootState) => state.customerType,
+  );
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -92,6 +99,15 @@ function CustomerTypePage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (customerType !== undefined) {
+      setPage(FIRST_PAGE);
+      setSearcher(EMPTY_SEARCHER);
+      fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [customerType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

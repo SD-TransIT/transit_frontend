@@ -12,6 +12,6 @@ export interface ICustomerMaster {
   state?: string;
   country?: string;
   latitude_longitude?: string;
-  customer_type: number | undefined;
+  customer_type: number;
   customer_type_name: string
 }

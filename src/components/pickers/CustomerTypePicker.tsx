@@ -36,6 +36,7 @@ const customStyles = {
 function CustomerTypePicker({ field, isInvalid }: PickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
     loadedOptions: any,

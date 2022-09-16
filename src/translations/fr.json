@@ -1,23 +1,23 @@
 {
-     "app.add": "Ajouter",
-     "app.add_item": "Ajouter un article",
-     "app.cancel": "Annuler",
-     "app.delete": "Effacer",
-     "app.dashboard.label": "Dashboard",
-     "app.details.label": "Détails",
-     "app.edit": "Éditer",
-     "app.excel_upload.label": "Téléchargement Excel",
-     "app.logout.label": "Connectez - Out",
-     "app.manual_upload.label": "Téléchargement manuel",
-     "app.reports.label": "Rapports",
-     "app.save": "Enregistrer",
-     "app.new": "Nouveau",
-     "app.id": "ID",
-     "app.results": "Résultats",
-     "app.confirm.message": "Êtes-vous sûr de bien vouloir supprimer cet élément?",
+    "app.add": "Ajouter",
+    "app.add_item": "Ajouter un article",
+    "app.cancel": "Annuler",
+    "app.delete": "Effacer",
+    "app.dashboard.label": "Dashboard",
+    "app.details.label": "Détails",
+    "app.edit": "Éditer",
+    "app.excel_upload.label": "Téléchargement Excel",
+    "app.logout.label": "Connectez - Out",
+    "app.manual_upload.label": "Téléchargement manuel",
+    "app.reports.label": "Rapports",
+    "app.save": "Enregistrer",
+    "app.new": "Nouveau",
+    "app.id": "ID",
+    "app.results": "Résultats",
+    "app.confirm.message": "Êtes-vous sûr de bien vouloir supprimer cet élément?",
 
-     "cost": "Formulaire de coût",
-     "cost_form.header": "Formulaire de coût",
+    "cost": "Formulaire de coût",
+    "cost_form.header": "Formulaire de coût",
 
     "customer": "Fiche client",
     "customer_master.header": "Fiche client",
@@ -89,15 +89,15 @@
     "mode_of_transport.class.label": "Classe",
     "mode_of_transport.vehicle_type.label": "Type de véhicule",
 
-     "order_details": "Commande / détail de la commande",
-     "order_details.header": "Commande / détail de la commande",
+    "order_details": "Commande / détail de la commande",
+    "order_details.header": "Commande / détail de la commande",
 
-     "pod_variance": "Changement de lieu de livraison",
-     "pod_variance.header": "Changement de lieu de livraison",
+    "pod_variance": "Changement de lieu de livraison",
+    "pod_variance.header": "Changement de lieu de livraison",
 
-     "search.generate": "Générer",
-     "search.clear": "Clair",
-     "search.placeholder": "Entrez la chaîne de recherche...",
+    "search.generate": "Générer",
+    "search.clear": "Clair",
+    "search.placeholder": "Entrez la chaîne de recherche...",
 
     "sign_in.create_an_account": "Créer un compte",
     "sign_in.label": "S'identifier",
@@ -148,6 +148,6 @@
     "transporter_details.column.name.label": "Nom du transporteur",
     "transporter_details.column.driver.label": "Nom du conducteur",
 
-     "validation.error.field_required": "Ce champ est requis",
-     "validation.error.field_number": "Veuillez saisir un chiffre"
+    "validation.error.field_required": "Ce champ est requis",
+    "validation.error.field_number": "Veuillez saisir un chiffre"
 }
