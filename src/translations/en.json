@@ -4,6 +4,7 @@
     "app.cancel": "Cancel",
     "app.delete": "Delete",
     "app.dashboard.label": "Dashboard",
+    "app.details.label": "Details",
     "app.edit": "Edit",
     "app.excel_upload.label": "Excel Upload",
     "app.logout.label": "Logout",

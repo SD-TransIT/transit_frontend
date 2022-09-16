@@ -120,7 +120,7 @@ function DriverMasterPage() {
     setDisplayAddModal(!displayAddModal);
   };
 
-  const toggleEditModal = (object?:FieldValues, datas?:any) => {
+  const toggleEditModal = (object?: FieldValues, datas?: any) => {
     if (object && object.id !== undefined) {
       const record = datas.find((data_record:any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({
