@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { FieldValues } from 'react-hook-form';
 
 import { useIntl } from 'react-intl';
 

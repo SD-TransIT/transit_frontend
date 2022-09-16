@@ -90,7 +90,7 @@ export const putCustomerMasterFailure = (
   payload,
 });
 
-export const deleteCustomerTypeRequest = (
+export const deleteCustomerMasterRequest = (
   payload: DeleteCustomerMasterRequestPayload,
 ): DeleteCustomerMasterRequest => ({
   type: CustomerMasterActionTypes.DELETE_CUSTOMER_MASTER_REQUEST,

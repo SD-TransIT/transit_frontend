@@ -1,7 +1,14 @@
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 
+import { ICustomerMaster } from 'models/customerMaster/ICustomerMaster';
+import { IDriver } from 'models/driver/IDriver';
+
 export type TransporterPickerProp = {
   field: ControllerRenderProps<FieldValues, 'transporter'>;
+  isInvalid: boolean;
+};
+export type PickerProp = {
+  field: ControllerRenderProps<ICustomerMaster, 'customer_type'> | ControllerRenderProps<IDriver, 'transporter'>
   isInvalid: boolean;
 };
 
