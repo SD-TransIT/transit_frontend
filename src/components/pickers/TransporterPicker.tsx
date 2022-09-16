@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
+import { IDriver } from 'models/driver/IDriver';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
@@ -10,7 +12,31 @@ import { PickerProp } from './types';
 
 const transporterUrl = 'transporter/';
 
+const customStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    background: '#fff',
+    border: 'none',
+    minHeight: '34px',
+    height: '34px',
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: '#B8BBBF',
+    },
+    fontSize: '14px',
+    overflow: 'hidden',
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: '#9ca3af',
+    fontSize: 14,
+  }),
+};
+
 function TransporterPicker({ field, isInvalid }: PickerProp) {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
     loadedOptions: any,
@@ -33,15 +59,16 @@ function TransporterPicker({ field, isInvalid }: PickerProp) {
     <AsyncPaginate
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...field}
-      placeholder="Transporter"
+      placeholder={format('driver_master.transporter.label')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
       }}
-      getOptionLabel={(transporter: any) => transporter.name}
+      getOptionLabel={(transporter: IDriver) => transporter.name}
       getOptionValue={(transporter: any) => transporter.id}
       isClearable
-      className={classNames({ 'border border-transit-red rounded': isInvalid })}
+      className={classNames({ 'border border-transit-red rounded': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      styles={customStyles}
     />
   );
 }
