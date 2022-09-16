@@ -4,13 +4,12 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
-import { IDriver } from 'models/driver/IDriver';
+import { ICustomerMaster } from 'models/customerMaster/ICustomerMaster';
+import { customerTypeUrl } from 'stores/sagas/customerTypeSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
 import { PickerProp } from './types';
-
-const transporterUrl = 'transporter/';
 
 const customStyles = {
   control: (provided: any) => ({
@@ -19,6 +18,7 @@ const customStyles = {
     border: 'none',
     minHeight: '34px',
     height: '34px',
+    maxWidth: '205px',
     boxShadow: 'none',
     '&:hover': {
       borderColor: '#B8BBBF',
@@ -33,7 +33,7 @@ const customStyles = {
   }),
 };
 
-function TransporterPicker({ field, isInvalid }: PickerProp) {
+function CustomerTypePicker({ field, isInvalid }: PickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -43,7 +43,7 @@ function TransporterPicker({ field, isInvalid }: PickerProp) {
     { page } : any,
   ) => {
     await refreshAccessToken();
-    const response = await getRequest(transporterUrl, { page, searcher: searchQuery }, true);
+    const response = await getRequest(customerTypeUrl, { page, searcher: searchQuery }, true);
     const isNext: boolean = response.next !== null;
 
     return {
@@ -54,23 +54,22 @@ function TransporterPicker({ field, isInvalid }: PickerProp) {
       },
     };
   };
-
   return (
     <AsyncPaginate
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...field}
-      placeholder={format('driver_master.transporter.label')}
+      placeholder={format('customer_type')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
       }}
-      getOptionLabel={(transporter: IDriver) => transporter.name}
-      getOptionValue={(transporter: any) => transporter.id}
+      getOptionLabel={(customerType: ICustomerMaster) => customerType.customer_type_name}
+      getOptionValue={(customerType: any) => customerType.id}
       isClearable
-      className={classNames({ 'border border-transit-red rounded': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
       styles={customStyles}
     />
   );
 }
 
-export default TransporterPicker;
+export default CustomerTypePicker;
