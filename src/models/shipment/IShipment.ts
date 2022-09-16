@@ -1,5 +1,5 @@
 export interface IShipment {
-  id?: number | undefined;
+  id?: number;
   driver_name?: string;
   transporter_name?: string;
   vehicle_number?: string;

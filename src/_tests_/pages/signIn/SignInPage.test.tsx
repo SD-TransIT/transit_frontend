@@ -1,10 +1,14 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
+import { CookiesProvider } from 'react-cookie';
+import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
+import { defaultLocale, locale, messages } from '_tests_/test-utils';
 import SignInPage from 'pages/signIn/SignInPage';
+import { Paths } from 'routes/paths';
 import store from 'stores/store';
 
 describe('Unit tests for the SignInPage component.', () => {
@@ -13,9 +17,13 @@ describe('Unit tests for the SignInPage component.', () => {
   test('Should match snapshot.', () => {
     render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={[{ pathname: '/sign_in', search: '/' }]}>
-          <SignInPage />
-        </MemoryRouter>
+        <CookiesProvider>
+          <MemoryRouter initialEntries={[{ pathname: Paths.sign_in, search: '/' }]}>
+            <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages[locale]}>
+              <SignInPage />
+            </IntlProvider>
+          </MemoryRouter>
+        </CookiesProvider>
       </Provider>,
     );
 

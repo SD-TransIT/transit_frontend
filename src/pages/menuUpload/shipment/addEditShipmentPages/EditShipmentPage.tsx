@@ -3,10 +3,10 @@ import React from 'react';
 import PageBody from 'components/shared/PageBody';
 import PageHeader from 'pages/types';
 
-function ItemDetailsPage() {
+function EditShipmentPage() {
   return (
-    <PageBody title={PageHeader.item_details}>{null}</PageBody>
+    <PageBody title={PageHeader.shipment_edit}>{null}</PageBody>
   );
 }
 
-export default ItemDetailsPage;
+export default EditShipmentPage;

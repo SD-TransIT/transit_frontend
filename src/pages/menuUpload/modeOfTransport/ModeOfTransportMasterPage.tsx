@@ -4,6 +4,7 @@ import React, {
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ModeOfTransportForm from 'components/forms/modeOfTransport/ModeOfTransportForm';
@@ -32,8 +33,6 @@ import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import PageHeader from '../../types';
 
-import modeOfTransportColumns from './columnsModesOfTransport';
-
 function ModeOfTransportMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
@@ -50,9 +49,27 @@ function ModeOfTransportMasterPage() {
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
 
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => modeOfTransportColumns, []);
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: 'ID',
+      accessor: 'id',
+      width: 30,
+      maxWidth: 30,
+    },
+    {
+      Header: format('mode_of_transport.class.label'),
+      accessor: 'class_mode',
+    },
+    {
+      Header: format('mode_of_transport.vehicle_type.label'),
+      accessor: 'vehicle_type',
+    },
+  ], [format]);
 
   const {
     mode,
@@ -163,13 +180,16 @@ function ModeOfTransportMasterPage() {
 
   return (
     <>
-      <PageBody title={PageHeader.mode_of_transport_master}>
+      <PageBody title={format(PageHeader.mode_of_transport_master)}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
         {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
-            <p>0 Results</p>
+            <p>
+              0
+              {format('app.results')}
+            </p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -188,7 +208,7 @@ function ModeOfTransportMasterPage() {
             defaultOffset={DEFAULT_OFFSET}
             currentPage={page}
           >
-            <p>{`${numberOfAvailableData} Results`}</p>
+            <p>{`${numberOfAvailableData} ${format('app.results')} `}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -204,10 +224,10 @@ function ModeOfTransportMasterPage() {
           <ModeOfTransportForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Mode of Transport Master' : 'Edit Mode of Transport Master'}
+            title={displayAddModal ? `${format('app.new')} ${format('mode_of_transport.header')}` : `${format('app.edit')} ${format('mode_of_transport.header')}`}
             initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}
@@ -221,9 +241,9 @@ function ModeOfTransportMasterPage() {
           <ModeOfTransportForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Mode of Transport"
+            title={`${format('app.delete')} ${format('mode_of_transport')}`}
             initialFormValue={objectToDelete}
-            submitButtonText="Delete"
+            submitButtonText={format('app.delete')}
             mode="Delete"
           />,
         ]}

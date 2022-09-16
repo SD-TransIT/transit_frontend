@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
 
-import MockObserverImplementation from '_tests_/test-utils';
+import MockObserverImplementation, { defaultLocale, locale, messages } from '_tests_/test-utils';
 import Dialog from 'shared/dialog/Dialog';
 
 describe('Unit test for the Dialog component.', () => {
@@ -28,15 +29,19 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should match snapshot when Dialog has add and cancel button.', async () => {
     render(
-      <Dialog
-        isOpen
-        setCustomDialogContent={false}
-        onClose={mockOnClose}
-        onSubmitClick={mockOnAdd}
-        onCancelClick={mockOnCancel}
-      >
-        {mockDialogBody}
-      </Dialog>,
+      <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages[locale]}>
+        <Dialog
+          isOpen
+          setCustomDialogContent={false}
+          onClose={mockOnClose}
+          onSubmitClick={mockOnAdd}
+          onCancelClick={mockOnCancel}
+          customSubmitButtonTitle="Add"
+        >
+          {mockDialogBody}
+        </Dialog>
+        ,
+      </IntlProvider>,
     );
     expect(screen.getByTestId(DIALOG_BODY_TEST_ID)).toHaveTextContent(mockDialogBody);
     expect(screen.getByTestId(ADD_BUTTON_TEST_ID)).toHaveTextContent('Add');
@@ -46,14 +51,17 @@ describe('Unit test for the Dialog component.', () => {
 
   test('Should call the onCancelClick function after clicking the "Cancel" button.', () => {
     render(
-      <Dialog
-        isOpen
-        setCustomDialogContent={false}
-        onClose={mockOnClose}
-        onCancelClick={mockOnCancel}
-      >
-        {mockDialogBody}
-      </Dialog>,
+      <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages[locale]}>
+        <Dialog
+          isOpen
+          setCustomDialogContent={false}
+          onClose={mockOnClose}
+          onCancelClick={mockOnCancel}
+        >
+          {mockDialogBody}
+        </Dialog>
+        ,
+      </IntlProvider>,
     );
     fireEvent.click(screen.getByTestId(CANCEL_BUTTON_TEST_ID));
     expect(mockOnCancel).toBeCalled();

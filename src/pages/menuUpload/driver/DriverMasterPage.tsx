@@ -4,6 +4,7 @@ import React, {
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DriverForm from 'components/forms/driver/DriverForm';
@@ -28,8 +29,6 @@ import {
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
-import driverColumns from './columnsDriver';
-
 function DriverMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
@@ -48,7 +47,25 @@ function DriverMasterPage() {
 
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => driverColumns, []);
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: 'ID',
+      accessor: 'id',
+      width: 30,
+      maxWidth: 30,
+    },
+    {
+      Header: format('transporter_details.column.name.label'),
+      accessor: 'transporter_name',
+    },
+    {
+      Header: format('transporter_details.column.driver.label'),
+      accessor: 'name',
+    },
+  ], [format]);
 
   const {
     driver,
@@ -164,13 +181,16 @@ function DriverMasterPage() {
 
   return (
     <>
-      <PageBody title={PageHeader.driver_master}>
+      <PageBody title={format(PageHeader.driver_master)}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
         {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
-            <p>0 Results</p>
+            <p>
+              0
+              {format('app.results')}
+            </p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -189,7 +209,7 @@ function DriverMasterPage() {
             defaultOffset={DEFAULT_OFFSET}
             currentPage={page}
           >
-            <p>{`${numberOfAvailableData} Results`}</p>
+            <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -205,10 +225,10 @@ function DriverMasterPage() {
           <DriverForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Driver Master' : 'Edit Driver Master'}
+            title={displayAddModal ? `${format('app.new')} ${format('driver_master.header')}` : `${format('app.edit')} ${format('driver_master.header')}`}
             initialFormValue={displayAddModal ? {} : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}
@@ -222,9 +242,9 @@ function DriverMasterPage() {
           <DriverForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Driver Master"
+            title={`${format('app.delete')} ${format('driver')}`}
             initialFormValue={objectToDelete}
-            submitButtonText="Delete"
+            submitButtonText={format('app.delete')}
             mode="Delete"
           />,
         ]}

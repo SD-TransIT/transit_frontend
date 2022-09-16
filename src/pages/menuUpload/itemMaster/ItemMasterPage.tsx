@@ -4,6 +4,7 @@ import React, {
 
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -30,8 +31,6 @@ import AddItemButton from '../../../shared/buttons/AddItemButton';
 import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
 
-import itemColumns from './columnsItem';
-
 const clearValues: IItem = { id: undefined, name: '', conditions: '' };
 
 function ItemMasterPage() {
@@ -52,13 +51,51 @@ function ItemMasterPage() {
 
   const dispatch = useDispatch();
 
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const {
     item,
   } = useSelector(
     (state: RootState) => state.item,
   );
 
-  const columns: ColumnType[] = React.useMemo(() => itemColumns, []);
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: format('item_master.column.id.label'),
+      accessor: 'id',
+      width: 80,
+      maxWidth: 80,
+    },
+    {
+      Header: format('item_master.column.name.label'),
+      accessor: 'name',
+    },
+    {
+      Header: format('item_master.volume.label'),
+      accessor: 'volume',
+    },
+    {
+      Header: format('item_master.cost.label'),
+      accessor: 'cost',
+    },
+    {
+      Header: format('item_master.category.label'),
+      accessor: 'category',
+    },
+    {
+      Header: format('item_master.sub_category.label'),
+      accessor: 'sub_category',
+    },
+    {
+      Header: format('item_master.weight.label'),
+      accessor: 'weight',
+    },
+    {
+      Header: format('item_master.column.conditions.label'),
+      accessor: 'conditions',
+    },
+  ], [format]);
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
@@ -171,13 +208,16 @@ function ItemMasterPage() {
 
   return (
     <>
-      <PageBody title={PageHeader.item_master}>
+      <PageBody title={format(PageHeader.item_master)}>
         <div className="p-4 bg-transit-white">
           <Searcher refetch={refetch} />
         </div>
         {data === undefined ? (
           <Table columns={columns} data={[{ }]}>
-            <p>0 Results</p>
+            <p>
+              0
+              {format('app.results')}
+            </p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -196,7 +236,7 @@ function ItemMasterPage() {
             defaultOffset={DEFAULT_OFFSET}
             currentPage={page}
           >
-            <p>{`${numberOfAvailableData} Results`}</p>
+            <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
             <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
@@ -212,10 +252,10 @@ function ItemMasterPage() {
           <ItemForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? 'New Item Master' : 'Edit Item Master'}
+            title={displayAddModal ? `${format('app.new')} ${format('item_master.header')}` : `${format('app.edit')} ${format('item_master.header')}`}
             initialFormValue={displayAddModal ? clearValues : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
-            submitButtonText={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
           />,
         ]}
@@ -229,9 +269,9 @@ function ItemMasterPage() {
           <ItemForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title="Delete Item Master"
+            title={`${format('app.delete')} ${format('item')}`}
             initialFormValue={objectToDelete}
-            submitButtonText="Delete"
+            submitButtonText={format('app.delete')}
             mode="Delete"
           />,
         ]}

@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,8 +20,6 @@ import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
-import shipmentColumns from './columnsShipment';
-
 function ShipmentPage() {
   const navigate = useNavigate();
 
@@ -32,8 +31,67 @@ function ShipmentPage() {
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => shipmentColumns, []);
+  const columns: ColumnType[] = React.useMemo(() => [
+    {
+      Header: format('shipment.shipment_number.label'),
+      accessor: 'id',
+      width: 100,
+      maxWidth: 100,
+    },
+    {
+      Header: format('shipment.transporter_name.label'),
+      accessor: 'transporter_name',
+    },
+    {
+      Header: format('shipment.driver_name.label'),
+      accessor: 'driver_name',
+    },
+    {
+      Header: format('shipment.vehicle_number.label'),
+      accessor: 'vehicle_number',
+    },
+    {
+      Header: format('shipment.ship_date.label'),
+      accessor: 'ship_date',
+      width: 250,
+      maxWidth: 250,
+    },
+    {
+      Header: format('shipment.expected_delivery_date.label'),
+      accessor: 'expected_delivery_date',
+      width: 250,
+      maxWidth: 250,
+    },
+    {
+      Header: format('shipment.custom_route_number.label'),
+      accessor: 'custom_route_number',
+    },
+    {
+      Header: format('shipment.delay_justified.label'),
+      accessor: 'delay_justified',
+    },
+    {
+      Header: format('shipment.delivery_date.label'),
+      accessor: 'delivery_date',
+      width: 250,
+      maxWidth: 250,
+    },
+    {
+      Header: format('shipment.pod_status.label'),
+      accessor: 'pod_status',
+    },
+    {
+      Header: format('shipment.pod.label'),
+      accessor: 'pod',
+    },
+    {
+      Header: format('shipment.customer_name.label'),
+      accessor: 'customer_name',
+    },
+  ], [format]);
 
   const {
     shipment,
@@ -85,13 +143,16 @@ function ShipmentPage() {
   };
 
   return (
-    <PageBody title={PageHeader.shipment}>
+    <PageBody title={format(PageHeader.shipment)}>
       <div className="p-4 bg-transit-white">
         <Searcher refetch={refetch} />
       </div>
       {data === undefined ? (
         <Table columns={columns} data={[{ }]}>
-          <p>0 Results</p>
+          <p>
+            0
+            {format('app.results')}
+          </p>
           <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
@@ -109,7 +170,7 @@ function ShipmentPage() {
           defaultOffset={DEFAULT_OFFSET}
           currentPage={page}
         >
-          <p>{`${numberOfAvailableData} Results`}</p>
+          <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
           <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>

@@ -29,14 +29,12 @@ function DatePickerCustomInput({ onClick, onChange, value }: DatePickerCustomInp
 
 function DatePick({ currentDate, onChange }: DatePickType) {
   return (
-    <div className="w-72 h-11 m-20">
-      <DatePicker
-        selected={currentDate}
-        onChange={onChange}
-        className="date-picker"
-        customInput={<DatePickerCustomInput />}
-      />
-    </div>
+    <DatePicker
+      selected={currentDate}
+      onChange={onChange}
+      className="date-picker"
+      customInput={<DatePickerCustomInput />}
+    />
   );
 }
 

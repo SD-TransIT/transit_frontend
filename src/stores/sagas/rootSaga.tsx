@@ -2,14 +2,16 @@ import { all, fork } from 'redux-saga/effects';
 
 import customerTypeSaga from 'stores/sagas/customerTypeSaga';
 import driverSaga from 'stores/sagas/driverSaga';
-import ItemSaga from 'stores/sagas/itemSaga';
+import itemSaga from 'stores/sagas/itemSaga';
 import manualUploadFormsSaga from 'stores/sagas/manualUploadFormsSaga';
 import modeOfTransportSaga from 'stores/sagas/modeOfTransport';
 import supplierMasterSaga from 'stores/sagas/supplierMasterSaga';
 import tokenSaga from 'stores/sagas/tokenSaga';
-import TransporterSaga from 'stores/sagas/transporterSaga';
+import transporterSaga from 'stores/sagas/transporterSaga';
 
-import ShipmentSaga from './shipmentSaga';
+import customerMasterSaga from './customerMasterSaga';
+import itemDetailSaga from './itemDetailSaga';
+import shipmentSaga from './shipmentSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -18,9 +20,11 @@ export default function* rootSaga() {
     fork(manualUploadFormsSaga),
     fork(driverSaga),
     fork(supplierMasterSaga),
-    fork(TransporterSaga),
-    fork(ItemSaga),
+    fork(transporterSaga),
+    fork(itemSaga),
     fork(modeOfTransportSaga),
-    fork(ShipmentSaga),
+    fork(shipmentSaga),
+    fork(customerMasterSaga),
+    fork(itemDetailSaga),
   ]);
 }
