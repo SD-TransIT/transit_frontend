@@ -14,12 +14,29 @@ import {
   putCustomerWeekDaysSuccess,
 } from 'stores/actions/customerWeekDays/customerWeekDaysActions';
 import CustomerWeekDaysActionTypes from 'stores/actions/customerWeekDays/customerWeekDaysTypes';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import {
-  deleteRequest, getRequest, postRequest, putRequest,
+import apiClient, {
+  deleteRequest, getRequest, postRequest,
 } from 'utils/apiClient';
 
 export const customerWeekDaysUrl = 'customer_week_days/';
+
+const putRequest = async (url: string, payload: object, id: number) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.put(
+    // to change url when backend will be ready
+    `${url}${id}/`,
+    payload,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
 
 function* getCustomerWeekDaysSaga(action: any) {
   try {

@@ -7,10 +7,8 @@ import AddItemButton from 'shared/buttons/AddItemButton';
 
 import { EditableTableTypes } from '../types';
 
-const headers = [{ name: 'Day' }, { name: 'Closed' }, { name: 'Openint Time' }, { name: 'Closing Time' }];
-
 function EditableTable({
-  tableTitle, buttonTitle, children, onAddButtonClick,
+  tableTitle, buttonTitle, children, onAddButtonClick, columnHeaders,
 }: EditableTableTypes) {
   return (
     <div className="flex flex-col w-full pb-6">
@@ -23,9 +21,9 @@ function EditableTable({
         )}
       </div>
       <div className="w-full flex flex-row justify-around px-8 content-center bg-transit-grey-light">
-        {headers.map((header) => (
+        {columnHeaders.map((header) => (
           <div className="flex w-full h-12 items-center">
-            <p className="">{header.name}</p>
+            <p className="">{header.label}</p>
           </div>
         ))}
       </div>

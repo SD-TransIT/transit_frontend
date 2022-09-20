@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 
 import { RiDeleteBin7Line } from 'react-icons/ri';
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 
@@ -16,24 +17,13 @@ import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 import dayNumberToLabel from 'utils/dayNumberToLabel';
 
-const options = [
-  { value: 1, label: 'Monday' },
-  { value: 2, label: 'Tuesday' },
-  { value: 3, label: 'Wednesday' },
-  { value: 4, label: 'Thursday' },
-  { value: 5, label: 'Friday' },
-  { value: 6, label: 'Saturday' },
-  { value: 7, label: 'Sunday' },
-];
-
 type Props = {
   customerId: any,
-  customerWeekDays: any,
   onDeliveryHoursChange: (deliveryHours: any) => void,
 };
 
 function CustomerMasterDeliveryHours(
-  { customerWeekDays, onDeliveryHoursChange, customerId }: Props,
+  { onDeliveryHoursChange, customerId }: Props,
 ) {
   const [, setPageCount] = useState(0);
   const [, setNumberOfAvailableData] = useState(0);
@@ -45,7 +35,27 @@ function CustomerMasterDeliveryHours(
   const fetchIdRef = useRef(0);
 
   const [deliveryHours, setDeliveryHours] = useState<any[]>([]);
-  console.log('customerWeekDays', customerWeekDays);
+
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const options = [
+    { value: 1, label: format('day.monday.label') },
+    { value: 2, label: format('day.tuesday.label') },
+    { value: 3, label: format('day.wednesday.label') },
+    { value: 4, label: format('day.thursday.label') },
+    { value: 5, label: format('day.friday.label') },
+    { value: 6, label: format('day.saturday.label') },
+    { value: 7, label: format('day.sunday.label') },
+  ];
+
+  const columnHeaders = [
+    { label: format('customer_master.day.label') },
+    { label: format('customer_master.closed.label') },
+    { label: format('customer_master.opening_time.label') },
+    { label: format('customer_master.closing_time.label') },
+  ];
+
   const {
     customerWeekDay,
   } = useSelector(
@@ -82,13 +92,11 @@ function CustomerMasterDeliveryHours(
   }, []);
 
   useEffect(() => {
-    if (customerWeekDay !== undefined) {
-      setPage(FIRST_PAGE);
-      setSearcher(EMPTY_SEARCHER);
-      fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
-    }
+    setPage(FIRST_PAGE);
+    setSearcher(EMPTY_SEARCHER);
+    fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customerWeekDay]);
+  }, [customerWeekDay, customerId]);
 /* eslint-disable */
 
   useEffect(() => {
@@ -106,13 +114,14 @@ function CustomerMasterDeliveryHours(
       }));
     }
   }, [data, customerId]);
+
   useEffect(() => {
     onDeliveryHoursChange(deliveryHours)
   }, [deliveryHours])
 
   const addNewDeliveryHours = () => {
     setDeliveryHours([...deliveryHours, {
-      id: Math.floor(Math.random()*10000), day: 1, customer: customerId, opening_time: '', closing_time: '', closed: false,
+      id: Math.floor(Math.random()*10000), day: 1, closed: false,
     }]);
   };
 
@@ -177,9 +186,10 @@ function CustomerMasterDeliveryHours(
   
   return (
     <EditableTable
-      tableTitle="Delivery hours"
-      buttonTitle="Add hours"
+      tableTitle={format('customer_master.delivery_hours.header')}
+      buttonTitle={format('app.add_hours')}
       onAddButtonClick={addNewDeliveryHours}
+      columnHeaders={columnHeaders}
     >
       {deliveryHours.map((deliveryHour, idx) => (
         <div className="flex w-full h-12 px-8 items-center even:bg-transit-grey-light" key={idx}>

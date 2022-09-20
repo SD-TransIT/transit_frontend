@@ -23,9 +23,14 @@ export type FormHeaderType = {
   title: string
 };
 
+type ColumnHeaders = {
+  label: string
+};
+
 export type EditableTableTypes = {
   tableTitle?: string
   buttonTitle?: string
   children: React.ReactNode
   onAddButtonClick: () => void
+  columnHeaders: Array<ColumnHeaders>
 };
