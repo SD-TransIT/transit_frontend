@@ -14,4 +14,5 @@ export interface ICustomerMaster {
   latitude_longitude?: string;
   customer_type: number;
   customer_type_name: string
+  week_days?: object[]
 }

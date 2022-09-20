@@ -16,4 +16,13 @@ enum PageHeader {
   pod_variance = 'pod_variance.header',
 }
 
+export type DeliveryHoursType = {
+  id: number
+  customer: string
+  day: number
+  closed: boolean
+  opening_time: string
+  closing_time: string
+};
+
 export default PageHeader;

@@ -22,3 +22,10 @@ export type FormHeaderType = {
   onClick?: () => void,
   title: string
 };
+
+export type EditableTableTypes = {
+  tableTitle?: string
+  buttonTitle?: string
+  children: React.ReactNode
+  onAddButtonClick: () => void
+};
