@@ -33,7 +33,7 @@ function ShipmentBaseData({
             )}
             name="supplier"
           />
-          {errors.supplier && <ValidationError value="This field is required" />}
+          {errors.supplier && <ValidationError value={format('validation.error.field_required')} />}
         </div>
         <div className="flex flex-col gap-2 w-1/4">
           <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.transporter_name.label')}</p>
@@ -48,7 +48,7 @@ function ShipmentBaseData({
             )}
             name="transporter"
           />
-          {errors.transporter && <ValidationError value="This field is required" />}
+          {errors.transporter && <ValidationError value={format('validation.error.field_required')} />}
         </div>
         <div className="flex flex-col gap-2 w-1/4">
           <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.driver_name.label')}</p>
@@ -66,7 +66,7 @@ function ShipmentBaseData({
             )}
             name="driver"
           />
-          {errors.driver && <ValidationError value="This field is required" />}
+          {errors.driver && <ValidationError value={format('validation.error.field_required')} />}
         </div>
         <div className="flex flex-col gap-2 w-1/4">
           <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.vehicle_number.label')}</p>
@@ -84,7 +84,7 @@ function ShipmentBaseData({
             )}
             name="transporter_details"
           />
-          {errors.transporter_details && <ValidationError value="This field is required" />}
+          {errors.transporter_details && <ValidationError value={format('validation.error.field_required')} />}
         </div>
       </div>
       <div className="flex flex-row gap-2">

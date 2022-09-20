@@ -1,7 +1,6 @@
 import { IShipment } from '../../../models/shipment/IShipment';
 
 type ShipmentFormType = {
-  onSubmit: (formValues: IShipment) => void;
   onCancel: () => void;
   title: string;
   initialFormValue: any;

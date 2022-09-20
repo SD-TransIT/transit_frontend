@@ -8,4 +8,5 @@ export type ManualFormProps = {
   submitButtonText: string;
   mode: string
   onDelete?: (formValues: FieldValues) => void | undefined;
+  currentData?: any;
 };

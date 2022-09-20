@@ -20,8 +20,21 @@ export type DriverPickerProp = {
   setValue: (name: string, value: unknown, config?: Object) => void;
 };
 
+export type OrderPickerProp = {
+  field: ControllerRenderProps<FieldValues, 'order_details'>;
+  isInvalid: boolean;
+  watch?: any;
+  isShipment?: boolean;
+  setValue: (name: string, value: unknown, config?: Object) => void;
+};
+
 export type SupplierPickerProp = {
   field: ControllerRenderProps<FieldValues, 'supplier'>;
+  isInvalid: boolean;
+};
+
+export type CustomerPickerProp = {
+  field: ControllerRenderProps<FieldValues, 'customer'>;
   isInvalid: boolean;
 };
 

@@ -2,11 +2,13 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 
+import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import ShipmentDeleteForm from 'components/forms/shipment/ShipmentDeleteForm';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
@@ -14,14 +16,21 @@ import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import { Paths } from 'routes/paths';
 import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
+import { deleteShipmentRequest } from 'stores/actions/shipment/shipmentActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import { DeleteShipmentRequestPayload } from 'stores/types/shipmentType';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 function ShipmentPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
@@ -142,41 +151,79 @@ function ShipmentPage() {
     setSearcher(formValues.search);
   };
 
+  const toggleDeleteModal = (object?:FieldValues) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
+  };
+
+  const onDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    dispatch(deleteShipmentRequest(paramsToPass as DeleteShipmentRequestPayload));
+    toggleDeleteModal();
+  };
+
   return (
-    <PageBody title={format(PageHeader.shipment)}>
-      <div className="p-4 bg-transit-white">
-        <Searcher refetch={refetch} />
-      </div>
-      {data === undefined ? (
-        <Table columns={columns} data={[{ }]}>
-          <p>
-            0
-            {format('app.results')}
-          </p>
-          <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
-            <AiOutlinePlus className="text-transit-white" />
-          </AddItemButton>
-        </Table>
-      ) : (
-        <Table
-          columns={columns}
-          data={data}
-          editAction={() => navigate(Paths.shipment_details_edit)}
-          fetchData={fetchData}
-          search={searcher}
-          isCleanupRef={isCleanupRef}
-          pageCount={pageCount}
-          numberOfAvailableData={numberOfAvailableData}
-          defaultOffset={DEFAULT_OFFSET}
-          currentPage={page}
-        >
-          <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
-          <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
-            <AiOutlinePlus className="text-transit-white" />
-          </AddItemButton>
-        </Table>
-      )}
-    </PageBody>
+    <>
+      <PageBody title={format(PageHeader.shipment)}>
+        <div className="p-4 bg-transit-white">
+          <Searcher refetch={refetch} />
+        </div>
+        {data === undefined ? (
+          <Table columns={columns} data={[{ }]}>
+            <p>
+              0
+              {format('app.results')}
+            </p>
+            <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
+              <AiOutlinePlus className="text-transit-white" />
+            </AddItemButton>
+          </Table>
+        ) : (
+          <Table
+            columns={columns}
+            data={data}
+            editAction={() => navigate(Paths.shipment_details_edit)}
+            deleteAction={toggleDeleteModal}
+            fetchData={fetchData}
+            search={searcher}
+            isCleanupRef={isCleanupRef}
+            pageCount={pageCount}
+            numberOfAvailableData={numberOfAvailableData}
+            defaultOffset={DEFAULT_OFFSET}
+            currentPage={page}
+          >
+            <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
+            <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
+              <AiOutlinePlus className="text-transit-white" />
+            </AddItemButton>
+          </Table>
+        )}
+      </PageBody>
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <ShipmentDeleteForm
+            onSubmit={onDelete}
+            onCancel={toggleDeleteModal}
+            title={`${format('app.delete')} ${format('shipment')}`}
+            initialFormValue={objectToDelete}
+            submitButtonText={format('app.delete')}
+            mode="Delete"
+          />,
+        ]}
+      />
+    </>
   );
 }
 

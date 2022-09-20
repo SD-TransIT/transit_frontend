@@ -1,19 +1,17 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 import { useIntl } from 'react-intl';
 
 import SubmitButton from 'shared/buttons/SubmitButton';
 
-function ShipmentImagesData({
-  control, register, errors, watch, setValue,
-}: any) {
+function ShipmentImagesData() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   return (
     <>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
-        <SubmitButton onClick={() => { console.log('clicked'); }} className="w-fit w-1/3" title="Customer images" />
+        <SubmitButton onClick={() => {}} className="w-fit w-1/3" title={format('shipment.customer_images.label')} />
       </div>
       <div className="flex flex-row gap-2" />
     </>

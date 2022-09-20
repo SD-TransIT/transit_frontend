@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-import { FieldValues } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import ShipmentForm from 'components/forms/shipment/ShipmentForm';
@@ -9,28 +9,24 @@ import PageHeader from 'pages/types';
 import { Paths } from 'routes/paths';
 
 function AddShipmentPage() {
-  const navigate = useNavigate();
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const onSubmitAdd = (formValues: FieldValues) => {
-    console.log(formValues);
-    navigate(`${Paths.shipment_details}`);
-  };
+  const navigate = useNavigate();
 
   const onCancel = () => {
     navigate(`${Paths.shipment_details}`);
   };
 
-  const onDeleteSubmitEdit = (formValues: FieldValues) => {
-    console.log(formValues);
+  const onDeleteSubmitEdit = () => {
     navigate(`${Paths.shipment_details}`);
   };
 
   return (
-    <PageBody title={PageHeader.shipment_add}>
+    <PageBody title={format(`${PageHeader.shipment_add}`)} onClick={onCancel} isArrow>
       <ShipmentForm
-        onSubmit={onSubmitAdd}
         onCancel={onCancel}
-        title="New Shipment"
+        title={format('shipment.add_new.label')}
         initialFormValue={{}}
         mode="Add"
         submitButtonText="Add"

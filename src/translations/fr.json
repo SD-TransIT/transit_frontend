@@ -107,8 +107,13 @@
     "sign_in.password.placeholder": "Mot de passe",
     "sign_in.username.placeholder": "Nom d'utilisateur",
 
-    "shipment.add.header": "Nouvelle expédition",
-    "shipment.customer_name.label": "Customer",
+    "shipment": "Expédition",
+    "shipment.add.header": "Retour à l'expédition",
+    "shipment.add_new.label": "Nouvel Chargement / Chargement / Expédition",
+    "shipment.add_order_to_shipment.label": "Ajouter une Commande à l'envoi",
+    "shipment.customer_images.label": "Images client",
+    "shipment.customer_name.label": "Client",
+    "shipment.customer_name_table.label": "Nom du client",
     "shipment.custom_route_number.label": "Numéro de route du client",
     "shipment.delay_justified.label": "Retard justifié",
     "shipment.delivery_date.label": "Date de livraison (DD/MM/YYYY)",
@@ -122,6 +127,11 @@
     "shipment.expected_delivery_date.label": "Date de livraison prévue (DD/MM/YYYY)",
     "shipment.gps_coordinates.label": "Les coordonnées",
     "shipment.header": "Chargement / Chargement / Expédition",
+    "shipment.orders.label": "Ordres",
+    "shipment.order_add.label": "+ Ajouter une Commande",
+    "shipment.order_line_items.product.label": "Nom de l'article",
+    "shipment.order_line_items.quantity.label": "Quantité",
+    "shipment.order_number.label": "Numéro de commande",
     "shipment.pod.label": "POD sur papier reçu",
     "shipment.pod_status.label": "Statut e-POD",
     "shipment.ropo_number.label": "Numéro RO / PO",
@@ -158,6 +168,7 @@
     "transporter_details.column.name.label": "Nom du transporteur",
     "transporter_details.column.driver.label": "Nom du conducteur",
 
+    "validation.error.duplicate_order": "Cette commande a déjà été ajoutée",
     "validation.error.field_required": "Ce champ est requis",
     "validation.error.field_number": "Veuillez saisir un chiffre"
 }

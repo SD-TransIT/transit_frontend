@@ -104,8 +104,13 @@
     "sign_in.password.placeholder": "Password",
     "sign_in.username.placeholder": "Username",
 
-    "shipment.add.header": "New Shipment",
+    "shipment": "Shipment",
+    "shipment.add.header": "Back to Shipment",
+    "shipment.add_new.label": "New Shipment",
+    "shipment.add_order_to_shipment.label": "Add Order to Shipment",
+    "shipment.customer_images.label": "Customer images",
     "shipment.customer_name.label": "Customer",
+    "shipment.customer_name_table.label": "Customer Name",
     "shipment.custom_route_number.label": "Custom Route Number",
     "shipment.delay_justified.label": "Delay Justified",
     "shipment.delivery_date.label": "Delivery Date (DD/MM/YYYY)",
@@ -119,6 +124,11 @@
     "shipment.expected_delivery_date.label": "Expected Delivery Date (DD/MM/YYYY)",
     "shipment.gps_coordinates.label": "GPS coordinates",
     "shipment.header": "Shipment",
+    "shipment.orders.label": "Orders",
+    "shipment.order_add.label": "+ Add Order",
+    "shipment.order_line_items.product.label": "Product Name",
+    "shipment.order_line_items.quantity.label": "Quantity",
+    "shipment.order_number.label": "Order number",
     "shipment.pod.label": "Paper Based POD Received",
     "shipment.pod_status.label": "e-POD Status",
     "shipment.ropo_number.label": "RO/PO Number",
@@ -155,6 +165,7 @@
     "transporter_details.column.name.label": "Transporter Name",
     "transporter_details.column.driver.label": "Driver Name",
 
+    "validation.error.duplicate_order": "This order has already been added",
     "validation.error.field_required": "This field is required",
     "validation.error.field_number": "Please enter a number"
 }

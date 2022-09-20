@@ -8,7 +8,7 @@ import DatePick from 'components/shared/DatePicker';
 import Input from 'shared/inputs/input';
 
 function ShipmentDetailsData({
-  control, register, errors, watch, setValue,
+  control, register, watch, setValue,
 }: any) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -31,13 +31,13 @@ function ShipmentDetailsData({
     { value: 'other', label: 'Other' },
   ];
 
-  const delivery_status = watch('delivery_status');
+  const deliveryStatus = watch('delivery_status');
 
   useEffect(() => {
-    if (delivery_status !== null && delivery_status !== undefined) {
+    if (deliveryStatus !== null && deliveryStatus !== undefined) {
       setValue('pod_status', null);
     }
-  }, [delivery_status, setValue]);
+  }, [deliveryStatus, setValue]);
 
   return (
     <>
@@ -79,6 +79,7 @@ function ShipmentDetailsData({
                 ref={ref}
                 value={value}
                 onChange={onChange}
+                // eslint-disable-next-line
                 options={watch('delivery_status') !== null && watch('delivery_status') !== undefined ? (watch('delivery_status').value === 'delivered' ? podStatusDeliveredOptions : podStatusNotDeliveredOptions) : []}
                 placeholder={format('shipment.pod_status.label')}
               />
