@@ -12,12 +12,14 @@ export type PageBodyType = {
 export type DatePickType = {
   currentDate: Date | undefined,
   onChange: (value: Date) => void
+  name?: string
 };
 
 export type DatePickerCustomInputType = {
   onClick?: () => void,
   onChange?: () => void,
   value?: string
+  name?: string
 };
 
 export type FormHeaderType = {

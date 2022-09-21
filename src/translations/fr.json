@@ -79,7 +79,7 @@
     "item_details.batch_namber.label": "Numéro de lot",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Sources de financement",
-    "item_details.lot_nymber.label": "Numéro de lot",
+    "item_details.lot_number.label": "Numéro de lot",
     "item_details.serial_number.label": "Numéro de série",
 
     "item": "Maître de l'article",

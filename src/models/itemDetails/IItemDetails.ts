@@ -1,6 +1,7 @@
 export interface IItemDetails {
-  id?: number;
-  item: number;
+  id?: number | null;
+  item: number | null;
+  item_name: string;
   batch_number: string;
   expiry_date?: string;
   manufacturing_date?: string;

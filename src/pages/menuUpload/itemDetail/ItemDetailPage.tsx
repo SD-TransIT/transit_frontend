@@ -5,23 +5,35 @@ import React, {
   useState,
 } from 'react';
 
+import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 
+import ItemDetailForm from 'components/forms/itemDetail/ItemDetailForm';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
 import { RootState } from 'stores/reducers/rootReducer';
 import { itemDetailUrl } from 'stores/sagas/itemDetailSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
+const clearValues = {
+  id: null, item: null, item_name: '', batch_number: '',
+};
 function ItemDetailPage() {
+  const [displayAddModal, setDisplayAddModal] = useState(false);
+  const [displayEditModal, setDisplayEditModal] = useState(false);
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
+  const [objectToEdit, setObjectToEdit] = useState(clearValues);
+  const [objectToDelete, setObjectToDelete] = useState(clearValues);
+
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
   const [page, setPage] = useState(FIRST_PAGE);
@@ -77,7 +89,7 @@ function ItemDetailPage() {
       accessor: 'funding_source',
     },
     {
-      Header: format('item_details.lot_nymber.label'),
+      Header: format('item_details.lot_number.label'),
       accessor: 'lot_number',
     },
     {
@@ -135,42 +147,137 @@ function ItemDetailPage() {
     setSearcher(formValues.search);
   };
 
+  const toggleAddModal = () => {
+    setDisplayAddModal(!displayAddModal);
+  };
+
+  const toggleEditModal = (object?: FieldValues) => {
+    if (object && object.id !== undefined) {
+      // const record = datas.find((data_record: any) => data_record.id === object.id);
+      setObjectToEdit((prevState) => ({
+        ...prevState,
+
+      }));
+    }
+    setDisplayEditModal(!displayEditModal);
+  };
+
+  const toggleDeleteModal = (object?: FieldValues) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
+  };
+
+  const onSubmitAdd = (formValues: FieldValues) => {
+    const payload = formValues;
+    payload.customer_type = formValues.customer_type.id;
+    // dispatch(postCustomerMasterRequest(payload as PostCustomerMasterRequestPayload));
+    toggleAddModal();
+  };
+
+  const onSubmitEdit = (formValues: FieldValues) => {
+    const payload = formValues;
+    if (objectToEdit) {
+      payload.id = objectToEdit.id;
+    }
+    payload.customer_type = formValues.customer_type.id;
+    // dispatch(putCustomerMasterRequest(payload as PutCustomerMasterRequestPayload));
+    toggleEditModal();
+  };
+
+  const onDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
+    toggleDeleteModal();
+  };
+
+  const onDeleteSubmitEdit = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToEdit) {
+      paramsToPass.id = objectToEdit.id;
+    }
+    // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
+    toggleEditModal();
+  };
+
   return (
-    <PageBody title={format(PageHeader.item_details)}>
-      <div className="p-4 bg-transit-white">
-        <Searcher refetch={refetch} />
-      </div>
-      {data === undefined ? (
-        <Table columns={columns} data={[{}]}>
-          <p>
-            0
-            {format('app.results')}
-          </p>
-          <AddItemButton onClick={() => { }} className="w-fit p-2">
-            <AiOutlinePlus className="text-transit-white" />
-          </AddItemButton>
-        </Table>
-      ) : (
-        <Table
-          columns={columns}
-          data={data}
-          editAction={() => { }}
-          deleteAction={() => { }}
-          fetchData={fetchData}
-          search={searcher}
-          isCleanupRef={isCleanupRef}
-          pageCount={pageCount}
-          numberOfAvailableData={numberOfAvailableData}
-          defaultOffset={DEFAULT_OFFSET}
-          currentPage={page}
-        >
-          <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
-          <AddItemButton onClick={() => { }} className="w-fit p-2">
-            <AiOutlinePlus className="text-transit-white" />
-          </AddItemButton>
-        </Table>
-      )}
-    </PageBody>
+    <>
+      <PageBody title={format(PageHeader.item_details)}>
+        <div className="p-4 bg-transit-white">
+          <Searcher refetch={refetch} />
+        </div>
+        {data === undefined ? (
+          <Table columns={columns} data={[{}]}>
+            <p>
+              0
+              {format('app.results')}
+            </p>
+            <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
+              <AiOutlinePlus className="text-transit-white" />
+            </AddItemButton>
+          </Table>
+        ) : (
+          <Table
+            columns={columns}
+            data={data}
+            editAction={toggleEditModal}
+            deleteAction={toggleDeleteModal}
+            fetchData={fetchData}
+            search={searcher}
+            isCleanupRef={isCleanupRef}
+            pageCount={pageCount}
+            numberOfAvailableData={numberOfAvailableData}
+            defaultOffset={DEFAULT_OFFSET}
+            currentPage={page}
+          >
+            <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
+            <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
+              <AiOutlinePlus className="text-transit-white" />
+            </AddItemButton>
+          </Table>
+        )}
+      </PageBody>
+      <Dialog
+        isOpen={displayAddModal || displayEditModal}
+        onClose={displayAddModal ? toggleAddModal : toggleEditModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <ItemDetailForm
+            onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
+            onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
+            title={displayAddModal ? `${format('app.new')} ${format('customer_master.header')}` : `${format('app.edit')} ${format('customer_master.header')}`}
+            initialFormValue={displayAddModal ? clearValues : objectToEdit}
+            mode={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
+            onDelete={onDeleteSubmitEdit}
+          />,
+        ]}
+      />
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <ItemDetailForm
+            onSubmit={onDelete}
+            onCancel={toggleDeleteModal}
+            title={`${format('app.delete')} ${format('customer_master.header')}`}
+            initialFormValue={objectToDelete}
+            submitButtonText={format('app.delete')}
+            mode="Delete"
+          />,
+        ]}
+      />
+    </>
   );
 }
 

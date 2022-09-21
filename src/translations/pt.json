@@ -78,7 +78,7 @@
     "item_details.batch_namber.label": "Batch Number",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Funding Sources",
-    "item_details.lot_nymber.label": "Lot Number",
+    "item_details.lot_number.label": "Lot Number",
     "item_details.serial_number.label": "Serial Number",
 
     "item": "Item Master",

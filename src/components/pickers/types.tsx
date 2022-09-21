@@ -2,13 +2,15 @@ import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 
 import { ICustomerMaster } from 'models/customerMaster/ICustomerMaster';
 import { IDriver } from 'models/driver/IDriver';
+// import { IItem } from 'models/item/IItem';
+import { IItemDetails } from 'models/itemDetails/IItemDetails';
 
 export type TransporterPickerProp = {
   field: ControllerRenderProps<FieldValues, 'transporter'>;
   isInvalid: boolean;
 };
 export type PickerProp = {
-  field: ControllerRenderProps<ICustomerMaster, 'customer_type'> | ControllerRenderProps<IDriver, 'transporter'>
+  field: ControllerRenderProps<ICustomerMaster, 'customer_type'> | ControllerRenderProps<IDriver, 'transporter'> | ControllerRenderProps<IItemDetails, 'item_name'>
   isInvalid: boolean;
 };
 
