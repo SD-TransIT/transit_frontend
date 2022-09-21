@@ -179,12 +179,11 @@ function ShipmentPage() {
 
   const podStatusOptions = [
     { value: 'client_not_present', label: 'Client not present' },
-    { value: 'accident', label: 'Accident' },
-    { value: 'robbery', label: 'Robbery' },
-    { value: 'other', label: 'Other' },
-    { value: 'pod_signed_complete', label: 'POD signed complete' },
-    { value: 'pod_signed_dso', label: 'POD signed DSO' },
-    { value: 'other', label: 'Other' },
+    { value: 'accident', label: format('shipment.pod_status.accident.label') },
+    { value: 'robbery', label: format('shipment.pod_status.robbery.label') },
+    { value: 'other', label: format('shipment.pod_status.other.label') },
+    { value: 'pod_signed_complete', label: format('shipment.pod_status.pod_signed_complete.label') },
+    { value: 'pod_signed_dso', label: format('shipment.pod_status.pod_signed_dso.label') },
   ];
 
   const editPageMappingInitState = async (object?: FieldValues) => data?.filter(
