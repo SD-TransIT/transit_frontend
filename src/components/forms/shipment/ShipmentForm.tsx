@@ -10,7 +10,7 @@ import { postShipmentRequest } from 'stores/actions/shipment/shipmentActions';
 import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { PostShipmentRequestPayload } from 'stores/types/shipmentType';
-import { postRequest } from 'utils/apiClient';
+import { postRequest, putRequest } from 'utils/apiClient';
 
 import CancelButton from '../../../shared/buttons/CancelButton';
 import DeleteButton from '../../../shared/buttons/DeleteButton';
@@ -23,7 +23,7 @@ import ShipmentOrderData from './ShipmentOrderData';
 import ShipmentFormType from './types';
 
 function ShipmentForm({
-  onCancel, title, submitButtonText, initialFormValue, mode, onDelete,
+  onCancel, title, submitButtonText, initialFormValue, mode, onDelete, initialOrderDetails,
 }: ShipmentFormType) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function ShipmentForm({
     setValue,
   } = useForm({ defaultValues: initialFormValue });
 
-  const [orderDetails, setOrderDetails] = useState<object []>([]);
+  const [orderDetails, setOrderDetails] = useState<object []>(initialOrderDetails);
 
   const onOrderDetailAdd = (formValues: FieldValues) => {
     const tempOrderDetails: object [] = orderDetails;
@@ -59,6 +59,31 @@ function ShipmentForm({
     await postRequest(shipmentUrl, payload);
   };
 
+  const updateShipment = async (
+    payload: FieldValues,
+  ) => {
+    await refreshAccessToken();
+    await putRequest(
+      shipmentUrl,
+      payload,
+      payload.id,
+    );
+  };
+
+  const updateShipmentOrders = async (
+    id: number,
+    orders: any,
+  ) => {
+    const orderPayload = { orders };
+    if (orderPayload.orders.length > 0) {
+      await refreshAccessToken();
+      await postRequest(
+        `/shipment_details_orders/${id}/add_orders_to_shipment/`,
+        orderPayload,
+      );
+    }
+  };
+
   const formatShipmentPayload = (formValues: FieldValues, orders: string []) => {
     const payload = { ...formValues };
     payload.driver = formValues.driver.id;
@@ -66,11 +91,18 @@ function ShipmentForm({
     payload.supplier = formValues.supplier.id;
     payload.delivery_status = formValues.delivery_status.value;
     payload.pod_status = formValues.pod_status.value;
-    payload.orders = orders;
+    if (mode === 'Add') {
+      payload.orders = orders;
+    } else {
+      payload.id = initialFormValue.id;
+      delete payload.order_ids;
+      delete payload.order_names;
+      delete payload.orders;
+    }
     return payload;
   };
 
-  const onSubmit = async (formValues: FieldValues) => {
+  const onSubmitAdd = async (formValues: FieldValues) => {
     const customers = Array.from(new Set(orderDetails.map((row: any) => (row.customer))));
     if (customers.length > 1) {
       customers.forEach(async (customerId, index) => {
@@ -91,6 +123,22 @@ function ShipmentForm({
     }
   };
 
+  const onSubmitEdit = async (formValues: FieldValues) => {
+    const orders = orderDetails.map((row: any) => (row.order_details_id));
+    const payload = formatShipmentPayload(formValues, orders);
+    await updateShipment(payload);
+    await updateShipmentOrders(payload.id, orders);
+    navigate(`${Paths.shipment_details}`);
+  };
+
+  const onSubmit = async (formValues: FieldValues) => {
+    if (mode === 'Add') {
+      onSubmitAdd(formValues);
+    } else {
+      onSubmitEdit(formValues);
+    }
+  };
+
   return (
     <div className="bg-transit-white w-full rounded-lg pt-8 px-4" style={{ width: '75%', margin: '0 auto' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,6 +150,8 @@ function ShipmentForm({
             errors={errors}
             watch={watch}
             setValue={setValue}
+            mode={mode}
+            initialFormValue={initialFormValue}
           />
           <ShipmentOrderData
             control={control}
@@ -112,6 +162,7 @@ function ShipmentForm({
             onOrderDetailAdd={onOrderDetailAdd}
             onOrderDetailDelete={onOrderDetailDelete}
             orderDetails={orderDetails}
+            mode={mode}
           />
           <p className="float-left text-[21px] text-transit-black font-semibold">Delivery Details</p>
           <ShipmentDetailsData
@@ -120,13 +171,15 @@ function ShipmentForm({
             errors={errors}
             watch={watch}
             setValue={setValue}
+            mode={mode}
+            initialFormValue={initialFormValue}
           />
           <p className="float-left text-[21px] text-transit-black font-semibold" />
           <ShipmentImagesData />
         </div>
       </form>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
-        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" /> }
+        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="left-5 h-fit w-fit" /> }
         <CancelButton onClick={onCancel} className="w-fit" />
         <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
       </div>

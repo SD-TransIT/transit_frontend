@@ -12,7 +12,7 @@ import { TransporterDetailsPickerProp } from './types';
 const transporterDetails = 'transporter_details/';
 
 function TransporterDetailsPicker({
-  field, isInvalid, isShipment, watch, setValue,
+  field, isInvalid, isShipment, watch, setValue, mode = '', initialFormValue,
 }: TransporterDetailsPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -52,8 +52,13 @@ function TransporterDetailsPicker({
 
   useEffect(() => {
     if (watch !== null && watch !== undefined) {
-      setValue('transporter_details', null);
+      if (mode !== 'Edit') {
+        setValue('transporter_details', null);
+      } else if (watch.id.toString() !== initialFormValue.transporter.id.toString()) {
+        setValue('transporter_details', null);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch, setValue]);
 
   return (

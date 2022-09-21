@@ -45,6 +45,11 @@ function ShipmentOrderDetailsForm({
   const orderDetailData = mode === 'Show' ? initialFormValue as object [] : [];
   const [orderData] = useState(orderDetailData);
 
+  const isCustomerPickerDisabled = () => {
+    const customerInitValue = initialFormValue?.customer ?? null;
+    return customerInitValue !== null;
+  };
+
   return (
     // eslint-disable-next-line
     <>
@@ -73,6 +78,7 @@ function ShipmentOrderDetailsForm({
                       <CustomerPicker
                         field={field}
                         isInvalid={Boolean(errors.customer)}
+                        isDisabled={isCustomerPickerDisabled()}
                       />
                     )}
                     name="customer"

@@ -18,6 +18,18 @@ export type DriverPickerProp = {
   watch?: any;
   isShipment?: boolean;
   setValue: (name: string, value: unknown, config?: Object) => void;
+  mode?: string; // possible values: 'Edit', 'Add', ''
+  initialFormValue?: any;
+};
+
+export type TransporterDetailsPickerProp = {
+  field: ControllerRenderProps<FieldValues, 'transporter_details'>;
+  isInvalid: boolean;
+  watch?: any;
+  isShipment?: boolean;
+  setValue: (name: string, value: unknown, config?: Object) => void;
+  mode?: string; // possible values: 'Edit', 'Add', ''
+  initialFormValue?: any;
 };
 
 export type OrderPickerProp = {
@@ -36,12 +48,5 @@ export type SupplierPickerProp = {
 export type CustomerPickerProp = {
   field: ControllerRenderProps<FieldValues, 'customer'>;
   isInvalid: boolean;
-};
-
-export type TransporterDetailsPickerProp = {
-  field: ControllerRenderProps<FieldValues, 'transporter_details'>;
-  isInvalid: boolean;
-  watch?: any;
-  isShipment?: boolean;
-  setValue: (name: string, value: unknown, config?: Object) => void;
+  isDisabled: boolean;
 };

@@ -40,6 +40,20 @@ export const getRequest = async (url: string, parameters: any, isPagination: boo
   return Object.prototype.hasOwnProperty.call(data, 'results') ? data.results : data;
 };
 
+export const getRequestFetchById = async (url: string, id: number) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.get(
+    `${url}${id}/`,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
+
 export const postRequest = async (url: string, payload: object) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.post(
@@ -58,6 +72,21 @@ export const postRequest = async (url: string, payload: object) => {
 export const putRequest = async (url: string, payload: object, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const { data } = await apiClient.put(
+    `${url}${id}/`,
+    payload,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
+
+export const patchRequest = async (url: string, payload: object, id: number) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.patch(
     `${url}${id}/`,
     payload,
     {

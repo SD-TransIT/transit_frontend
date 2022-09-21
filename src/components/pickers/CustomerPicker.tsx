@@ -10,7 +10,7 @@ import { getRequest } from 'utils/apiClient';
 
 import { CustomerPickerProp } from './types';
 
-function CustomerPicker({ field, isInvalid }: CustomerPickerProp) {
+function CustomerPicker({ field, isInvalid, isDisabled = false }: CustomerPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -43,6 +43,7 @@ function CustomerPicker({ field, isInvalid }: CustomerPickerProp) {
       getOptionLabel={(customerType: any) => customerType.name}
       getOptionValue={(customerType: any) => customerType.id}
       isClearable
+      isDisabled={isDisabled}
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
     />
   );

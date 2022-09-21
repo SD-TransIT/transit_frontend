@@ -12,7 +12,7 @@ import ValidationError from 'components/shared/ValidationError';
 import Input from 'shared/inputs/input';
 
 function ShipmentBaseData({
-  control, register, errors, watch, setValue,
+  control, register, errors, watch, setValue, mode, initialFormValue,
 }: any) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -62,6 +62,8 @@ function ShipmentBaseData({
                 isShipment
                 watch={watch('transporter')}
                 setValue={setValue}
+                mode={mode}
+                initialFormValue={initialFormValue}
               />
             )}
             name="driver"
@@ -80,6 +82,8 @@ function ShipmentBaseData({
                 isShipment
                 watch={watch('transporter')}
                 setValue={setValue}
+                mode={mode}
+                initialFormValue={initialFormValue}
               />
             )}
             name="transporter_details"

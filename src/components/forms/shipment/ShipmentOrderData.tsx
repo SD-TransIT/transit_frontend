@@ -11,7 +11,7 @@ import Dialog from 'shared/dialog/Dialog';
 import ShipmentOrderDetailsForm from './ShipmentOrderDetailsForm';
 
 function ShipmentOrderData({
-  onOrderDetailAdd, onOrderDetailDelete, orderDetails,
+  onOrderDetailAdd, onOrderDetailDelete, orderDetails, mode,
 }: any) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -60,6 +60,10 @@ function ShipmentOrderData({
     },
   ], [format]);
 
+  const editInitialValue = () => orderDetails.map(
+    (object: any) => ({ id: object.customer, name: object.customer_name }),
+  )[0];
+
   return (
     <>
       <div className="flow-root">
@@ -88,7 +92,7 @@ function ShipmentOrderData({
             onSubmit={onSubmitAdd}
             onCancel={toggleAddModal}
             title={`${format('shipment.add_order_to_shipment.label')}`}
-            initialFormValue={{}}
+            initialFormValue={mode === 'Add' || (mode === 'Edit' && orderDetails.length === 0) ? {} : { customer: editInitialValue() }}
             mode="Add"
             submitButtonText={format('app.add')}
             currentData={orderDetailList.map((row: any) => (row.order_details_id))}

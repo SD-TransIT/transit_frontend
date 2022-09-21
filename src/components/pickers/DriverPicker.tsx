@@ -11,7 +11,7 @@ import { getRequest } from 'utils/apiClient';
 import { DriverPickerProp } from './types';
 
 function DriverPicker({
-  field, isInvalid, isShipment, watch, setValue,
+  field, isInvalid, isShipment, watch, setValue, mode = '', initialFormValue,
 }: DriverPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -51,8 +51,13 @@ function DriverPicker({
 
   useEffect(() => {
     if (watch !== null && watch !== undefined) {
-      setValue('driver', null);
+      if (mode !== 'Edit') {
+        setValue('driver', null);
+      } else if (watch.id.toString() !== initialFormValue.transporter.id.toString()) {
+        setValue('driver', null);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch, setValue]);
 
   return (

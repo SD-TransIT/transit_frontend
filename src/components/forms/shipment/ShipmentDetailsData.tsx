@@ -8,7 +8,7 @@ import DatePick from 'components/shared/DatePicker';
 import Input from 'shared/inputs/input';
 
 function ShipmentDetailsData({
-  control, register, watch, setValue,
+  control, register, watch, setValue, initialFormValue, mode,
 }: any) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -35,8 +35,13 @@ function ShipmentDetailsData({
 
   useEffect(() => {
     if (deliveryStatus !== null && deliveryStatus !== undefined) {
-      setValue('pod_status', null);
+      if (mode !== 'Edit') {
+        setValue('pod_status', null);
+      } else if (deliveryStatus.value !== initialFormValue.delivery_status.value) {
+        setValue('pod_status', null);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deliveryStatus, setValue]);
 
   return (

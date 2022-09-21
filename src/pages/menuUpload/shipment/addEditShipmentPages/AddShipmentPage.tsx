@@ -28,6 +28,7 @@ function AddShipmentPage() {
         onCancel={onCancel}
         title={format('shipment.add_new.label')}
         initialFormValue={{}}
+        initialOrderDetails={[]}
         mode="Add"
         submitButtonText="Add"
         onDelete={onDeleteSubmitEdit}
