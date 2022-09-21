@@ -15,7 +15,7 @@ import Input from 'shared/inputs/input';
 import { ManualFormProps } from '../types';
 
 function CustomerMasterForm({
-  onSubmit, onCancel, title, submitButtonText, initialFormValue, mode, onDelete,
+  onSubmit, onCancel, title, submitButtonText, initialFormValue, mode, onDelete, children,
 }: ManualFormProps) {
   const {
     control,
@@ -221,6 +221,7 @@ function CustomerMasterForm({
           </form>
         )}
       </div>
+      {children}
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
         {mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="absolute left-5 h-fit w-fit" />}
         <CancelButton onClick={onCancel} className="w-fit" />

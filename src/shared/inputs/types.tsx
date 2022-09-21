@@ -4,5 +4,8 @@ export type InputProps = {
   placeholder?: string,
   type: string,
   className?: string,
-  isInvalid?: boolean
+  isInvalid?: boolean,
+  disabled?: boolean
+  onChange?: any
+  defaultValue?: string
 };
