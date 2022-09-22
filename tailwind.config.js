@@ -27,6 +27,7 @@ module.exports = {
         dark: "#687182",
         disabled: "#F7F9FC",
         secondary: "#4A4E51",
+        shipment: "#F4F7FC", 
         100: "#F4F6F8"
       },
       "transit-red": {

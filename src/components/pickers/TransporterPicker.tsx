@@ -5,12 +5,11 @@ import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
 import { IDriver } from 'models/driver/IDriver';
+import { transporterUrl } from 'stores/sagas/transporterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
-import { PickerProp } from './types';
-
-const transporterUrl = 'transporter/';
+import { TransporterPickerProp } from './types';
 
 const customStyles = {
   control: (provided: any) => ({
@@ -33,7 +32,7 @@ const customStyles = {
   }),
 };
 
-function TransporterPicker({ field, isInvalid }: PickerProp) {
+function TransporterPicker({ field, isInvalid }: TransporterPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 

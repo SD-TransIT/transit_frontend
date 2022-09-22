@@ -5,6 +5,8 @@ export type ValidationErrorType = {
 export type PageBodyType = {
   title: string,
   children: React.ReactNode
+  onClick?: () => void,
+  isArrow?: boolean,
 };
 
 export type DatePickType = {

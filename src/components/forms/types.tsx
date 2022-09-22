@@ -8,5 +8,6 @@ export type ManualFormProps = {
   submitButtonText: string;
   mode: string
   onDelete?: (formValues: FieldValues) => void | undefined;
+  currentData?: any;
   children?: React.ReactNode
 };
