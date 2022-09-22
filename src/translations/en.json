@@ -129,6 +129,7 @@
     "shipment.custom_route_number.label": "Custom Route Number",
     "shipment.delay_justified.label": "Delay Justified",
     "shipment.delivery_date.label": "Delivery Date (DD/MM/YYYY)",
+    "shipment.delivery_details.label": "Delivery Details",
     "shipment.delivery_status.delivered.label": "Delivered",
     "shipment.delivery_status.label": "Delivery Status",
     "shipment.delivery_status.not_delivered.label": "Not Delivered",
