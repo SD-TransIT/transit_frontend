@@ -25,7 +25,7 @@ function ShipmentDetailsData({
   ];
 
   const podStatusNotDeliveredOptions = [
-    { value: 'client_not_present', label: 'Client not present' },
+    { value: 'client_not_present', label: format('shipment.pod_status.client.label') },
     { value: 'accident', label: format('shipment.pod_status.accident.label') },
     { value: 'robbery', label: format('shipment.pod_status.robbery.label') },
     { value: 'other', label: format('shipment.pod_status.other.label') },
