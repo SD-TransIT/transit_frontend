@@ -9,4 +9,5 @@ export type ManualFormProps = {
   mode: string
   onDelete?: (formValues: FieldValues) => void | undefined;
   currentData?: any;
+  children?: React.ReactNode
 };

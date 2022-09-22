@@ -8,7 +8,7 @@ import { AddItemButtonType } from 'shared/buttons/types';
 const style = 'add-item';
 
 function AddItemButton({
-  onClick, children, className,
+  onClick, children, className, title,
 }: AddItemButtonType) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -20,7 +20,7 @@ function AddItemButton({
       className={classNames(style, className)}
     >
       {children}
-      <p className="pl-1">{format('app.add_item')}</p>
+      <p className="pl-1">{title ?? format('app.add_item')}</p>
     </button>
   );
 }

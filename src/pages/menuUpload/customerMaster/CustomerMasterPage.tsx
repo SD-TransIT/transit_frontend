@@ -20,6 +20,9 @@ import {
   postCustomerMasterRequest,
   putCustomerMasterRequest,
 } from 'stores/actions/customerMaster/customerMasterActions';
+import {
+  postCustomerWeekDaysRequest,
+} from 'stores/actions/customerWeekDays/customerWeekDaysActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { customerMasterUrl } from 'stores/sagas/customerMasterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
@@ -28,8 +31,13 @@ import {
   PostCustomerMasterRequestPayload,
   PutCustomerMasterRequestPayload,
 } from 'stores/types/customerMasterType';
+import {
+  PostCustomerWeekDaysRequestPayload,
+} from 'stores/types/customerWeekDays';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import CustomerMasterDeliveryHours from './CustomerMasterDeliveryHours';
 
 function CustomerMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -44,6 +52,7 @@ function CustomerMasterPage() {
   const [data, setData] = useState([]);
   const [searcher, setSearcher] = useState(EMPTY_SEARCHER);
 
+  const [customerDeliveryHours, setCustomerDeliveryHours] = useState<any>();
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
 
@@ -166,6 +175,7 @@ function CustomerMasterPage() {
 
   const toggleAddModal = () => {
     setDisplayAddModal(!displayAddModal);
+    setCustomerDeliveryHours([]);
   };
 
   const toggleEditModal = (object?: FieldValues, datas?: any) => {
@@ -188,6 +198,7 @@ function CustomerMasterPage() {
         phone: object.phone,
         email: object.email,
         latitude_longitude: object.latitude_longitude,
+        week_days: object.week_days,
       }));
     }
     setDisplayEditModal(!displayEditModal);
@@ -206,6 +217,7 @@ function CustomerMasterPage() {
   const onSubmitAdd = (formValues: FieldValues) => {
     const payload = formValues;
     payload.customer_type = formValues.customer_type.id;
+    payload.week_days = customerDeliveryHours;
     dispatch(postCustomerMasterRequest(payload as PostCustomerMasterRequestPayload));
     toggleAddModal();
   };
@@ -217,6 +229,14 @@ function CustomerMasterPage() {
     }
     payload.customer_type = formValues.customer_type.id;
     dispatch(putCustomerMasterRequest(payload as PutCustomerMasterRequestPayload));
+
+    if (customerDeliveryHours) {
+      const payloadDeliveryHours = { week_days: customerDeliveryHours, id: objectToEdit.id };
+      dispatch(
+        // @ts-ignore
+        postCustomerWeekDaysRequest(payloadDeliveryHours as PostCustomerWeekDaysRequestPayload),
+      );
+    }
     toggleEditModal();
   };
 
@@ -234,9 +254,14 @@ function CustomerMasterPage() {
     if (objectToEdit) {
       paramsToPass.id = objectToEdit.id;
     }
+
     dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
     toggleEditModal();
   };
+
+  const handleCustomerDeliveryHours = useCallback((deliveryHours: any) => {
+    setCustomerDeliveryHours(deliveryHours);
+  }, []);
 
   return (
     <>
@@ -289,7 +314,12 @@ function CustomerMasterPage() {
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
             onDelete={onDeleteSubmitEdit}
-          />,
+          >
+            <CustomerMasterDeliveryHours
+              customerId={displayAddModal ? undefined : objectToEdit.id}
+              onDeliveryHoursChange={handleCustomerDeliveryHours}
+            />
+          </CustomerMasterForm>,
         ]}
       />
       <Dialog

@@ -125,6 +125,7 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
                   name="username"
                   placeholder="Username"
                   type="text"
+                  value=""
                 />
               </label>
               <div
@@ -143,6 +144,7 @@ exports[`Unit tests for the SignInPage component. Should match snapshot. 1`] = `
                   name="password"
                   placeholder="Password"
                   type="password"
+                  value=""
                 />
               </label>
               <div
