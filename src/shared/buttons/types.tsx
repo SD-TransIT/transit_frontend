@@ -25,6 +25,7 @@ export type AddItemButtonType = {
   onClick: () => void,
   children: React.ReactNode,
   className?: string
+  title?: string
 };
 
 export type DeleteButtonType = {

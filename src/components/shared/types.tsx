@@ -22,3 +22,22 @@ export type FormHeaderType = {
   onClick?: () => void,
   title: string
 };
+
+type ColumnHeaders = {
+  label: string
+};
+
+export type EditableTableTypes = {
+  tableTitle?: string
+  buttonTitle?: string
+  children: React.ReactNode
+  onAddButtonClick: () => void
+  columnHeaders: Array<ColumnHeaders>
+};
+
+export type SimpleSelectType = {
+  options: any
+  placeholder: string
+  onChange: (value: any) => void
+  isDisabled?: boolean
+};
