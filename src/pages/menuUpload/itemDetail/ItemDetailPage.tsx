@@ -8,7 +8,7 @@ import React, {
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ItemDetailForm from 'components/forms/itemDetail/ItemDetailForm';
 import PageBody from 'components/shared/PageBody';
@@ -18,9 +18,11 @@ import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
+import { deleteItemDetailRequest, postItemDetailRequest, putItemDetailRequest } from 'stores/actions/item_detail/itemDetailActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { itemDetailUrl } from 'stores/sagas/itemDetailSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import { DeleteItemDetailRequestPayload, PostItemDetailRequestPayload, PutItemDetailRequestPayload } from 'stores/types/itemDetailType';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
@@ -42,6 +44,9 @@ function ItemDetailPage() {
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
+
+  const dispatch = useDispatch();
+
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -151,12 +156,22 @@ function ItemDetailPage() {
     setDisplayAddModal(!displayAddModal);
   };
 
-  const toggleEditModal = (object?: FieldValues) => {
+  const toggleEditModal = (object?: FieldValues, datas?: any) => {
     if (object && object.id !== undefined) {
-      // const record = datas.find((data_record: any) => data_record.id === object.id);
+      const record = datas.find((data_record: any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({
         ...prevState,
-
+        id: object.id,
+        item: record.id,
+        item_name: object.item_name,
+        batch_number: object.batch_number,
+        expiry_date: object.expiry_date,
+        manufacturing_date: object.manufacturing_date,
+        received_date: object.received_date,
+        gtin: object.gtin,
+        lot_number: object.lot_number,
+        serial_number: object.serial_number,
+        funding_source: object.funding_source,
       }));
     }
     setDisplayEditModal(!displayEditModal);
@@ -174,8 +189,8 @@ function ItemDetailPage() {
 
   const onSubmitAdd = (formValues: FieldValues) => {
     const payload = formValues;
-    payload.customer_type = formValues.customer_type.id;
-    // dispatch(postCustomerMasterRequest(payload as PostCustomerMasterRequestPayload));
+    payload.id = formValues.item;
+    dispatch(postItemDetailRequest(payload as PostItemDetailRequestPayload));
     toggleAddModal();
   };
 
@@ -184,8 +199,8 @@ function ItemDetailPage() {
     if (objectToEdit) {
       payload.id = objectToEdit.id;
     }
-    payload.customer_type = formValues.customer_type.id;
-    // dispatch(putCustomerMasterRequest(payload as PutCustomerMasterRequestPayload));
+    payload.item = formValues.customer_type.id;
+    dispatch(putItemDetailRequest(payload as PutItemDetailRequestPayload));
     toggleEditModal();
   };
 
@@ -194,7 +209,7 @@ function ItemDetailPage() {
     if (objectToDelete) {
       paramsToPass.id = objectToDelete.id;
     }
-    // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
+    dispatch(deleteItemDetailRequest(paramsToPass as DeleteItemDetailRequestPayload));
     toggleDeleteModal();
   };
 
@@ -203,7 +218,7 @@ function ItemDetailPage() {
     if (objectToEdit) {
       paramsToPass.id = objectToEdit.id;
     }
-    // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
+    dispatch(deleteItemDetailRequest(paramsToPass as DeleteItemDetailRequestPayload));
     toggleEditModal();
   };
 
@@ -253,7 +268,7 @@ function ItemDetailPage() {
           <ItemDetailForm
             onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
             onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
-            title={displayAddModal ? `${format('app.new')} ${format('customer_master.header')}` : `${format('app.edit')} ${format('customer_master.header')}`}
+            title={displayAddModal ? `${format('app.new')} ${format('item_details')}` : `${format('app.edit')} ${format('item_details')}`}
             initialFormValue={displayAddModal ? clearValues : objectToEdit}
             mode={displayAddModal ? 'Add' : 'Edit'}
             submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
@@ -270,7 +285,7 @@ function ItemDetailPage() {
           <ItemDetailForm
             onSubmit={onDelete}
             onCancel={toggleDeleteModal}
-            title={`${format('app.delete')} ${format('customer_master.header')}`}
+            title={`${format('app.delete')} ${format('item_details')}`}
             initialFormValue={objectToDelete}
             submitButtonText={format('app.delete')}
             mode="Delete"

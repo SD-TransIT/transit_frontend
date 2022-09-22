@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'styles/datePicker.css';
 
 function DatePickerCustomInput({
-  onClick, onChange, value, name,
+  onClick, onChange, value,
 }: DatePickerCustomInputType) {
   return (
     <button
@@ -23,14 +23,13 @@ function DatePickerCustomInput({
         onChange={onChange}
         value={value}
         placeholder="Search..."
-        name={name}
       />
       <RiCalendarLine className="calendar-icons" />
     </button>
   );
 }
 
-function DatePick({ currentDate, onChange, name }: DatePickType) {
+function DatePick({ currentDate, onChange }: DatePickType) {
   return (
     <DatePicker
       selected={currentDate}

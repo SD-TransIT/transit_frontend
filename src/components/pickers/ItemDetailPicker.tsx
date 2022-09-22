@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
-// import { IItem } from 'models/item/IItem';
-import { IItemDetails } from 'models/itemDetails/IItemDetails';
-// import { itemDetailUrl } from 'stores/sagas/itemDetailSaga';
+import { IItem } from 'models/item/IItem';
 import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
@@ -20,7 +18,6 @@ const customStyles = {
     border: 'none',
     minHeight: '34px',
     height: '34px',
-    maxWidth: '205px',
     boxShadow: 'none',
     '&:hover': {
       borderColor: '#B8BBBF',
@@ -47,7 +44,7 @@ function ItemDetailPicker({ field, isInvalid }: PickerProp) {
     await refreshAccessToken();
     const response = await getRequest(itemUrl, { page, searcher: searchQuery }, true);
     const isNext: boolean = response.next !== null;
-
+    console.log('response', response);
     return {
       options: response.results,
       hasMore: isNext,
@@ -65,10 +62,10 @@ function ItemDetailPicker({ field, isInvalid }: PickerProp) {
       additional={{
         page: 1,
       }}
-      getOptionLabel={(item: IItemDetails) => item.item_name}
+      getOptionLabel={(item: IItem) => item.name}
       getOptionValue={(item: any) => item.id}
       isClearable
-      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
       styles={customStyles}
     />
   );

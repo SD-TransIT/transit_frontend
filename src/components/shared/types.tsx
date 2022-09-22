@@ -1,5 +1,5 @@
 export type ValidationErrorType = {
-  value: string
+  value?: string
 };
 
 export type PageBodyType = {

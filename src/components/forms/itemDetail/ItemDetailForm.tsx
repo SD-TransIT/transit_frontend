@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
@@ -26,6 +26,10 @@ function ItemDetailForm({
     formState: { errors },
   } = useForm({ defaultValues: initialFormValue });
 
+  const [manufacturingDate, setManufacturingDate] = useState(new Date());
+  const [recievedDate, setRecievedDate] = useState(new Date());
+  const [expiryDate, setExpiryDate] = useState(new Date());
+
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -44,7 +48,7 @@ function ItemDetailForm({
             <div className="flex flex-col gap-4">
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2 w-1/4">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_details.name.label')}</p>
                   <Controller
                     rules={{ required: true }}
@@ -57,68 +61,90 @@ function ItemDetailForm({
                     )}
                     name="item_name"
                   />
-                  {errors.item_name && <ValidationError value="This field is required" />}
+                  {errors.item_name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.manufacturing_date.label')}</p>
                   <DatePick
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('manufacturing_date')}
-                    currentDate={new Date()}
-                    onChange={() => { }}
+                    currentDate={manufacturingDate}
+                    onChange={(value) => setManufacturingDate(value)}
                     name="manufacturing_date"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_details.received_date.label')}</p>
+                <div className="flex flex-col gap-2 w-1/3">
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.received_date.label')}</p>
                   <DatePick
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('received_date')}
-                    currentDate={new Date()}
-                    onChange={() => { }}
+                    currentDate={recievedDate}
+                    onChange={(value) => setRecievedDate(value)}
                     name="received_date"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_details.expiry_date.label')}</p>
+                <div className="flex flex-col gap-2 w-1/3">
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.expiry_date.label')}</p>
                   <DatePick
-                                          // eslint-disable-next-line react/jsx-props-no-spreading
+                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('expiry_date')}
-                    currentDate={new Date()}
-                    onChange={() => { }}
+                    currentDate={expiryDate}
+                    onChange={(value) => setExpiryDate(value)}
                     name="expiry_date"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium ">{format('item_details.batch_namber.label')}</p>
+                <div className="flex flex-col gap-2 w-1/3">
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_details.batch_namber.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('batch_number')}
+                    {...register('batch_number', {
+                      required: format('validation.error.field_required'),
+                      pattern: {
+                        value: /\d+/,
+                        message: format('validation.error.field_number'),
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: 'The maximum length is 10',
+                      },
+                    })}
                     name="batch_number"
                     id="floatingInput"
                     placeholder={format('item_details.batch_namber.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
+                    isInvalid={Boolean(errors.batch_number)}
                   />
-                  {errors.batch_number && <ValidationError value="This field is required" />}
+                  {errors.batch_number && <ValidationError value={errors.batch_number.message} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.gtin.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('gtin')}
+                    {...register('gtin', {
+                      pattern: {
+                        value: /\d+/,
+                        message: format('validation.error.field_number'),
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: 'The maximum length is 10',
+                      },
+                    })}
                     name="gtin"
                     id="floatingInput"
                     placeholder={format('item_details.gtin.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
+                    isInvalid={Boolean(errors.gtin)}
                   />
+                  {errors.gtin && <ValidationError value={errors.gtin.message} />}
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.funding_sources.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -130,29 +156,51 @@ function ItemDetailForm({
                     className="h-9 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.lot_number.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('lot_number')}
+                    {...register('lot_number', {
+                      pattern: {
+                        value: /\d+/,
+                        message: format('validation.error.field_number'),
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: 'The maximum length is 10',
+                      },
+                    })}
                     name="lot_number"
                     id="floatingInput"
                     placeholder={format('item_details.lot_number.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
+                    isInvalid={Boolean(errors.lot_number)}
                   />
+                  {errors.lot_number && <ValidationError value={errors.lot_number.message} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.serial_number.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('serial_number')}
+                    {...register('serial_number', {
+                      pattern: {
+                        value: /\d+/,
+                        message: format('validation.error.field_number'),
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: 'The maximum length is 10',
+                      },
+                    })}
                     name="serial_number"
                     id="floatingInput"
                     placeholder={format('item_details.serial_number.label')}
                     type="text"
                     className="h-9 placeholder-grey-300"
+                    isInvalid={Boolean(errors.serial_number)}
                   />
+                  {errors.serial_number && <ValidationError value={errors.serial_number.message} />}
                 </div>
               </div>
             </div>
