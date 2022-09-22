@@ -47,7 +47,7 @@ function TableWithoutPagination({
         <div className="overflow-scroll">
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <table {...getTableProps()} style={{ minWidth: '100%' }}>
-            <thead className="bg-transit-grey-shipment">
+            <thead className="bg-transit-grey-smallTableHeader">
               {headerGroups.map((headerGroup) => {
                 const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
                 return (

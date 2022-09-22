@@ -21,7 +21,7 @@ import AddShipmentPage from 'pages/menuUpload/shipment/addEditShipmentPages/AddS
 import EditShipmentPage from 'pages/menuUpload/shipment/addEditShipmentPages/EditShipmentPage';
 import ShipmentPage from 'pages/menuUpload/shipment/ShipmentPage';
 import SupplierMasterPage from 'pages/menuUpload/supplierMaster/SupplierMasterPage';
-import TransportDetailsPage from 'pages/menuUpload/TransportDetailsPage';
+import TransportDetailsPage from 'pages/menuUpload/transporterDetails/TransportDetailsPage';
 import ReportsPage from 'pages/reports/reports';
 import SignInPage from 'pages/signIn/SignInPage';
 import { Paths } from 'routes/paths';

@@ -121,36 +121,35 @@ function ShipmentBaseData({
         <div className="flex flex-col gap-2 w-1/4">
           <p className="text-xs text-transit-black-secondary font-medium">{format('shipment.custom_route_number.label')}</p>
           <Input
-                    // eslint-disable-next-line react/jsx-props-no-spreading
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('custom_route_number')}
             name="custom_route_number"
             id="floatingInput"
             placeholder={format('shipment.custom_route_number.label')}
             type="text"
-            className="h-9 placeholder-grey-300"
+            className="h-9"
           />
         </div>
         <div className="flex flex-col gap-2 w-1/4">
           <p className="text-xs text-transit-black-secondary font-medium">{format('shipment.ropo_number.label')}</p>
           <Input
-                    // eslint-disable-next-line react/jsx-props-no-spreading
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('ropo_number')}
             name="ropo_number"
             id="floatingInput"
             placeholder={format('shipment.ropo_number.label')}
             type="text"
-            className="h-9 placeholder-grey-300"
+            className="h-9"
           />
         </div>
       </div>
       <div className="flex gap-2">
         <div className="flex gap-2 w-1/4">
           <Input
-                    // eslint-disable-next-line react/jsx-props-no-spreading
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('delay_justified')}
             name="delay_justified"
             id="floatingInput"
-            placeholder=""
             type="checkbox"
             className="h-5 border border-transit-green-dark accent-transit-green-dark"
           />
@@ -158,11 +157,10 @@ function ShipmentBaseData({
         </div>
         <div className="flex gap-2 w-1/4">
           <Input
-                    // eslint-disable-next-line react/jsx-props-no-spreading
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('pod')}
             name="pod"
             id="floatingInput"
-            placeholder=""
             type="checkbox"
             className="h-5 border border-transit-green-dark accent-transit-green-dark"
           />

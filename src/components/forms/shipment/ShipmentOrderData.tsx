@@ -10,9 +10,16 @@ import Dialog from 'shared/dialog/Dialog';
 
 import ShipmentOrderDetailsForm from './ShipmentOrderDetailsForm';
 
+type ShipmentOrderDataProps = {
+  onOrderDetailAdd: any,
+  onOrderDetailDelete: any,
+  orderDetails: any,
+  mode: any,
+};
+
 function ShipmentOrderData({
   onOrderDetailAdd, onOrderDetailDelete, orderDetails, mode,
-}: any) {
+}: ShipmentOrderDataProps) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 

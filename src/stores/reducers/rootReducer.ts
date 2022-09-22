@@ -13,6 +13,7 @@ import customerMasterReducer from './customerMasterReducer';
 import customerWeekDaysReducer from './customerWeekDaysReducer';
 import itemDetailReducer from './itemDetailReducer';
 import shipmentReducer from './shipmentReducer';
+import transporterDetailsReducer from './transporterDetailsReducer';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   customerMaster: customerMasterReducer,
   itemDetail: itemDetailReducer,
   customerWeekDays: customerWeekDaysReducer,
+  transporterDetails: transporterDetailsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
