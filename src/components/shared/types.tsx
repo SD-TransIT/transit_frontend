@@ -12,7 +12,6 @@ export type PageBodyType = {
 export type DatePickType = {
   currentDate: Date | undefined,
   onChange: (value: Date) => void
-  name?: string
 };
 
 export type DatePickerCustomInputType = {

@@ -4,7 +4,7 @@ type ItemDetailFormType = {
   onSubmit: (formValues: IItemDetails) => void;
   onCancel: () => void;
   title: string;
-  initialFormValue?: IItemDetails;
+  initialFormValue?: any;
   submitButtonText?: string;
   mode: string
   onDelete?: (formValues: IItemDetails | {}) => void | undefined;

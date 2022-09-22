@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
-import ItemDetailPicker from 'components/pickers/ItemDetailPicker';
+import ItemPicker from 'components/pickers/ItemPicker';
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
 import FormHeader from 'components/shared/FormHeader';
 
@@ -25,10 +25,6 @@ function ItemDetailForm({
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: initialFormValue });
-
-  const [manufacturingDate, setManufacturingDate] = useState(new Date());
-  const [recievedDate, setRecievedDate] = useState(new Date());
-  const [expiryDate, setExpiryDate] = useState(new Date());
 
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -54,32 +50,40 @@ function ItemDetailForm({
                     rules={{ required: true }}
                     control={control}
                     render={({ field }) => (
-                      <ItemDetailPicker
+                      <ItemPicker
                         field={field}
-                        isInvalid={Boolean(errors.item_name)}
+                        isInvalid={Boolean(errors.item_master)}
                       />
                     )}
-                    name="item_name"
+                    name="item_master"
                   />
-                  {errors.item_name && <ValidationError value={format('validation.error.field_required')} />}
+                  {errors.item_master && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.manufacturing_date.label')}</p>
-                  <DatePick
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('manufacturing_date')}
-                    currentDate={manufacturingDate}
-                    onChange={(value) => setManufacturingDate(value)}
+                  <Controller
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <DatePick
+                        // @ts-ignore
+                        currentDate={value}
+                        onChange={onChange}
+                      />
+                    )}
                     name="manufacturing_date"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.received_date.label')}</p>
-                  <DatePick
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('received_date')}
-                    currentDate={recievedDate}
-                    onChange={(value) => setRecievedDate(value)}
+                  <Controller
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <DatePick
+                        // @ts-ignore
+                        currentDate={value}
+                        onChange={onChange}
+                      />
+                    )}
                     name="received_date"
                   />
                 </div>
@@ -87,11 +91,15 @@ function ItemDetailForm({
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_details.expiry_date.label')}</p>
-                  <DatePick
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('expiry_date')}
-                    currentDate={expiryDate}
-                    onChange={(value) => setExpiryDate(value)}
+                  <Controller
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <DatePick
+                        // @ts-ignore
+                        currentDate={value}
+                        onChange={onChange}
+                      />
+                    )}
                     name="expiry_date"
                   />
                 </div>
@@ -107,7 +115,7 @@ function ItemDetailForm({
                       },
                       maxLength: {
                         value: 10,
-                        message: 'The maximum length is 10',
+                        message: format('validation.error.character_length'),
                       },
                     })}
                     name="batch_number"
@@ -117,6 +125,7 @@ function ItemDetailForm({
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.batch_number)}
                   />
+                  {/* @ts-ignore */}
                   {errors.batch_number && <ValidationError value={errors.batch_number.message} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -130,7 +139,7 @@ function ItemDetailForm({
                       },
                       maxLength: {
                         value: 10,
-                        message: 'The maximum length is 10',
+                        message: format('validation.error.character_length'),
                       },
                     })}
                     name="gtin"
@@ -140,6 +149,7 @@ function ItemDetailForm({
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.gtin)}
                   />
+                  {/* @ts-ignore */}
                   {errors.gtin && <ValidationError value={errors.gtin.message} />}
                 </div>
               </div>
@@ -167,7 +177,7 @@ function ItemDetailForm({
                       },
                       maxLength: {
                         value: 10,
-                        message: 'The maximum length is 10',
+                        message: format('validation.error.character_length'),
                       },
                     })}
                     name="lot_number"
@@ -177,6 +187,7 @@ function ItemDetailForm({
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.lot_number)}
                   />
+                  {/* @ts-ignore */}
                   {errors.lot_number && <ValidationError value={errors.lot_number.message} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -190,7 +201,7 @@ function ItemDetailForm({
                       },
                       maxLength: {
                         value: 10,
-                        message: 'The maximum length is 10',
+                        message: format('validation.error.character_length'),
                       },
                     })}
                     name="serial_number"
@@ -200,6 +211,7 @@ function ItemDetailForm({
                     className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.serial_number)}
                   />
+                  {/* @ts-ignore */}
                   {errors.serial_number && <ValidationError value={errors.serial_number.message} />}
                 </div>
               </div>
