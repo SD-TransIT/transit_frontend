@@ -41,26 +41,20 @@ function TransporterDetails() {
     {
       Header: format('transporter.transporter_name.label'),
       accessor: 'name',
-      width: 140,
-      maxWidth: 140,
+      width: 250,
+      maxWidth: 250,
     },
     {
       Header: format('transporter.address_1.label'),
       accessor: 'address_1',
-      width: 250,
-      maxWidth: 250,
     },
     {
       Header: format('transporter.address_2.label'),
       accessor: 'address_2',
-      width: 250,
-      maxWidth: 250,
     },
     {
       Header: format('transporter.address_3.label'),
       accessor: 'address_3',
-      width: 250,
-      maxWidth: 250,
     },
     {
       Header: format('transporter.city.label'),
