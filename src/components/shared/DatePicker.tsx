@@ -8,7 +8,9 @@ import { DatePickerCustomInputType, DatePickType } from 'components/shared/types
 import 'react-datepicker/dist/react-datepicker.css';
 import 'styles/datePicker.css';
 
-function DatePickerCustomInput({ onClick, onChange, value }: DatePickerCustomInputType) {
+function DatePickerCustomInput({
+  onClick, onChange, value,
+}: DatePickerCustomInputType) {
   return (
     <button
       type="button"

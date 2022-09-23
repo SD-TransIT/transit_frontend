@@ -1,5 +1,5 @@
 export type ValidationErrorType = {
-  value: string
+  value?: string
 };
 
 export type PageBodyType = {
@@ -18,6 +18,7 @@ export type DatePickerCustomInputType = {
   onClick?: () => void,
   onChange?: () => void,
   value?: string
+  name?: string
 };
 
 export type FormHeaderType = {

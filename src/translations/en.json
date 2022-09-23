@@ -72,13 +72,13 @@
     "item_details.header": "Item Details",
     "item_details.column.id.label": "ID",
     "item_details.name.label": "Item Name",
-    "item_details.manufacturing_date.label": "Manufacturing Date",
-    "item_details.received_date.label": "Received Date",
-    "item_details.expiry_date.label": "Expiry Date",
+    "item_details.manufacturing_date.label": "Manufacturing Date (MM/DD/YYYY)",
+    "item_details.received_date.label": "Received Date (MM/DD/YYYY)",
+    "item_details.expiry_date.label": "Expiry Date (MM/DD/YYYY)",
     "item_details.batch_namber.label": "Batch Number",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Funding Sources",
-    "item_details.lot_nymber.label": "Lot Number",
+    "item_details.lot_number.label": "Lot Number",
     "item_details.serial_number.label": "Serial Number",
     
     "item": "Item Master",
@@ -204,6 +204,7 @@
     "transporter_details.vehicle_weight.label": "Vehicle Weight (Kgs)",
     "transporter_details.vehicle_volume.label": "Vehicle Volume",
 
+    "validation.error.character_length": "This field length is too long (maximum is 10 characters)",
     "validation.error.duplicate_order": "This order has already been added",
     "validation.error.field_required": "This field is required",
     "validation.error.field_number": "Please enter a number"

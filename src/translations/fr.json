@@ -61,7 +61,6 @@
     "driver_master.header": "Enregistrement du conducteur",
     "driver_master.column.id.label": "ID",
     "driver_master.column.transport_name.label": "Nom du convoyeur",
-    "driver_master.column.driver_name.label": "Nom du conducteur",
     "driver_master.transporter.label": "Transporteuse",
     "driver_master.name.label": "Nom du conducteur",
     "driver_master.epod_username.label": "ePOD Nom d'utilisateur",
@@ -73,13 +72,13 @@
     "item_details.header": "Détail de l'article",
     "item_details.column.id.label": "ID",
     "item_details.name.label": "Nom de l'article",
-    "item_details.manufacturing_date.label": "Date de fabrication",
-    "item_details.received_date.label": "Date de réception",
-    "item_details.expiry_date.label": "Date d'expiration",
+    "item_details.manufacturing_date.label": "Date de fabrication (MM/DD/YYYY)",
+    "item_details.received_date.label": "Date de réception (MM/DD/YYYY)",
+    "item_details.expiry_date.label": "Date d'expiration (MM/DD/YYYY)",
     "item_details.batch_namber.label": "Numéro de lot",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Sources de financement",
-    "item_details.lot_nymber.label": "Numéro de lot",
+    "item_details.lot_number.label": "Numéro de lot",
     "item_details.serial_number.label": "Numéro de série",
 
     "item": "Maître de l'article",
@@ -206,6 +205,7 @@
     "transporter_details.vehicle_weight.label": "Poids du véhicule (kgs)",
     "transporter_details.vehicle_volume.label": "Volume du véhicule",
 
+    "validation.error.character_length": "Ce champ est trop long (le maximum est de 10 caractères)",
     "validation.error.duplicate_order": "Cette commande a déjà été ajoutée",
     "validation.error.field_required": "Ce champ est requis",
     "validation.error.field_number": "Veuillez saisir un chiffre"

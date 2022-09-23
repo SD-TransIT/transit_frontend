@@ -29,18 +29,17 @@
         @apply flex;
         @apply justify-end;
         @apply w-full;
-        @apply h-full;
+        @apply h-9;
     }
     /* native HTML input */
     input.date-input {
         @apply w-full;
-        @apply px-4;
+        @apply px-2;
         @apply py-2;
         @apply text-start;
         @apply rounded;
-        @apply shadow-dateInput;
         @apply border;
-        @apply border-transparent;
+        @apply border-transit-grey-300;
         @apply hover:border;
         @apply hover:border-transit-grey-superLight;
         @apply focus:outline-none;
