@@ -82,7 +82,6 @@ function TransporterDetailsForm({
                     id="floatingInput"
                     placeholder={format('transporter_details.vehicle_number.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
@@ -98,7 +97,6 @@ function TransporterDetailsForm({
                     id="floatingInput"
                     placeholder={format('transporter_details.vehicle_volume.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.vehicle_capacity_volume)}
                   />
                   {errors.vehicle_capacity_volume && errors.vehicle_capacity_volume.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
@@ -114,7 +112,6 @@ function TransporterDetailsForm({
                     id="floatingInput"
                     placeholder={format('transporter_details.vehicle_weight.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.vehicle_capacity_weight)}
                   />
                   {errors.vehicle_capacity_weight && errors.vehicle_capacity_weight.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}

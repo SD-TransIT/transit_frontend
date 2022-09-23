@@ -49,7 +49,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.transporter_name.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
@@ -63,7 +62,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.address_1.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -75,7 +73,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.address_2.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
@@ -89,7 +86,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.address_3.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -101,7 +97,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.city.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -113,7 +108,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.state.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
@@ -127,7 +121,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.country.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -139,7 +132,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.phone_number.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -151,7 +143,6 @@ function TransporterForm({
                     id="floatingInput"
                     placeholder={format('transporter.gps.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
