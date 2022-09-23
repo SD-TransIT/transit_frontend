@@ -13,6 +13,7 @@ import customerMasterSaga from './customerMasterSaga';
 import customerWeekDaysSaga from './customerWeekDaysSaga';
 import itemDetailSaga from './itemDetailSaga';
 import shipmentSaga from './shipmentSaga';
+import transporterDetailsSaga from './transporterDetails';
 
 export default function* rootSaga() {
   yield all([
@@ -28,5 +29,6 @@ export default function* rootSaga() {
     fork(customerMasterSaga),
     fork(itemDetailSaga),
     fork(customerWeekDaysSaga),
+    fork(transporterDetailsSaga),
   ]);
 }

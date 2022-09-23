@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,6 +26,9 @@ import ShipmentFormType from './types';
 function ShipmentForm({
   onCancel, title, submitButtonText, initialFormValue, mode, onDelete, initialOrderDetails,
 }: ShipmentFormType) {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -140,7 +144,7 @@ function ShipmentForm({
   };
 
   return (
-    <div className="bg-transit-white w-full rounded-lg pt-8 px-4" style={{ width: '75%', margin: '0 auto' }}>
+    <div className="bg-transit-white w-3/4 m-auto rounded-lg pt-8 px-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4">
           <FormHeader title={title} onClick={onCancel} />
@@ -154,17 +158,12 @@ function ShipmentForm({
             initialFormValue={initialFormValue}
           />
           <ShipmentOrderData
-            control={control}
-            register={register}
-            errors={errors}
-            watch={watch}
-            setValue={setValue}
             onOrderDetailAdd={onOrderDetailAdd}
             onOrderDetailDelete={onOrderDetailDelete}
             orderDetails={orderDetails}
             mode={mode}
           />
-          <p className="float-left text-[21px] text-transit-black font-semibold">Delivery Details</p>
+          <p className="text-left text-lg text-transit-black font-semibold">{format('shipment.delivery_details.label')}</p>
           <ShipmentDetailsData
             control={control}
             register={register}
@@ -174,7 +173,7 @@ function ShipmentForm({
             mode={mode}
             initialFormValue={initialFormValue}
           />
-          <p className="float-left text-[21px] text-transit-black font-semibold" />
+          <p className="text-left text-lg text-transit-black font-semibold" />
           <ShipmentImagesData />
         </div>
       </form>

@@ -18,7 +18,7 @@ export type DriverPickerProp = {
   watch?: any;
   isShipment?: boolean;
   setValue: (name: string, value: unknown, config?: Object) => void;
-  mode?: string; // possible values: 'Edit', 'Add', ''
+  mode?: 'Edit' | 'Add' | '';
   initialFormValue?: any;
 };
 
@@ -28,7 +28,7 @@ export type TransporterDetailsPickerProp = {
   watch?: any;
   isShipment?: boolean;
   setValue: (name: string, value: unknown, config?: Object) => void;
-  mode?: string; // possible values: 'Edit', 'Add', ''
+  mode?: 'Edit' | 'Add' | '';
   initialFormValue?: any;
 };
 
