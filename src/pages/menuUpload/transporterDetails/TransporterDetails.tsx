@@ -5,21 +5,32 @@ import React, {
   useState,
 } from 'react';
 
+import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import TransporterForm from 'components/forms/transporter/transporterForm';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
+import Dialog from 'shared/dialog/Dialog';
+import { deleteTransporterRequest, postTransporterRequest, putTransporterRequest } from 'stores/actions/transporter/transporterActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { transporterUrl } from 'stores/sagas/transporterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import { DeleteTransporterRequestPayload, PostTransporterRequestPayload, PutTransporterRequestPayload } from 'stores/types/transporterType';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 function TransporterDetails() {
+  const [displayAddModal, setDisplayAddModal] = useState(false);
+  const [displayEditModal, setDisplayEditModal] = useState(false);
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
+  const [objectToEdit, setObjectToEdit] = useState({ id: null });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null });
+
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
   const [page, setPage] = useState(FIRST_PAGE);
@@ -28,6 +39,9 @@ function TransporterDetails() {
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
+
+  const dispatch = useDispatch();
+
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -127,6 +141,73 @@ function TransporterDetails() {
     setSearcher(formValues.search);
   };
 
+  const toggleAddModal = () => {
+    setDisplayAddModal(!displayAddModal);
+  };
+
+  const toggleEditModal = (object?: FieldValues, datas?: any) => {
+    if (object && object.id !== undefined) {
+      const record = datas.find((data_record:any) => data_record.id === object.id);
+      setObjectToEdit((prevState) => ({
+        ...prevState,
+        id: object.id,
+        name: record.name,
+        address_1: record.address_1,
+        address_2: record.address_2,
+        address_3: record.address_3,
+        city: record.city,
+        state: record.state,
+        country: record.country,
+        phone: record.phone,
+        latitude_longitude: record.latitude_longitude,
+      }));
+    }
+    setDisplayEditModal(!displayEditModal);
+  };
+
+  const toggleDeleteModal = (object?:FieldValues) => {
+    if (object) {
+      setObjectToDelete((prevState) => ({
+        ...prevState,
+        id: object.id,
+      }));
+    }
+    setDisplayDeleteModal(!displayDeleteModal);
+  };
+
+  const onSubmitAdd = (formValues: FieldValues) => {
+    const payload = formValues;
+    dispatch(postTransporterRequest(payload as PostTransporterRequestPayload));
+    toggleAddModal();
+  };
+
+  const onSubmitEdit = (formValues: FieldValues) => {
+    const payload = formValues;
+    if (objectToEdit) {
+      payload.id = objectToEdit.id;
+    }
+    dispatch(putTransporterRequest(payload as PutTransporterRequestPayload));
+    toggleEditModal();
+  };
+
+  const onDelete = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToDelete) {
+      paramsToPass.id = objectToDelete.id;
+    }
+    dispatch(deleteTransporterRequest(paramsToPass as DeleteTransporterRequestPayload));
+    toggleDeleteModal();
+  };
+
+  const onDeleteSubmitEdit = (formValues: FieldValues) => {
+    const paramsToPass = formValues;
+    if (objectToEdit) {
+      paramsToPass.id = objectToEdit.id;
+    }
+    dispatch(deleteTransporterRequest(paramsToPass as DeleteTransporterRequestPayload));
+    toggleEditModal();
+  };
+
   return (
     <>
       <div className="p-4 bg-transit-white">
@@ -138,7 +219,7 @@ function TransporterDetails() {
             0
             {format('app.results')}
           </p>
-          <AddItemButton onClick={() => { }} className="w-fit p-2">
+          <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
         </Table>
@@ -146,8 +227,8 @@ function TransporterDetails() {
         <Table
           columns={columns}
           data={data}
-          editAction={() => { }}
-          deleteAction={() => { }}
+          editAction={toggleEditModal}
+          deleteAction={toggleDeleteModal}
           fetchData={fetchData}
           search={searcher}
           isCleanupRef={isCleanupRef}
@@ -157,11 +238,44 @@ function TransporterDetails() {
           currentPage={page}
         >
           <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
-          <AddItemButton onClick={() => { }} className="w-fit p-2">
+          <AddItemButton onClick={toggleAddModal} className="w-fit p-2">
             <AiOutlinePlus className="text-transit-white" />
           </AddItemButton>
         </Table>
       )}
+      <Dialog
+        isOpen={displayAddModal || displayEditModal}
+        onClose={displayAddModal ? toggleAddModal : toggleEditModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <TransporterForm
+            onSubmit={displayAddModal ? onSubmitAdd : onSubmitEdit}
+            onCancel={displayAddModal ? toggleAddModal : toggleEditModal}
+            title={displayAddModal ? `${format('app.new')} ${format('transporter_details')}` : `${format('app.edit')} ${format('transporter_details')}`}
+            initialFormValue={displayAddModal ? {} : objectToEdit}
+            mode={displayAddModal ? 'Add' : 'Edit'}
+            submitButtonText={displayAddModal ? format('app.add') : format('app.save')}
+            onDelete={onDeleteSubmitEdit}
+          />,
+        ]}
+      />
+      <Dialog
+        isOpen={displayDeleteModal}
+        onClose={toggleDeleteModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <TransporterForm
+            onSubmit={onDelete}
+            onCancel={toggleDeleteModal}
+            title={`${format('app.delete')} ${format('driver')}`}
+            initialFormValue={objectToDelete}
+            submitButtonText={format('app.delete')}
+            mode="Delete"
+          />,
+        ]}
+      />
     </>
   );
 }

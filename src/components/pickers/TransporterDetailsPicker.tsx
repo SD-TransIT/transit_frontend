@@ -4,12 +4,11 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
+import { transporterDetailsUrl } from 'stores/sagas/transporterDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
 import { TransporterDetailsPickerProp } from './types';
-
-const transporterDetails = 'transporter_details/';
 
 function TransporterDetailsPicker({
   field, isInvalid, isShipment, watch, setValue, mode = '', initialFormValue,
@@ -24,7 +23,11 @@ function TransporterDetailsPicker({
   ) => {
     await refreshAccessToken();
     if (!isShipment) {
-      const response = await getRequest(transporterDetails, { page, searcher: searchQuery }, true);
+      const response = await getRequest(
+        transporterDetailsUrl,
+        { page, searcher: searchQuery },
+        true,
+      );
       const isNext: boolean = response.next !== null;
 
       return {
@@ -38,7 +41,7 @@ function TransporterDetailsPicker({
     let response: any = { results: [] };
     let isNext: boolean = false;
     if (watch !== undefined) {
-      response = await getRequest(transporterDetails, { page, searcher: `${watch.name} ${searchQuery}` }, true);
+      response = await getRequest(transporterDetailsUrl, { page, searcher: `${watch.name} ${searchQuery}` }, true);
       isNext = response.next !== null;
     }
     return {

@@ -102,6 +102,7 @@
     "mode_of_transport.header": "Mode d'expédition standard",
     "mode_of_transport.column.id.label": "ID",
     "mode_of_transport.class.label": "Classe",
+    "mode_of_transport.placeholder": "Mode",
     "mode_of_transport.vehicle_type.label": "Type de véhicule",
 
     "order_details": "Commande / détail de la commande",
@@ -196,6 +197,7 @@
 
     "transporter_details": "Détails du convoyeur",
     "transporter_details.header": "Détails du convoyeur",
+    "transporter_details.header.label": "Les détails du véhicule",
     "transporter_details.name.label": "Transporter",
     "transporter_details.column.name.label": "Nom du transporteur",
     "transporter_details.column.driver.label": "Nom du conducteur",
