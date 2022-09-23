@@ -122,7 +122,6 @@ function ItemDetailForm({
                     id="floatingInput"
                     placeholder={format('item_details.batch_namber.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.batch_number)}
                   />
                   {/* @ts-ignore */}
@@ -146,7 +145,6 @@ function ItemDetailForm({
                     id="floatingInput"
                     placeholder={format('item_details.gtin.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.gtin)}
                   />
                   {/* @ts-ignore */}
@@ -163,7 +161,6 @@ function ItemDetailForm({
                     id="floatingInput"
                     placeholder={format('item_details.funding_sources.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
@@ -184,7 +181,6 @@ function ItemDetailForm({
                     id="floatingInput"
                     placeholder={format('item_details.lot_number.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.lot_number)}
                   />
                   {/* @ts-ignore */}
@@ -208,7 +204,6 @@ function ItemDetailForm({
                     id="floatingInput"
                     placeholder={format('item_details.serial_number.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.serial_number)}
                   />
                   {/* @ts-ignore */}

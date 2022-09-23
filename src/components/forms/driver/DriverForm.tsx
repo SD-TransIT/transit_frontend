@@ -65,7 +65,6 @@ function DriverForm({
                     id="floatingInput"
                     placeholder={format('driver_master.name.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
@@ -81,7 +80,6 @@ function DriverForm({
                     id="floatingInput"
                     placeholder={format('driver_master.epod_username.placeholder')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
@@ -93,7 +91,6 @@ function DriverForm({
                     id="floatingInput"
                     placeholder={format('driver_master.epod_password.placeholder')}
                     type="password"
-                    className="h-9 placeholder-grey-300"
                   />
                 </div>
               </div>

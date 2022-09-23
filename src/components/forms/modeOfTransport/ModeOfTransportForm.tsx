@@ -49,7 +49,6 @@ function ModeOfTransportForm({
                   id="floatingInput"
                   placeholder={format('mode_of_transport.class.label')}
                   type="text"
-                  className="h-9 placeholder-grey-300"
                   isInvalid={Boolean(errors.class_mode)}
                 />
                 {errors.class_mode && <ValidationError value={format('validation.error.field_required')} />}
@@ -63,7 +62,6 @@ function ModeOfTransportForm({
                   id="floatingInput"
                   placeholder={format('mode_of_transport.vehicle_type.label')}
                   type="text"
-                  className="h-9 border-transit-grey-300 placeholder-grey-300"
                   isInvalid={Boolean(errors.vehicle_type)}
                 />
                 {errors.vehicle_type && <ValidationError value={format('validation.error.field_required')} />}

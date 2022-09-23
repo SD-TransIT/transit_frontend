@@ -39,7 +39,7 @@ function SupplierMasterForm({
             <div className="flex flex-col gap-4">
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('supplier_master.name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -48,12 +48,11 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.name.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.address_1.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -62,10 +61,9 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.address.placeholder')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.address_2.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -74,12 +72,11 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.address.placeholder')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.address_3.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -88,10 +85,9 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.address.placeholder')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium ">{format('supplier_master.city.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -100,10 +96,9 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.city.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.state.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -112,12 +107,11 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.state.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.country.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -126,10 +120,9 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.country.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.phone_number.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -138,10 +131,9 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.phone_number.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.email.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -150,12 +142,11 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.email.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.gps.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -164,7 +155,6 @@ function SupplierMasterForm({
                     id="floatingInput"
                     placeholder={format('supplier_master.gps.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
