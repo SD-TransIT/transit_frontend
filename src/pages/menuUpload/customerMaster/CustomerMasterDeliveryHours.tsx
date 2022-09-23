@@ -139,8 +139,8 @@ function CustomerMasterDeliveryHours(
           id: deliveryHour.id,
           day: dayValue,
           customer: deliveryHour.customer,
-          opening_time: deliveryHour.opening_time === '' ? 'N/A' : deliveryHour.opening_time,
-          closing_time: deliveryHour.closing_time === '' ? 'N/A' : deliveryHour.closing_time,
+          opening_time: deliveryHour.opening_time,
+          closing_time: deliveryHour.closing_time,
           closed: deliveryHour.closed,
         } : delivery))]);
   };
@@ -152,8 +152,8 @@ function CustomerMasterDeliveryHours(
           id: deliveryHour.id,
           day: deliveryHour.day,
           customer: deliveryHour.customer,
-          opening_time: deliveryHour.closed ? 'N/A' : deliveryHour.opening_time,
-          closing_time: deliveryHour.closed ? 'N/A' : deliveryHour.closing_time,
+          opening_time: deliveryHour.opening_time,
+          closing_time: deliveryHour.closing_time,
           closed: !deliveryHour.closed,
         } : delivery))]);
   };
@@ -166,7 +166,7 @@ function CustomerMasterDeliveryHours(
           day: deliveryHour.day,
           customer: deliveryHour.customer,
           opening_time: openingHour,
-          closing_time: deliveryHour.closed ? 'N/A' : deliveryHour.closing_time,
+          closing_time: deliveryHour.closing_time,
           closed: deliveryHour.closed,
         } : delivery))]);
   };
@@ -178,7 +178,7 @@ function CustomerMasterDeliveryHours(
           id: deliveryHour.id,
           day: deliveryHour.day,
           customer: deliveryHour.customer,
-          opening_time: deliveryHour.opening_time === '' ? 'N/A' : deliveryHour.opening_time,
+          opening_time: deliveryHour.opening_time,
           closing_time: closedHour,
           closed: deliveryHour.closed,
         } : delivery))]);
@@ -219,7 +219,7 @@ function CustomerMasterDeliveryHours(
               options={timeOptionsForSelect}
               onChange={(openingHour) => openingHour
                 && handleUpdateOpenHour(openingHour.value, deliveryHour)}
-              placeholder={deliveryHour.opening_time}
+              placeholder={deliveryHour.closed ? '' : deliveryHour.opening_time}
               isDisabled={deliveryHour.closed}
             />
           </div>
@@ -228,7 +228,7 @@ function CustomerMasterDeliveryHours(
               options={timeOptionsForSelect}
               onChange={(closedHour) => closedHour
                 && handleUpdateClosedHour(closedHour.value, deliveryHour)}
-              placeholder={deliveryHour.closing_time}
+              placeholder={deliveryHour.closed ? '' : deliveryHour.closing_time}
               isDisabled={deliveryHour.closed}
             />
           </div>
