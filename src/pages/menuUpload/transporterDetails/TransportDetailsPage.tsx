@@ -15,6 +15,7 @@ function TransportDetailsPage() {
   return (
     <PageBody title={format(PageHeader.transporter_details)}>
       <TransporterDetails />
+      <p className="text-2xl text-transit-black">{format('transporter_details.header.label')}</p>
       <VehicleDetails />
     </PageBody>
   );

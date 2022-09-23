@@ -13,7 +13,7 @@ import customerMasterSaga from './customerMasterSaga';
 import customerWeekDaysSaga from './customerWeekDaysSaga';
 import itemDetailSaga from './itemDetailSaga';
 import shipmentSaga from './shipmentSaga';
-import transporterDetailsSaga from './transporterDetails';
+import transporterDetailsSaga from './transporterDetailsSaga';
 
 export default function* rootSaga() {
   yield all([

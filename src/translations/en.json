@@ -100,6 +100,7 @@
     "mode_of_transport": "Mode of Transport Master",
     "mode_of_transport.header": "Mode of Transport Master",
     "mode_of_transport.class.label": "Class",
+    "mode_of_transport.placeholder": "Mode",
     "mode_of_transport.vehicle_type.label": "Vehicle Type",
     
     "order_details": "Order Details",
@@ -195,6 +196,7 @@
 
     "transporter_details": "Transporter Details",
     "transporter_details.header": "Transporter Details",
+    "transporter_details.header.label": "Vehicle Details",
     "transporter_details.name.label": "Transporter",
     "transporter_details.column.name.label": "Transporter Name",
     "transporter_details.column.driver.label": "Driver Name",
