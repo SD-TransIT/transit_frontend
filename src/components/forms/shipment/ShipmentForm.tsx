@@ -163,7 +163,7 @@ function ShipmentForm({
             orderDetails={orderDetails}
             mode={mode}
           />
-          <p className="float-left text-[18px] text-transit-black font-semibold">{format('shipment.delivery_details.label')}</p>
+          <p className="float-left text-lg text-transit-black font-semibold">{format('shipment.delivery_details.label')}</p>
           <ShipmentDetailsData
             control={control}
             register={register}
@@ -173,7 +173,7 @@ function ShipmentForm({
             mode={mode}
             initialFormValue={initialFormValue}
           />
-          <p className="float-left text-[18px] text-transit-black font-semibold" />
+          <p className="float-left text-lg text-transit-black font-semibold" />
           <ShipmentImagesData />
         </div>
       </form>

@@ -185,15 +185,13 @@
     "transporter.address_2.label": "Address 2",
     "transporter.address_3.label": "Address 3",
     "transporter.city.label": "City",
+    "transporter.column.driver.label": "Driver Name",
     "transporter.country.label": "Country",
     "transporter.email.label": "Email",
     "transporter.gps.label": "GPS Coordinates",
     "transporter.phone_number.label": "Phone Number",
     "transporter.state.label": "State",
     "transporter.transporter_name.label": "Transporter Name",
-
-    "transporter.column.name.label": "Transporter Name",
-    "transporter.column.driver.label": "Driver Name",
 
     "transporter_details": "Transporter Details",
     "transporter_details.header": "Transporter Details",
