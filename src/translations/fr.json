@@ -20,6 +20,12 @@
 
     "cost": "Formulaire de coût",
     "cost_form.header": "Formulaire de coût",
+    "cost.driver_name.label": "Nom du conducteur",
+    "cost.transporter_additional_cost.label": "Transporteur Coût Supplémentaire",
+    "cost.transporter_base_cost.label": "Coût de base du transporteur",
+    "cost.transporter_name.label": "Nom du convoyeur",
+    "cost.shipment_number.label": "Numéro d'expédition",
+    "cost.vehicle_number.label": "Numéro de véhicule",
 
     "customer": "Fiche client",
     "customer_master.address_1.label": "Adresse 1",
