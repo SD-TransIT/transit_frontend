@@ -101,7 +101,6 @@ function ShipmentDetailsData({
             id="floatingInput"
             placeholder={format('shipment.signed_by.label')}
             type="text"
-            className="h-9"
           />
         </div>
       </div>
@@ -128,7 +127,6 @@ function ShipmentDetailsData({
             id="floatingInput"
             placeholder={format('shipment.gps_coordinates.label')}
             type="text"
-            className="h-9"
           />
         </div>
         <div className="flex flex-col gap-2 w-1/3">
@@ -140,7 +138,6 @@ function ShipmentDetailsData({
             id="floatingInput"
             placeholder={format('shipment.description.label')}
             type="text"
-            className="h-9"
           />
         </div>
       </div>

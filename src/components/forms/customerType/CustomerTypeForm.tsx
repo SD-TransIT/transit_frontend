@@ -47,7 +47,6 @@ function CustomerTypeForm({
                   id="floatingInput"
                   placeholder={format('customer_type.name.label')}
                   type="text"
-                  className="h-9 border-transit-grey-300 placeholder-grey-300"
                   isInvalid={Boolean(errors.customer_type_name)}
                 />
                 {errors.customer_type_name && <ValidationError value={format('validation.error.field_required')} />}

@@ -34,7 +34,7 @@ function Dialog({
             >
               <DialogHeadlessui.Description
                 as="div"
-                className="overflow-auto px-4 flex flex-col gap-3"
+                className=" px-4 flex flex-col gap-3"
               >
                 {setCustomDialogContent === false ? (
                   <div>
