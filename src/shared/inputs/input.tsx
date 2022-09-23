@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { InputProps } from 'shared/inputs/types';
 
-const style = 'text-sm border border-transit-grey-300 rounded w-full text-black-light focus:outline-none focus:shadow-outline h-full px-2';
+const style = 'text-sm border border-transit-grey-300 rounded w-full text-black-light focus:outline-none focus:shadow-outline h-9 px-2';
 
 const Input = React.forwardRef(({
   id, name, placeholder, type, className, isInvalid = false,

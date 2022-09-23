@@ -66,7 +66,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_type.column.name')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
@@ -80,7 +79,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.first_name.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                     isInvalid={Boolean(errors.first_name)}
                   />
                   {errors.first_name && <ValidationError value={format('validation.error.field_required')} />}
@@ -94,7 +92,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.last_name.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                     isInvalid={Boolean(errors.last_name)}
                   />
                   {errors.last_name && <ValidationError value={format('validation.error.field_required')} />}
@@ -113,7 +110,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.phone.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -125,7 +121,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.address_1.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -137,7 +132,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.address_2.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -149,7 +143,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.address_3.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
@@ -163,7 +156,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.city.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -175,7 +167,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.state.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -187,7 +178,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.country.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -199,7 +189,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.email.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>
@@ -213,7 +202,6 @@ function CustomerMasterForm({
                     id="floatingInput"
                     placeholder={format('customer_master.gps.label')}
                     type="text"
-                    className="h-9 border-transit-grey-300 placeholder-grey-300"
                   />
                 </div>
               </div>

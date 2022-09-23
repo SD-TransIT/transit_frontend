@@ -39,7 +39,7 @@ function Searcher({ refetch }: SearcherProps) {
               {...register('search', { required: false })}
               type="search"
               id="default-search"
-              className="p-2 pl-10 text-sm rounded-lg"
+              className="h-fit p-3 pl-10 text-sm rounded-lg"
               placeholder={format('search.placeholder')}
             />
           </div>

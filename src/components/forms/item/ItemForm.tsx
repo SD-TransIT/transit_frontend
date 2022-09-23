@@ -49,7 +49,7 @@ function ItemForm({
             <div className="flex flex-col gap-4">
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_master.name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -58,12 +58,11 @@ function ItemForm({
                     id="floatingInput"
                     placeholder={format('item_master.name.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.volume.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -74,12 +73,11 @@ function ItemForm({
                     id="floatingInput"
                     placeholder={format('item_master.volume.placeholder')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.volume)}
                   />
                   {errors.volume && errors.volume.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.cost.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -90,14 +88,13 @@ function ItemForm({
                     id="floatingInput"
                     placeholder={format('item_master.cost.placeholder')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.cost)}
                   />
                   {errors.cost && errors.cost.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.weight.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -108,12 +105,11 @@ function ItemForm({
                     id="floatingInput"
                     placeholder={format('item_master.weight.placeholder')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                     isInvalid={Boolean(errors.weight)}
                   />
                   {errors.weight && errors.weight.type === 'validate' && <ValidationError value={format('validation.error.field_number')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium ">{format('item_master.category.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -122,10 +118,9 @@ function ItemForm({
                     id="floatingInput"
                     placeholder={format('item_master.category.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('item_master.sub_category.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -134,12 +129,11 @@ function ItemForm({
                     id="floatingInput"
                     placeholder={format('item_master.sub_category.label')}
                     type="text"
-                    className="h-9 placeholder-grey-300"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2" style={{ width: '207px' }}>
+                <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_master.conditions.label')}</p>
                   <Controller
                     rules={{ required: true }}

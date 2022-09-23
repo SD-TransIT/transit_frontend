@@ -127,7 +127,6 @@ function ShipmentBaseData({
             id="floatingInput"
             placeholder={format('shipment.custom_route_number.label')}
             type="text"
-            className="h-9"
           />
         </div>
         <div className="flex flex-col gap-2 w-1/4">
@@ -139,7 +138,6 @@ function ShipmentBaseData({
             id="floatingInput"
             placeholder={format('shipment.ropo_number.label')}
             type="text"
-            className="h-9"
           />
         </div>
       </div>
