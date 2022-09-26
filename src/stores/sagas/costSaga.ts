@@ -11,14 +11,34 @@ import {
   putCostFailure, putCostSuccess,
 } from 'stores/actions/cost/costActions';
 import CostActionTypes from 'stores/actions/cost/costTypes';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import {
+import apiClient, {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
 export const costUrl = 'cost/';
 export const shipmentWithCost = '/shipment_details_cost/get_shipments_with_cost/';
 export const shipmentWithoutCost = '/shipment_details_cost/get_shipments_without_cost/';
+
+export const getCostRequest = async (parameters: any, isPagination: boolean = false) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const page: number = parameters?.page ?? 1;
+  const additionalParamString = parameters.searcher !== null ? `&search=${parameters.searcher}` : '';
+  const { data } = await apiClient.get(
+    `${costUrl}?page=${page}${additionalParamString}&transporter_base_cost__isnull=False`,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  if (isPagination) {
+    return data;
+  }
+  return Object.prototype.hasOwnProperty.call(data, 'results') ? data.results : data;
+};
 
 function* getCostSaga(action: any) {
   try {

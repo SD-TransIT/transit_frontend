@@ -13,9 +13,8 @@ import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import { RootState } from 'stores/reducers/rootReducer';
-import { shipmentWithoutCost } from 'stores/sagas/costSaga';
+import { getCostRequest } from 'stores/sagas/costSaga';
 import refreshAccessToken from 'stores/sagas/utils';
-import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 function CostFormPage() {
@@ -89,14 +88,15 @@ function CostFormPage() {
     try {
       if (fetchId === fetchIdRef.current) {
         await refreshAccessToken();
-        const result = await getRequest(shipmentWithoutCost, {
+        const result = await getCostRequest({
           page: pageNumber,
           searcher: search,
         }, true);
+
         setPage(pageNumber);
-        setData(result);
-        setPageCount(calculatePagesCount(DEFAULT_OFFSET, result.length));
-        setNumberOfAvailableData(result.length);
+        setData(result.results);
+        setPageCount(calculatePagesCount(DEFAULT_OFFSET, result.count));
+        setNumberOfAvailableData(result.count);
       }
     } catch (error) {
       setData(data);
