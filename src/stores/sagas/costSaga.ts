@@ -17,6 +17,8 @@ import {
 } from 'utils/apiClient';
 
 export const costUrl = 'cost/';
+export const shipmentWithCost = '/shipment_details_cost/get_shipments_with_cost/';
+export const shipmentWithoutCost = '/shipment_details_cost/get_shipments_without_cost/';
 
 function* getCostSaga(action: any) {
   try {
