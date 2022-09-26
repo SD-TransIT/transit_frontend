@@ -95,6 +95,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               placeholder={format('sign_in.username.placeholder')}
               type="text"
               isInvalid={Boolean(errors.username)}
+              className="min-h-full"
             />
             <div className="pb-2">
               {errors.username && <ValidationError value={format('validation.error.field_required')} />}
@@ -109,6 +110,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               placeholder={format('sign_in.password.placeholder')}
               type="password"
               isInvalid={Boolean(errors.password)}
+              className="min-h-full"
             />
             <div className="pb-2">
               {errors.password && <ValidationError value={format('validation.error.field_required')} />}
