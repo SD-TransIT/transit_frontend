@@ -1,4 +1,4 @@
-import { IOrderDetails } from 'models/orderDetails/IOrderDetils';
+import { IOrderDetails } from 'models/orderDetails/IOrderDetails';
 import OrderDetailsActionTypes from 'stores/actions/orderDetails/orderDetailsTypes';
 
 export interface OrderDetailsState {

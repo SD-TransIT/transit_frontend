@@ -2,7 +2,7 @@ import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
 
-import { IOrderDetails } from 'models/orderDetails/IOrderDetils';
+import { IOrderDetails } from 'models/orderDetails/IOrderDetails';
 import {
   deleteOrderDetailsFailure,
   deleteOrderDetailsSuccess,
