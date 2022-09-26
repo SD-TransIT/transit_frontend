@@ -85,7 +85,6 @@
     "item_master.header": "Maître de l'article",
     "item_master.column.id.label": "ID",
     "item_master.column.name.label": "Nom du produit",
-    "item_master.column.volume.label": "Le volume (Cubic Meters)",
     "item_master.column.conditions.label": "Ambience/Cold Chain",
     "item_master.name.label": "Item Name",
     "item_master.volume.label": "Volume (mètres cubes)",
@@ -100,13 +99,13 @@
 
     "mode_of_transport": "Mode d'expédition standard",
     "mode_of_transport.header": "Mode d'expédition standard",
-    "mode_of_transport.column.id.label": "ID",
     "mode_of_transport.class.label": "Classe",
     "mode_of_transport.placeholder": "Mode",
     "mode_of_transport.vehicle_type.label": "Type de véhicule",
 
     "order_details": "Commande / détail de la commande",
     "order_details.header": "Commande / détail de la commande",
+    "order_details.received_date.label": "Date de réception de la commande (MM/DD/YYYY)",
 
     "pod_variance": "Changement de lieu de livraison",
     "pod_variance.header": "Changement de lieu de livraison",

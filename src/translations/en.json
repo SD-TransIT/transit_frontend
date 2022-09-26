@@ -105,6 +105,7 @@
     
     "order_details": "Order Details",
     "order_details.header": "Order Details",
+    "order_details.received_date.label": "Order Received Date (MM/DD/YYYY)",
     
     "pod_variance": "POD Variance",
     "pod_variance.header": "POD Variance",
@@ -186,7 +187,6 @@
     "transporter.address_2.label": "Address 2",
     "transporter.address_3.label": "Address 3",
     "transporter.city.label": "City",
-    "transporter.column.driver.label": "Driver Name",
     "transporter.country.label": "Country",
     "transporter.email.label": "Email",
     "transporter.gps.label": "GPS Coordinates",
