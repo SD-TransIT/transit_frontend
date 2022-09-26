@@ -46,7 +46,7 @@ function* postOrderDetailsSaga(action: any) {
     yield put(postOrderDetailsSuccess(responsePost));
     yield put({
       type: OrderDetailsActionTypes.POST_ORDER_DETAILS_SUCCESS,
-      customer: responsePost,
+      orderDetail: responsePost,
     });
   } catch (error: any) {
     yield put(postOrderDetailsFailure(error));

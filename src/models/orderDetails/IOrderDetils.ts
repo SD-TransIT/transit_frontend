@@ -1,8 +1,8 @@
 export interface IOrderDetails {
   id?: number;
   order_details_id: string;
-  line_items?: [];
+  line_items?: object[];
   customer: number;
-  order_recived_date?: string;
+  order_received_date?: string;
   customer_name?: string;
 }

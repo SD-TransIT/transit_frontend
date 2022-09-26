@@ -21,59 +21,59 @@ const orderDetailsReducer = (
       return {
         ...state,
         fetchingOrderDetails: true,
-        fetchedCustomerType: false,
-        customers: [],
+        fetchedOrderDetails: false,
+        orderDetails: [],
         error: null,
       };
     case OrderDetailsActionTypes.GET_ORDER_DETAILS_SUCCESS:
       return {
         ...state,
         fetchingOrderDetails: false,
-        fetchedCustomerType: true,
-        customers: action.payload,
+        fetchedOrderDetails: true,
+        orderDetails: action.payload,
         error: null,
       };
     case OrderDetailsActionTypes.GET_ORDER_DETAILS_FAILURE:
       return {
         ...state,
         fetchingOrderDetails: false,
-        customers: [],
+        orderDetails: [],
         error: action.payload,
       };
     case OrderDetailsActionTypes.POST_ORDER_DETAILS_REQUEST:
       return {
         ...state,
-        customer: null,
+        orderDetail: null,
         error: null,
       };
     case OrderDetailsActionTypes.POST_ORDER_DETAILS_SUCCESS:
       return {
         ...state,
-        customer: action.payload,
+        orderDetail: action.payload,
         error: null,
       };
     case OrderDetailsActionTypes.POST_ORDER_DETAILS_FAILURE:
       return {
         ...state,
-        customer: null,
+        orderDetail: null,
         error: action.payload,
       };
     case OrderDetailsActionTypes.PUT_ORDER_DETAILS_REQUEST:
       return {
         ...state,
-        customer: null,
+        orderDetail: null,
         error: null,
       };
     case OrderDetailsActionTypes.PUT_ORDER_DETAILS_SUCCESS:
       return {
         ...state,
-        customer: action.payload,
+        orderDetail: action.payload,
         error: null,
       };
     case OrderDetailsActionTypes.PUT_ORDER_DETAILS_FAILURE:
       return {
         ...state,
-        customer: null,
+        orderDetail: null,
         error: action.payload,
       };
     case OrderDetailsActionTypes.DELETE_ORDER_DETAILS_REQUEST:
