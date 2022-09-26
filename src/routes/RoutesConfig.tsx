@@ -15,7 +15,7 @@ import ItemDetailsPage from 'pages/menuUpload/itemDetail/ItemDetailPage';
 import ItemMasterPage from 'pages/menuUpload/itemMaster/ItemMasterPage';
 import ManualUploadPage from 'pages/menuUpload/MenuUploadPage';
 import ModeOfTransportMasterPage from 'pages/menuUpload/modeOfTransport/ModeOfTransportMasterPage';
-import OrderDetailsPage from 'pages/menuUpload/OrderDetailsPage';
+import OrderDetailsPage from 'pages/menuUpload/orderDetails/OrderDetailsPage';
 import PODVariancePage from 'pages/menuUpload/PODVariancePage';
 import AddShipmentPage from 'pages/menuUpload/shipment/addEditShipmentPages/AddShipmentPage';
 import EditShipmentPage from 'pages/menuUpload/shipment/addEditShipmentPages/EditShipmentPage';

@@ -121,7 +121,7 @@ function* deleteCostSaga(action: any) {
   }
 }
 
-function* CostSaga() {
+function* costSaga() {
   yield all([takeLatest(CostActionTypes.GET_COST_REQUEST, getCostSaga)]);
   yield all([takeLatest(CostActionTypes.POST_COST_REQUEST, postCostSaga)]);
   yield all([takeLatest(CostActionTypes.PUT_COST_REQUEST, putCostSaga)]);
@@ -131,4 +131,4 @@ function* CostSaga() {
   )]);
 }
 
-export default CostSaga;
+export default costSaga;

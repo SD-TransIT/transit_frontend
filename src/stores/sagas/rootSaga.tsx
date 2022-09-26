@@ -9,10 +9,11 @@ import supplierMasterSaga from 'stores/sagas/supplierMasterSaga';
 import tokenSaga from 'stores/sagas/tokenSaga';
 import transporterSaga from 'stores/sagas/transporterSaga';
 
-import CostSaga from './costSaga';
+import costSaga from './costSaga';
 import customerMasterSaga from './customerMasterSaga';
 import customerWeekDaysSaga from './customerWeekDaysSaga';
 import itemDetailSaga from './itemDetailSaga';
+import orderDetailsSaga from './orderDetailsSaga';
 import shipmentSaga from './shipmentSaga';
 import transporterDetailsSaga from './transporterDetailsSaga';
 
@@ -31,6 +32,7 @@ export default function* rootSaga() {
     fork(itemDetailSaga),
     fork(customerWeekDaysSaga),
     fork(transporterDetailsSaga),
-    fork(CostSaga),
+    fork(costSaga),
+    fork(orderDetailsSaga),
   ]);
 }
