@@ -7,7 +7,7 @@ import Unauthorized from 'components/shared/Unauthorized';
 import DashboardPage from 'pages/dashboard/dashboard';
 import ExcelUploadPage from 'pages/excelUpload/excelUpload';
 import LandingPage from 'pages/landing/LandingPage';
-import CostFormPage from 'pages/menuUpload/CostFormPage';
+import CostFormPage from 'pages/menuUpload/cost/CostFormPage';
 import CustomerMasterPage from 'pages/menuUpload/customerMaster/CustomerMasterPage';
 import CustomerTypePage from 'pages/menuUpload/customerType/CustomerTypePage';
 import DriverMasterPage from 'pages/menuUpload/driver/DriverMasterPage';

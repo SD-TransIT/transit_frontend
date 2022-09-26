@@ -20,6 +20,12 @@
     
     "cost": "Cost form",
     "cost_form.header": "Cost form",
+    "cost.driver_name.label": "Driver Name",
+    "cost.transporter_additional_cost.label": "Transporter Additional Cost",
+    "cost.transporter_base_cost.label": "Transporter Base Cost",
+    "cost.transporter_name.label": "Transporter Name",
+    "cost.shipment_number.label": "Shipment Number",
+    "cost.vehicle_number.label": "Vehicle Number",
     
     "customer": "Customer Master",
     "customer_master.address_1.label": "Address 1",
