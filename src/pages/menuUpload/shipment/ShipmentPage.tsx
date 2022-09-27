@@ -2,6 +2,7 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 
+import { format as formatDate } from 'date-fns';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
@@ -67,12 +68,14 @@ function ShipmentPage() {
     {
       Header: format('shipment.ship_date.label'),
       accessor: 'ship_date',
+      Cell: ({ value }: any) => (value ? formatDate(new Date(value), 'MM/dd/yyyy') : ''),
       width: 250,
       maxWidth: 250,
     },
     {
       Header: format('shipment.expected_delivery_date.label'),
       accessor: 'expected_delivery_date',
+      Cell: ({ value }: any) => (value ? formatDate(new Date(value), 'MM/dd/yyyy') : ''),
       width: 250,
       maxWidth: 250,
     },
@@ -82,25 +85,34 @@ function ShipmentPage() {
     },
     {
       Header: format('shipment.delay_justified.label'),
+      Cell: ({ value }: any) => (value ? value.toString() : 'false'),
       accessor: 'delay_justified',
     },
     {
       Header: format('shipment.delivery_date.label'),
       accessor: 'delivery_date',
+      Cell: ({ value }: any) => (value ? formatDate(new Date(value), 'MM/dd/yyyy') : ''),
       width: 250,
       maxWidth: 250,
     },
     {
       Header: format('shipment.pod_status.label'),
       accessor: 'pod_status',
+      width: 200,
+      maxWidth: 200,
     },
     {
       Header: format('shipment.pod.label'),
+      Cell: ({ value }: any) => (value ? value.toString() : 'false'),
       accessor: 'pod',
+      width: 200,
+      maxWidth: 200,
     },
     {
       Header: format('shipment.customer_name.label'),
       accessor: 'customer_name',
+      width: 250,
+      maxWidth: 250,
     },
   ], [format]);
 

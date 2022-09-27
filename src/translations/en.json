@@ -19,7 +19,9 @@
     "app.select_day.label": "Select day",
     
     "cost": "Cost form",
+    "cost.label": "Cost",
     "cost_form.header": "Cost form",
+    "cost.distance.label": "Distance",
     "cost.driver_name.label": "Driver Name",
     "cost.transporter_additional_cost.label": "Transporter Additional Cost",
     "cost.transporter_base_cost.label": "Transporter Base Cost",

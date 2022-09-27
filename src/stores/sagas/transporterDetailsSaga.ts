@@ -10,12 +10,27 @@ import {
   putTransporterDetailsFailure, putTransporterDetailsSuccess,
 } from 'stores/actions/transporterDetails/transporterDetailsActions';
 import TransporterDetailsActionTypes from 'stores/actions/transporterDetails/transporterDetailsTypes';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import {
+import apiClient, {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
 export const transporterDetailsUrl = 'transporter_details/';
+
+export const getVehiclesByTransporterRequest = async (transporter: string) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.get(
+    `${transporterDetailsUrl}vehicles_without_pagination/?transporter=${transporter}`,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
 
 function* getTransporterDetailsSaga(action: any) {
   try {

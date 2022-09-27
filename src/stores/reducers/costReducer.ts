@@ -40,19 +40,19 @@ const costReducer = (
         costs: [],
         error: action.payload,
       };
-    case CostActionTypes.POST_COST_REQUEST:
+    case CostActionTypes.BULK_PUT_COST_REQUEST:
       return {
         ...state,
         cost: null,
         error: null,
       };
-    case CostActionTypes.POST_COST_SUCCESS:
+    case CostActionTypes.BULK_PUT_COST_SUCCESS:
       return {
         ...state,
         cost: action.payload,
         error: null,
       };
-    case CostActionTypes.POST_COST_FAILURE:
+    case CostActionTypes.BULK_PUT_COST_FAILURE:
       return {
         ...state,
         cost: null,
