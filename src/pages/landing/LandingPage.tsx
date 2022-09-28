@@ -1,5 +1,11 @@
+import React from 'react';
+
+import PageBody from 'components/shared/PageBody';
+
 function LandingPage() {
-  return null;
+  return (
+    <PageBody title="">{null}</PageBody>
+  );
 }
 
 export default LandingPage;
