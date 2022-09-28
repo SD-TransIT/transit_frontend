@@ -4,11 +4,9 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
-import { itemDetailUrl } from 'stores/sagas/itemDetailSaga';
+import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
-
-import { BatchNumberPickerProp } from './types';
 
 const customStyles = {
   control: (provided: any) => ({
@@ -31,26 +29,25 @@ const customStyles = {
   }),
 };
 
-function BatchNumberPicker({
-  field, isInvalid, watch, onChangeBatchNumber,
-}: BatchNumberPickerProp) {
+type XXXProp = {
+  field: { id: any, name: any, lineItemId: any } | null
+  isInvalid: boolean;
+  onChangeItemName: (value: any, lineItemId: any) => void
+};
+
+function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: XXXProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
-
   const [value, onChange] = useState(field);
-
+  console.log('field', field);
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
     loadedOptions: any,
-    { page }: any,
+    { page } : any,
   ) => {
-    let response: any = { results: [] };
-    let isNext: boolean = false;
-    if (watch !== undefined) {
-      await refreshAccessToken();
-      response = await getRequest(itemDetailUrl, { page, searcher: `${watch.name} ${searchQuery}` }, true);
-      isNext = response.next !== null;
-    }
+    await refreshAccessToken();
+    const response = await getRequest(itemUrl, { page, searcher: searchQuery }, true);
+    const isNext: boolean = response.next !== null;
     return {
       options: response.results,
       hasMore: isNext,
@@ -61,27 +58,26 @@ function BatchNumberPicker({
   };
 
   useEffect(() => {
-    onChangeBatchNumber(value, field?.lineItemId);
+    onChangeItemName(value, field?.lineItemId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
     <AsyncPaginate
-      key={watch?.id ?? 'null'}
-      placeholder={format('item_details.batch_namber.label')}
+      placeholder={format('item_master.name.label')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
       }}
-      getOptionLabel={(item: any) => item.batch_number}
+      getOptionLabel={(item: any) => item.name}
       getOptionValue={(item: any) => item.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
       styles={customStyles}
-      value={field?.batch_number !== '' && value}
+      value={field?.name !== null && value}
       onChange={onChange}
     />
   );
 }
 
-export default BatchNumberPicker;
+export default ItemPickerOutsideForm;

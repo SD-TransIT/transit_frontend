@@ -57,11 +57,11 @@ export type CustomerPickerProp = {
 };
 
 export type BatchNumberPickerProp = {
-  field: ControllerRenderProps<IItemDetails, 'batch_number'>;
+  field: { id: any, batch_number: any, lineItemId: any } | null;
   isInvalid: boolean;
   watch?: any;
   isOrderDetails?: boolean;
-  setValue: (name: string, value: unknown, config?: Object) => void;
   mode?: 'Edit' | 'Add' | '';
   initialFormValue?: any;
+  onChangeBatchNumber: (value: any, lineItemId: any) => void
 };

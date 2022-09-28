@@ -28,7 +28,7 @@ function OrderDetailsPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  const [objectToEdit, setObjectToEdit] = useState({ id: null });
+  const [objectToEdit, setObjectToEdit] = useState({ order_details_id: null });
   const [objectToDelete, setObjectToDelete] = useState({ id: null });
 
   const [pageCount, setPageCount] = useState(0);
@@ -36,7 +36,6 @@ function OrderDetailsPage() {
   const [page, setPage] = useState(FIRST_PAGE);
   const [data, setData] = useState([]);
   const [searcher, setSearcher] = useState(EMPTY_SEARCHER);
-  const [lineItems, setLineItems] = useState();
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
@@ -115,9 +114,6 @@ function OrderDetailsPage() {
   };
 
   const toggleEditModal = (object?: FieldValues, datas?: any) => {
-    console.log('object', object);
-    console.log('datas', datas);
-
     if (object && object.order_details_id !== undefined) {
       const record = datas.find(
         (data_record: any) => data_record.order_details_id === object.order_details_id,
@@ -126,8 +122,7 @@ function OrderDetailsPage() {
         id: record.line_items.product,
         name: record.line_items.product_name,
       };
-      console.log('record', record);
-      setLineItems(record.line_items);
+
       setObjectToEdit((prevState) => ({
         ...prevState,
         id: record.order_details_id,
@@ -150,7 +145,6 @@ function OrderDetailsPage() {
     }
     setDisplayEditModal(!displayEditModal);
   };
-  console.log('objectToEdit', objectToEdit);
 
   const toggleDeleteModal = (object?: FieldValues) => {
     if (object) {
@@ -172,7 +166,7 @@ function OrderDetailsPage() {
   const onSubmitEdit = (formValues: FieldValues) => {
     const payload = formValues;
     if (objectToEdit) {
-      payload.id = objectToEdit.id;
+      payload.id = objectToEdit.order_details_id;
     }
     payload.customer_type = formValues.customer_type.id;
     // dispatch(putCustomerMasterRequest(payload as PutCustomerMasterRequestPayload));
@@ -199,7 +193,7 @@ function OrderDetailsPage() {
   const onDeleteSubmitEdit = (formValues: FieldValues) => {
     const paramsToPass = formValues;
     if (objectToEdit) {
-      paramsToPass.id = objectToEdit.id;
+      paramsToPass.id = objectToEdit.order_details_id;
     }
 
     // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
@@ -259,9 +253,9 @@ function OrderDetailsPage() {
             onDelete={onDeleteSubmitEdit}
           >
             <OrderLineDetails
-              lineItemsData={displayAddModal ? undefined : lineItems}
               initialFormValue={displayAddModal ? undefined : objectToEdit}
               mode={displayAddModal ? 'Add' : 'Edit'}
+              orderDetailsId={displayAddModal ? null : objectToEdit.order_details_id}
             />
           </OrderDetailsForm>,
         ]}
