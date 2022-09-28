@@ -10,6 +10,28 @@ import { getRequest } from 'utils/apiClient';
 
 import { CustomerPickerProp } from './types';
 
+const customStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    background: '#fff',
+    border: 'none',
+    minHeight: '34px',
+    height: '34px',
+    // maxWidth: '205px',
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: '#B8BBBF',
+    },
+    fontSize: '14px',
+    overflow: 'hidden',
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: '#9ca3af',
+    fontSize: 14,
+  }),
+};
+
 function CustomerPicker({ field, isInvalid, isDisabled = false }: CustomerPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -45,6 +67,7 @@ function CustomerPicker({ field, isInvalid, isDisabled = false }: CustomerPicker
       isClearable
       isDisabled={isDisabled}
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      styles={customStyles}
     />
   );
 }

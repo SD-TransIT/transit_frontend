@@ -53,5 +53,15 @@ export type SupplierPickerProp = {
 export type CustomerPickerProp = {
   field: ControllerRenderProps<FieldValues, 'customer'>;
   isInvalid: boolean;
-  isDisabled: boolean;
+  isDisabled?: boolean;
+};
+
+export type BatchNumberPickerProp = {
+  field: ControllerRenderProps<IItemDetails, 'batch_number'>;
+  isInvalid: boolean;
+  watch?: any;
+  isOrderDetails?: boolean;
+  setValue: (name: string, value: unknown, config?: Object) => void;
+  mode?: 'Edit' | 'Add' | '';
+  initialFormValue?: any;
 };

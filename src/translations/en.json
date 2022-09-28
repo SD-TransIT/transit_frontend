@@ -114,6 +114,7 @@
     "order_details": "Order Details",
     "order_details.header": "Order Details",
     "order_details.received_date.label": "Order Received Date (MM/DD/YYYY)",
+    "order_details.total_quantity.label": "Total Quantity",
     
     "pod_variance": "POD Variance",
     "pod_variance.description_dso.label": "Description DSO",
