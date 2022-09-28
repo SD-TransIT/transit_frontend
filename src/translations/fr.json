@@ -116,7 +116,10 @@
     "order_details.received_date.label": "Date de réception de la commande (MM/DD/YYYY)",
 
     "pod_variance": "Changement de lieu de livraison",
+    "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "Changement de lieu de livraison",
+    "pod_variance.id.label": "Identification",
+    "pod_variance.shipment.label": "Chargement / Chargement / Expédition",
 
     "search.generate": "Générer",
     "search.clear": "Clair",

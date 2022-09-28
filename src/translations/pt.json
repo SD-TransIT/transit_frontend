@@ -116,7 +116,10 @@
     "order_details.received_date.label": "Order Received Date (MM/DD/YYYY)",
 
     "pod_variance": "POD Variance",
+    "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "POD Variance",
+    "pod_variance.id.label": "ID",
+    "pod_variance.shipment.label": "Shipment",
 
     "search.generate": "Generate",
     "search.clear": "Clear",
