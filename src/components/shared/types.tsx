@@ -7,6 +7,7 @@ export type PageBodyType = {
   children: React.ReactNode
   onClick?: () => void,
   isArrow?: boolean,
+  isFullScreenRequired?: boolean,
 };
 
 export type DatePickType = {

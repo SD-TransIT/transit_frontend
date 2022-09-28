@@ -25,7 +25,7 @@ function App() {
         ? EN : cookies.language.value as keyof typeof messages
       ]}
     >
-      <div className="bg-transit-grey w-screen h-screen">
+      <div className="bg-transit-grey w-screen h-full">
         <RoutesConfig />
       </div>
     </IntlProvider>
