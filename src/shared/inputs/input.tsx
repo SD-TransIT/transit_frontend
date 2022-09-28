@@ -7,7 +7,7 @@ import { InputProps } from 'shared/inputs/types';
 const style = 'text-sm border border-transit-grey-300 rounded w-full text-black-light focus:outline-none focus:shadow-outline h-9 px-2';
 
 const Input = React.forwardRef(({
-  id, name, placeholder, type, className, isInvalid = false,
+  id, name, placeholder, type, className, isInvalid = false, checked,
   disabled, onChange, defaultValue, ...props
 }: InputProps, ref: ForwardedRef<HTMLInputElement>) => (
   <label htmlFor="floatingInput">
@@ -23,6 +23,7 @@ const Input = React.forwardRef(({
       disabled={disabled}
       onChange={onChange}
       defaultValue={defaultValue}
+      checked={checked}
     />
   </label>
 ));

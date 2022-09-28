@@ -1,5 +1,11 @@
 import CostActionTypes from 'stores/actions/cost/costTypes';
 import {
+  BulkPutCostError,
+  BulkPutCostErrorPayload,
+  BulkPutCostRequest,
+  BulkPutCostRequestPayload,
+  BulkPutCostSuccess,
+  BulkPutCostSuccessPayload,
   DeleteCostError,
   DeleteCostErrorPayload,
   DeleteCostRequest,
@@ -12,12 +18,6 @@ import {
   GetCostRequestPayload,
   GetCostSuccess,
   GetCostSuccessPayload,
-  PostCostError,
-  PostCostErrorPayload,
-  PostCostRequest,
-  PostCostRequestPayload,
-  PostCostSuccess,
-  PostCostSuccessPayload,
   PutCostError,
   PutCostErrorPayload,
   PutCostRequest,
@@ -47,24 +47,24 @@ export const getCostFailure = (
   payload,
 });
 
-export const postCostRequest = (
-  payload: PostCostRequestPayload,
-): PostCostRequest => ({
-  type: CostActionTypes.POST_COST_REQUEST,
+export const bulkPutCostRequest = (
+  payload: BulkPutCostRequestPayload,
+): BulkPutCostRequest => ({
+  type: CostActionTypes.BULK_PUT_COST_REQUEST,
   payload,
 });
 
-export const postCostSuccess = (
-  payload: PostCostSuccessPayload,
-): PostCostSuccess => ({
-  type: CostActionTypes.POST_COST_SUCCESS,
+export const bulkPutCostSuccess = (
+  payload: BulkPutCostSuccessPayload,
+): BulkPutCostSuccess => ({
+  type: CostActionTypes.BULK_PUT_COST_SUCCESS,
   payload,
 });
 
-export const postCostFailure = (
-  payload: PostCostErrorPayload,
-): PostCostError => ({
-  type: CostActionTypes.POST_COST_FAILURE,
+export const bulkPutCostFailure = (
+  payload: BulkPutCostErrorPayload,
+): BulkPutCostError => ({
+  type: CostActionTypes.BULK_PUT_COST_FAILURE,
   payload,
 });
 

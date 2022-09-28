@@ -19,7 +19,9 @@
     "app.select_day.label": "Sélectionnez le jour",
 
     "cost": "Formulaire de coût",
+    "cost.label": "Coût",
     "cost_form.header": "Formulaire de coût",
+    "cost.distance.label": "Distance (kilomètres)",
     "cost.driver_name.label": "Nom du conducteur",
     "cost.transporter_additional_cost.label": "Transporteur Coût Supplémentaire",
     "cost.transporter_base_cost.label": "Coût de base du transporteur",

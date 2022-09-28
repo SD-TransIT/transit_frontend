@@ -21,15 +21,15 @@ export interface GetCostErrorPayload {
   error: string;
 }
 
-export interface PostCostRequestPayload {
-  payload: ICost;
+export interface BulkPutCostRequestPayload {
+  payload: ICost [];
 }
 
-export interface PostCostSuccessPayload {
-  cost: ICost;
+export interface BulkPutCostSuccessPayload {
+  costs: ICost [];
 }
 
-export interface PostCostErrorPayload {
+export interface BulkPutCostErrorPayload {
   error: string;
 }
 
@@ -71,19 +71,19 @@ export type GetCostError = {
   payload: GetCostErrorPayload;
 };
 
-export interface PostCostRequest {
-  type: typeof CostActionTypes.POST_COST_REQUEST;
-  payload: PostCostRequestPayload;
+export interface BulkPutCostRequest {
+  type: typeof CostActionTypes.BULK_PUT_COST_REQUEST;
+  payload: BulkPutCostRequestPayload;
 }
 
-export type PostCostSuccess = {
-  type: typeof CostActionTypes.POST_COST_SUCCESS;
-  payload: PostCostSuccessPayload;
+export type BulkPutCostSuccess = {
+  type: typeof CostActionTypes.BULK_PUT_COST_SUCCESS;
+  payload: BulkPutCostSuccessPayload;
 };
 
-export type PostCostError = {
-  type: typeof CostActionTypes.POST_COST_FAILURE;
-  payload: PostCostErrorPayload;
+export type BulkPutCostError = {
+  type: typeof CostActionTypes.BULK_PUT_COST_FAILURE;
+  payload: BulkPutCostErrorPayload;
 };
 
 export interface PutCostRequest {
@@ -120,9 +120,9 @@ export type CostActions =
     | GetCostRequest
     | GetCostSuccess
     | GetCostError
-    | PostCostRequest
-    | PostCostSuccess
-    | PostCostError
+    | BulkPutCostRequest
+    | BulkPutCostSuccess
+    | BulkPutCostError
     | PutCostRequest
     | PutCostSuccess
     | PutCostError
