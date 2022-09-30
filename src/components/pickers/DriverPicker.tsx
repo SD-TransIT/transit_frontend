@@ -10,6 +10,27 @@ import { getRequest } from 'utils/apiClient';
 
 import { DriverPickerProp } from './types';
 
+const customStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    background: '#fff',
+    border: 'none',
+    minHeight: '34px',
+    height: '34px',
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: '#B8BBBF',
+    },
+    fontSize: '14px',
+    overflow: 'hidden',
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: '#9ca3af',
+    fontSize: 14,
+  }),
+};
+
 function DriverPicker({
   field, isInvalid, isShipment, watch, setValue, mode = '', initialFormValue,
 }: DriverPickerProp) {
@@ -73,7 +94,8 @@ function DriverPicker({
       getOptionLabel={(driver: any) => driver.name}
       getOptionValue={(driver: any) => driver.id}
       isClearable
-      className={classNames({ 'border border-transit-red rounded': isInvalid })}
+      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      styles={customStyles}
     />
   );
 }

@@ -69,7 +69,7 @@ function CostForm({
                   id="floatingInput"
                   placeholder={format('cost.transporter_base_cost.label')}
                   type="text"
-                  isInvalid={Boolean(errors.volume)}
+                  isInvalid={Boolean(errors.transporter_base_cost)}
                 />
                 {
                   errors.transporter_base_cost
@@ -91,7 +91,7 @@ function CostForm({
                   id="floatingInput"
                   placeholder={format('cost.transporter_additional_cost.label')}
                   type="text"
-                  isInvalid={Boolean(errors.volume)}
+                  isInvalid={Boolean(errors.transporter_additional_cost)}
                 />
                 {
                   errors.transporter_additional_cost
@@ -113,7 +113,7 @@ function CostForm({
                   id="floatingInput"
                   placeholder={format('cost.distance.label')}
                   type="text"
-                  isInvalid={Boolean(errors.volume)}
+                  isInvalid={Boolean(errors.number_of_kilometers)}
                 />
                 {
                   errors.number_of_kilometers

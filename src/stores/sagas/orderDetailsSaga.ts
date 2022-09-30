@@ -14,12 +14,27 @@ import {
   putOrderDetailsSuccess,
 } from 'stores/actions/orderDetails/orderDetailsActions';
 import OrderDetailsActionTypes from 'stores/actions/orderDetails/orderDetailsTypes';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import {
+import apiClient, {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
 export const orderDetailsUrl = 'order_details/';
+
+export const getOrdersByOrdersIdRequest = async (orders: string) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.get(
+    `${orderDetailsUrl}orders_without_pagination/?orders=${orders}`,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
 
 function* getOrderDetailsSaga(action: any) {
   try {

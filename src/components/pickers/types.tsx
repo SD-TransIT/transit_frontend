@@ -3,6 +3,7 @@ import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { ICustomerMaster } from 'models/customerMaster/ICustomerMaster';
 import { IDriver } from 'models/driver/IDriver';
 import { IItemDetails } from 'models/itemDetails/IItemDetails';
+import { IPodVariance } from 'models/podVariance/IPodVariance';
 import { ITransporterDetails } from 'models/transporterDetails/ITransporterDetails';
 
 export type TransporterPickerProp = {
@@ -14,7 +15,9 @@ export type PickerProp = {
   | ControllerRenderProps<IDriver, 'transporter'>
   | ControllerRenderProps<IItemDetails, 'item_master'>
   | ControllerRenderProps<ITransporterDetails, 'mode_of_transport'>
+  | ControllerRenderProps<IPodVariance, 'shipment'>
   isInvalid: boolean;
+  isDisabled?: boolean;
 };
 
 export type DriverPickerProp = {
