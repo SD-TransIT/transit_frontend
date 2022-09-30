@@ -6,7 +6,7 @@ import { format as formatDate } from 'date-fns';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import OrderDetailsForm from 'components/forms/orderDetails/OrderDetailsForm';
 import PageBody from 'components/shared/PageBody';
@@ -16,9 +16,13 @@ import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
+import { deleteOrderDetailsRequest, postOrderDetailsRequest, putOrderDetailsRequest } from 'stores/actions/orderDetails/orderDetailsActions';
+import { postOrderLineDetailsRequest } from 'stores/actions/orderLineDetails/orderLineDetailsActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { orderDetailsUrl } from 'stores/sagas/orderDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import { DeleteOrderDetailsRequestPayload, PostOrderDetailsRequestPayload, PutOrderDetailsRequestPayload } from 'stores/types/orderDetailsType';
+import { PostOrderLineDetailsRequestPayload } from 'stores/types/orderLineDetails';
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
@@ -28,8 +32,9 @@ function OrderDetailsPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  const [objectToEdit, setObjectToEdit] = useState({ order_details_id: null });
-  const [objectToDelete, setObjectToDelete] = useState({ id: null });
+  const [objectToEdit, setObjectToEdit] = useState({ id: null, order_details_id: null });
+  const [objectToDelete, setObjectToDelete] = useState({ id: null, order_details_id: null });
+  const [currentOrderLineDetails, setCurrentOrderLineDetails] = useState<any[]>([]);
 
   const [pageCount, setPageCount] = useState(0);
   const [numberOfAvailableData, setNumberOfAvailableData] = useState(0);
@@ -42,6 +47,9 @@ function OrderDetailsPage() {
 
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const dispatch = useDispatch();
+
   const columns: ColumnType[] = React.useMemo(() => [
     {
       Header: format('shipment.order_number.label'),
@@ -61,7 +69,7 @@ function OrderDetailsPage() {
   ], [format]);
 
   const {
-    orderDetails,
+    orderDetail,
   } = useSelector(
     (state: RootState) => state.orderDetails,
   );
@@ -96,13 +104,13 @@ function OrderDetailsPage() {
   }, []);
 
   useEffect(() => {
-    if (orderDetails !== undefined) {
+    if (orderDetail !== undefined) {
       setPage(FIRST_PAGE);
       setSearcher(EMPTY_SEARCHER);
       fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderDetails]);
+  }, [orderDetail]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
@@ -118,25 +126,11 @@ function OrderDetailsPage() {
       const record = datas.find(
         (data_record: any) => data_record.order_details_id === object.order_details_id,
       );
-      record.line_items.item_master = {
-        id: record.line_items.product,
-        name: record.line_items.product_name,
-      };
 
       setObjectToEdit((prevState) => ({
         ...prevState,
         id: record.order_details_id,
         order_details_id: record.order_details_id,
-        line_items: [{
-          id: record.line_items.id,
-          order_details: record.line_items.order_details,
-          product: { id: record.line_items.product, name: record.line_items.product_name },
-          item_details: record.line_items.item_details,
-          quantity: record.line_items.quantity,
-          old_quantity: record.line_items.old_quantity,
-          product_name: record.line_items.product_name,
-          batch_number: record.line_items.batch_number,
-        }],
         customer: { id: record.customer, name: record.customer_name },
         order_received_date: record.order_received_date
           ? new Date(record.order_received_date) : null,
@@ -150,7 +144,7 @@ function OrderDetailsPage() {
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
-        id: object.id,
+        id: object.order_details_id,
       }));
     }
     setDisplayDeleteModal(!displayDeleteModal);
@@ -158,26 +152,33 @@ function OrderDetailsPage() {
 
   const onSubmitAdd = (formValues: FieldValues) => {
     const payload = formValues;
-    payload.customer_type = formValues.customer_type.id;
-    // dispatch(postCustomerMasterRequest(payload as PostCustomerMasterRequestPayload));
+    payload.customer = formValues.customer.id;
+    payload.customer_name = formValues.customer.name;
+    payload.line_items = currentOrderLineDetails;
+
+    dispatch(postOrderDetailsRequest(payload as PostOrderDetailsRequestPayload));
     toggleAddModal();
   };
 
   const onSubmitEdit = (formValues: FieldValues) => {
     const payload = formValues;
     if (objectToEdit) {
-      payload.id = objectToEdit.order_details_id;
+      payload.id = objectToEdit.id;
+      payload.customer = formValues.customer.id;
     }
-    payload.customer_type = formValues.customer_type.id;
-    // dispatch(putCustomerMasterRequest(payload as PutCustomerMasterRequestPayload));
+    dispatch(putOrderDetailsRequest(payload as PutOrderDetailsRequestPayload));
 
-    // if (customerDeliveryHours) {
-    //   const payloadDeliveryHours = { week_days: customerDeliveryHours, id: objectToEdit.id };
-    //   dispatch(
-    //     // @ts-ignore
-    //     postCustomerWeekDaysRequest(payloadDeliveryHours as PostCustomerWeekDaysRequestPayload),
-    //   );
-    // }
+    if (currentOrderLineDetails) {
+      const payloadOrderLineItems = {
+        line_items: currentOrderLineDetails,
+        id: objectToEdit.order_details_id,
+      };
+
+      dispatch(
+        // @ts-ignore
+        postOrderLineDetailsRequest(payloadOrderLineItems as PostOrderLineDetailsRequestPayload),
+      );
+    }
     toggleEditModal();
   };
 
@@ -186,19 +187,23 @@ function OrderDetailsPage() {
     if (objectToDelete) {
       paramsToPass.id = objectToDelete.id;
     }
-    // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
+    dispatch(deleteOrderDetailsRequest(paramsToPass as DeleteOrderDetailsRequestPayload));
     toggleDeleteModal();
   };
 
   const onDeleteSubmitEdit = (formValues: FieldValues) => {
     const paramsToPass = formValues;
     if (objectToEdit) {
-      paramsToPass.id = objectToEdit.order_details_id;
+      paramsToPass.id = objectToEdit.id;
     }
 
-    // dispatch(deleteCustomerMasterRequest(paramsToPass as DeleteCustomerMasterRequestPayload));
+    dispatch(deleteOrderDetailsRequest(paramsToPass as DeleteOrderDetailsRequestPayload));
     toggleEditModal();
   };
+
+  const handleCurrentOrderLineDetails = useCallback((lineItems: any) => {
+    setCurrentOrderLineDetails(lineItems);
+  }, []);
 
   return (
     <>
@@ -253,9 +258,9 @@ function OrderDetailsPage() {
             onDelete={onDeleteSubmitEdit}
           >
             <OrderLineDetails
-              initialFormValue={displayAddModal ? undefined : objectToEdit}
               mode={displayAddModal ? 'Add' : 'Edit'}
               orderDetailsId={displayAddModal ? null : objectToEdit.order_details_id}
+              onLineItemsChange={handleCurrentOrderLineDetails}
             />
           </OrderDetailsForm>,
         ]}

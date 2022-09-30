@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import BatchNumberPicker from 'components/pickers/BatchNumberPicker';
 import ItemPickerOutsideForm from 'components/pickers/ItemPickerOutsideForm';
 import EditableTable from 'components/shared/table/EditableTable';
-import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLinedetailsType';
+// import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLinedetailsType';
 import Input from 'shared/inputs/input';
 import { RootState } from 'stores/reducers/rootReducer';
 import { orderLineDetailsUrl } from 'stores/sagas/orderLineDetailsSaga';
@@ -18,14 +18,14 @@ import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 type Props = {
-  initialFormValue: any
   mode: 'Edit' | 'Add' | ''
   orderDetailsId: string | null
+  onLineItemsChange: (lineItems: any) => void
 };
 
 function OrderLineDetails(
   {
-    initialFormValue, mode, orderDetailsId,
+    mode, orderDetailsId, onLineItemsChange,
   }: Props,
 ) {
   const { formatMessage } = useIntl();
@@ -40,8 +40,8 @@ function OrderLineDetails(
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
 
-  const [lineItems, setLineItems] = useState<IOrderLineDetailsType[]>([]);
-  const [itemNameY, setItemNameY] = useState();
+  const [lineItems, setLineItems] = useState<any[]>([]);
+  const [itemName, setItemName] = useState();
 
   const columnHeaders = [
     { label: format('item_details.name.label') },
@@ -50,9 +50,9 @@ function OrderLineDetails(
   ];
 
   const {
-    orderLineDetails,
+    orderLineDetail,
   } = useSelector(
-    (state: RootState) => state.customerWeekDays,
+    (state: RootState) => state.orderLineDetails,
   );
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
@@ -89,24 +89,29 @@ function OrderLineDetails(
     setSearcher(EMPTY_SEARCHER);
     fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderLineDetails, orderDetailsId]);
+  }, [orderLineDetail, orderDetailsId]);
 
   useEffect(() => {
     if (data !== undefined) {
       const currentLineItems = data.filter(
-        (lineDetail: any) => lineDetail.product === Number(orderDetailsId),
+        (lineDetail: any) => lineDetail.order_details === orderDetailsId,
       );
       setLineItems(currentLineItems);
     }
   }, [orderDetailsId, data]);
 
+  useEffect(() => {
+    onLineItemsChange(lineItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lineItems]);
+
   const addNewItem = () => {
     if (orderDetailsId) {
       setLineItems([...lineItems, {
         id: Math.floor(Math.random() * 10000),
-        order_details: '',
+        order_details: orderDetailsId,
         product: null,
-        item_details: undefined,
+        item_details: null,
         quantity: '',
         old_quantity: '',
         product_name: null,
@@ -117,16 +122,16 @@ function OrderLineDetails(
         id: Math.floor(Math.random() * 10000),
         order_details: '',
         product: null,
-        item_details: undefined,
+        item_details: null,
         quantity: '',
         old_quantity: '',
-        product_name: '',
+        product_name: null,
         batch_number: '',
       }]);
     }
   };
 
-  const handleUpdateQuantity = (quantity: any, lineItem: IOrderLineDetailsType) => {
+  const handleUpdateQuantity = (quantity: any, lineItem: any) => {
     if (quantity !== null && lineItem !== null && lineItem !== undefined) {
       setLineItems([
         ...lineItems.map((item) => (item.id === lineItem.id
@@ -144,41 +149,82 @@ function OrderLineDetails(
     }
   };
 
-  const handleItemNameXX = (itemNameXX: any, lineItem: IOrderLineDetailsType) => {
-    if (itemNameXX !== null && lineItem !== null && lineItem !== undefined) {
+  const handleNewItemName = (newItemName: any, lineItem: any) => {
+    const currentLineItemDetail: any = lineItems.filter(
+      (currentlineItem) => currentlineItem.id === lineItem.id,
+    );
+
+    let shouldBatchNumberBeNull: boolean;
+    const changeBatchNumber = currentLineItemDetail.map((currentLineItem: any) => {
+      if (currentLineItem.product_name === newItemName?.name) {
+        shouldBatchNumberBeNull = true;
+        return shouldBatchNumberBeNull;
+      }
+      shouldBatchNumberBeNull = false;
+      return shouldBatchNumberBeNull;
+    });
+
+    if (changeBatchNumber[0]) {
+      if (newItemName !== null && lineItem !== null && lineItem !== undefined) {
+        setLineItems([
+          ...lineItems.map((item) => (item.id === lineItem.id
+            ? {
+              id: lineItem.id,
+              order_details: lineItem.order_details,
+              product: newItemName.id,
+              item_details: lineItem.item_details,
+              quantity: lineItem.quantity,
+              old_quantity: lineItem.old_quantity,
+              product_name: newItemName.name,
+              batch_number: lineItem.batch_number,
+            } : item)),
+        ]);
+        setItemName(newItemName);
+      }
+    } else if (newItemName !== null && lineItem !== null && lineItem !== undefined) {
       setLineItems([
         ...lineItems.map((item) => (item.id === lineItem.id
           ? {
             id: lineItem.id,
             order_details: lineItem.order_details,
-            product: itemNameXX.id,
+            product: newItemName.id,
             item_details: lineItem.item_details,
             quantity: lineItem.quantity,
             old_quantity: lineItem.old_quantity,
-            product_name: itemNameXX.name,
-            batch_number: lineItem.batch_number,
+            product_name: newItemName.name,
+            batch_number: '',
           } : item)),
       ]);
-      setItemNameY(itemNameXX);
+      setItemName(newItemName);
+    } else if (newItemName === null) {
+      return;
     }
+
+    setItemName(newItemName);
   };
 
-  const handleBatchNumberXX = (batchNumberXX: any, lineItem: IOrderLineDetailsType) => {
-    if (batchNumberXX !== null && lineItem !== null && lineItem !== undefined) {
+  const handleNewItemBatchNumber = (newItemBatchNumber: any, lineItem: any) => {
+    if (newItemBatchNumber !== null && lineItem !== null && lineItem !== undefined) {
       setLineItems([
         ...lineItems.map((item) => (item.id === lineItem.id
           ? {
             id: lineItem.id,
             order_details: lineItem.order_details,
             product: lineItem.product,
-            item_details: batchNumberXX.item,
+            item_details: newItemBatchNumber.id,
             quantity: lineItem.quantity,
             old_quantity: lineItem.old_quantity,
             product_name: lineItem.product_name,
-            batch_number: batchNumberXX.batch_number,
+            batch_number: newItemBatchNumber.batch_number,
           } : item)),
       ]);
     }
+  };
+
+  const removeLineItem = (lineItemId: number) => {
+    setLineItems([
+      ...lineItems.filter(({ id }) => id !== lineItemId),
+    ]);
   };
 
   return (
@@ -187,28 +233,29 @@ function OrderLineDetails(
       onAddButtonClick={addNewItem}
       columnHeaders={columnHeaders}
     >
-      {lineItems?.map((lineItem: any, index: any) => (
+      {lineItems?.map((lineItem: any) => (
         <div className="flex h-12 px-8 items-center even:bg-transit-grey-light" key={lineItem.id}>
           <div className="w-1/3 pr-2">
             <ItemPickerOutsideForm
-              field={mode === 'Add' ? null : { id: lineItem.product, name: lineItem.product_name, lineItemId: lineItem }}
+              field={mode === 'Add' ? { id: Math.floor(Math.random() * 10000), name: null, lineItem } : { id: lineItem.product, name: lineItem.product_name, lineItem }}
               isInvalid={false}
-              onChangeItemName={handleItemNameXX}
+              onChangeItemName={handleNewItemName}
             />
           </div>
           <div className="w-1/3 pr-2">
             <BatchNumberPicker
-              field={mode === 'Add' ? null : {
+              field={mode === 'Add' ? {
+                id: lineItem.id,
+                batch_number: lineItem.batch_number,
+                lineItem,
+              } : {
                 id: lineItem.item_details,
                 batch_number: lineItem.batch_number,
-                lineItemId: lineItem,
+                lineItem,
               }}
               isInvalid={false}
-              isOrderDetails
-              watch={itemNameY}
-              mode={mode}
-              initialFormValue={initialFormValue}
-              onChangeBatchNumber={handleBatchNumberXX}
+              watch={itemName}
+              onChangeBatchNumber={handleNewItemBatchNumber}
             />
           </div>
           <div className="w-1/3 pr-2">
@@ -225,11 +272,10 @@ function OrderLineDetails(
           </div>
           <div>
             {/* @ts-ignore */}
-            <RiDeleteBin7Line className="table-action-icons" onClick={() => remove(index)} />
+            <RiDeleteBin7Line className="table-action-icons" onClick={() => removeLineItem(lineItem.id)} />
           </div>
         </div>
       ))}
-
     </EditableTable>
   );
 }

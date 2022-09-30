@@ -46,9 +46,10 @@ function BatchNumberPicker({
   ) => {
     let response: any = { results: [] };
     let isNext: boolean = false;
-    if (watch !== undefined) {
+
+    if (field !== undefined) {
       await refreshAccessToken();
-      response = await getRequest(itemDetailUrl, { page, searcher: `${watch.name} ${searchQuery}` }, true);
+      response = await getRequest(itemDetailUrl, { page, searcher: `${field?.lineItem.product_name} ${searchQuery}` }, true);
       isNext = response.next !== null;
     }
     return {
@@ -61,7 +62,12 @@ function BatchNumberPicker({
   };
 
   useEffect(() => {
-    onChangeBatchNumber(value, field?.lineItemId);
+    onChange(field);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch]);
+
+  useEffect(() => {
+    onChangeBatchNumber(value, field?.lineItem);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
@@ -78,7 +84,7 @@ function BatchNumberPicker({
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
       styles={customStyles}
-      value={field?.batch_number !== '' && value}
+      value={value?.batch_number !== '' && value}
       onChange={onChange}
     />
   );

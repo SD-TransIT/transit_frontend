@@ -8,6 +8,8 @@ import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
+import { ItemPickerOutsideFormProp } from './types';
+
 const customStyles = {
   control: (provided: any) => ({
     ...provided,
@@ -29,17 +31,12 @@ const customStyles = {
   }),
 };
 
-type XXXProp = {
-  field: { id: any, name: any, lineItemId: any } | null
-  isInvalid: boolean;
-  onChangeItemName: (value: any, lineItemId: any) => void
-};
-
-function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: XXXProp) {
+function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: ItemPickerOutsideFormProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
   const [value, onChange] = useState(field);
-  console.log('field', field);
+
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
     loadedOptions: any,
@@ -58,12 +55,13 @@ function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: XXXProp) 
   };
 
   useEffect(() => {
-    onChangeItemName(value, field?.lineItemId);
+    onChangeItemName(value, field?.lineItem);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
     <AsyncPaginate
+      key={field?.id ?? 'key'}
       placeholder={format('item_master.name.label')}
       loadOptions={loadOptions}
       additional={{
@@ -74,7 +72,7 @@ function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: XXXProp) 
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
       styles={customStyles}
-      value={field?.name !== null && value}
+      value={value?.name !== null && value}
       onChange={onChange}
     />
   );

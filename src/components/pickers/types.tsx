@@ -57,11 +57,15 @@ export type CustomerPickerProp = {
 };
 
 export type BatchNumberPickerProp = {
-  field: { id: any, batch_number: any, lineItemId: any } | null;
+  field: { id: any, batch_number: any, lineItem: any } | null;
   isInvalid: boolean;
   watch?: any;
   isOrderDetails?: boolean;
-  mode?: 'Edit' | 'Add' | '';
-  initialFormValue?: any;
-  onChangeBatchNumber: (value: any, lineItemId: any) => void
+  onChangeBatchNumber: (value: any, lineItem: any) => void
+};
+
+export type ItemPickerOutsideFormProp = {
+  field: { id: any, name: any, lineItem: any } | null
+  isInvalid: boolean;
+  onChangeItemName: (value: any, lineItem: any) => void
 };
