@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import BatchNumberPicker from 'components/pickers/BatchNumberPicker';
 import ItemPickerOutsideForm from 'components/pickers/ItemPickerOutsideForm';
 import EditableTable from 'components/shared/table/EditableTable';
-// import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLinedetailsType';
 import Input from 'shared/inputs/input';
 import { RootState } from 'stores/reducers/rootReducer';
 import { orderLineDetailsUrl } from 'stores/sagas/orderLineDetailsSaga';
@@ -18,7 +17,7 @@ import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 type Props = {
-  mode: 'Edit' | 'Add' | ''
+  mode: 'Edit' | 'Add'
   orderDetailsId: string | null
   onLineItemsChange: (lineItems: any) => void
 };
@@ -238,7 +237,6 @@ function OrderLineDetails(
           <div className="w-1/3 pr-2">
             <ItemPickerOutsideForm
               field={mode === 'Add' ? { id: Math.floor(Math.random() * 10000), name: null, lineItem } : { id: lineItem.product, name: lineItem.product_name, lineItem }}
-              isInvalid={false}
               onChangeItemName={handleNewItemName}
             />
           </div>
@@ -253,7 +251,6 @@ function OrderLineDetails(
                 batch_number: lineItem.batch_number,
                 lineItem,
               }}
-              isInvalid={false}
               watch={itemName}
               onChangeBatchNumber={handleNewItemBatchNumber}
             />
@@ -262,7 +259,7 @@ function OrderLineDetails(
             <Input
               type="number"
               className="w-full"
-              isInvalid={false}
+              isInvalid={lineItem.quantity.trim().length < 1}
               placeholder={format('order_details.total_quantity.label')}
               defaultValue={mode === 'Add' ? null : lineItem.quantity}
               onChange={(event: any) => {

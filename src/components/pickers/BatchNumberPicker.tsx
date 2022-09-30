@@ -32,12 +32,13 @@ const customStyles = {
 };
 
 function BatchNumberPicker({
-  field, isInvalid, watch, onChangeBatchNumber,
+  field, watch, onChangeBatchNumber,
 }: BatchNumberPickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const [value, onChange] = useState(field);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
 
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
@@ -70,6 +71,14 @@ function BatchNumberPicker({
     onChangeBatchNumber(value, field?.lineItem);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
+
+  useEffect(() => {
+    if (field?.batch_number === '' || field?.batch_number === null || field?.lineItem.batch_number === '' || field?.lineItem.batch_number === null || value === null) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  }, [field?.batch_number, field?.lineItem.batch_number, value]);
 
   return (
     <AsyncPaginate

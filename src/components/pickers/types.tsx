@@ -58,7 +58,6 @@ export type CustomerPickerProp = {
 
 export type BatchNumberPickerProp = {
   field: { id: any, batch_number: any, lineItem: any } | null;
-  isInvalid: boolean;
   watch?: any;
   isOrderDetails?: boolean;
   onChangeBatchNumber: (value: any, lineItem: any) => void
@@ -66,6 +65,5 @@ export type BatchNumberPickerProp = {
 
 export type ItemPickerOutsideFormProp = {
   field: { id: any, name: any, lineItem: any } | null
-  isInvalid: boolean;
   onChangeItemName: (value: any, lineItem: any) => void
 };

@@ -31,11 +31,12 @@ const customStyles = {
   }),
 };
 
-function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: ItemPickerOutsideFormProp) {
+function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFormProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
   const [value, onChange] = useState(field);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
 
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
@@ -53,6 +54,14 @@ function ItemPickerOutsideForm({ field, isInvalid, onChangeItemName }: ItemPicke
       },
     };
   };
+
+  useEffect(() => {
+    if (field?.lineItem.product_name === '' || field?.lineItem.product_name === null || value === null) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  }, [field?.lineItem.product_name, value]);
 
   useEffect(() => {
     onChangeItemName(value, field?.lineItem);

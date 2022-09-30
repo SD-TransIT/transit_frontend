@@ -114,6 +114,7 @@
     "order_details": "Commande / détail de la commande",
     "order_details.header": "Commande / détail de la commande",
     "order_details.received_date.label": "Date de réception de la commande (MM/DD/YYYY)",
+    "order_details.total_quantity.label": "Quantité totale",
 
     "pod_variance": "Changement de lieu de livraison",
     "pod_variance.description_dso.label": "Description DSO",
@@ -124,6 +125,7 @@
     "search.generate": "Générer",
     "search.clear": "Clair",
     "search.placeholder": "Entrez la chaîne de recherche...",
+    "search.search.label": "Chercher",
 
     "sign_in.create_an_account": "Créer un compte",
     "sign_in.label": "S'identifier",
