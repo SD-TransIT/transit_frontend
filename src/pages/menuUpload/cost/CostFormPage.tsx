@@ -16,12 +16,11 @@ import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
-import { bulkPutCostRequest } from 'stores/actions/cost/costActions';
+import { bulkPutCostRequest, putCostRequest } from 'stores/actions/cost/costActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { getCostRequest } from 'stores/sagas/costSaga';
-import { updateShipment, updateShipmentOrders } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
-import { BulkPutCostRequestPayload } from 'stores/types/costType';
+import { BulkPutCostRequestPayload, PutCostRequestPayload } from 'stores/types/costType';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 function CostFormPage() {
@@ -188,10 +187,7 @@ function CostFormPage() {
       payload.id = objectToEdit.id;
     }
     payload.transporter = formValues.transporter.id;
-    const { orders } = formValues;
-    payload.orders = [];
-    await updateShipment(payload);
-    await updateShipmentOrders(payload.id, orders);
+    dispatch(putCostRequest(payload as PutCostRequestPayload));
     toggleEditModal();
   };
 
