@@ -16,11 +16,12 @@ import { ColumnType } from 'components/shared/table/types';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
-import { bulkPutCostRequest, putCostRequest } from 'stores/actions/cost/costActions';
+import { bulkPutCostRequest } from 'stores/actions/cost/costActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { getCostRequest } from 'stores/sagas/costSaga';
+import { updateShipment, updateShipmentOrders } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
-import { BulkPutCostRequestPayload, PutCostRequestPayload } from 'stores/types/costType';
+import { BulkPutCostRequestPayload } from 'stores/types/costType';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 function CostFormPage() {
@@ -149,6 +150,7 @@ function CostFormPage() {
         number_of_kilometers: record.number_of_kilometers,
         transporter_base_cost: record.transporter_base_cost,
         transporter_additional_cost: record.transporter_additional_cost,
+        orders: record.order_ids,
       }));
     }
     setDisplayEditModal(!displayEditModal);
@@ -180,13 +182,16 @@ function CostFormPage() {
     toggleAddModal();
   };
 
-  const onSubmitEdit = (formValues: FieldValues) => {
+  const onSubmitEdit = async (formValues: FieldValues) => {
     const payload = formValues;
     if (objectToEdit) {
       payload.id = objectToEdit.id;
     }
     payload.transporter = formValues.transporter.id;
-    dispatch(putCostRequest(payload as PutCostRequestPayload));
+    const { orders } = formValues;
+    payload.orders = [];
+    await updateShipment(payload);
+    await updateShipmentOrders(payload.id, orders);
     toggleEditModal();
   };
 
