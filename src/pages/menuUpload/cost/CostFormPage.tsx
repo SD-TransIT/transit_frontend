@@ -149,6 +149,7 @@ function CostFormPage() {
         number_of_kilometers: record.number_of_kilometers,
         transporter_base_cost: record.transporter_base_cost,
         transporter_additional_cost: record.transporter_additional_cost,
+        orders: record.order_ids,
       }));
     }
     setDisplayEditModal(!displayEditModal);
@@ -180,7 +181,7 @@ function CostFormPage() {
     toggleAddModal();
   };
 
-  const onSubmitEdit = (formValues: FieldValues) => {
+  const onSubmitEdit = async (formValues: FieldValues) => {
     const payload = formValues;
     if (objectToEdit) {
       payload.id = objectToEdit.id;

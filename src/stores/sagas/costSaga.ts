@@ -17,6 +17,8 @@ import apiClient, {
   deleteRequest, getRequest, putRequest,
 } from 'utils/apiClient';
 
+import { updateShipmentOrders } from './shipmentSaga';
+
 export const costUrl = 'cost/';
 export const addCostToShipmentUrl = 'cost/add_costs_to_shipment/';
 export const shipmentWithCostUrl = '/shipment_details_cost/get_shipments_with_cost/';
@@ -107,12 +109,20 @@ function* bulkPutCostSaga(action: any) {
 
 function* putCostSaga(action: any) {
   try {
+    const { orders } = action.payload;
+    // eslint-disable-next-line
+    action.payload.orders = [];
     yield call(refreshAccessToken);
     const responsePut: { cost: ICost } = yield call(
       putRequest,
       costUrl,
       action.payload,
       action.payload.id,
+    );
+    yield call(
+      updateShipmentOrders,
+      action.payload.id,
+      orders,
     );
     yield put(putCostSuccess(responsePut));
     yield put({

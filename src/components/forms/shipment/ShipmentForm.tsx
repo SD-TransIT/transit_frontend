@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import FormHeader from 'components/shared/FormHeader';
 import { Paths } from 'routes/paths';
 import { postShipmentRequest } from 'stores/actions/shipment/shipmentActions';
-import { shipmentUrl } from 'stores/sagas/shipmentSaga';
+import { shipmentUrl, updateShipment, updateShipmentOrders } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { PostShipmentRequestPayload } from 'stores/types/shipmentType';
-import { postRequest, putRequest } from 'utils/apiClient';
+import { postRequest } from 'utils/apiClient';
 
 import CancelButton from '../../../shared/buttons/CancelButton';
 import DeleteButton from '../../../shared/buttons/DeleteButton';
@@ -61,31 +61,6 @@ function ShipmentForm({
   ) => {
     await refreshAccessToken();
     await postRequest(shipmentUrl, payload);
-  };
-
-  const updateShipment = async (
-    payload: FieldValues,
-  ) => {
-    await refreshAccessToken();
-    await putRequest(
-      shipmentUrl,
-      payload,
-      payload.id,
-    );
-  };
-
-  const updateShipmentOrders = async (
-    id: number,
-    orders: any,
-  ) => {
-    const orderPayload = { orders };
-    if (orderPayload.orders.length > 0) {
-      await refreshAccessToken();
-      await postRequest(
-        `/shipment_details_orders/${id}/add_orders_to_shipment/`,
-        orderPayload,
-      );
-    }
   };
 
   const formatShipmentPayload = (formValues: FieldValues, orders: string []) => {

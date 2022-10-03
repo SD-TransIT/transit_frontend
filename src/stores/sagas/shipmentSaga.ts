@@ -1,3 +1,4 @@
+import { FieldValues } from 'react-hook-form';
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
@@ -17,6 +18,31 @@ import {
 } from 'utils/apiClient';
 
 export const shipmentUrl = 'shipment_details/';
+
+export const updateShipment = async (
+  payload: FieldValues,
+) => {
+  await refreshAccessToken();
+  await putRequest(
+    shipmentUrl,
+    payload,
+    payload.id,
+  );
+};
+
+export const updateShipmentOrders = async (
+  id: number,
+  orders: any,
+) => {
+  const orderPayload = { orders };
+  if (orderPayload.orders.length > 0) {
+    await refreshAccessToken();
+    await postRequest(
+      `/shipment_details_orders/${id}/add_orders_to_shipment/`,
+      orderPayload,
+    );
+  }
+};
 
 function* getShipmentSaga(action: any) {
   try {
