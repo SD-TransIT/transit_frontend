@@ -4,10 +4,32 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
+import { orderDetailsUrl } from 'stores/sagas/orderDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
 import { OrderPickerProp } from './types';
+
+const customStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    background: '#fff',
+    border: 'none',
+    minHeight: '34px',
+    height: '34px',
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: '#B8BBBF',
+    },
+    fontSize: '14px',
+    overflow: 'hidden',
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: '#9ca3af',
+    fontSize: 14,
+  }),
+};
 
 function OrderPicker({
   field, isInvalid, isShipment, watch, setValue,
@@ -22,7 +44,7 @@ function OrderPicker({
   ) => {
     await refreshAccessToken();
     if (!isShipment) {
-      const response = await getRequest('order_details/', { page, searcher: searchQuery }, true);
+      const response = await getRequest(orderDetailsUrl, { page, searcher: searchQuery }, true);
       const isNext: boolean = response.next !== null;
 
       return {
@@ -36,7 +58,7 @@ function OrderPicker({
     let response: any = { results: [] };
     let isNext: boolean = false;
     if (watch !== undefined) {
-      response = await getRequest('order_details/', { page, searcher: `${watch.id} ${watch.name} ${searchQuery}` }, true);
+      response = await getRequest(orderDetailsUrl, { page, searcher: `${watch.id} ${watch.name} ${searchQuery}` }, true);
       isNext = response.next !== null;
     }
     return {
@@ -67,7 +89,8 @@ function OrderPicker({
       getOptionLabel={(orderDetails: any) => orderDetails.order_details_id}
       getOptionValue={(orderDetails: any) => orderDetails.order_details_id}
       isClearable
-      className={classNames({ 'border border-transit-red rounded': isInvalid })}
+      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      styles={customStyles}
     />
   );
 }

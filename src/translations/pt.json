@@ -120,7 +120,12 @@
     "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "POD Variance",
     "pod_variance.id.label": "ID",
+    "pod_variance.order.order_number.label": "Order Number",
+    "pod_variance.order.product_name.label": "Product Name",
+    "pod_variance.order.quantity.total.label": "Total Quantity",
+    "pod_variance.order.quantity.new.label": "New Quantity",
     "pod_variance.shipment.label": "Shipment",
+    "pod_variance.variance_details.label": "Variance Details",
 
     "search.generate": "Generate",
     "search.clear": "Clear",

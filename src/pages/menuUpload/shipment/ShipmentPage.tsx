@@ -20,10 +20,11 @@ import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deleteShipmentRequest } from 'stores/actions/shipment/shipmentActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { getOrdersByOrdersIdRequest } from 'stores/sagas/orderDetailsSaga';
 import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteShipmentRequestPayload } from 'stores/types/shipmentType';
-import { getRequest, getRequestFetchById } from 'utils/apiClient';
+import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 function ShipmentPage() {
@@ -228,26 +229,20 @@ function ShipmentPage() {
   }));
 
   const loadOrderDetails = async (orders: any, propsForEditPage: any) => {
-    const fetchedOrderDetails: object [] = [];
     if (orders.length > 0) {
-      orders.forEach(async (order: any, index: number) => {
-        await refreshAccessToken();
-        const response = await getRequestFetchById('order_details/', order);
-        fetchedOrderDetails.push(response);
-        if (index === orders.length - 1) {
-          navigate(Paths.shipment_details_edit, {
-            state: {
-              propsForEditPage,
-              fetchedOrderDetails,
-            },
-          });
-        }
+      await refreshAccessToken();
+      const fetchedOrderDetails = await getOrdersByOrdersIdRequest(orders.toString());
+      navigate(Paths.shipment_details_edit, {
+        state: {
+          propsForEditPage,
+          fetchedOrderDetails,
+        },
       });
     } else {
       navigate(Paths.shipment_details_edit, {
         state: {
           propsForEditPage,
-          fetchedOrderDetails,
+          fetchedOrderDetails: [],
         },
       });
     }

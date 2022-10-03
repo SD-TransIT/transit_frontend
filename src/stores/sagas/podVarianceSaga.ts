@@ -14,12 +14,28 @@ import {
   putPodVarianceSuccess,
 } from 'stores/actions/podVariance/podVarianceActions';
 import podVarianceActionTypes from 'stores/actions/podVariance/podVarianceTypes';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import {
+import apiClient, {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
 export const podVarianceUrl = 'pod_variance/';
+export const podVarianceDetailsUrl = 'pod_variance_details/';
+
+export const getPodDetailsByOrdersIdRequest = async (podVariance: string) => {
+  const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const { data } = await apiClient.get(
+    `${podVarianceDetailsUrl}pod_details_without_pagination/?pod_variance=${podVariance}`,
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+  return data;
+};
 
 function* getPodVarianceSaga(action: any) {
   try {

@@ -120,7 +120,12 @@
     "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "Changement de lieu de livraison",
     "pod_variance.id.label": "Identification",
+    "pod_variance.order.order_number.label": "Numéro de commande",
+    "pod_variance.order.product_name.label": "Nom de l'article",
+    "pod_variance.order.quantity.total.label": "Montant total",
+    "pod_variance.order.quantity.new.label": "Nouvelle quantité",
     "pod_variance.shipment.label": "Chargement / Chargement / Expédition",
+    "pod_variance.variance_details.label": "Détails de la variance",
 
     "search.generate": "Générer",
     "search.clear": "Clair",

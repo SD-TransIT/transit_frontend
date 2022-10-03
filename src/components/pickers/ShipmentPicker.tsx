@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
-import { supplierUrl } from 'stores/sagas/supplierMasterSaga';
+import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
-import { SupplierPickerProp } from './types';
+import { PickerProp } from './types';
 
 const customStyles = {
   control: (provided: any) => ({
@@ -17,6 +17,7 @@ const customStyles = {
     border: 'none',
     minHeight: '34px',
     height: '34px',
+    maxWidth: '205px',
     boxShadow: 'none',
     '&:hover': {
       borderColor: '#B8BBBF',
@@ -31,7 +32,9 @@ const customStyles = {
   }),
 };
 
-function SupplierPicker({ field, isInvalid }: SupplierPickerProp) {
+function ShipmentPicker({
+  field, isInvalid, isDisabled = false,
+}: PickerProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -41,7 +44,7 @@ function SupplierPicker({ field, isInvalid }: SupplierPickerProp) {
     { page } : any,
   ) => {
     await refreshAccessToken();
-    const response = await getRequest(supplierUrl, { page, searcher: searchQuery }, true);
+    const response = await getRequest(shipmentUrl, { page, searcher: searchQuery }, true);
     const isNext: boolean = response.next !== null;
 
     return {
@@ -57,18 +60,21 @@ function SupplierPicker({ field, isInvalid }: SupplierPickerProp) {
     <AsyncPaginate
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...field}
-      placeholder={format('supplier_master')}
+      placeholder={format('shipment')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
       }}
-      getOptionLabel={(supplier: any) => supplier.name}
-      getOptionValue={(supplier: any) => supplier.id}
+      getOptionLabel={
+        (shipment: any) => (shipment.customer_name ? `${shipment.id} ${shipment.customer_name}` : `${shipment.id}`)
+      }
+      getOptionValue={(shipment: any) => shipment.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
       styles={customStyles}
+      isDisabled={isDisabled}
     />
   );
 }
 
-export default SupplierPicker;
+export default ShipmentPicker;
