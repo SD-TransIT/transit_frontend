@@ -225,6 +225,7 @@
     "transporter_details.vehicle_volume.label": "Volume du véhicule",
 
     "validation.error.character_length": "Ce champ est trop long (le maximum est de 10 caractères)",
+    "validation.error.credentials": "Identifiants incorrects",
     "validation.error.duplicate_order": "Cette commande a déjà été ajoutée",
     "validation.error.field_required": "Ce champ est requis",
     "validation.error.field_number": "Veuillez saisir un chiffre"

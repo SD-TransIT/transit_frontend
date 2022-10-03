@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import { FieldValues, useForm } from 'react-hook-form';
+import { RiErrorWarningLine } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +14,7 @@ import SubmitButton from 'shared/buttons/SubmitButton';
 import Input from 'shared/inputs/input';
 import { fetchTokenRequest, refreshTokenRequest } from 'stores/actions/token/tokenActions';
 import { sessionToken } from 'stores/reducers/tokenReducer';
+import store from 'stores/store';
 import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'stores/types/tokenType';
 import isAuthenticated from 'utils/authHelper';
 
@@ -31,6 +33,8 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
 
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const [signInStatus, setSignInStatus] = useState();
 
   const callback = () => {
     navigate(Paths.landing);
@@ -65,6 +69,8 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
       values: formValues,
       callback,
     };
+    // @ts-ignore
+    setSignInStatus(store.getState().token.token);
     signIn(data);
   };
 
@@ -86,6 +92,13 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             <p className="text-2xl">{format('sign_in.label')}</p>
             <p className="text-sm text-transit-black-light">{format('sign_in.massage')}</p>
           </div>
+          {signInStatus === null
+          && (
+          <div className="flex flex-row h-12 border border-transit-red-primary rounded w-full items-center px-3 gap-3">
+            <RiErrorWarningLine className="text-xl text-transit-red-primary" />
+            <p className="font-medium text-sm text-black">{format('validation.error.credentials')}</p>
+          </div>
+          )}
           <div className="h-12">
             <Input
               // eslint-disable-next-line react/jsx-props-no-spreading
