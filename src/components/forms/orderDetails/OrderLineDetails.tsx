@@ -4,17 +4,15 @@ import React, {
 
 import { RiDeleteBin7Line } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
 
+// import { useSelector } from 'react-redux';
 import BatchNumberPicker from 'components/pickers/BatchNumberPicker';
 import ItemPickerOutsideForm from 'components/pickers/ItemPickerOutsideForm';
 import EditableTable from 'components/shared/table/EditableTable';
 import Input from 'shared/inputs/input';
-import { RootState } from 'stores/reducers/rootReducer';
 import { orderLineDetailsUrl } from 'stores/sagas/orderLineDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
-import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 type Props = {
   mode: 'Edit' | 'Add'
@@ -30,11 +28,7 @@ function OrderLineDetails(
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const [, setPageCount] = useState(0);
-  const [, setNumberOfAvailableData] = useState(0);
-  const [, setPage] = useState(FIRST_PAGE);
   const [data, setData] = useState<any>();
-  const [, setSearcher] = useState(EMPTY_SEARCHER);
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
@@ -48,17 +42,7 @@ function OrderLineDetails(
     { label: format('order_details.total_quantity.label') },
   ];
 
-  const {
-    orderLineDetail,
-  } = useSelector(
-    (state: RootState) => state.orderLineDetails,
-  );
-
-  const calculatePagesCount = (pageSize: number, totalCount: number) => (
-    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
-  );
-
-  const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
+  const fetchData = useCallback(async () => {
     /* eslint-disable-next-line no-plusplus */
     const fetchId = ++fetchIdRef.current;
 
@@ -68,14 +52,9 @@ function OrderLineDetails(
       if (fetchId === fetchIdRef.current) {
         await refreshAccessToken();
         const result = await getRequest(orderLineDetailsUrl, {
-          page: pageNumber,
-          searcher: search,
-        }, true);
-
-        setPage(pageNumber);
-        setData(result.results);
-        setPageCount(calculatePagesCount(DEFAULT_OFFSET, result.count));
-        setNumberOfAvailableData(result.count);
+          searcher: orderDetailsId,
+        }, false);
+        setData(result);
       }
     } catch (error) {
       setData(data);
@@ -84,18 +63,15 @@ function OrderLineDetails(
   }, []);
 
   useEffect(() => {
-    setPage(FIRST_PAGE);
-    setSearcher(EMPTY_SEARCHER);
-    fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
+    if (orderDetailsId) {
+      fetchData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderLineDetail, orderDetailsId]);
+  }, [orderDetailsId]);
 
   useEffect(() => {
     if (data !== undefined) {
-      const currentLineItems = data.filter(
-        (lineDetail: any) => lineDetail.order_details === orderDetailsId,
-      );
-      setLineItems(currentLineItems);
+      setLineItems(data);
     }
   }, [orderDetailsId, data]);
 
