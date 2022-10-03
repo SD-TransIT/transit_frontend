@@ -114,6 +114,7 @@
     "order_details": "Order Details",
     "order_details.header": "Order Details",
     "order_details.received_date.label": "Order Received Date (MM/DD/YYYY)",
+    "order_details.total_quantity.label": "Total Quantity",
     
     "pod_variance": "POD Variance",
     "pod_variance.description_dso.label": "Description DSO",
@@ -124,6 +125,7 @@
     "search.generate": "Generate",
     "search.clear": "Clear",
     "search.placeholder": "Enter Search String...",
+    "search.search.label": "Search",
 
     "sign_in.create_an_account": "Create an account",
     "sign_in.label": "Sign in",

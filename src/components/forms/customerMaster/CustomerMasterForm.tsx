@@ -55,7 +55,7 @@ function CustomerMasterForm({
                     )}
                     name="customer_type"
                   />
-                  {errors.customer_type && <ValidationError value="This field is required" />}
+                  {errors.customer_type && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('customer_type.column.name')}</p>

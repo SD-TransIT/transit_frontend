@@ -14,6 +14,7 @@ import customerMasterReducer from './customerMasterReducer';
 import customerWeekDaysReducer from './customerWeekDaysReducer';
 import itemDetailReducer from './itemDetailReducer';
 import orderDetailsReducer from './orderDetailsReducer';
+import orderLineDetailsReducer from './orderLineDetails';
 import podVarianceReducer from './podVarianceReducer';
 import shipmentReducer from './shipmentReducer';
 import transporterDetailsReducer from './transporterDetailsReducer';
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   cost: costReducer,
   orderDetails: orderDetailsReducer,
   podVariance: podVarianceReducer,
+  orderLineDetails: orderLineDetailsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
