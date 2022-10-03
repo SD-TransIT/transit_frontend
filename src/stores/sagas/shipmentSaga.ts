@@ -34,7 +34,6 @@ export const updateShipmentOrders = async (
   id: number,
   orders: any,
 ) => {
-  console.log('xx', orders);
   const orderPayload = { orders };
   if (orderPayload.orders.length > 0) {
     await refreshAccessToken();
