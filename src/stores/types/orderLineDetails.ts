@@ -1,4 +1,4 @@
-import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLinedetailsType';
+import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLineDetailsType';
 import OrderLineDetailsActionTypes from 'stores/actions/orderLineDetails/orderLineDetailsTypes';
 
 export interface OrderLineDetailsState {
@@ -22,7 +22,7 @@ export interface GetOrderLineDetailsErrorPayload {
 }
 
 export interface PostOrderLineDetailsRequestPayload {
-  payload: { week_days: any, id: number };
+  payload: { line_items: any, id: number };
 }
 
 export interface PostOrderLineDetailsSuccessPayload {

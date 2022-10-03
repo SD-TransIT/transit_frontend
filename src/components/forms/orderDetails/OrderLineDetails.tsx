@@ -105,28 +105,22 @@ function OrderLineDetails(
   }, [lineItems]);
 
   const addNewItem = () => {
+    const variables = {
+      id: Math.floor(Math.random() * 10000),
+      product: null,
+      item_details: null,
+      quantity: '',
+      old_quantity: '',
+      product_name: null,
+      batch_number: '',
+      order_details: '',
+    };
+
     if (orderDetailsId) {
-      setLineItems([...lineItems, {
-        id: Math.floor(Math.random() * 10000),
-        order_details: orderDetailsId,
-        product: null,
-        item_details: null,
-        quantity: '',
-        old_quantity: '',
-        product_name: null,
-        batch_number: '',
-      }]);
+      variables.order_details = orderDetailsId;
+      setLineItems([...lineItems, variables]);
     } else {
-      setLineItems([...lineItems, {
-        id: Math.floor(Math.random() * 10000),
-        order_details: '',
-        product: null,
-        item_details: null,
-        quantity: '',
-        old_quantity: '',
-        product_name: null,
-        batch_number: '',
-      }]);
+      setLineItems([...lineItems, variables]);
     }
   };
 
@@ -163,60 +157,49 @@ function OrderLineDetails(
       return shouldBatchNumberBeNull;
     });
 
+    const variables = {
+      id: lineItem.id,
+      order_details: lineItem.order_details,
+      product: newItemName.id,
+      item_details: lineItem.item_details,
+      quantity: lineItem.quantity,
+      old_quantity: lineItem.old_quantity,
+      product_name: newItemName.name,
+      batch_number: '',
+    };
+
     if (changeBatchNumber[0]) {
       if (newItemName !== null && lineItem !== null && lineItem !== undefined) {
-        setLineItems([
-          ...lineItems.map((item) => (item.id === lineItem.id
-            ? {
-              id: lineItem.id,
-              order_details: lineItem.order_details,
-              product: newItemName.id,
-              item_details: lineItem.item_details,
-              quantity: lineItem.quantity,
-              old_quantity: lineItem.old_quantity,
-              product_name: newItemName.name,
-              batch_number: lineItem.batch_number,
-            } : item)),
-        ]);
+        variables.batch_number = lineItem.batch_number;
+
+        setLineItems([...lineItems.map((item) => (item.id === lineItem.id ? variables : item))]);
         setItemName(newItemName);
       }
     } else if (newItemName !== null && lineItem !== null && lineItem !== undefined) {
-      setLineItems([
-        ...lineItems.map((item) => (item.id === lineItem.id
-          ? {
-            id: lineItem.id,
-            order_details: lineItem.order_details,
-            product: newItemName.id,
-            item_details: lineItem.item_details,
-            quantity: lineItem.quantity,
-            old_quantity: lineItem.old_quantity,
-            product_name: newItemName.name,
-            batch_number: '',
-          } : item)),
-      ]);
+      setLineItems([...lineItems.map((item) => (item.id === lineItem.id ? variables : item))]);
       setItemName(newItemName);
-    } else if (newItemName === null) {
-      return;
     }
-
-    setItemName(newItemName);
   };
 
   const handleNewItemBatchNumber = (newItemBatchNumber: any, lineItem: any) => {
+    const variables = {
+      id: lineItem.id,
+      order_details: lineItem.order_details,
+      product: lineItem.product,
+      item_details: '',
+      quantity: lineItem.quantity,
+      old_quantity: lineItem.old_quantity,
+      product_name: lineItem.product_name,
+      batch_number: '',
+    };
+
     if (newItemBatchNumber !== null && lineItem !== null && lineItem !== undefined) {
-      setLineItems([
-        ...lineItems.map((item) => (item.id === lineItem.id
-          ? {
-            id: lineItem.id,
-            order_details: lineItem.order_details,
-            product: lineItem.product,
-            item_details: newItemBatchNumber.id,
-            quantity: lineItem.quantity,
-            old_quantity: lineItem.old_quantity,
-            product_name: lineItem.product_name,
-            batch_number: newItemBatchNumber.batch_number,
-          } : item)),
-      ]);
+      variables.item_details = newItemBatchNumber.id;
+      variables.batch_number = newItemBatchNumber.batch_number;
+
+      setLineItems([...lineItems.map((item) => (item.id === lineItem.id ? variables : item))]);
+    } else if (newItemBatchNumber === null) {
+      setLineItems([...lineItems.map((item) => (item.id === lineItem.id ? variables : item))]);
     }
   };
 
@@ -236,7 +219,15 @@ function OrderLineDetails(
         <div className="flex h-12 px-8 items-center even:bg-transit-grey-light" key={lineItem.id}>
           <div className="w-1/3 pr-2">
             <ItemPickerOutsideForm
-              field={mode === 'Add' ? { id: Math.floor(Math.random() * 10000), name: null, lineItem } : { id: lineItem.product, name: lineItem.product_name, lineItem }}
+              field={mode === 'Add' ? {
+                id: Math.floor(Math.random() * 10000),
+                name: null,
+                lineItem,
+              } : {
+                id: lineItem.product,
+                name: lineItem.product_name,
+                lineItem,
+              }}
               onChangeItemName={handleNewItemName}
             />
           </div>
@@ -268,7 +259,6 @@ function OrderLineDetails(
             />
           </div>
           <div>
-            {/* @ts-ignore */}
             <RiDeleteBin7Line className="table-action-icons" onClick={() => removeLineItem(lineItem.id)} />
           </div>
         </div>

@@ -2,7 +2,7 @@ import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
 
-import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLinedetailsType';
+import { IOrderLineDetailsType } from 'models/orderLineDetails/IOrderLineDetailsType';
 import {
   getOrderLineDetailsFailure,
   getOrderLineDetailsSuccess,

@@ -73,12 +73,12 @@ function BatchNumberPicker({
   }, [value]);
 
   useEffect(() => {
-    if (field?.batch_number === '' || field?.batch_number === null || field?.lineItem.batch_number === '' || field?.lineItem.batch_number === null || value === null) {
+    if (field?.lineItem.batch_number === '' || field?.lineItem.batch_number === null || value === null) {
       setIsInvalid(true);
     } else {
       setIsInvalid(false);
     }
-  }, [field?.batch_number, field?.lineItem.batch_number, value]);
+  }, [field?.lineItem.batch_number, value]);
 
   return (
     <AsyncPaginate

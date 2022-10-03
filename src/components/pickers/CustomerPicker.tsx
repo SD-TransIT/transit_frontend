@@ -17,7 +17,6 @@ const customStyles = {
     border: 'none',
     minHeight: '34px',
     height: '34px',
-    // maxWidth: '205px',
     boxShadow: 'none',
     '&:hover': {
       borderColor: '#B8BBBF',

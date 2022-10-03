@@ -19,7 +19,6 @@ function OrderDetailsForm({
 }: ManualFormProps) {
   const {
     control,
-    // register,
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: initialFormValue });
