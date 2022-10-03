@@ -155,7 +155,7 @@ function ItemForm({
                     )}
                     name="conditions"
                   />
-                  {errors.conditions && <ValidationError value="This field is required" />}
+                  {errors.conditions && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
               </div>
             </div>

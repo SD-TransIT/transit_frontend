@@ -56,5 +56,17 @@ export type SupplierPickerProp = {
 export type CustomerPickerProp = {
   field: ControllerRenderProps<FieldValues, 'customer'>;
   isInvalid: boolean;
-  isDisabled: boolean;
+  isDisabled?: boolean;
+};
+
+export type BatchNumberPickerProp = {
+  field: { id: any, batch_number: any, lineItem: any } | null;
+  watch?: any;
+  isOrderDetails?: boolean;
+  onChangeBatchNumber: (value: any, lineItem: any) => void
+};
+
+export type ItemPickerOutsideFormProp = {
+  field: { id: any, name: any, lineItem: any } | null
+  onChangeItemName: (value: any, lineItem: any) => void
 };

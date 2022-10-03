@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { AsyncPaginate, LoadOptions } from 'react-select-async-paginate';
 
-import { customerMasterUrl } from 'stores/sagas/customerMasterSaga';
+import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
-import { CustomerPickerProp } from './types';
+import { ItemPickerOutsideFormProp } from './types';
 
 const customStyles = {
   control: (provided: any) => ({
@@ -31,9 +31,12 @@ const customStyles = {
   }),
 };
 
-function CustomerPicker({ field, isInvalid, isDisabled = false }: CustomerPickerProp) {
+function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFormProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const [value, onChange] = useState(field);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
 
   const loadOptions: LoadOptions<any, any, { page: any }> = async (
     searchQuery: any,
@@ -41,9 +44,8 @@ function CustomerPicker({ field, isInvalid, isDisabled = false }: CustomerPicker
     { page } : any,
   ) => {
     await refreshAccessToken();
-    const response = await getRequest(customerMasterUrl, { page, searcher: searchQuery }, true);
+    const response = await getRequest(itemUrl, { page, searcher: searchQuery }, true);
     const isNext: boolean = response.next !== null;
-
     return {
       options: response.results,
       hasMore: isNext,
@@ -52,23 +54,37 @@ function CustomerPicker({ field, isInvalid, isDisabled = false }: CustomerPicker
       },
     };
   };
+
+  useEffect(() => {
+    if (field?.lineItem.product_name === '' || field?.lineItem.product_name === null || value === null) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  }, [field?.lineItem.product_name, value]);
+
+  useEffect(() => {
+    onChangeItemName(value, field?.lineItem);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
   return (
     <AsyncPaginate
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...field}
-      placeholder={format('customer')}
+      key={field?.id ?? 'key'}
+      placeholder={format('item_master.name.label')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
       }}
-      getOptionLabel={(customerType: any) => customerType.name}
-      getOptionValue={(customerType: any) => customerType.id}
+      getOptionLabel={(item: any) => item.name}
+      getOptionValue={(item: any) => item.id}
       isClearable
-      isDisabled={isDisabled}
-      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
+      className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
       styles={customStyles}
+      value={value?.name !== null && value}
+      onChange={onChange}
     />
   );
 }
 
-export default CustomerPicker;
+export default ItemPickerOutsideForm;

@@ -54,7 +54,7 @@ function Searcher({ refetch }: SearcherProps) {
             />
             <SubmitButton
               onClick={handleSubmit(onSubmit)}
-              title={format('search.generate')}
+              title={format('search.search.label')}
             />
           </div>
         </div>

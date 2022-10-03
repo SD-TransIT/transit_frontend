@@ -37,7 +37,7 @@ import {
 import { getRequest } from 'utils/apiClient';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
-import CustomerMasterDeliveryHours from './CustomerMasterDeliveryHours';
+import CustomerMasterDeliveryHours from '../../../components/forms/customerMaster/CustomerMasterDeliveryHours';
 
 function CustomerMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
