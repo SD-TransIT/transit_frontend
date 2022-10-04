@@ -36,7 +36,6 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
 
   const {
     credentialsError,
-    token,
   } = useSelector(
     (state: RootState) => state.token,
   );
@@ -68,7 +67,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
       refreshToken();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, []);
 
   const login = (formValues: ITokenInput) => {
     const data: any = {
