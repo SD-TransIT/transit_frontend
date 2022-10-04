@@ -41,7 +41,6 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
     (state: RootState) => state.token,
   );
 
-
   const callback = () => {
     navigate(Paths.landing);
   };
@@ -51,10 +50,10 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   };
 
   const refreshToken = () => {
-    const token = JSON.parse(localStorage.getItem(sessionToken) as string);
+    const tokenSaved = JSON.parse(localStorage.getItem(sessionToken) as string);
     const data: any = {
       values: {
-        refresh: token.refresh,
+        refresh: tokenSaved.refresh,
       },
       callback: callbackRefresh,
     };
@@ -68,6 +67,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
     } else if (isToken) {
       refreshToken();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const login = (formValues: ITokenInput) => {
