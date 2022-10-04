@@ -2,8 +2,9 @@ import React, { useCallback, useEffect } from 'react';
 
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import { FieldValues, useForm } from 'react-hook-form';
+import { RiErrorWarningLine } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import ValidationError from 'components/shared/ValidationError';
@@ -12,6 +13,7 @@ import { Paths } from 'routes/paths';
 import SubmitButton from 'shared/buttons/SubmitButton';
 import Input from 'shared/inputs/input';
 import { fetchTokenRequest, refreshTokenRequest } from 'stores/actions/token/tokenActions';
+import { RootState } from 'stores/reducers/rootReducer';
 import { sessionToken } from 'stores/reducers/tokenReducer';
 import { FetchTokenRequestPayload, RefreshTokenRequestPayload } from 'stores/types/tokenType';
 import isAuthenticated from 'utils/authHelper';
@@ -78,6 +80,12 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
     login(formValues as ITokenInput);
   };
 
+  const {
+    credentialsError,
+  } = useSelector(
+    (state: RootState) => state.token,
+  );
+
   return (
     <div className="bg-transit-white m-auto w-full max-w-lg h-full max-h-96 rounded-lg py-8 px-4 gap-y-4">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,6 +94,13 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
             <p className="text-2xl">{format('sign_in.label')}</p>
             <p className="text-sm text-transit-black-light">{format('sign_in.massage')}</p>
           </div>
+          {credentialsError
+          && (
+          <div className="flex flex-row h-12 border border-transit-red-primary rounded w-full items-center px-3 gap-3">
+            <RiErrorWarningLine className="text-xl text-transit-red-primary" />
+            <p className="font-medium text-sm text-black">{format('validation.error.credentials')}</p>
+          </div>
+          )}
           <div className="h-12">
             <Input
               // eslint-disable-next-line react/jsx-props-no-spreading

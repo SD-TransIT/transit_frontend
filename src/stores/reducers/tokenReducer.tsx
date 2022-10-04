@@ -8,6 +8,7 @@ const initialState: TokenState = {
   fetchedToken: false,
   token: null,
   error: null,
+  credentialsError: false,
 };
 
 const tokenReducer = (action: TokenActions, state: TokenState = initialState) => {
@@ -30,6 +31,7 @@ const tokenReducer = (action: TokenActions, state: TokenState = initialState) =>
         fetchedToken: true,
         token: action.payload,
         error: null,
+        credentialsError: false,
       };
     case TokenActionTypes.FETCH_TOKEN_FAILURE:
       localStorage.removeItem(sessionToken);
@@ -38,6 +40,7 @@ const tokenReducer = (action: TokenActions, state: TokenState = initialState) =>
         fetchingToken: false,
         token: null,
         error: action.payload,
+        credentialsError: true,
       };
     case TokenActionTypes.REFRESH_TOKEN_REQUEST:
       return {
