@@ -34,6 +34,14 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
+  const {
+    credentialsError,
+    token,
+  } = useSelector(
+    (state: RootState) => state.token,
+  );
+
+
   const callback = () => {
     navigate(Paths.landing);
   };
@@ -60,7 +68,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
     } else if (isToken) {
       refreshToken();
     }
-  });
+  }, [token]);
 
   const login = (formValues: ITokenInput) => {
     const data: any = {
@@ -79,12 +87,6 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   const onSubmit = (formValues: FieldValues) => {
     login(formValues as ITokenInput);
   };
-
-  const {
-    credentialsError,
-  } = useSelector(
-    (state: RootState) => state.token,
-  );
 
   return (
     <div className="bg-transit-white m-auto w-full max-w-lg h-full max-h-96 rounded-lg py-8 px-4 gap-y-4">
