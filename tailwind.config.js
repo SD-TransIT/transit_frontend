@@ -32,7 +32,7 @@ module.exports = {
       },
       "transit-red": {
         DEFAULT: "#FF0000",
-        primary: "#E41D1D"
+        primary: "#FF0000"
       },
       "transit-blue": {
         light: "#A1A9B8"

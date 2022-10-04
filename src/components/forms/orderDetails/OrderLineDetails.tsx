@@ -5,7 +5,6 @@ import React, {
 import { RiDeleteBin7Line } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
 
-// import { useSelector } from 'react-redux';
 import BatchNumberPicker from 'components/pickers/BatchNumberPicker';
 import ItemPickerOutsideForm from 'components/pickers/ItemPickerOutsideForm';
 import EditableTable from 'components/shared/table/EditableTable';

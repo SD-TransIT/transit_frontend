@@ -7,6 +7,7 @@ export interface TokenState {
   fetchedToken: boolean;
   token: IToken | null;
   error: string | null;
+  credentialsError: boolean
 }
 
 export interface FetchTokenRequestPayload {
