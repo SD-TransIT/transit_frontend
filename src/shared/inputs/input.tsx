@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { InputProps } from 'shared/inputs/types';
 
-const style = 'text-sm border border-transit-grey-300 rounded text-black-light focus:outline-none focus:shadow-outline h-9 px-2';
+const style = 'text-sm border rounded text-black-light focus:outline-none focus:shadow-outline h-9 px-2';
 
 const Input = React.forwardRef(({
   id, name, placeholder, type, className, isInvalid = false, checked,
@@ -14,7 +14,9 @@ const Input = React.forwardRef(({
     <input
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
-      className={classNames({ 'border-transit-red-primary': isInvalid, 'border-none': disabled }, style, className, { 'w-full': type !== 'checkbox' })}
+      className={classNames({
+        'border-transit-red-primary': isInvalid, 'border-transit-grey-300': !isInvalid, 'border-none': disabled,
+      }, style, className, { 'w-full': type !== 'checkbox' })}
       name={name}
       id={id}
       placeholder={placeholder}
