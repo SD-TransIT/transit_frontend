@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useCookies } from 'react-cookie';
-import Select from 'react-select';
 
 import SignInForm from 'components/forms/signInForm';
+import SimpleSelect from 'components/shared/SimpleSelect';
 
 export default function SignInPage() {
   const [langCookies, setLangCookie] = useCookies(['language']);
@@ -24,11 +24,11 @@ export default function SignInPage() {
       <div className="w-full sm:w-1/2">
         <div className="flex flex-col h-screen">
           <div className="flex justify-end w-full pr-10 pt-10">
-            <Select<Object>
-              defaultValue={langCookies.language?.label}
+            <SimpleSelect
+              value={langCookies.language?.label}
               onChange={onLocaleChange}
               options={options}
-              className="shadow-dateInput rounded w-1/5"
+              className="rounded w-1/5"
               placeholder={langCookies.language?.label}
             />
           </div>

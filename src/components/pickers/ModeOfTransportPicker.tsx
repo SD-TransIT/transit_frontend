@@ -8,28 +8,8 @@ import { modeOfTransportUrl } from 'stores/sagas/modeOfTransport';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
+import customPickerStyles from './customPickerStyles';
 import { PickerProp } from './types';
-
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    background: '#fff',
-    border: 'none',
-    minHeight: '34px',
-    height: '34px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#B8BBBF',
-    },
-    fontSize: '14px',
-    overflow: 'hidden',
-  }),
-  placeholder: (provided: any) => ({
-    ...provided,
-    color: '#9ca3af',
-    fontSize: 14,
-  }),
-};
 
 function ModeOfTransportPicker({ field, isInvalid }: PickerProp) {
   const { formatMessage } = useIntl();
@@ -66,7 +46,7 @@ function ModeOfTransportPicker({ field, isInvalid }: PickerProp) {
       getOptionValue={(mode: any) => mode.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
-      styles={customStyles}
+      styles={customPickerStyles}
     />
   );
 }

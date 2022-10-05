@@ -44,4 +44,8 @@ export type SimpleSelectType = {
   placeholder: string
   onChange: (value: any) => void
   isDisabled?: boolean
+  ref?: any
+  name?: string
+  value?: any
+  className?: string
 };

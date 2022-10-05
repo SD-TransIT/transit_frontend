@@ -8,28 +8,8 @@ import { transporterDetailsUrl } from 'stores/sagas/transporterDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
+import customPickerStyles from './customPickerStyles';
 import { TransporterDetailsPickerProp } from './types';
-
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    background: '#fff',
-    border: 'none',
-    minHeight: '34px',
-    height: '34px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#B8BBBF',
-    },
-    fontSize: '14px',
-    overflow: 'hidden',
-  }),
-  placeholder: (provided: any) => ({
-    ...provided,
-    color: '#9ca3af',
-    fontSize: 14,
-  }),
-};
 
 function TransporterDetailsPicker({
   field, isInvalid, isShipment, watch, setValue, mode = '', initialFormValue,
@@ -99,7 +79,7 @@ function TransporterDetailsPicker({
       getOptionValue={(transporter_details: any) => transporter_details.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
-      styles={customStyles}
+      styles={customPickerStyles}
     />
   );
 }

@@ -17,6 +17,7 @@ import itemDetailReducer from './itemDetailReducer';
 import orderDetailsReducer from './orderDetailsReducer';
 import orderLineDetailsReducer from './orderLineDetails';
 import podVarianceReducer from './podVarianceReducer';
+import reportsReducer from './reportsReducer';
 import shipmentReducer from './shipmentReducer';
 import transporterDetailsReducer from './transporterDetailsReducer';
 
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   podVariance: podVarianceReducer,
   orderLineDetails: orderLineDetailsReducer,
   excelUpload: excelUploadReducer,
+  reports: reportsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

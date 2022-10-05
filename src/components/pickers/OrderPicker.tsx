@@ -8,28 +8,8 @@ import { orderDetailsUrl } from 'stores/sagas/orderDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
+import customPickerStyles from './customPickerStyles';
 import { OrderPickerProp } from './types';
-
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    background: '#fff',
-    border: 'none',
-    minHeight: '34px',
-    height: '34px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#B8BBBF',
-    },
-    fontSize: '14px',
-    overflow: 'hidden',
-  }),
-  placeholder: (provided: any) => ({
-    ...provided,
-    color: '#9ca3af',
-    fontSize: 14,
-  }),
-};
 
 function OrderPicker({
   field, isInvalid, isShipment, watch, setValue,
@@ -90,7 +70,7 @@ function OrderPicker({
       getOptionValue={(orderDetails: any) => orderDetails.order_details_id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
-      styles={customStyles}
+      styles={customPickerStyles}
     />
   );
 }
