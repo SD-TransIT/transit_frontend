@@ -40,12 +40,12 @@ function RaportGenerator() {
   ];
 
   const onSubmit = (formValues: FieldValues) => {
-    const payload = {
+    const payload: GetReportsRequestPayload = {
       reportName: formValues.report.value,
       startDate: formValues.date_from.toJSON(),
       endDate: formValues.date_to.toJSON(),
     };
-    // @ts-ignore
+
     dispatch(getReportsRequest(payload as GetReportsRequestPayload));
   };
 

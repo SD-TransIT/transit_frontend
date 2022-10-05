@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useCookies } from 'react-cookie';
 
-// import Select from 'react-select';
 import SignInForm from 'components/forms/signInForm';
 import SimpleSelect from 'components/shared/SimpleSelect';
 

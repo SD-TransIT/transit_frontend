@@ -8,7 +8,9 @@ export interface ReportsState {
 }
 
 export interface GetReportsRequestPayload {
-  payload: any;
+  reportName: string,
+  startDate: string,
+  endDate: string ;
 }
 
 export interface GetReportsSuccessPayload {

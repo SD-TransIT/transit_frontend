@@ -21,7 +21,6 @@ const customStyles = {
   }),
   menuList: (base: any) => ({
     ...base,
-    // kill the white space on first and last option
     padding: 0,
   }),
   option: (base: any, state: any) => ({

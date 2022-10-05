@@ -36,7 +36,6 @@ function* getReportsSaga(action: any) {
       reportName: action.payload?.reportName ?? null,
       startDate: action.payload?.startDate ?? null,
       endDate: action.payload?.endDate ?? null,
-
     });
     yield put(getReportsSuccess(response));
     yield put({
