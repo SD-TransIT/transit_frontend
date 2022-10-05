@@ -8,29 +8,8 @@ import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
+import customPickerStyles from './customPickerStyles';
 import { PickerProp } from './types';
-
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    background: '#fff',
-    border: 'none',
-    minHeight: '34px',
-    height: '34px',
-    maxWidth: '205px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#B8BBBF',
-    },
-    fontSize: '14px',
-    overflow: 'hidden',
-  }),
-  placeholder: (provided: any) => ({
-    ...provided,
-    color: '#9ca3af',
-    fontSize: 14,
-  }),
-};
 
 function ShipmentPicker({
   field, isInvalid, isDisabled = false,
@@ -71,7 +50,7 @@ function ShipmentPicker({
       getOptionValue={(shipment: any) => shipment.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9 w-full': !isInvalid })}
-      styles={customStyles}
+      styles={customPickerStyles}
       isDisabled={isDisabled}
     />
   );

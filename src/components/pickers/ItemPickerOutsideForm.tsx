@@ -8,28 +8,8 @@ import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';
 
+import customPickerStyles from './customPickerStyles';
 import { ItemPickerOutsideFormProp } from './types';
-
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    background: '#fff',
-    border: 'none',
-    minHeight: '34px',
-    height: '34px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#B8BBBF',
-    },
-    fontSize: '14px',
-    overflow: 'hidden',
-  }),
-  placeholder: (provided: any) => ({
-    ...provided,
-    color: '#9ca3af',
-    fontSize: 14,
-  }),
-};
 
 function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFormProp) {
   const { formatMessage } = useIntl();
@@ -80,7 +60,7 @@ function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFor
       getOptionValue={(item: any) => item.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
-      styles={customStyles}
+      styles={customPickerStyles}
       value={value?.name !== null && value}
       onChange={onChange}
     />

@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import Select, { GroupBase } from 'react-select';
 
+import customPickerStyles from 'components/pickers/customPickerStyles';
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
 import FormHeader from 'components/shared/FormHeader';
 
@@ -150,7 +151,8 @@ function ItemForm({
                         onChange={onChange}
                         options={conditionsOptions}
                         placeholder={format('item_master.conditions.label')}
-                        className={classNames({ 'border border-transit-red rounded': Boolean(errors.conditions) })}
+                        className={classNames({ 'border border-transit-red rounded': Boolean(errors.conditions), 'border border-transit-grey-300 rounded': !errors.conditions })}
+                        styles={customPickerStyles}
                       />
                     )}
                     name="conditions"

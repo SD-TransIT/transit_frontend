@@ -4,6 +4,7 @@ import { Controller } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import Select, { GroupBase } from 'react-select';
 
+import customPickerStyles from 'components/pickers/customPickerStyles';
 import DatePick from 'components/shared/DatePicker';
 import Input from 'shared/inputs/input';
 
@@ -64,6 +65,8 @@ function ShipmentDetailsData({
                 onChange={onChange}
                 options={deliveryStatusOptions}
                 placeholder={format('shipment.delivery_status.label')}
+                className="border border-transit-grey-300 rounded"
+                styles={customPickerStyles}
               />
             )}
             name="delivery_status"
@@ -87,6 +90,8 @@ function ShipmentDetailsData({
                 // eslint-disable-next-line
                 options={watch('delivery_status') !== null && watch('delivery_status') !== undefined ? (watch('delivery_status').value === 'delivered' ? podStatusDeliveredOptions : podStatusNotDeliveredOptions) : []}
                 placeholder={format('shipment.pod_status.label')}
+                className="border border-transit-grey-300 rounded"
+                styles={customPickerStyles}
               />
             )}
             name="pod_status"
