@@ -4,15 +4,16 @@ import classNames from 'classnames';
 
 import { SubmitButtonType } from 'shared/buttons/types';
 
-const style = 'submit-button';
-
-function SubmitButton({ onClick, title, className }: SubmitButtonType) {
+function SubmitButton({
+  onClick, title, className, disabled = false,
+}: SubmitButtonType) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={classNames(style, className)}
+      className={classNames({ 'submit-button': !disabled, 'submit-disabled-button': disabled }, className)}
       data-testid="add-button"
+      disabled={disabled}
     >
       <p className="text-center">{title}</p>
     </button>

@@ -65,18 +65,26 @@ function SupplierMasterPage() {
     {
       Header: format('supplier_master.name.label'),
       accessor: 'name',
+      width: 300,
+      maxWidth: 300,
     },
     {
       Header: format('supplier_master.address_1.label'),
       accessor: 'address_1',
+      width: 150,
+      maxWidth: 150,
     },
     {
       Header: format('supplier_master.address_2.label'),
       accessor: 'address_2',
+      width: 150,
+      maxWidth: 150,
     },
     {
       Header: format('supplier_master.address_3.label'),
       accessor: 'address_3',
+      width: 150,
+      maxWidth: 150,
     },
     {
       Header: format('supplier_master.city.label'),
