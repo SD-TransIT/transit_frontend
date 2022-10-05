@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
 
-import { IconContext } from 'react-icons';
-import { RiCloseFill } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +9,7 @@ import PageBody from 'components/shared/PageBody';
 import SimpleSelect from 'components/shared/SimpleSelect';
 import ValidationError from 'components/shared/ValidationError';
 import SubmitButton from 'shared/buttons/SubmitButton';
-import Input from 'shared/inputs/input';
+import Label from 'shared/labels/Label';
 import { postExcelUploadRequest } from 'stores/actions/excelUpload/excelUploadActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { PostExcelUploadRequestPayload } from 'stores/types/excelUploadType';
@@ -53,30 +51,28 @@ function ExcelUploadPage() {
     isInvalid = false,
   ) => (
     <>
-      <div className="flex justify-end items-center relative">
-        <Input
-          type="search"
-          placeholder={isInvalid ? file.file.path : file.path}
+      <div className="w-full py-2">
+        {/* eslint-disable-next-line */}
+        <Label
+          onClick={() => {
+            setDisabledSubmit(true);
+            setFile(null);
+          }}
+          textToDisplay={isInvalid ? file.file.path : file.path}
           isInvalid={isInvalid}
         />
-        <IconContext.Provider
-            // eslint-disable-next-line
-            value={{ className: 'absolute mr-2 w-10 h-6' }}
-        >
-          <RiCloseFill
-            onClick={() => {
-              setDisabledSubmit(true);
-              setFile(null);
-            }}
-          />
-        </IconContext.Provider>
       </div>
       {isInvalid && <ValidationError value={format('app.excel_upload.error.label')} />}
     </>
   );
 
   const onFileAccepted = (file: any, setFile: any, setDisabledSubmit: any) => (
-    inputAfterSendingFile(file, setFile, setDisabledSubmit)
+    <>
+      <p className="text-sm text-left text-transit-grey-dark">
+        File added!
+      </p>
+      {inputAfterSendingFile(file, setFile, setDisabledSubmit)}
+    </>
   );
 
   const onFileRejected = (file: any, setFile: any, setDisabledSubmit: any) => (
@@ -90,31 +86,30 @@ function ExcelUploadPage() {
 
   return (
     <PageBody title="">
-      <div className="inline-block pb-4">
-        <p className="text-2xl text-center text-transit-black">
+      <div className="inline-block pb-6">
+        <p className="text-2xl text-center text-transit-black pb-2">
           {format('app.excel_upload.label')}
         </p>
         <p className="text-lg text-center text-transit-black">
           {format('app.excel_upload.about.label')}
         </p>
       </div>
-      <div className={`bg-transit-white mx-auto w-1/2 ${uploaded ? 'p-16' : 'pt-8 px-8 py-8'}`}>
+      <div className={`bg-transit-white mx-auto w-1/2 ${uploaded ? 'p-16' : 'pt-8 px-10 py-8'}`}>
         {uploaded ? (
           <>
-            <p className="text-2xl text-center text-transit-black">
+            <p className="text-2xl text-center text-transit-black pb-2">
               {error
                 ? format('app.excel_upload.error_upload.header')
                 : format('app.excel_upload.success.header')}
             </p>
-            <p className="text-sm text-center text-transit-grey-dark">
+            <p className="text-sm text-center text-transit-black">
               {error
                 ? format('app.excel_upload.error_upload.label')
                 : format('app.excel_upload.success.detail')}
             </p>
-            <div className="flex justify-center text-lg font-medium gap-2 py-4">
+            <div className="flex justify-center text-lg font-medium gap-2 py-8">
               <SubmitButton
                 onClick={() => {
-                  // setIsTryAgain(true);
                   navigate(0);
                 }}
                 className="w-fit"
@@ -124,7 +119,7 @@ function ExcelUploadPage() {
           </>
         ) : (
           <>
-            <div className="w-full py-4">
+            <div className="w-full py-6 pb-6">
               <SimpleSelect
                 options={excelUploadOptions}
                 onChange={(option: any) => setUploadType(option.value)}

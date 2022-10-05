@@ -31,14 +31,20 @@ function ShipmentOrderDetailsForm({
     {
       Header: 'ID',
       accessor: 'id',
+      width: 60,
+      maxWidth: 60,
     },
     {
       Header: format('shipment.order_line_items.product.label'),
       accessor: 'product_name',
+      width: 400,
+      maxWidth: 400,
     },
     {
       Header: format('shipment.order_line_items.quantity.label'),
       accessor: 'quantity',
+      width: 75,
+      maxWidth: 75,
     },
   ], [format]);
 

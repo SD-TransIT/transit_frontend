@@ -58,13 +58,18 @@ export default function Dropzone({
            (!isFileDropped() ? (
              <section className="flex border-2 border-dashed border-transit-green-dark bg-transit-white">
                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-               <div {...getRootProps({ className: isDragActive ? 'dropzone dropzone-active' : 'dropzone' })}>
+               <div {...getRootProps({ className: isDragActive ? 'dropzone dropzone-active w-full' : 'dropzone w-full' })}>
                  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                  <input {...getInputProps()} />
-                 <div className="p-10 top-0 right-0 left-0 m-auto">
-                   <p className="flex text-center text-transit-black">
-                     {format('app.excel_upload.instruction.label')}
-                   </p>
+                 <div className="w-full p-10 top-0 right-0 left-0 m-auto">
+                   <div className="flex flex-row justify-center gap-2">
+                     <p className="text-transit-black">
+                       {`${format('app.excel_upload.instruction.label')}`}
+                     </p>
+                     <p className="text-transit-green-secondary underline">
+                       {format('app.excel_upload.instruction.choice')}
+                     </p>
+                   </div>
                  </div>
                </div>
              </section>
@@ -74,7 +79,7 @@ export default function Dropzone({
               : onFileAccepted(acceptedFile, setAcceptedFile, setSubmitDisabled)
           ))}
       </ReactDropzone>
-      <div className="flex justify-between text-lg font-medium gap-2 py-4">
+      <div className="flex justify-between text-lg font-medium gap-2 py-6">
         <ViewButton onClick={() => {}} className="left-5 h-fit w-fit" />
         <SubmitButton
           disabled={submitDisabled}

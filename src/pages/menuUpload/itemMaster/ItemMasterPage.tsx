@@ -70,6 +70,8 @@ function ItemMasterPage() {
     {
       Header: format('item_master.column.name.label'),
       accessor: 'name',
+      width: 350,
+      maxWidth: 350,
     },
     {
       Header: format('item_master.volume.label'),
