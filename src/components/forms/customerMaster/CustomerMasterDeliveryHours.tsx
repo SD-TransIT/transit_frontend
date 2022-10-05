@@ -209,9 +209,9 @@ function CustomerMasterDeliveryHours(
           <div className="w-full pr-2">
             <input
               type="checkbox"
-              className="w-full"
               checked={deliveryHour.closed}
               onChange={() => handleUpdateOpening(deliveryHour)}
+              className="w-full h-5 border border-transit-green-dark accent-transit-green-dark"
             />
           </div>
           <div className="w-full h-4/5 pr-2">

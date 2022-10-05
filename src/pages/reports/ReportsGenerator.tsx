@@ -54,7 +54,7 @@ function RaportGenerator() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-row justify-between h-9">
           <div className="flex flex-row w-4/5 gap-2">
-            <div className="w-2/4 pb-3">
+            <div className="w-2/4 h-full">
               <Controller
                 rules={{ required: true }}
                 control={control}
