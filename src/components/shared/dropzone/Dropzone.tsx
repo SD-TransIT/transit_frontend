@@ -61,13 +61,13 @@ export default function Dropzone({
                <div {...getRootProps({ className: isDragActive ? 'dropzone dropzone-active w-full' : 'dropzone w-full' })}>
                  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                  <input {...getInputProps()} />
-                 <div className="w-full p-10 top-0 right-0 left-0 m-auto">
+                 <div className="w-full p-10">
                    <div className="flex flex-row justify-center gap-2">
                      <p className="text-transit-black">
-                       {`${format('app.excel_upload.instruction.label')}`}
+                       {`${format('excel_upload.instruction.label')}`}
                      </p>
                      <p className="text-transit-green-secondary underline">
-                       {format('app.excel_upload.instruction.choice')}
+                       {format('excel_upload.instruction.choice')}
                      </p>
                    </div>
                  </div>
@@ -80,7 +80,7 @@ export default function Dropzone({
           ))}
       </ReactDropzone>
       <div className="flex justify-between text-lg font-medium gap-2 py-6">
-        <ViewButton onClick={() => {}} className="left-5 h-fit w-fit" />
+        <ViewButton onClick={() => {}} />
         <SubmitButton
           disabled={submitDisabled}
           onClick={() => {

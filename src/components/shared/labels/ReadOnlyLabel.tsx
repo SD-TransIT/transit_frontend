@@ -8,7 +8,7 @@ import { LabelProps } from './type';
 
 const style = 'flex justify-between text-sm border rounded text-black-light focus:outline-none focus:shadow-outline h-10 px-2';
 
-function Label({
+function ReadOnlyLabel({
   textToDisplay, isInvalid = false, onClick,
 }: LabelProps) {
   return (
@@ -30,4 +30,4 @@ function Label({
   );
 }
 
-export default Label;
+export default ReadOnlyLabel;

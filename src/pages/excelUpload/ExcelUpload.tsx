@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Dropzone from 'components/shared/dropzone/Dropzone';
+import ReadOnlyLabel from 'components/shared/labels/ReadOnlyLabel';
 import PageBody from 'components/shared/PageBody';
 import SimpleSelect from 'components/shared/SimpleSelect';
 import ValidationError from 'components/shared/ValidationError';
 import SubmitButton from 'shared/buttons/SubmitButton';
-import Label from 'shared/labels/Label';
 import { postExcelUploadRequest } from 'stores/actions/excelUpload/excelUploadActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { PostExcelUploadRequestPayload } from 'stores/types/excelUploadType';
@@ -32,7 +32,7 @@ function ExcelUploadPage() {
   );
 
   const excelUploadOptions = [
-    { value: null, label: format('app.excel_upload.selection.label') },
+    { value: null, label: format('excel_upload.selection.label') },
     { value: 'customer_detail', label: format('customer') },
     { value: 'item_detail', label: format('item_details') },
     { value: 'item_master', label: format('item') },
@@ -53,7 +53,7 @@ function ExcelUploadPage() {
     <>
       <div className="w-full py-2">
         {/* eslint-disable-next-line */}
-        <Label
+        <ReadOnlyLabel
           onClick={() => {
             setDisabledSubmit(true);
             setFile(null);
@@ -62,14 +62,14 @@ function ExcelUploadPage() {
           isInvalid={isInvalid}
         />
       </div>
-      {isInvalid && <ValidationError value={format('app.excel_upload.error.label')} />}
+      {isInvalid && <ValidationError value={format('excel_upload.error.label')} />}
     </>
   );
 
   const onFileAccepted = (file: any, setFile: any, setDisabledSubmit: any) => (
     <>
       <p className="text-sm text-left text-transit-grey-dark">
-        File added!
+        {format('excel_upload.added_file.label')}
       </p>
       {inputAfterSendingFile(file, setFile, setDisabledSubmit)}
     </>
@@ -78,7 +78,7 @@ function ExcelUploadPage() {
   const onFileRejected = (file: any, setFile: any, setDisabledSubmit: any) => (
     <>
       <p className="text-sm text-left text-transit-red">
-        {format('app.excel_upload.error.header')}
+        {format('excel_upload.error.header')}
       </p>
       {inputAfterSendingFile(file, setFile, setDisabledSubmit, true)}
     </>
@@ -91,7 +91,7 @@ function ExcelUploadPage() {
           {format('app.excel_upload.label')}
         </p>
         <p className="text-lg text-center text-transit-black">
-          {format('app.excel_upload.about.label')}
+          {format('excel_upload.about.label')}
         </p>
       </div>
       <div className={`bg-transit-white mx-auto w-1/2 ${uploaded ? 'p-16' : 'pt-8 px-10 py-8'}`}>
@@ -99,13 +99,13 @@ function ExcelUploadPage() {
           <>
             <p className="text-2xl text-center text-transit-black pb-2">
               {error
-                ? format('app.excel_upload.error_upload.header')
-                : format('app.excel_upload.success.header')}
+                ? format('excel_upload.error_upload.header')
+                : format('excel_upload.success.header')}
             </p>
             <p className="text-sm text-center text-transit-black">
               {error
-                ? format('app.excel_upload.error_upload.label')
-                : format('app.excel_upload.success.detail')}
+                ? format('excel_upload.error_upload.label')
+                : format('excel_upload.success.detail')}
             </p>
             <div className="flex justify-center text-lg font-medium gap-2 py-8">
               <SubmitButton
@@ -113,7 +113,7 @@ function ExcelUploadPage() {
                   navigate(0);
                 }}
                 className="w-fit"
-                title={error ? format('app.excel_upload.upload_try_again.label') : format('app.excel_upload.upload_new_file.label')}
+                title={error ? format('excel_upload.upload_try_again.label') : format('excel_upload.upload_new_file.label')}
               />
             </div>
           </>
@@ -123,7 +123,7 @@ function ExcelUploadPage() {
               <SimpleSelect
                 options={excelUploadOptions}
                 onChange={(option: any) => setUploadType(option.value)}
-                placeholder={format('app.excel_upload.selection.label')}
+                placeholder={format('excel_upload.selection.label')}
               />
             </div>
             <Dropzone

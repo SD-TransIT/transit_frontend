@@ -17,7 +17,7 @@ function ViewButton({ onClick, className }: ViewButtonType) {
       onClick={onClick}
       className={classNames(style, className)}
     >
-      <p>{format('app.excel_upload.view_template')}</p>
+      <p>{format('excel_upload.view_template')}</p>
     </button>
   );
 }
