@@ -128,7 +128,7 @@
     "pod_variance.variance_details.label": "Détails de la variance",
 
     "report.average_product_cost_per_shipment.label": "Coût moyen du produit par expédition par transporteur",
-    "report.avg_km_per_shipmen.label": "Pourcentage d'utilisation de la capacité (utilisation cubique) par transporteur",
+    "report.avg_km_per_shipment.label": "Kilométrage moyen par envoi par transporteur",
     "report.avg_transporter_cost_per_cubic_meter.label": "Coût moyen du transporteur par mètre cube par transporteur",
     "report.avg_transporter_cost_per_each.label": "Coût moyen du transporteur par transporteur et par transporteur",
     "report.avg_transporter_cost_per_route.label": "Coût moyen du transporteur par itinéraire par transporteur",
