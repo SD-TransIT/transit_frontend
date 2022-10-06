@@ -135,4 +135,19 @@ body {
     @apply active:border;
     @apply active:border-transit-green-secondary;
   }
+
+  .submit-disabled-button {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply bg-transit-green-disabled;
+    @apply rounded;
+    @apply text-transit-white;
+    @apply w-full;
+    @apply h-full;
+    @apply px-4;
+    @apply py-2;
+    @apply border;
+    @apply border-transparent;
+  }
 }

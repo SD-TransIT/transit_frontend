@@ -10,11 +10,11 @@ module.exports = {
         DEFAULT: "#E0EEEF",
         dark: "#017E84",
         light: "#E0EEEF",
-        secondary: '#06686C'
+        secondary: '#06686C',
+        disabled: '#80BCBF'
       },
       "transit-black": {
         DEFAULT: "#333232",
-
       },
       "transit-white": {
         DEFAULT: "#FFFFFF",

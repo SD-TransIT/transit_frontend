@@ -12,6 +12,7 @@ import transporterReducer from 'stores/reducers/transporterReducer';
 import costReducer from './costReducer';
 import customerMasterReducer from './customerMasterReducer';
 import customerWeekDaysReducer from './customerWeekDaysReducer';
+import excelUploadReducer from './excelUploadReducer';
 import itemDetailReducer from './itemDetailReducer';
 import orderDetailsReducer from './orderDetailsReducer';
 import orderLineDetailsReducer from './orderLineDetails';
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   orderDetails: orderDetailsReducer,
   podVariance: podVarianceReducer,
   orderLineDetails: orderLineDetailsReducer,
+  excelUpload: excelUploadReducer,
   reports: reportsReducer,
 });
 

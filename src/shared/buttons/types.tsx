@@ -2,9 +2,15 @@ export type SubmitButtonType = {
   onClick: () => void,
   title?: string,
   className?: string
+  disabled?: boolean,
 };
 
 export type CancelButtonType = {
+  onClick: () => void,
+  className?: string
+};
+
+export type ViewButtonType = {
   onClick: () => void,
   className?: string
 };

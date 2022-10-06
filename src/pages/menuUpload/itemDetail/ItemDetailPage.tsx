@@ -58,8 +58,8 @@ function ItemDetailPage() {
     {
       Header: format('item_details.name.label'),
       accessor: 'item_name',
-      width: 250,
-      maxWidth: 250,
+      width: 350,
+      maxWidth: 350,
     },
     {
       Header: format('item_details.manufacturing_date.label'),

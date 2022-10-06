@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Forbidden from 'components/shared/Forbidden';
 import Unauthorized from 'components/shared/Unauthorized';
 import DashboardPage from 'pages/dashboard/dashboard';
-import ExcelUploadPage from 'pages/excelUpload/excelUpload';
+import ExcelUploadPage from 'pages/excelUpload/ExcelUpload';
 import LandingPage from 'pages/landing/LandingPage';
 import CostFormPage from 'pages/menuUpload/cost/CostFormPage';
 import CustomerMasterPage from 'pages/menuUpload/customerMaster/CustomerMasterPage';
