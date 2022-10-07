@@ -10,11 +10,11 @@ export interface ReportsState {
 export interface GetReportsRequestPayload {
   reportName: string,
   startDate: string,
-  endDate: string ;
+  endDate: string;
 }
 
 export interface GetReportsSuccessPayload {
-  reports: any
+  reports: []
 }
 
 export interface GetReportsErrorPayload {

@@ -25,7 +25,7 @@ function RaportGenerator() {
 
   const options = [
     { value: 'percent_capacity_utilization', label: format('report.percent_capacity_utilization.label') },
-    { value: 'average_kilometers_per_shipment', label: format('report.avg_km_per_shipment.label') },
+    { value: 'average_kilometers_per_shipment', label: format('report.avg_km_per_shipmen.label') },
     { value: 'average_product_cost_per_hipment', label: format('report.average_product_cost_per_shipment.label') },
     { value: 'average_transporter_cost_per_shipment', label: format('report.transporter_cost_per_shipment.label') },
     { value: 'average_transporter_cost_per_kilometer', label: format('report.transporter_cost_per_km.label') },

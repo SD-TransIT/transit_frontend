@@ -52,3 +52,131 @@ export const timeOptionsForSelect = [
   { value: '11:00PM', label: '11:00PM' },
   { value: '11:30PM', label: '11:30PM' },
 ];
+
+export const percentCapacityUtilizationColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_vehicle_volume.label', accessor: 'VehicleCapacityVolume' },
+  { label: 'report.total_vehicle_volume_used.label', accessor: 'volume' },
+  { label: 'report.percent_utilization.label', accessor: 'PercentUtilization' },
+];
+
+export const averageKilometersPerShipmentColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_km.label', accessor: '' },
+  { label: 'report.total_number_of_shipment.label', accessor: '' },
+  { label: 'report.avg_km_per_shipment.label', accessor: '' },
+];
+
+export const averageProductCostPerShipmentColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_product_cost.label', accessor: '' },
+  { label: 'report.total_number_of_shipment.label', accessor: '' },
+  { label: 'report.avg_product_cost_per_shipment.label', accessor: '' },
+];
+
+export const averageTransporterCostPerShipmentColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_transporter_cost.label', accessor: '' },
+  { label: 'report.total_number_of_shipment.label', accessor: '' },
+  { label: 'report.avg_transporter_cost_per_shipment.label', accessor: '' },
+];
+
+export const averageTransporterCostPerKilometerColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.custom_route_id.label', accessor: '' },
+  { label: 'report.total_transporter_cost.label', accessor: '' },
+  { label: 'report.total_number_of_km.label', accessor: '' },
+  { label: 'report.avg_transporter_cost_per_km.label', accessor: '' },
+];
+
+export const percentageOutstandingPodsColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_number_of_outstanding_pods.label', accessor: '' },
+  { label: 'report.total_pods.label', accessor: '' },
+  { label: 'report.percentage_of_outstanding_pods.label', accessor: '' },
+];
+
+export const percentageOnTimeDeliveriesColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_number_of_shipment.label', accessor: '' },
+  { label: 'report.total_number_of_ontime_deliveries.label', accessor: '' },
+  { label: 'report.percentage_ontime_deliveries.label', accessor: '' },
+  { label: 'report.total_number_of_delayed_deliveries.label', accessor: '' },
+  { label: 'report.percentage_delay_deliveries.label', accessor: '' },
+];
+
+export const numberOfDamagedShortOverShipmentsColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.custom_route_number.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.dso_type.label', accessor: '' },
+  { label: 'report.old_quantity.label', accessor: '' },
+  { label: 'pod_variance.order.quantity.new.label', accessor: '' },
+];
+
+export const averageTransporterCostPerCubicMeterColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_shipment_value.label', accessor: '' },
+  { label: 'report.total_transporter_cost.label', accessor: '' },
+  { label: 'report.avg_transporter_cost_per_cubic_meter.label', accessor: '' },
+];
+
+export const averageTransporterCostPerEachColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
+  { label: 'report.total_number_of_eaches.label', accessor: '' },
+  { label: 'report.total_transporter_cost.label', accessor: '' },
+  { label: 'report.avg_transporter_cost_per_each.label', accessor: '' },
+];
+
+export const averageTransporterCostPerRouteColumns = [
+  { label: 'app.date.label', accessor: 'ShipDate' },
+  { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+  { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+  { label: 'report.total_number_of_custom_routes.label', accessor: '' },
+  { label: 'report.total_transporter_cost.label', accessor: '' },
+  { label: 'report.avg_transporter_cost_per_route.label', accessor: '' },
+];
+
+export const ordersReadyToBeShippedColumns = [
+  { label: 'cost.shipment_number.label', accessor: '' },
+  { label: 'pod_variance.order.order_number.label', accessor: '' },
+  { label: 'customer_type.column.name', accessor: '' },
+  { label: 'customer_master.address_1.label', accessor: 'CustomRouteNumber' },
+  { label: 'customer_master.address_2.label', accessor: '' },
+  { label: 'customer_master.address_3.label', accessor: '' },
+  { label: 'customer_master.city.label', accessor: '' },
+  { label: 'customer_master.state.label', accessor: '' },
+  { label: 'customer_master.country.label', accessor: '' },
+];
+
+export const discrepancyBetweenInvoiceAndPodColumns = [
+  { label: 'cost.shipment_number.label', accessor: '' },
+  { label: 'report.shipment_volume.label', accessor: '' },
+];
