@@ -79,7 +79,7 @@
     "excel_upload": "Excel Upload",
     "excel_upload.about.label": "This Form helps to upload data in the tool using excel.",
     "excel_upload.added_file.label": "File Added!",
-    "excel_upload.download.label": "Download .xslx templates",
+    "excel_upload.download.label": "Download .xlsx templates",
     "excel_upload.label": "Excel Upload",
     "excel_upload.error_upload.header": "Error!",
     "excel_upload.error_upload.label": "Could not apply changes",
