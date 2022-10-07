@@ -12,6 +12,7 @@ export default function Dropzone({
   onFileRejected,
   onSubmitUpload,
   uploadSelection,
+  onClickViewButton,
 }: any) {
   const [isDragActive, setIsDragActive] = React.useState(false);
   const [acceptedFile, setAcceptedFile] = React.useState<any>(null);
@@ -80,7 +81,7 @@ export default function Dropzone({
           ))}
       </ReactDropzone>
       <div className="flex justify-between text-lg font-medium gap-2 py-6">
-        <ViewButton onClick={() => {}} />
+        <ViewButton onClick={onClickViewButton} />
         <SubmitButton
           disabled={submitDisabled}
           onClick={() => {

@@ -1,21 +1,24 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import ExcelDownloadFormModal from 'components/forms/excelDownload/ExcelDownloadFormModal';
 import Dropzone from 'components/shared/dropzone/Dropzone';
 import ReadOnlyLabel from 'components/shared/labels/ReadOnlyLabel';
 import PageBody from 'components/shared/PageBody';
 import SimpleSelect from 'components/shared/SimpleSelect';
 import ValidationError from 'components/shared/ValidationError';
 import SubmitButton from 'shared/buttons/SubmitButton';
-import { postExcelUploadRequest } from 'stores/actions/excelUpload/excelUploadActions';
+import Dialog from 'shared/dialog/Dialog';
+import { getExcelDownloadRequest, postExcelUploadRequest } from 'stores/actions/excelUpload/excelUploadActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { PostExcelUploadRequestPayload } from 'stores/types/excelUploadType';
 
 function ExcelUploadPage() {
-  const [uploadType, setUploadType] = React.useState(null);
+  const [uploadType, setUploadType] = useState(null);
+  const [displayDownloadModal, setDisplayDownloadModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,6 +45,15 @@ function ExcelUploadPage() {
 
   const onSubmitUpload = (uploadedFile: any) => {
     dispatch(postExcelUploadRequest(uploadedFile as PostExcelUploadRequestPayload, uploadType));
+  };
+
+  const toggleDownloadModal = () => {
+    setDisplayDownloadModal(!displayDownloadModal);
+  };
+
+  const onOptionTemplateClick = (formType: string) => {
+    dispatch(getExcelDownloadRequest(formType));
+    toggleDownloadModal();
   };
 
   const inputAfterSendingFile = (
@@ -135,10 +147,24 @@ function ExcelUploadPage() {
                 'application/vnd.ms-excel': ['.xls'],
               }}
               uploadSelection={uploadType}
+              onClickViewButton={toggleDownloadModal}
             />
           </>
         )}
       </div>
+      <Dialog
+        isOpen={displayDownloadModal}
+        onClose={toggleDownloadModal}
+        setCustomDialogContent
+        // eslint-disable-next-line
+        children={[
+          <ExcelDownloadFormModal
+            onClickOption={onOptionTemplateClick}
+            onCancel={toggleDownloadModal}
+            title={format('excel_upload.download.label')}
+          />,
+        ]}
+      />
     </PageBody>
   );
 }
