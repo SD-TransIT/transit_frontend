@@ -64,12 +64,12 @@ export default function Dropzone({
                  <input {...getInputProps()} />
                  <div className="w-full p-10">
                    <div className="flex flex-row justify-center gap-2">
-                     <p className="text-transit-black">
+                     <a href="#" className="text-transit-black">
                        {`${format('excel_upload.instruction.label')}`}
-                     </p>
-                     <p className="text-transit-green-secondary underline">
+                     </a>
+                     <a href="#" className="text-transit-green-secondary underline">
                        {format('excel_upload.instruction.choice')}
-                     </p>
+                     </a>
                    </div>
                  </div>
                </div>
