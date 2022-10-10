@@ -15,6 +15,21 @@ const excelUploadReducer = (
     return initialState;
   }
   switch (action.type) {
+    case ExcelUploadActionTypes.GET_EXCEL_DOWNLOAD_REQUEST:
+      return {
+        ...state,
+        error: null,
+      };
+    case ExcelUploadActionTypes.GET_EXCEL_DOWNLOAD_SUCCESS:
+      return {
+        ...state,
+        error: null,
+      };
+    case ExcelUploadActionTypes.GET_EXCEL_DOWNLOAD_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     case ExcelUploadActionTypes.POST_EXCEL_UPLOAD_REQUEST:
       return {
         ...state,

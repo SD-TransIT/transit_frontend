@@ -79,6 +79,7 @@
     "excel_upload": "Upload do Excel",
     "excel_upload.about.label": "Este formulário ajuda a carregar dados na ferramenta usando o excel",
     "excel_upload.added_file.label": "Arquivo adicionado!",
+    "excel_upload.download.label": "Baixe modelos .xlsx",
     "excel_upload.error_upload.header": "Erro!",
     "excel_upload.error_upload.label": "Não foi possível aplicar as alterações",
     "excel_upload.error.header": "Erro ao adicionar",
