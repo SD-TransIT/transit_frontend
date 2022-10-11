@@ -49,6 +49,7 @@ module.exports = {
           "0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(70, 79, 96, 0.16), 0px 2px 5px rgba(89, 96, 120, 0.1);",
         dateInput: "0px 1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px rgba(104, 113, 130, 0.16)",
         dateInputFocus: "0px 1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px rgba(104, 113, 130, 0.16), 0px 0px 0px 4px rgba(1, 126, 132, 0.45)",
+        dateInputError: '0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 0px 4px rgba(228, 29, 29, 0.25)',
         deleteButtonFocus: "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 0px 4px rgba(228, 29, 29, 0.25)",
         cancelButtonFocus: "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 0px 4px rgba(1, 126, 132, 0.45);",
         submitButton: "0px 2px 5px rgba(34, 100, 230, 0.12);"

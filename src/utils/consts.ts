@@ -52,3 +52,154 @@ export const timeOptionsForSelect = [
   { value: '11:00PM', label: '11:00PM' },
   { value: '11:30PM', label: '11:30PM' },
 ];
+
+export const reportsColumns = [
+  {
+    name: 'percent_capacity_utilization',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_vehicle_volume.label', accessor: 'VehicleCapacityVolume' },
+      { label: 'report.total_vehicle_volume_used.label', accessor: 'volume' },
+      { label: 'report.percent_utilization.label', accessor: 'PercentUtilization' },
+    ],
+  },
+  {
+    name: 'average_kilometers_per_shipment',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_km.label', accessor: 'TotalKilometers' },
+      { label: 'report.total_number_of_shipment.label', accessor: 'TotalNumberOfShipments' },
+      { label: 'report.avg_km_per_shipment.label', accessor: 'AverageKilometersPerShipment' },
+    ],
+
+  },
+  {
+    name: 'average_product_cost_per_shipment',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_product_cost.label', accessor: 'Cost' },
+      { label: 'report.total_number_of_shipment.label', accessor: 'Shipments' },
+      { label: 'report.avg_product_cost_per_shipment.label', accessor: 'AverageCost' }],
+
+  },
+  {
+    name: 'average_transporter_cost_per_shipment',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_transporter_cost.label', accessor: 'Cost' },
+      { label: 'report.total_number_of_shipment.label', accessor: 'Shipments' },
+      { label: 'report.avg_transporter_cost_per_shipment.label', accessor: 'AverageCost' },
+    ],
+  },
+  {
+    name: 'average_transporter_cost_per_kilometer',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
+      { label: 'report.total_number_of_km.label', accessor: 'TotalNumberOfKilometers' },
+      { label: 'report.avg_transporter_cost_per_km.label', accessor: 'AverageCostPerKilometer' }],
+  },
+  {
+    name: 'percentage_outstanding_pods',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_number_of_outstanding_pods.label', accessor: 'TotalPODs' },
+      { label: 'report.total_pods.label', accessor: 'OutstandingPODs' },
+      { label: 'report.percentage_of_outstanding_pods.label', accessor: 'PercentageOfOutstandingPODs' }],
+  },
+  {
+    name: 'percentage_on_time_deliveries',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_number_of_shipment.label', accessor: 'Shipments' },
+      { label: 'report.total_number_of_ontime_deliveries.label', accessor: 'TotalOnTimeDeliveries' },
+      { label: 'report.percentage_ontime_deliveries.label', accessor: 'TotalJustifiedDelayedDeliveries' },
+      { label: 'report.total_number_of_delayed_deliveries.label', accessor: 'PercentageOfOnTimeDeliveries' },
+      { label: 'report.percentage_delay_deliveries.label', accessor: 'PercentageOfJustifiedDelayedDeliveries' }],
+  },
+  {
+    name: 'number_of_damaged_short_over_shipments',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.dso_type.label', accessor: 'DSOType' },
+      { label: 'report.old_quantity.label', accessor: 'OldQuantity' },
+      { label: 'pod_variance.order.quantity.new.label', accessor: 'NewQuantity' },
+    ],
+  },
+  {
+    name: 'average_transporter_cost_per_cubic_meter',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_shipment_value.label', accessor: 'TotalVolume' },
+      { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
+      { label: 'report.avg_transporter_cost_per_cubic_meter.label', accessor: 'AverageTransporterCostPerCubicMeter' },
+    ],
+  },
+  {
+    name: 'average_transporter_cost_per_each',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
+      { label: 'report.total_number_of_eaches.label', accessor: 'TotalEaches' },
+      { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
+      { label: 'report.avg_transporter_cost_per_each.label', accessor: 'AverageTransporterCostPerEach' }],
+  },
+  {
+    name: 'average_transporter_cost_per_route',
+    columns: [
+      { label: 'app.date.label', accessor: 'ShipDate' },
+      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'report.total_number_of_custom_routes.label', accessor: 'CustomRoutes' },
+      { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
+      { label: 'report.avg_transporter_cost_per_route.label', accessor: 'AverageTransporterCostPerRoute' }],
+  },
+  {
+    name: 'orders_ready_to_be_shipped',
+    columns: [
+      { label: 'cost.shipment_number.label', accessor: 'ShipmentNumber' },
+      { label: 'pod_variance.order.order_number.label', accessor: 'OrderNumber' },
+      { label: 'customer_type.column.name', accessor: 'CustomerName' },
+      { label: 'customer_master.address_1.label', accessor: 'Address' },
+      { label: 'customer_master.address_2.label', accessor: 'Address2' },
+      { label: 'customer_master.address_3.label', accessor: 'Address3' },
+      { label: 'customer_master.city.label', accessor: 'City' },
+      { label: 'customer_master.state.label', accessor: 'Country' },
+      { label: 'customer_master.country.label', accessor: 'State' }],
+  },
+  {
+    name: 'orders_with_no_shipping_details',
+    columns: [
+      { label: 'cost.shipment_number.label', accessor: 'ShipmentNumber' },
+      { label: 'report.shipment_volume.label', accessor: 'ShipmentVolume' }],
+  },
+];

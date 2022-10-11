@@ -5,43 +5,44 @@ import Select from 'react-select';
 
 import { SimpleSelectType } from './types';
 
-const customStyles = {
-  control: (provided: any) => ({
-    ...provided,
-    borderColor: '#B8BBBF',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#B8BBBF',
-    },
-    minHeight: '100%',
-    fontSize: '14px',
-    overflow: 'hidden',
-    outline: 'none',
-    padding: '0px',
-  }),
-  menuList: (base: any) => ({
-    ...base,
-    padding: 0,
-  }),
-  option: (base: any, state: any) => ({
-    ...base,
-    backgroundColor: state.isSelected ? '#E0EEEF' : null,
-    fontSize: '14px',
-    color: '#333232',
-    '&:hover': {
-      backgroundColor: '#E0EEEF',
-    },
-  }),
-  dropdownIndicator: (base: any) => ({
-    ...base,
-    display: 'flex',
-    alignContent: 'center',
-  }),
-};
-
 function SimpleSelect({
-  options, placeholder, onChange, isDisabled, ref, value, className,
+  options, placeholder, onChange, isDisabled, ref, value, className, isInvalid,
 }: SimpleSelectType) {
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      borderColor: isInvalid ? '#E41D1D' : '#B8BBBF',
+      boxShadow: 'none',
+      '&:hover': {
+        borderColor: '#B8BBBF',
+      },
+      minHeight: '100%',
+      fontSize: '14px',
+      overflow: 'hidden',
+      outline: 'none',
+      padding: '0px',
+    }),
+    menuList: (base: any) => ({
+      ...base,
+      padding: 0,
+    }),
+    option: (base: any, state: any) => ({
+      ...base,
+      backgroundColor: state.isSelected ? '#E0EEEF' : null,
+      fontSize: '14px',
+      color: '#333232',
+      '&:hover': {
+        backgroundColor: '#E0EEEF',
+      },
+    }),
+    dropdownIndicator: (base: any) => ({
+      ...base,
+      display: 'flex',
+      alignContent: 'center',
+      height: '35px',
+    }),
+  };
+
   return (
     <Select<any>
       options={options}

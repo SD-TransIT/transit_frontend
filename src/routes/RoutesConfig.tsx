@@ -22,7 +22,7 @@ import EditShipmentPage from 'pages/menuUpload/shipment/addEditShipmentPages/Edi
 import ShipmentPage from 'pages/menuUpload/shipment/ShipmentPage';
 import SupplierMasterPage from 'pages/menuUpload/supplierMaster/SupplierMasterPage';
 import TransportDetailsPage from 'pages/menuUpload/transporterDetails/TransportDetailsPage';
-import ReportsPage from 'pages/reports/Reports';
+import ReportsPage from 'pages/reports/ReportsPage';
 import SignInPage from 'pages/signIn/SignInPage';
 import { Paths } from 'routes/paths';
 import ProtectedRoute from 'routes/ProtectedRoute';

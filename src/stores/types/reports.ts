@@ -3,18 +3,18 @@ import ReportsActionTypes from 'stores/actions/reports/reportsTypes';
 export interface ReportsState {
   fetchingReport: boolean;
   fetchedReport: boolean;
-  reports: [];
+  reports: [] | null;
   error: string | null;
 }
 
 export interface GetReportsRequestPayload {
   reportName: string,
   startDate: string,
-  endDate: string ;
+  endDate: string;
 }
 
 export interface GetReportsSuccessPayload {
-  reports: any
+  reports: []
 }
 
 export interface GetReportsErrorPayload {

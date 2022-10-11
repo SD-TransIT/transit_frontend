@@ -2,7 +2,9 @@ import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
 
-import { getReportsFailure, getReportsSuccess } from 'stores/actions/reports/reportsActions';
+import {
+  getReportsFailure, getReportsSuccess,
+} from 'stores/actions/reports/reportsActions';
 import ReportsActionTypes from 'stores/actions/reports/reportsTypes';
 import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
@@ -10,14 +12,15 @@ import apiClient from 'utils/apiClient';
 
 export const reportsUrl = 'reports';
 
-export const getRequest = async (url: string, parameters: any) => {
+export const getReportsRequest = async (url: string, parameters: any, format: string) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
   const additionalParamString = parameters.reportName !== null ? `${parameters.reportName}` : '';
   const { startDate } = parameters;
   const { endDate } = parameters;
   const { data } = await apiClient.get(
-    `${url}/${additionalParamString}/?format=json&date_from=${startDate}&date_to=${endDate}`,
+    `${url}/${additionalParamString}/?format=${format}&date_from=${startDate}&date_to=${endDate}`,
     {
+      responseType: format === 'xlsx' ? 'blob' : undefined,
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
@@ -32,11 +35,11 @@ function* getReportsSaga(action: any) {
     yield call(refreshAccessToken);
     const response: {
       reports: []
-    } = yield call(getRequest, reportsUrl, {
+    } = yield call(getReportsRequest, reportsUrl, {
       reportName: action.payload?.reportName ?? null,
       startDate: action.payload?.startDate ?? null,
       endDate: action.payload?.endDate ?? null,
-    });
+    }, 'json');
     yield put(getReportsSuccess(response));
     yield put({
       type: ReportsActionTypes.GET_REPORTS_SUCCESS,
