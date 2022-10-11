@@ -1,5 +1,6 @@
 import React from 'react';
 
+import classNames from 'classnames';
 import DatePicker from 'react-datepicker';
 import { RiCalendarLine } from 'react-icons/ri';
 
@@ -9,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'styles/datePicker.css';
 
 function DatePickerCustomInput({
-  onClick, onChange, value,
+  onClick, onChange, value, isInvalid,
 }: DatePickerCustomInputType) {
   return (
     <button
@@ -18,7 +19,7 @@ function DatePickerCustomInput({
       onClick={onClick}
     >
       <input
-        className="date-input"
+        className={classNames('date-input', { 'shadow-dateInputError': isInvalid })}
         type="text"
         onChange={onChange}
         value={value}
@@ -29,13 +30,13 @@ function DatePickerCustomInput({
   );
 }
 
-function DatePick({ currentDate, onChange }: DatePickType) {
+function DatePick({ currentDate, onChange, isInvalid }: DatePickType) {
   return (
     <DatePicker
       selected={currentDate}
       onChange={onChange}
       className="date-picker"
-      customInput={<DatePickerCustomInput />}
+      customInput={<DatePickerCustomInput isInvalid={isInvalid} />}
     />
   );
 }

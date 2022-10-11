@@ -13,6 +13,7 @@ export type PageBodyType = {
 export type DatePickType = {
   currentDate: Date | undefined,
   onChange: (value: Date) => void
+  isInvalid?: boolean
 };
 
 export type DatePickerCustomInputType = {
@@ -20,6 +21,7 @@ export type DatePickerCustomInputType = {
   onChange?: () => void,
   value?: string
   name?: string
+  isInvalid?: boolean
 };
 
 export type FormHeaderType = {
@@ -48,4 +50,5 @@ export type SimpleSelectType = {
   name?: string
   value?: any
   className?: string
+  isInvalid?: boolean
 };
