@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import FormHeader from 'components/shared/FormHeader';
 import { Paths } from 'routes/paths';
 import { postShipmentRequest } from 'stores/actions/shipment/shipmentActions';
-import { shipmentUrl, updateShipment, updateShipmentOrders } from 'stores/sagas/shipmentSaga';
+import {
+  addShipmentPhoto, shipmentUrl, updateShipment, updateShipmentOrders,
+} from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { PostShipmentRequestPayload } from 'stores/types/shipmentType';
 import { postRequest } from 'utils/apiClient';
@@ -60,7 +62,8 @@ function ShipmentForm({
     payload: FieldValues,
   ) => {
     await refreshAccessToken();
-    await postRequest(shipmentUrl, payload);
+    const responsePost = await postRequest(shipmentUrl, payload);
+    await addShipmentPhoto(responsePost.id, payload.shipment_image);
   };
 
   const formatShipmentPayload = (formValues: FieldValues, orders: string []) => {
@@ -107,6 +110,7 @@ function ShipmentForm({
     const payload = formatShipmentPayload(formValues, orders);
     await updateShipment(payload);
     await updateShipmentOrders(payload.id, orders);
+    await addShipmentPhoto(payload.id, payload.shipment_image);
     navigate(`${Paths.shipment_details}`);
   };
 
@@ -149,7 +153,9 @@ function ShipmentForm({
             initialFormValue={initialFormValue}
           />
           <p className="text-left text-lg text-transit-black font-semibold" />
-          <ShipmentImagesData />
+          <ShipmentImagesData
+            register={register}
+          />
         </div>
       </form>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">
