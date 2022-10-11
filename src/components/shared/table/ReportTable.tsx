@@ -53,15 +53,15 @@ function ReportTable({ columns, data, children }: TableProps) {
         <div className="flex flex-row justify-between items-center w-content px-4 py-2">
           {children}
         </div>
-        <div className="overflow-scroll">
+        <div className="overflow-scroll w-full">
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <table {...getTableProps()}>
+          <table {...getTableProps()} className="w-full">
             <thead className="bg-transit-grey">
               {headerGroups.map((headerGroup) => {
                 const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
                 return (
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                  <tr {...restHeaderGroupProps} key={key} className="">
+                  <tr {...restHeaderGroupProps} key={key}>
                     {headerGroup.headers.map((column) => (
                       // eslint-disable-next-line react/jsx-props-no-spreading
                       <th {...column.getHeaderProps()} key={column.id} className="flex text-left items-center h-10 pl-4">
@@ -85,45 +85,45 @@ function ReportTable({ columns, data, children }: TableProps) {
                 );
               })}
             </tbody>
-            <div className="flex flex-row justify-between items-center h-10 text-transit-grey-dark p-2 text-xs">
-              <div>
-                <p>{`${firstRowNumberOnPage}-${lastRowNumberOnPage} of ${rows.length}`}</p>
-              </div>
-              <div className="flex flex-row gap-2">
-                <div className="flex flex-row">
-                  <p>Rows per page</p>
-                  <select
-                    className="bg-transit-white"
-                    value={pageSize}
-                    onChange={(e) => {
-                      setPageSize(Number(e.target.value));
-                    }}
-                  >
-                    {[10, 20, 30, 40, 50].map((pageSizeValue) => (
-                      <option key={pageSizeValue} value={pageSizeValue}>
-                        {pageSizeValue}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="flex gap-2">
-                  <PaginationButton onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    <RiArrowLeftSLine className="text-xs" />
-                  </PaginationButton>
-                  <span>
-                    <strong>
-                      {pageIndex + 1}
-                      /
-                      {pageOptions.length}
-                    </strong>
-                  </span>
-                  <PaginationButton onClick={() => nextPage()} disabled={!canNextPage}>
-                    <RiArrowRightSLine className="text-xs" />
-                  </PaginationButton>
-                </div>
-              </div>
-            </div>
           </table>
+        </div>
+        <div className="flex flex-row justify-between items-center h-10 text-transit-grey-dark p-2 text-xs">
+          <div>
+            <p>{`${firstRowNumberOnPage}-${lastRowNumberOnPage} of ${rows.length}`}</p>
+          </div>
+          <div className="flex flex-row gap-2">
+            <div className="flex flex-row">
+              <p>Rows per page</p>
+              <select
+                className="bg-transit-white"
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(Number(e.target.value));
+                }}
+              >
+                {[10, 20, 30, 40, 50].map((pageSizeValue) => (
+                  <option key={pageSizeValue} value={pageSizeValue}>
+                    {pageSizeValue}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex gap-2">
+              <PaginationButton onClick={() => previousPage()} disabled={!canPreviousPage}>
+                <RiArrowLeftSLine className="text-xs" />
+              </PaginationButton>
+              <span>
+                <strong>
+                  {pageIndex + 1}
+                  /
+                  {pageOptions.length}
+                </strong>
+              </span>
+              <PaginationButton onClick={() => nextPage()} disabled={!canNextPage}>
+                <RiArrowRightSLine className="text-xs" />
+              </PaginationButton>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { ReportsActions, ReportsState } from 'stores/types/reports';
 const initialState: ReportsState = {
   fetchingReport: false,
   fetchedReport: false,
-  reports: [],
+  reports: null,
   error: null,
 };
 
@@ -21,7 +21,7 @@ const reportsReducer = (
         ...state,
         fetchingReports: true,
         fetchedReport: false,
-        reports: [],
+        reports: null,
         error: null,
       };
     case ReportsActionTypes.GET_REPORTS_SUCCESS:
@@ -36,7 +36,7 @@ const reportsReducer = (
       return {
         ...state,
         fetchingReports: false,
-        reports: [],
+        reports: null,
         error: action.payload,
       };
     default:

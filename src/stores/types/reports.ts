@@ -3,7 +3,7 @@ import ReportsActionTypes from 'stores/actions/reports/reportsTypes';
 export interface ReportsState {
   fetchingReport: boolean;
   fetchedReport: boolean;
-  reports: [];
+  reports: [] | null;
   error: string | null;
 }
 

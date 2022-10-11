@@ -38,3 +38,8 @@ export type DeleteButtonType = {
   onClick: () => void,
   className?: string
 };
+
+export type DownloadButtonType = {
+  onClick: () => void,
+  className?: string
+};
