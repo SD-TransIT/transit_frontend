@@ -98,9 +98,9 @@ export const reportsColumns = [
       { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
       { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
-      { label: 'report.total_transporter_cost.label', accessor: 'Cost' },
-      { label: 'report.total_number_of_shipment.label', accessor: 'Shipments' },
-      { label: 'report.avg_transporter_cost_per_shipment.label', accessor: 'AverageCost' },
+      { label: 'report.total_transporter_cost.label', accessor: 'TotalTransporterCost' },
+      { label: 'report.total_number_of_shipment.label', accessor: 'TotalNumberOfShipments' },
+      { label: 'report.avg_transporter_cost_per_shipment.label', accessor: 'AverageTransporterCostPerShipment' },
     ],
   },
   {
