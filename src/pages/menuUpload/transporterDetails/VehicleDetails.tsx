@@ -22,7 +22,10 @@ import { transporterDetailsUrl } from 'stores/sagas/transporterDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteTransporterDetailsRequestPayload, PostTransporterDetailsRequestPayload, PutTransporterDetailsRequestPayload } from 'stores/types/transporterDetailsType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import vehicleDetailsColumns from './vehicleDetailsColumns';
 
 function VehicleDetails() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -45,42 +48,11 @@ function VehicleDetails() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 40,
-      maxWidth: 40,
-    },
-    {
-      Header: format('transporter_details.transporter_name.label'),
-      accessor: 'transport_name',
-      width: 350,
-      maxWidth: 350,
-    },
-    {
-      Header: format('transporter_details.vehicle_number.label'),
-      accessor: 'vehicle_number',
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('transporter_details.vehicle_volume.label'),
-      accessor: 'vehicle_capacity_volume',
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('transporter_details.vehicle_weight.label'),
-      accessor: 'vehicle_capacity_weight',
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('transporter_details.mode_of_transport.label'),
-      accessor: 'vehicle_type',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(vehicleDetailsColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     transporterDetail,

@@ -2,7 +2,6 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 
-import { format as formatDate } from 'date-fns';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
@@ -24,9 +23,12 @@ import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteOrderDetailsRequestPayload, PostOrderDetailsRequestPayload, PutOrderDetailsRequestPayload } from 'stores/types/orderDetailsType';
 import { PostOrderLineDetailsRequestPayload } from 'stores/types/orderLineDetails';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import OrderLineDetails from '../../../components/forms/orderDetails/OrderLineDetails';
+
+import orderDetailsColumns from './orderdetailsColumns';
 
 function OrderDetailsPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -50,23 +52,11 @@ function OrderDetailsPage() {
 
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: format('shipment.order_number.label'),
-      accessor: 'order_details_id',
-      width: 60,
-      maxWidth: 60,
-    },
-    {
-      Header: format('customer_type.column.name'),
-      accessor: 'customer_name',
-    },
-    {
-      Header: format('order_details.received_date.label'),
-      accessor: 'order_received_date',
-      Cell: ({ value }: any) => formatDate(new Date(value), 'MM/dd/yyyy'),
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(orderDetailsColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     orderDetail,
