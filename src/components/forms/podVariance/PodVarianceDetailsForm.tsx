@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import _ from 'lodash';
 import { useIntl } from 'react-intl';
 
 import EditableTable from 'components/shared/table/EditableTable';
@@ -25,7 +26,11 @@ function PodVarianceDetailsForm({
         const orderLineDetails = response.map(
           (orderDetails: IOrderDetails) => orderDetails.line_items,
         );
-        setOrdersLines(orderLineDetails.flat());
+        const orderLineDetailsFlatted = orderLineDetails.flat();
+        setOrdersLines(orderLineDetailsFlatted.map((orderLine: any) => ({
+          ...orderLine,
+          old_quantity: _.cloneDeep(orderLine.quantity),
+        })));
       } catch (error) {
         setOrdersLines([]);
       }
