@@ -30,7 +30,10 @@ import {
   PutSupplierMasterRequestPayload,
 } from 'stores/types/supplierMasterType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import supplierMasterColumns from './supplierMasterColumns';
 
 const clearValues: ISupplierMaster = { id: undefined, name: '' };
 
@@ -55,62 +58,11 @@ function SupplierMasterPage() {
 
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 30,
-      maxWidth: 30,
-    },
-    {
-      Header: format('supplier_master.name.label'),
-      accessor: 'name',
-      width: 300,
-      maxWidth: 300,
-    },
-    {
-      Header: format('supplier_master.address_1.label'),
-      accessor: 'address_1',
-      width: 150,
-      maxWidth: 150,
-    },
-    {
-      Header: format('supplier_master.address_2.label'),
-      accessor: 'address_2',
-      width: 150,
-      maxWidth: 150,
-    },
-    {
-      Header: format('supplier_master.address_3.label'),
-      accessor: 'address_3',
-      width: 150,
-      maxWidth: 150,
-    },
-    {
-      Header: format('supplier_master.city.label'),
-      accessor: 'city',
-    },
-    {
-      Header: format('supplier_master.state.label'),
-      accessor: 'state',
-    },
-    {
-      Header: format('supplier_master.country.label'),
-      accessor: 'country',
-    },
-    {
-      Header: format('supplier_master.email.label'),
-      accessor: 'email',
-    },
-    {
-      Header: format('supplier_master.phone_number.label'),
-      accessor: 'phone',
-    },
-    {
-      Header: format('supplier_master.gps.label'),
-      accessor: 'latitude_longitude',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(supplierMasterColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     supplierMaster,

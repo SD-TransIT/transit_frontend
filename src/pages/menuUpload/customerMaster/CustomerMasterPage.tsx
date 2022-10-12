@@ -35,9 +35,12 @@ import {
   PostCustomerWeekDaysRequestPayload,
 } from 'stores/types/customerWeekDays';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import CustomerMasterDeliveryHours from '../../../components/forms/customerMaster/CustomerMasterDeliveryHours';
+
+import customerMasterColumns from './customerMasterColumns';
 
 function CustomerMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -61,68 +64,11 @@ function CustomerMasterPage() {
 
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 40,
-      maxWidth: 40,
-    },
-    {
-      Header: format('customer_master.customer_type_name.label'),
-      accessor: 'customer_type_name',
-      width: 160,
-      maxWidth: 160,
-    },
-    {
-      Header: format('customer_master.name.label'),
-      accessor: 'name',
-    },
-    {
-      Header: format('customer_master.first_name.label'),
-      accessor: 'first_name',
-    },
-    {
-      Header: format('customer_master.last_name.label'),
-      accessor: 'last_name',
-    },
-    {
-      Header: format('customer_master.address_1.label'),
-      accessor: 'address_1',
-    },
-    {
-      Header: format('customer_master.address_2.label'),
-      accessor: 'address_2',
-    },
-    {
-      Header: format('customer_master.address_3.label'),
-      accessor: 'address_3',
-    },
-    {
-      Header: format('customer_master.city.label'),
-      accessor: 'city',
-    },
-    {
-      Header: format('customer_master.state.label'),
-      accessor: 'state',
-    },
-    {
-      Header: format('customer_master.country.label'),
-      accessor: 'country',
-    },
-    {
-      Header: format('customer_master.email.label'),
-      accessor: 'email',
-    },
-    {
-      Header: format('customer_master.phone.label'),
-      accessor: 'phone',
-    },
-    {
-      Header: format('customer_master.gps.label'),
-      accessor: 'latitude_longitude',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(customerMasterColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     customer,

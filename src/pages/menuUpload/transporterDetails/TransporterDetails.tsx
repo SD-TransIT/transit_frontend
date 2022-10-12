@@ -22,7 +22,10 @@ import { transporterUrl } from 'stores/sagas/transporterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteTransporterRequestPayload, PostTransporterRequestPayload, PutTransporterRequestPayload } from 'stores/types/transporterType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import transporterDetailColumns from './transporterDetailColumns';
 
 function TransporterDetails() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -45,52 +48,11 @@ function TransporterDetails() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 40,
-      maxWidth: 40,
-    },
-    {
-      Header: format('transporter.transporter_name.label'),
-      accessor: 'name',
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('transporter.address_1.label'),
-      accessor: 'address_1',
-    },
-    {
-      Header: format('transporter.address_2.label'),
-      accessor: 'address_2',
-    },
-    {
-      Header: format('transporter.address_3.label'),
-      accessor: 'address_3',
-    },
-    {
-      Header: format('transporter.city.label'),
-      accessor: 'city',
-    },
-    {
-      Header: format('transporter.state.label'),
-      accessor: 'state',
-    },
-    {
-      Header: format('transporter.country.label'),
-      accessor: 'country',
-    },
-    {
-      Header: format('transporter.phone_number.label'),
-      accessor: 'phone',
-    },
-    {
-      Header: format('transporter.gps.label'),
-      accessor: 'latitude_longitude',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(transporterDetailColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     transporter,

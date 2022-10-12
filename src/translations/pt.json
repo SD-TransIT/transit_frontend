@@ -53,7 +53,6 @@
      
     "customer_type": "Customer Type",
     "customer_type.header": "Customer Type",
-    "customer_type.column.id.label": "ID",
     "customer_type.column.name": "Customer Name",
     "customer_type.name.label": "Customer Type Name",
      
@@ -68,7 +67,6 @@
     "driver": "Driver Master",
     "driver_master": "Driver",
     "driver_master.header": "Driver Master",
-    "driver_master.column.id.label": "ID",
     "driver_master.column.transport_name.label": "Transport Name",
     "driver_master.transporter.label": "Transporter",
     "driver_master.name.label": "Driver Name",
@@ -97,7 +95,6 @@
 
     "item_details": "Item Details",
     "item_details.header": "Item Details",
-    "item_details.column.id.label": "ID",
     "item_details.name.label": "Item Name",
     "item_details.manufacturing_date.label": "Manufacturing Date (MM/DD/YYYY)",
     "item_details.received_date.label": "Received Date (MM/DD/YYYY)",
@@ -138,7 +135,6 @@
     "pod_variance": "POD Variance",
     "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "POD Variance",
-    "pod_variance.id.label": "ID",
     "pod_variance.order.order_number.label": "Order Number",
     "pod_variance.order.product_name.label": "Product Name",
     "pod_variance.order.quantity.total.label": "Total Quantity",
@@ -247,7 +243,6 @@
     "supplier": "Supplier Master",
     "supplier_master": "Supplier",
     "supplier_master.header": "Supplier Master",
-    "supplier_master.id.label": "ID",
     "supplier_master.name.label": "Supplier Name",
     "supplier_master.address_1.label": "Address 1",
     "supplier_master.address_2.label": "Address 2",
