@@ -80,7 +80,7 @@ function TransporterDetailsForm({
                     {...register('vehicle_number')}
                     name="vehicle_number"
                     id="floatingInput"
-                    placeholder={format('shared.vehicle_number.label  ')}
+                    placeholder={format('shared.vehicle_number.label')}
                     type="text"
                   />
                 </div>
