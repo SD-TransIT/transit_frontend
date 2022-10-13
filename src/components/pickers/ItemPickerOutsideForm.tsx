@@ -51,7 +51,7 @@ function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFor
   return (
     <AsyncPaginate
       key={field?.id ?? 'key'}
-      placeholder={format('item_master.name.label')}
+      placeholder={format('shared.item_name.label')}
       loadOptions={loadOptions}
       additional={{
         page: 1,

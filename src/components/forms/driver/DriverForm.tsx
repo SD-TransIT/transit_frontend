@@ -57,13 +57,13 @@ function DriverForm({
                   {errors.transporter && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('driver_master.name.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.driver_name.label')}</p>
                   <Input
                   // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('name', { required: true })}
                     name="name"
                     id="floatingInput"
-                    placeholder={format('driver_master.name.label')}
+                    placeholder={format('shared.driver_name.label')}
                     type="text"
                     isInvalid={Boolean(errors.name)}
                   />
@@ -78,7 +78,7 @@ function DriverForm({
                     {...register('username')}
                     name="username"
                     id="floatingInput"
-                    placeholder={format('driver_master.epod_username.placeholder')}
+                    placeholder={format('shared.username.placeholder')}
                     type="text"
                   />
                 </div>
@@ -89,7 +89,7 @@ function DriverForm({
                     {...register('password')}
                     name="password"
                     id="floatingInput"
-                    placeholder={format('driver_master.epod_password.placeholder')}
+                    placeholder={format('shared.password.placeholder')}
                     type="password"
                   />
                 </div>

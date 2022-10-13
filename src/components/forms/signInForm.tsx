@@ -108,7 +108,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               {...register('username', { required: true })}
               name="username"
               id="floatingInput"
-              placeholder={format('sign_in.username.placeholder')}
+              placeholder={format('shared.username.placeholder')}
               type="text"
               isInvalid={Boolean(errors.username)}
               className="min-h-full"
@@ -123,7 +123,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               {...register('password', { required: true })}
               name="password"
               id="floatingInput"
-              placeholder={format('sign_in.password.placeholder')}
+              placeholder={format('shared.password.placeholder')}
               type="password"
               isInvalid={Boolean(errors.password)}
               className="min-h-full"

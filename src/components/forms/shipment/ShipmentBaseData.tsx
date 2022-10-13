@@ -36,7 +36,7 @@ function ShipmentBaseData({
           {errors.supplier && <ValidationError value={format('validation.error.field_required')} />}
         </div>
         <div className="flex flex-col gap-2 w-1/4">
-          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.transporter_name.label')}</p>
+          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.transporter_name.label')}</p>
           <Controller
             rules={{ required: true }}
             control={control}
@@ -71,7 +71,7 @@ function ShipmentBaseData({
           {errors.driver && <ValidationError value={format('validation.error.field_required')} />}
         </div>
         <div className="flex flex-col gap-2 w-1/4">
-          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.vehicle_number.label')}</p>
+          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.vehicle_number.label')}</p>
           <Controller
             rules={{ required: true }}
             control={control}

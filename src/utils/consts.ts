@@ -58,8 +58,8 @@ export const reportsColumns = [
     name: 'percent_capacity_utilization',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_vehicle_volume.label', accessor: 'VehicleCapacityVolume' },
       { label: 'report.total_vehicle_volume_used.label', accessor: 'volume' },
@@ -70,8 +70,8 @@ export const reportsColumns = [
     name: 'average_kilometers_per_shipment',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_km.label', accessor: 'TotalKilometers' },
       { label: 'report.total_number_of_shipment.label', accessor: 'TotalNumberOfShipments' },
@@ -83,8 +83,8 @@ export const reportsColumns = [
     name: 'average_product_cost_per_shipment',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_product_cost.label', accessor: 'Cost' },
       { label: 'report.total_number_of_shipment.label', accessor: 'Shipments' },
@@ -95,8 +95,8 @@ export const reportsColumns = [
     name: 'average_transporter_cost_per_shipment',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_transporter_cost.label', accessor: 'TotalTransporterCost' },
       { label: 'report.total_number_of_shipment.label', accessor: 'TotalNumberOfShipments' },
@@ -107,8 +107,8 @@ export const reportsColumns = [
     name: 'average_transporter_cost_per_kilometer',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
       { label: 'report.total_number_of_km.label', accessor: 'TotalNumberOfKilometers' },
@@ -118,8 +118,8 @@ export const reportsColumns = [
     name: 'percentage_outstanding_pods',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_number_of_outstanding_pods.label', accessor: 'TotalPODs' },
       { label: 'report.total_pods.label', accessor: 'OutstandingPODs' },
@@ -129,8 +129,8 @@ export const reportsColumns = [
     name: 'percentage_on_time_deliveries',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_number_of_shipment.label', accessor: 'Shipments' },
       { label: 'report.total_number_of_ontime_deliveries.label', accessor: 'TotalOnTimeDeliveries' },
@@ -142,8 +142,8 @@ export const reportsColumns = [
     name: 'number_of_damaged_short_over_shipments',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'shipment.custom_route_number.label', accessor: 'CustomRouteNumber' },
       { label: 'report.dso_type.label', accessor: 'DSOType' },
       { label: 'report.old_quantity.label', accessor: 'OldQuantity' },
@@ -154,8 +154,8 @@ export const reportsColumns = [
     name: 'average_transporter_cost_per_cubic_meter',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_shipment_value.label', accessor: 'TotalVolume' },
       { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
@@ -166,8 +166,8 @@ export const reportsColumns = [
     name: 'average_transporter_cost_per_each',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'report.custom_route_id.label', accessor: 'CustomRouteNumber' },
       { label: 'report.total_number_of_eaches.label', accessor: 'TotalEaches' },
       { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
@@ -177,8 +177,8 @@ export const reportsColumns = [
     name: 'average_transporter_cost_per_route',
     columns: [
       { label: 'app.date.label', accessor: 'ShipDate' },
-      { label: 'shipment.transporter_name.label', accessor: 'TransporterName' },
-      { label: 'shipment.vehicle_number.label', accessor: 'VehicleNumber' },
+      { label: 'shared.transporter_name.label', accessor: 'TransporterName' },
+      { label: 'shared.vehicle_number.label', accessor: 'VehicleNumber' },
       { label: 'report.total_number_of_custom_routes.label', accessor: 'CustomRoutes' },
       { label: 'report.total_transporter_cost.label', accessor: 'TotalCost' },
       { label: 'report.avg_transporter_cost_per_route.label', accessor: 'AverageTransporterCostPerRoute' }],
@@ -186,7 +186,7 @@ export const reportsColumns = [
   {
     name: 'orders_ready_to_be_shipped',
     columns: [
-      { label: 'cost.shipment_number.label', accessor: 'ShipmentNumber' },
+      { label: 'shared.shipment_number.label', accessor: 'ShipmentNumber' },
       { label: 'pod_variance.order.order_number.label', accessor: 'OrderNumber' },
       { label: 'customer_type.column.name', accessor: 'CustomerName' },
       { label: 'customer_master.address_1.label', accessor: 'Address' },
@@ -199,7 +199,7 @@ export const reportsColumns = [
   {
     name: 'orders_with_no_shipping_details',
     columns: [
-      { label: 'cost.shipment_number.label', accessor: 'ShipmentNumber' },
+      { label: 'shared.shipment_number.label', accessor: 'ShipmentNumber' },
       { label: 'report.shipment_volume.label', accessor: 'ShipmentVolume' }],
   },
 ];

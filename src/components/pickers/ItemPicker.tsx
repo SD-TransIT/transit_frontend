@@ -35,7 +35,7 @@ function ItemPicker({ field, isInvalid }: PickerProp) {
     <AsyncPaginate
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...field}
-      placeholder={format('item_master.name.label')}
+      placeholder={format('shared.item_name.label')}
       loadOptions={loadOptions}
       additional={{
         page: 1,
