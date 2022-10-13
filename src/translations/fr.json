@@ -23,13 +23,9 @@
     "cost.label": "Coût",
     "cost_form.header": "Formulaire de coût",
     "cost.distance.label": "Distance (kilomètres)",
-    "cost.driver_name.label": "Nom du conducteur",
     "cost.transporter_additional_cost.label": "Transporteur Coût Supplémentaire",
     "cost.transporter_base_cost.label": "Coût de base du transporteur",
-    "cost.transporter_name.label": "Nom du convoyeur",
-    "cost.shipment_number.label": "Numéro d'expédition",
-    "cost.vehicle_number.label": "Numéro de véhicule",
-
+    
     "customer": "Fiche client",
     "customer_master.address_1.label": "Adresse 1",
     "customer_master.address_2.label": "Adresse 2",
@@ -46,16 +42,15 @@
     "customer_master.first_name.label": "Prénom",
     "customer_master.gps.label": "Les coordonnées GPS",
     "customer_master.last_name.label": "Nom de famille",
-    "customer_master.name.label": "Nom",
     "customer_master.opening_time.label": "Horaire d'ouverture",
     "customer_master.phone.label": "Numéro de téléphone",
     "customer_master.state.label": "État",
-
+    
     "customer_type": "Type de client",
     "customer_type.header": "Type de client",
     "customer_type.column.name": "Prénom",
     "customer_type.name.label": "Nom du type de client",
-
+    
     "day.friday.label": "Vendredi",
     "day.monday.label": "Lundi",
     "day.thursday.label": "Jeudi",
@@ -63,18 +58,15 @@
     "day.saturday.label": "Samedi",
     "day.sunday.label": "Dimanche",
     "day.wednesday.label": "Mercredi",
-
+    
     "driver": "Enregistrement du conducteur",
     "driver_master": "Enregistrement du conducteur",
     "driver_master.header": "Enregistrement du conducteur",
     "driver_master.column.transport_name.label": "Nom du convoyeur",
     "driver_master.transporter.label": "Transporteuse",
-    "driver_master.name.label": "Nom du conducteur",
     "driver_master.epod_username.label": "ePOD Nom d'utilisateur",
     "driver_master.epod_password.label": "ePOD Mot de passe",
-    "driver_master.epod_username.placeholder": "Nom d'utilisateur",
-    "driver_master.epod_password.placeholder": "Mot de passe",
-
+    
     "excel_upload": "Téléchargement Excel",
     "excel_upload.about.label": "Ce formulaire permet de télécharger des données dans l'outil à l'aide d'Excel.",
     "excel_upload.added_file.label": "Fichier ajouté!",
@@ -85,17 +77,15 @@
     "excel_upload.error.label": "Ce document n'est pas pris en charge, veuillez supprimer et télécharger un autre fichier.",
     "excel_upload.instruction.label": "Faites glisser et déposez le fichier ou",
     "excel_upload.instruction.choice": "choisissez le fichier",
-    "excel_upload.label": "Téléchargement Excel",
     "excel_upload.selection.label": "Sélectionner un Tableau",
     "excel_upload.success.header": "Succès!",
     "excel_upload.success.detail": "Votre fichier a été téléchargé avec succès!",
     "excel_upload.upload_new_file.label": "Télécharger un nouveau fichier",
     "excel_upload.upload_try_again.label": "Réessayer",
     "excel_upload.view_template": "Afficher le Modèle",
-
+    
     "item_details": "Détail de l'article",
     "item_details.header": "Détail de l'article",
-    "item_details.name.label": "Nom de l'article",
     "item_details.manufacturing_date.label": "Date de fabrication (MM/DD/YYYY)",
     "item_details.received_date.label": "Date de réception (MM/DD/YYYY)",
     "item_details.expiry_date.label": "Date d'expiration (MM/DD/YYYY)",
@@ -104,13 +94,11 @@
     "item_details.funding_sources.label": "Sources de financement",
     "item_details.lot_number.label": "Numéro de lot",
     "item_details.serial_number.label": "Numéro de série",
-
+    
     "item": "Maître de l'article",
     "item_master.header": "Maître de l'article",
     "item_master.column.id.label": "ID",
-    "item_master.column.name.label": "Nom du produit",
     "item_master.column.conditions.label": "Ambience/Cold Chain",
-    "item_master.name.label": "Item Name",
     "item_master.volume.label": "Volume (mètres cubes)",
     "item_master.cost.label": "Coût (devise locale)",
     "item_master.weight.label": "Poids (kg)",
@@ -120,23 +108,22 @@
     "item_master.volume.placeholder": "Volume",
     "item_master.cost.placeholder": "Coût",
     "item_master.weight.placeholder": "Poids",
-
+    
     "mode_of_transport": "Mode d'expédition standard",
     "mode_of_transport.header": "Mode d'expédition standard",
     "mode_of_transport.class.label": "Classe",
     "mode_of_transport.placeholder": "Mode",
     "mode_of_transport.vehicle_type.label": "Type de véhicule",
-
+    
     "order_details": "Commande / détail de la commande",
     "order_details.header": "Commande / détail de la commande",
     "order_details.received_date.label": "Date de réception de la commande (MM/DD/YYYY)",
     "order_details.total_quantity.label": "Quantité totale",
-
+    
     "pod_variance": "Changement de lieu de livraison",
     "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "Changement de lieu de livraison",
     "pod_variance.order.order_number.label": "Numéro de commande",
-    "pod_variance.order.product_name.label": "Nom de l'article",
     "pod_variance.order.quantity.total.label": "Montant total",
     "pod_variance.order.quantity.new.label": "Nouvelle quantité",
     "pod_variance.shipment.label": "Chargement / Chargement / Expédition",
@@ -185,19 +172,26 @@
     "report.total_vehicle_volume_used.label": "Volume total de véhicules utilisé",
     "report.transporter_cost_per_km.label": "Coût moyen du transporteur par kilomètre par transporteur",
     "report.transporter_cost_per_shipment.label": "Coût moyen du transporteur par expédition par transporteur",
-
+    
     "search.generate": "Générer",
     "search.clear": "Clair",
     "search.placeholder": "Entrez la chaîne de recherche...",
     "search.search.label": "Chercher",
+    
+    "shared.driver_name.label": "Nom du conducteur",
+    "shared.item_name.label": "Nom de l'article",
+    "shared.password.placeholder": "Mot de passe",
+    "shared.product_name.label": "Nom du produit",
+    "shared.shipment_number.label": "Numéro d'expédition",
+    "shared.transporter_name.label": "Nom du transporteur",
+    "shared.username.placeholder": "Nom d'utilisateur",
+    "shared.vehicle_number.label": "Numéro de véhicule",
 
     "sign_in.create_an_account": "Créer un compte",
     "sign_in.label": "S'identifier",
     "sign_in.massage": "Inscrivez-vous sur la plateforme interne",
     "sign_in.not_registered": "Non enregistré?", 
-    "sign_in.password.placeholder": "Mot de passe",
-    "sign_in.username.placeholder": "Nom d'utilisateur",
-
+    
     "shipment": "Expédition",
     "shipment.add.header": "Retour à l'expédition",
     "shipment.add_new.label": "Nouvel Chargement / Chargement / Expédition",
@@ -221,7 +215,6 @@
     "shipment.header": "Chargement / Chargement / Expédition",
     "shipment.orders.label": "Ordres",
     "shipment.order_add.label": "+ Ajouter une Commande",
-    "shipment.order_line_items.product.label": "Nom de l'article",
     "shipment.order_line_items.quantity.label": "Quantité",
     "shipment.order_number.label": "Numéro de commande",
     "shipment.pod.label": "POD sur papier reçu",
@@ -233,13 +226,10 @@
     "shipment.pod_status.pod_signed_dso.label": "POD signé DSO",
     "shipment.pod_status.robbery.label": "Vol",
     "shipment.ropo_number.label": "Numéro RO / PO",
-    "shipment.shipment_number.label": "Numéro d'expédition",
     "shipment.ship_date.label": "Date d'expédition (DD/MM/YYYY)",
     "shipment.signed_by.label": "Name of signatory",
     "shipment.supplier_name.label": "Nom du fournisseur",
-    "shipment.transporter_name.label": "Nom du transporteur",
-    "shipment.vehicle_number.label": "Numéro de véhicule",
-
+    
     "supplier": "Fournisseur primaire",
     "supplier_master": "Fournisseur primaire",
     "supplier_master.header": "Fournisseur primaire",
@@ -254,10 +244,9 @@
     "supplier_master.phone_number.label": "Téléphone",
     "supplier_master.gps.label": "Les coordonnées",
     "supplier_master.address.placeholder": "Adresse",
-
+    
     "table.of": "de",
-    "table.results.label": "Résultats",
-
+    
     "transporter": "Transporteur",
     "transporter.address_1.label": "Adresse 1",
     "transporter.address_2.label": "Adresse 2",
@@ -269,7 +258,7 @@
     "transporter.phone_number.label": "Téléphone",
     "transporter.state.label": "Etat",
     "transporter.transporter_name.label": "Nom du transporteur",
-
+    
     "transporter_details": "Détails du convoyeur",
     "transporter_details.header": "Détails du convoyeur",
     "transporter_details.header.label": "Les détails du véhicule",
@@ -278,10 +267,9 @@
     "transporter_details.column.driver.label": "Nom du conducteur",
     "transporter_details.mode_of_transport.label": "Mode d'expédition standard",
     "transporter_details.transporter_name.label": "Nom du transporteur",
-    "transporter_details.vehicle_number.label": "Numéro de véhicule",
     "transporter_details.vehicle_weight.label": "Poids du véhicule (kgs)",
     "transporter_details.vehicle_volume.label": "Volume du véhicule",
-
+    
     "validation.error.character_length": "Ce champ est trop long (le maximum est de 10 caractères)",
     "validation.error.credentials": "Identifiants incorrects",
     "validation.error.duplicate_order": "Cette commande a déjà été ajoutée",

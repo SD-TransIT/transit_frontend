@@ -1,7 +1,7 @@
 const customerMasterColumns = [
   { label: 'app.id', accessor: 'id' },
   { label: 'customer_master.customer_type_name.label', accessor: 'customer_type_name' },
-  { label: 'customer_master.name.label', accessor: 'name' },
+  { label: 'customer_master.first_name.label', accessor: 'name' },
   { label: 'customer_master.first_name.label', accessor: 'first_name' },
   { label: 'customer_master.last_name.label', accessor: 'last_name' },
   { label: 'customer_master.address_1.label', accessor: 'address_1' },

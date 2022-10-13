@@ -82,7 +82,7 @@ function PodVarianceDetailsForm({
 
   const columnHeaders = [
     { label: format('pod_variance.order.order_number.label') },
-    { label: format('pod_variance.order.product_name.label') },
+    { label: format('shared.product_name.label') },
     { label: format('pod_variance.order.quantity.total.label') },
     { label: format('pod_variance.order.quantity.new.label') },
   ];

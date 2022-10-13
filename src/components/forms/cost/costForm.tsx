@@ -39,7 +39,7 @@ function CostForm({
             <div className="flex flex-row gap-2">
               { mode === 'Add' && (
               <div className="flex flex-col gap-2 w-1/4">
-                <p className="text-xs text-transit-black-secondary font-medium required-field">{format('cost.transporter_name.label')}</p>
+                <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.transporter_name.label')}</p>
                 <Controller
                   rules={{ required: true }}
                   control={control}

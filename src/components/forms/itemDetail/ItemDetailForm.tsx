@@ -45,7 +45,7 @@ function ItemDetailForm({
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_details.name.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.item_name.label')}</p>
                   <Controller
                     rules={{ required: true }}
                     control={control}

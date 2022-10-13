@@ -36,7 +36,7 @@ function OrderLineDetails(
   const [itemName, setItemName] = useState();
 
   const columnHeaders = [
-    { label: format('item_details.name.label') },
+    { label: format('shared.item_name.label') },
     { label: format('item_details.batch_namber.label') },
     { label: format('order_details.total_quantity.label') },
   ];
