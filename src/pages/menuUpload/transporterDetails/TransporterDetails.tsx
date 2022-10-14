@@ -14,12 +14,15 @@ import TransporterForm from 'components/forms/transporter/transporterForm';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deleteTransporterRequest, postTransporterRequest, putTransporterRequest } from 'stores/actions/transporter/transporterActions';
+import TransporterActionTypes from 'stores/actions/transporter/transporterTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { transporterUrl } from 'stores/sagas/transporterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import { DeleteTransporterRequestPayload, PostTransporterRequestPayload, PutTransporterRequestPayload } from 'stores/types/transporterType';
 import { getRequest } from 'utils/apiClient';
 import columnsRender from 'utils/columnsRender';
@@ -60,6 +63,9 @@ function TransporterDetails() {
     (state: RootState) => state.transporter,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().transporter.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -97,6 +103,22 @@ function TransporterDetails() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transporter]);
+
+  useEffect(() => {
+    if (
+      stateType === TransporterActionTypes.PUT_TRANSPORTER_FAILURE
+      || stateType === TransporterActionTypes.POST_TRANSPORTER_FAILURE
+      || stateType === TransporterActionTypes.DELETE_TRANSPORTER_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === TransporterActionTypes.POST_TRANSPORTER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('transporter_details.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === TransporterActionTypes.PUT_TRANSPORTER_SUCCESS
+      || stateType === TransporterActionTypes.DELETE_TRANSPORTER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

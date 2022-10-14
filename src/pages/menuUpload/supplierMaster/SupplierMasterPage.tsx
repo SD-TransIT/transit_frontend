@@ -12,6 +12,7 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
@@ -21,9 +22,11 @@ import {
   postSupplierMasterRequest,
   putSupplierMasterRequest,
 } from 'stores/actions/supplierMaster/supplierMasterActions';
+import SupplierMasterActionTypes from 'stores/actions/supplierMaster/supplierMasterTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { supplierUrl } from 'stores/sagas/supplierMasterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import {
   DeleteSupplierMasterRequestPayload,
   PostSupplierMasterRequestPayload,
@@ -70,6 +73,9 @@ function SupplierMasterPage() {
     (state: RootState) => state.supplierMaster,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().supplierMaster.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -107,6 +113,22 @@ function SupplierMasterPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supplierMaster]);
+
+  useEffect(() => {
+    if (
+      stateType === SupplierMasterActionTypes.PUT_SUPPLIER_MASTER_FAILURE
+      || stateType === SupplierMasterActionTypes.POST_SUPPLIER_MASTER_FAILURE
+      || stateType === SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === SupplierMasterActionTypes.POST_SUPPLIER_MASTER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('supplier_master.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === SupplierMasterActionTypes.PUT_SUPPLIER_MASTER_SUCCESS
+      || stateType === SupplierMasterActionTypes.DELETE_SUPPLIER_MASTER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

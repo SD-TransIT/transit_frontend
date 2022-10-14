@@ -1,6 +1,6 @@
 const itemDetailColumns = [
   { label: 'app.id', accessor: 'id' },
-  { label: 'item_details.name.label', accessor: 'item_name' },
+  { label: 'shared.item_name.label', accessor: 'item_name' },
   { label: 'item_details.manufacturing_date.label', accessor: 'manufacturing_date' },
   { label: 'item_details.received_date.label', accessor: 'received_date' },
   { label: 'item_details.expiry_date.label', accessor: 'expiry_date' },

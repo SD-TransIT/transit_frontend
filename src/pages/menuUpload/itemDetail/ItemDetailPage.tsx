@@ -15,13 +15,16 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deleteItemDetailRequest, postItemDetailRequest, putItemDetailRequest } from 'stores/actions/item_detail/itemDetailActions';
+import ItemDetailActionTypes from 'stores/actions/item_detail/itemDetailTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { itemDetailUrl } from 'stores/sagas/itemDetailSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import { DeleteItemDetailRequestPayload, PostItemDetailRequestPayload, PutItemDetailRequestPayload } from 'stores/types/itemDetailType';
 import { getRequest } from 'utils/apiClient';
 import columnsRender from 'utils/columnsRender';
@@ -62,6 +65,9 @@ function ItemDetailPage() {
     (state: RootState) => state.itemDetail,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().itemDetail.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -99,6 +105,22 @@ function ItemDetailPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemDetail]);
+
+  useEffect(() => {
+    if (
+      stateType === ItemDetailActionTypes.PUT_ITEM_DETAIL_FAILURE
+      || stateType === ItemDetailActionTypes.POST_ITEM_DETAIL_FAILURE
+      || stateType === ItemDetailActionTypes.DELETE_ITEM_DETAIL_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === ItemDetailActionTypes.POST_ITEM_DETAIL_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('item_details.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === ItemDetailActionTypes.PUT_ITEM_DETAIL_SUCCESS
+      || stateType === ItemDetailActionTypes.DELETE_ITEM_DETAIL_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

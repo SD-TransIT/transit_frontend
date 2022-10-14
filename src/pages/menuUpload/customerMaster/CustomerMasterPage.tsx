@@ -12,6 +12,7 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
@@ -20,12 +21,14 @@ import {
   postCustomerMasterRequest,
   putCustomerMasterRequest,
 } from 'stores/actions/customerMaster/customerMasterActions';
+import CustomerMasterActionTypes from 'stores/actions/customerMaster/customerMasterTypes';
 import {
   postCustomerWeekDaysRequest,
 } from 'stores/actions/customerWeekDays/customerWeekDaysActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { customerMasterUrl } from 'stores/sagas/customerMasterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import {
   DeleteCustomerMasterRequestPayload,
   PostCustomerMasterRequestPayload,
@@ -76,6 +79,9 @@ function CustomerMasterPage() {
     (state: RootState) => state.customerMaster,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().customerMaster.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -113,6 +119,22 @@ function CustomerMasterPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customer]);
+
+  useEffect(() => {
+    if (
+      stateType === CustomerMasterActionTypes.PUT_CUSTOMER_MASTER_FAILURE
+      || stateType === CustomerMasterActionTypes.POST_CUSTOMER_MASTER_FAILURE
+      || stateType === CustomerMasterActionTypes.DELETE_CUSTOMER_MASTER_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === CustomerMasterActionTypes.POST_CUSTOMER_MASTER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('customer')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === CustomerMasterActionTypes.PUT_CUSTOMER_MASTER_SUCCESS
+      || stateType === CustomerMasterActionTypes.DELETE_CUSTOMER_MASTER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

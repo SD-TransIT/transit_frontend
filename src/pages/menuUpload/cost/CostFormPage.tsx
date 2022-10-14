@@ -13,13 +13,20 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import {
+  ErrorMessage,
+  showToast,
+  SuccessSaved,
+} from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { bulkPutCostRequest, putCostRequest } from 'stores/actions/cost/costActions';
+import CostActionTypes from 'stores/actions/cost/costTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { getCostRequest } from 'stores/sagas/costSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import { BulkPutCostRequestPayload, PutCostRequestPayload } from 'stores/types/costType';
 import columnsRender from 'utils/columnsRender';
 import {
@@ -59,6 +66,9 @@ function CostFormPage() {
     (state: RootState) => state.cost,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().cost.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -97,6 +107,22 @@ function CostFormPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cost]);
 
+  useEffect(() => {
+    if (
+      stateType === CostActionTypes.PUT_COST_FAILURE
+      || stateType === CostActionTypes.BULK_PUT_COST_FAILURE
+      || stateType === CostActionTypes.DELETE_COST_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === CostActionTypes.BULK_PUT_COST_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('cost.label')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === CostActionTypes.PUT_COST_SUCCESS
+      || stateType === CostActionTypes.DELETE_COST_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
+
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
     setSearcher(formValues.search);
@@ -107,6 +133,8 @@ function CostFormPage() {
   };
 
   const toggleEditModal = (object?: FieldValues, datas?: any) => {
+    // toast.error('new modal', { toastId: new Date().toString() });
+
     if (object && object.id !== undefined) {
       const record = datas.find((data_record:any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({

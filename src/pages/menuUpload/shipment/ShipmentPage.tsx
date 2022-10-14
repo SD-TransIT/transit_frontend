@@ -13,15 +13,18 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import { Paths } from 'routes/paths';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deleteShipmentRequest } from 'stores/actions/shipment/shipmentActions';
+import ShipmentActionTypes from 'stores/actions/shipment/shipmentTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { getOrdersByOrdersIdRequest } from 'stores/sagas/orderDetailsSaga';
 import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import { DeleteShipmentRequestPayload } from 'stores/types/shipmentType';
 import { getRequest } from 'utils/apiClient';
 import columnsRender from 'utils/columnsRender';
@@ -58,6 +61,9 @@ function ShipmentPage() {
   } = useSelector(
     (state: RootState) => state.shipment,
   );
+
+  // @ts-ignore
+  const stateType = store.getState().shipment.type;
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
@@ -96,6 +102,22 @@ function ShipmentPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shipment]);
+
+  useEffect(() => {
+    if (
+      stateType === ShipmentActionTypes.PUT_SHIPMENT_FAILURE
+      || stateType === ShipmentActionTypes.POST_SHIPMENT_FAILURE
+      || stateType === ShipmentActionTypes.DELETE_SHIPMENT_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === ShipmentActionTypes.POST_SHIPMENT_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('shipment')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === ShipmentActionTypes.PUT_SHIPMENT_SUCCESS
+      || stateType === ShipmentActionTypes.DELETE_SHIPMENT_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

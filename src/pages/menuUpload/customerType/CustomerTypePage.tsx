@@ -12,6 +12,7 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
@@ -20,9 +21,11 @@ import {
   postCustomerTypeRequest,
   putCustomerTypeRequest,
 } from 'stores/actions/customerType/customerTypeActions';
+import CustomerTypeActionTypes from 'stores/actions/customerType/customerTypeTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { customerTypeUrl } from 'stores/sagas/customerTypeSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import {
   DeleteCustomerTypeRequestPayload,
   PostCustomerTypeRequestPayload,
@@ -67,6 +70,9 @@ function CustomerTypePage() {
     (state: RootState) => state.customerType,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().customerType.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -104,6 +110,22 @@ function CustomerTypePage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customerType]);
+
+  useEffect(() => {
+    if (
+      stateType === CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_FAILURE
+      || stateType === CustomerTypeActionTypes.POST_CUSTOMER_TYPE_FAILURE
+      || stateType === CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === CustomerTypeActionTypes.POST_CUSTOMER_TYPE_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('customer_type.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === CustomerTypeActionTypes.PUT_CUSTOMER_TYPE_SUCCESS
+      || stateType === CustomerTypeActionTypes.DELETE_CUSTOMER_TYPE_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

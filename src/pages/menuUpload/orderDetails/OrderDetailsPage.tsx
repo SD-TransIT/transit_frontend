@@ -12,14 +12,17 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deleteOrderDetailsRequest, postOrderDetailsRequest, putOrderDetailsRequest } from 'stores/actions/orderDetails/orderDetailsActions';
+import OrderDetailsActionTypes from 'stores/actions/orderDetails/orderDetailsTypes';
 import { postOrderLineDetailsRequest } from 'stores/actions/orderLineDetails/orderLineDetailsActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { orderDetailsUrl } from 'stores/sagas/orderDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import { DeleteOrderDetailsRequestPayload, PostOrderDetailsRequestPayload, PutOrderDetailsRequestPayload } from 'stores/types/orderDetailsType';
 import { PostOrderLineDetailsRequestPayload } from 'stores/types/orderLineDetails';
 import { getRequest } from 'utils/apiClient';
@@ -64,6 +67,9 @@ function OrderDetailsPage() {
     (state: RootState) => state.orderDetails,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().orderDetails.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -101,6 +107,22 @@ function OrderDetailsPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderDetail]);
+
+  useEffect(() => {
+    if (
+      stateType === OrderDetailsActionTypes.PUT_ORDER_DETAILS_FAILURE
+      || stateType === OrderDetailsActionTypes.POST_ORDER_DETAILS_FAILURE
+      || stateType === OrderDetailsActionTypes.DELETE_ORDER_DETAILS_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === OrderDetailsActionTypes.POST_ORDER_DETAILS_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('order_details.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === OrderDetailsActionTypes.PUT_ORDER_DETAILS_SUCCESS
+      || stateType === OrderDetailsActionTypes.DELETE_ORDER_DETAILS_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
