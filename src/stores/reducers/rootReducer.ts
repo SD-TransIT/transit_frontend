@@ -18,6 +18,7 @@ import orderDetailsReducer from './orderDetailsReducer';
 import orderLineDetailsReducer from './orderLineDetails';
 import podVarianceReducer from './podVarianceReducer';
 import reportsReducer from './reportsReducer';
+import shipmentImagesReducer from './shipmentImagesReducer';
 import shipmentReducer from './shipmentReducer';
 import transporterDetailsReducer from './transporterDetailsReducer';
 
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   item: itemReducer,
   modeOfTransport: modeOfTransportReducer,
   shipment: shipmentReducer,
+  shipmentImages: shipmentImagesReducer,
   customerMaster: customerMasterReducer,
   itemDetail: itemDetailReducer,
   customerWeekDays: customerWeekDaysReducer,

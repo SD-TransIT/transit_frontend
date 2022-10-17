@@ -7,7 +7,7 @@ import { ViewButtonType } from 'shared/buttons/types';
 
 const style = 'cancel-button';
 
-function ViewButton({ onClick, className }: ViewButtonType) {
+function ViewButton({ onClick, className, title = null }: ViewButtonType) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -17,7 +17,7 @@ function ViewButton({ onClick, className }: ViewButtonType) {
       onClick={onClick}
       className={classNames(style, className)}
     >
-      <p>{format('excel_upload.view_template')}</p>
+      <p>{ title || format('excel_upload.view_template')}</p>
     </button>
   );
 }

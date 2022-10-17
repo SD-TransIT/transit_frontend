@@ -155,6 +155,9 @@ function ShipmentForm({
           <p className="text-left text-lg text-transit-black font-semibold" />
           <ShipmentImagesData
             register={register}
+            mode={mode}
+            title={format('shipment.customer_images.label')}
+            shipmentId={initialFormValue?.id ?? null}
           />
         </div>
       </form>
