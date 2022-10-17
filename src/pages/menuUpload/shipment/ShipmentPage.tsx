@@ -24,7 +24,6 @@ import { RootState } from 'stores/reducers/rootReducer';
 import { getOrdersByOrdersIdRequest } from 'stores/sagas/orderDetailsSaga';
 import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
-import store from 'stores/store';
 import { DeleteShipmentRequestPayload } from 'stores/types/shipmentType';
 import { getRequest } from 'utils/apiClient';
 import columnsRender from 'utils/columnsRender';
@@ -62,8 +61,11 @@ function ShipmentPage() {
     (state: RootState) => state.shipment,
   );
 
-  // @ts-ignore
-  const stateType = store.getState().shipment.type;
+  const stateType = window.localStorage.getItem('stateType');
+
+  useEffect(() => {
+    window.localStorage.setItem('stateType', JSON.stringify(''));
+  }, []);
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
@@ -113,7 +115,7 @@ function ShipmentPage() {
       showToast(<SuccessSaved successMessage={`${format('shipment')} ${format('toast.success_created.message')}`} />, 'success');
     } else if (
       stateType === ShipmentActionTypes.PUT_SHIPMENT_SUCCESS
-      || stateType === ShipmentActionTypes.DELETE_SHIPMENT_SUCCESS) {
+        || stateType === ShipmentActionTypes.DELETE_SHIPMENT_SUCCESS) {
       showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,7 +126,8 @@ function ShipmentPage() {
     setSearcher(formValues.search);
   };
 
-  const toggleDeleteModal = (object?:FieldValues) => {
+  const toggleDeleteModal = (object?: FieldValues) => {
+    window.localStorage.setItem('stateType', JSON.stringify(''));
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
@@ -190,6 +193,7 @@ function ShipmentPage() {
     if (orders.length > 0) {
       await refreshAccessToken();
       const fetchedOrderDetails = await getOrdersByOrdersIdRequest(orders.toString());
+      window.localStorage.setItem('stateType', JSON.stringify(''));
       navigate(Paths.shipment_details_edit, {
         state: {
           propsForEditPage,
@@ -197,6 +201,7 @@ function ShipmentPage() {
         },
       });
     } else {
+      window.localStorage.setItem('stateType', JSON.stringify(''));
       navigate(Paths.shipment_details_edit, {
         state: {
           propsForEditPage,
@@ -223,7 +228,13 @@ function ShipmentPage() {
               0
               {format('app.results')}
             </p>
-            <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
+            <AddItemButton
+              onClick={() => {
+                window.localStorage.setItem('stateType', JSON.stringify(''));
+                navigate(Paths.shipment_details_add);
+              }}
+              className="w-fit p-2"
+            >
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
           </Table>
@@ -242,7 +253,13 @@ function ShipmentPage() {
             currentPage={page}
           >
             <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
-            <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
+            <AddItemButton
+              onClick={() => {
+                window.localStorage.setItem('stateType', JSON.stringify(''));
+                navigate(Paths.shipment_details_add);
+              }}
+              className="w-fit p-2"
+            >
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
           </Table>

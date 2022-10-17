@@ -47,12 +47,16 @@ const shipmentReducer = (
         error: null,
       };
     case ShipmentActionTypes.POST_SHIPMENT_SUCCESS:
+      window.localStorage.setItem('stateType', ('POST_SHIPMENT_SUCCESS'));
+
       return {
         ...state,
         shipment: action.payload,
         error: null,
       };
     case ShipmentActionTypes.POST_SHIPMENT_FAILURE:
+      window.localStorage.setItem('stateType', ('POST_SHIPMENT_FAILURE'));
+
       return {
         ...state,
         shipment: null,
@@ -65,12 +69,16 @@ const shipmentReducer = (
         error: null,
       };
     case ShipmentActionTypes.PUT_SHIPMENT_SUCCESS:
+      window.localStorage.setItem('stateType', ('PUT_SHIPMENT_SUCCESS'));
+
       return {
         ...state,
         shipment: action.payload,
         error: null,
       };
     case ShipmentActionTypes.PUT_SHIPMENT_FAILURE:
+      window.localStorage.setItem('stateType', ('PUT_SHIPMENT_FAILURE'));
+
       return {
         ...state,
         shipment: null,
@@ -82,11 +90,15 @@ const shipmentReducer = (
         error: null,
       };
     case ShipmentActionTypes.DELETE_SHIPMENT_SUCCESS:
+      window.localStorage.setItem('stateType', ('DELETE_SHIPMENT_SUCCESS'));
+
       return {
         ...state,
         error: null,
       };
     case ShipmentActionTypes.DELETE_SHIPMENT_FAILURE:
+      window.localStorage.setItem('stateType', ('DELETE_SHIPMENT_FAILURE'));
+
       return {
         ...state,
         error: action.payload,
