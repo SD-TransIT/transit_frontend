@@ -107,7 +107,7 @@ function CostAddDetailForm({
   return (
     <div className="flex flex-row">
       <div className="flex flex-col w-1/2 border-y-4 border-l-4 border-y-transit-grey border-l-transit-grey p-2">
-        <p className="text-lg text-transit-black-secondary">{format('transporter_details.vehicle_number.label')}</p>
+        <p className="text-lg text-transit-black-secondary">{format('shared.vehicle_number.label')}</p>
         {vehicles.map(
           (vehicle: ITransporterDetails) => (
             <div className="flex inline-block gap-2">
@@ -127,7 +127,7 @@ function CostAddDetailForm({
         )}
       </div>
       <div className="flex flex-col w-1/2 border-y-4 border-r-4 border-y-transit-grey border-r-transit-grey p-2">
-        <p className="text-lg text-transit-black-secondary">{format('shipment.shipment_number.label')}</p>
+        <p className="text-lg text-transit-black-secondary">{format('shared.shipment_number.label')}</p>
         {shipments.map(
           (shipment: IShipment) => (
             <div className="flex inline-block gap-2">

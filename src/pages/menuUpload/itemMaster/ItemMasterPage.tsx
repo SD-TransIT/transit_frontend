@@ -19,6 +19,7 @@ import {
   DeleteItemRequestPayload, PostItemRequestPayload, PutItemRequestPayload,
 } from 'stores/types/itemType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import ItemForm from '../../../components/forms/item/ItemForm';
@@ -30,6 +31,8 @@ import { IItem } from '../../../models/item/IItem';
 import AddItemButton from '../../../shared/buttons/AddItemButton';
 import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
+
+import itemMasterColumns from './itemMasterColumns';
 
 const clearValues: IItem = { id: undefined, name: '', conditions: '' };
 
@@ -60,44 +63,11 @@ function ItemMasterPage() {
     (state: RootState) => state.item,
   );
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: format('item_master.column.id.label'),
-      accessor: 'id',
-      width: 80,
-      maxWidth: 80,
-    },
-    {
-      Header: format('item_master.column.name.label'),
-      accessor: 'name',
-      width: 350,
-      maxWidth: 350,
-    },
-    {
-      Header: format('item_master.volume.label'),
-      accessor: 'volume',
-    },
-    {
-      Header: format('item_master.cost.label'),
-      accessor: 'cost',
-    },
-    {
-      Header: format('item_master.category.label'),
-      accessor: 'category',
-    },
-    {
-      Header: format('item_master.sub_category.label'),
-      accessor: 'sub_category',
-    },
-    {
-      Header: format('item_master.weight.label'),
-      accessor: 'weight',
-    },
-    {
-      Header: format('item_master.column.conditions.label'),
-      accessor: 'conditions',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(itemMasterColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)

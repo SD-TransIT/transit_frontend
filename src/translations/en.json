@@ -23,12 +23,8 @@
     "cost.label": "Cost",
     "cost_form.header": "Cost form",
     "cost.distance.label": "Distance",
-    "cost.driver_name.label": "Driver Name",
     "cost.transporter_additional_cost.label": "Transporter Additional Cost",
     "cost.transporter_base_cost.label": "Transporter Base Cost",
-    "cost.transporter_name.label": "Transporter Name",
-    "cost.shipment_number.label": "Shipment Number",
-    "cost.vehicle_number.label": "Vehicle Number",
     
     "customer": "Customer Master",
     "customer_master.address_1.label": "Address 1",
@@ -46,14 +42,12 @@
     "customer_master.first_name.label": "First Name",
     "customer_master.gps.label": "GPS Coordinates",
     "customer_master.last_name.label": "Last Name",
-    "customer_master.name.label": "Name",
     "customer_master.opening_time.label": "Opening time",
     "customer_master.phone.label": "Phone Number",
     "customer_master.state.label": "State",
     
     "customer_type": "Customer Type",
     "customer_type.header": "Customer Type",
-    "customer_type.column.id.label": "ID",
     "customer_type.column.name": "Customer Name",
     "customer_type.name.label": "Customer Type Name",
     
@@ -64,24 +58,19 @@
     "day.saturday.label": "Saturday",
     "day.sunday.label": "Sunday",
     "day.wednesday.label": "Wednesday",
-
+    
     "driver": "Driver Master",
     "driver_master": "Driver",
     "driver_master.header": "Driver Master",
-    "driver_master.column.id.label": "ID",
     "driver_master.column.transport_name.label": "Transport Name",
     "driver_master.transporter.label": "Transporter",
-    "driver_master.name.label": "Driver Name",
     "driver_master.epod_username.label": "ePOD Username",
     "driver_master.epod_password.label": "ePOD Password",
-    "driver_master.epod_username.placeholder": "Username",
-    "driver_master.epod_password.placeholder": "Password",
-
+    
     "excel_upload": "Excel Upload",
     "excel_upload.about.label": "This Form helps to upload data in the tool using excel.",
     "excel_upload.added_file.label": "File Added!",
     "excel_upload.download.label": "Download .xlsx templates",
-    "excel_upload.label": "Excel Upload",
     "excel_upload.error_upload.header": "Error!",
     "excel_upload.error_upload.label": "Could not apply changes",
     "excel_upload.error.header": "Error when adding",
@@ -94,11 +83,9 @@
     "excel_upload.upload_new_file.label": "Upload new file",
     "excel_upload.upload_try_again.label": "Try again",
     "excel_upload.view_template": "View Template",
-
+    
     "item_details": "Item Details",
     "item_details.header": "Item Details",
-    "item_details.column.id.label": "ID",
-    "item_details.name.label": "Item Name",
     "item_details.manufacturing_date.label": "Manufacturing Date (MM/DD/YYYY)",
     "item_details.received_date.label": "Received Date (MM/DD/YYYY)",
     "item_details.expiry_date.label": "Expiry Date (MM/DD/YYYY)",
@@ -111,9 +98,7 @@
     "item": "Item Master",
     "item_master.header": "Item Master",
     "item_master.column.id.label": "Item ID",
-    "item_master.column.name.label": "Product Name",
     "item_master.column.conditions.label": "Ambience/Cold Chain",
-    "item_master.name.label": "Item Name",
     "item_master.volume.label": "Volume (Cubic Meters)",
     "item_master.cost.label": "Cost (Local Currency)",
     "item_master.weight.label": "Weight (Kgs)",
@@ -123,7 +108,7 @@
     "item_master.volume.placeholder": "Volume",
     "item_master.cost.placeholder": "Cost",
     "item_master.weight.placeholder": "Weight",
-
+    
     "mode_of_transport": "Mode of Transport Master",
     "mode_of_transport.header": "Mode of Transport Master",
     "mode_of_transport.class.label": "Class",
@@ -138,14 +123,12 @@
     "pod_variance": "POD Variance",
     "pod_variance.description_dso.label": "Description DSO",
     "pod_variance.header": "POD Variance",
-    "pod_variance.id.label": "ID",
     "pod_variance.order.order_number.label": "Order Number",
-    "pod_variance.order.product_name.label": "Product Name",
     "pod_variance.order.quantity.total.label": "Total Quantity",
     "pod_variance.order.quantity.new.label": "New Quantity",
     "pod_variance.shipment.label": "Shipment",
     "pod_variance.variance_details.label": "Variance Details",
-
+    
     "report.average_product_cost_per_shipment.label": "Average Product Cost Per Shipment By Transporter",
     "report.avg_km_per_shipmen.label": "Average Kilometers per Shipments by Transporter",
     "report.avg_km_per_shipment.label": "Average Kilometers per Shipments",
@@ -189,19 +172,26 @@
     "report.total_vehicle_volume_used.label": "Total Vehicle Volume Used",
     "report.transporter_cost_per_km.label": "Average Transporter Cost Per Kilometer By Transporter",
     "report.transporter_cost_per_shipment.label": "Average Transporter Cost Per Shipment By Transporter",
-
+    
     "search.generate": "Generate",
     "search.clear": "Clear",
     "search.placeholder": "Enter Search String...",
     "search.search.label": "Search",
+    
+    "shared.driver_name.label": "Driver Name",
+    "shared.item_name.label": "Item Name",
+    "shared.password.placeholder": "Password",
+    "shared.product_name.label": "Product Name",
+    "shared.shipment_number.label": "Shipment Number",
+    "shared.transporter_name.label": "Transporter Name",
+    "shared.username.placeholder": "Username",
+    "shared.vehicle_number.label": "Vehicle Number",
 
     "sign_in.create_an_account": "Create an account",
     "sign_in.label": "Sign in",
     "sign_in.massage": "Sign up on the internal platform",
     "sign_in.not_registered": "Not registered?",
-    "sign_in.password.placeholder": "Password",
-    "sign_in.username.placeholder": "Username",
-
+    
     "shipment": "Shipment",
     "shipment.add.header": "Back to Shipment",
     "shipment.add_new.label": "New Shipment",
@@ -225,7 +215,6 @@
     "shipment.header": "Shipment",
     "shipment.orders.label": "Orders",
     "shipment.order_add.label": "+ Add Order",
-    "shipment.order_line_items.product.label": "Product Name",
     "shipment.order_line_items.quantity.label": "Quantity",
     "shipment.order_number.label": "Order number",
     "shipment.pod.label": "Paper Based POD Received",
@@ -238,16 +227,12 @@
     "shipment.pod_status.robbery.label": "Robbery",
     "shipment.ropo_number.label": "ROPO Number",
     "shipment.signed_by.label": "Signed by",
-    "shipment.shipment_number.label": "Shipment Number",
     "shipment.ship_date.label": "Shipment Date (DD/MM/YYYY)",
     "shipment.supplier_name.label": "Supplier Name",
-    "shipment.transporter_name.label": "Transporter Name",
-    "shipment.vehicle_number.label": "Vehicle Number",
-
+    
     "supplier": "Supplier Master",
     "supplier_master": "Supplier",
     "supplier_master.header": "Supplier Master",
-    "supplier_master.id.label": "ID",
     "supplier_master.name.label": "Supplier Name",
     "supplier_master.address_1.label": "Address 1",
     "supplier_master.address_2.label": "Address 2",
@@ -259,10 +244,9 @@
     "supplier_master.phone_number.label": "Phone Number",
     "supplier_master.gps.label": "GPS Coordinates",
     "supplier_master.address.placeholder": "Address",
-
+    
     "table.of": "of",
-    "table.results.label": "Results",
-
+    
     "transporter": "Transporter",
     "transporter.address_1.label": "Address 1",
     "transporter.address_2.label": "Address 2",
@@ -274,7 +258,7 @@
     "transporter.phone_number.label": "Phone Number",
     "transporter.state.label": "State",
     "transporter.transporter_name.label": "Transporter Name",
-
+    
     "transporter_details": "Transporter Details",
     "transporter_details.header": "Transporter Details",
     "transporter_details.header.label": "Vehicle Details",
@@ -283,10 +267,9 @@
     "transporter_details.column.driver.label": "Driver Name",
     "transporter_details.mode_of_transport.label": "Mode of Transport",
     "transporter_details.transporter_name.label": "Transporter Name",
-    "transporter_details.vehicle_number.label": "Vehicle Number",
     "transporter_details.vehicle_weight.label": "Vehicle Weight (Kgs)",
     "transporter_details.vehicle_volume.label": "Vehicle Volume",
-
+    
     "validation.error.character_length": "This field length is too long (maximum is 10 characters)",
     "validation.error.credentials": "Incorrect credentials",
     "validation.error.duplicate_order": "This order has already been added",

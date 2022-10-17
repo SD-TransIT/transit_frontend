@@ -51,13 +51,13 @@ function ItemForm({
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('item_master.name.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.item_name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('name', { required: true })}
                     name="name"
                     id="floatingInput"
-                    placeholder={format('item_master.name.label')}
+                    placeholder={format('shared.item_name.label')}
                     type="text"
                     isInvalid={Boolean(errors.name)}
                   />

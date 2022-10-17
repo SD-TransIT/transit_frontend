@@ -21,7 +21,10 @@ import { podVarianceUrl } from 'stores/sagas/podVarianceSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeletePodVarianceRequestPayload, PostPodVarianceRequestPayload, PutPodVarianceRequestPayload } from 'stores/types/podVarianceType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import podVarianceColumns from './podVarianceColumns';
 
 function PodVariancePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -44,22 +47,11 @@ function PodVariancePage() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: format('pod_variance.id.label'),
-      accessor: 'id',
-      width: 150,
-      maxWidth: 150,
-    },
-    {
-      Header: format('pod_variance.shipment.label'),
-      accessor: 'shipment',
-    },
-    {
-      Header: format('pod_variance.description_dso.label'),
-      accessor: 'dso_type',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(podVarianceColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     podVariance,

@@ -21,7 +21,12 @@ import { RootState } from 'stores/reducers/rootReducer';
 import { getCostRequest } from 'stores/sagas/costSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { BulkPutCostRequestPayload, PutCostRequestPayload } from 'stores/types/costType';
-import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+import columnsRender from 'utils/columnsRender';
+import {
+  DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE,
+} from 'utils/consts';
+
+import costColumns from './costColumns';
 
 function CostFormPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -42,44 +47,11 @@ function CostFormPage() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: format('cost.shipment_number.label'),
-      accessor: 'id',
-      width: 150,
-      maxWidth: 150,
-    },
-    {
-      Header: format('cost.transporter_name.label'),
-      accessor: 'transporter_name',
-      width: 400,
-      maxWidth: 400,
-    },
-    {
-      Header: format('cost.driver_name.label'),
-      accessor: 'driver_name',
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('cost.vehicle_number.label'),
-      accessor: 'vehicle_number',
-      width: 200,
-      maxWidth: 200,
-    },
-    {
-      Header: format('cost.transporter_base_cost.label'),
-      accessor: 'transporter_base_cost',
-      width: 200,
-      maxWidth: 200,
-    },
-    {
-      Header: format('cost.transporter_additional_cost.label'),
-      accessor: 'transporter_additional_cost',
-      width: 200,
-      maxWidth: 200,
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(costColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     cost,

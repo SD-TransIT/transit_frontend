@@ -2,7 +2,6 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 
-import { format as formatDate } from 'date-fns';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
@@ -25,7 +24,10 @@ import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteShipmentRequestPayload } from 'stores/types/shipmentType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import shipmentColumns from './shipmentColumns';
 
 function ShipmentPage() {
   const dispatch = useDispatch();
@@ -45,77 +47,11 @@ function ShipmentPage() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: format('shipment.shipment_number.label'),
-      accessor: 'id',
-      width: 100,
-      maxWidth: 100,
-    },
-    {
-      Header: format('shipment.transporter_name.label'),
-      accessor: 'transporter_name',
-      width: 350,
-      maxWidth: 350,
-    },
-    {
-      Header: format('shipment.driver_name.label'),
-      accessor: 'driver_name',
-    },
-    {
-      Header: format('shipment.vehicle_number.label'),
-      accessor: 'vehicle_number',
-    },
-    {
-      Header: format('shipment.ship_date.label'),
-      accessor: 'ship_date',
-      Cell: ({ value }: any) => (value ? formatDate(new Date(value), 'MM/dd/yyyy') : ''),
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('shipment.expected_delivery_date.label'),
-      accessor: 'expected_delivery_date',
-      Cell: ({ value }: any) => (value ? formatDate(new Date(value), 'MM/dd/yyyy') : ''),
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('shipment.custom_route_number.label'),
-      accessor: 'custom_route_number',
-    },
-    {
-      Header: format('shipment.delay_justified.label'),
-      Cell: ({ value }: any) => (value ? value.toString() : 'false'),
-      accessor: 'delay_justified',
-    },
-    {
-      Header: format('shipment.delivery_date.label'),
-      accessor: 'delivery_date',
-      Cell: ({ value }: any) => (value ? formatDate(new Date(value), 'MM/dd/yyyy') : ''),
-      width: 250,
-      maxWidth: 250,
-    },
-    {
-      Header: format('shipment.pod_status.label'),
-      accessor: 'pod_status',
-      width: 200,
-      maxWidth: 200,
-    },
-    {
-      Header: format('shipment.pod.label'),
-      Cell: ({ value }: any) => (value ? value.toString() : 'false'),
-      accessor: 'pod',
-      width: 200,
-      maxWidth: 200,
-    },
-    {
-      Header: format('shipment.customer_name.label'),
-      accessor: 'customer_name',
-      width: 250,
-      maxWidth: 250,
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(shipmentColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     shipment,

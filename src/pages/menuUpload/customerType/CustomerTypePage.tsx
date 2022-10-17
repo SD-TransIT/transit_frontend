@@ -29,7 +29,10 @@ import {
   PutCustomerTypeRequestPayload,
 } from 'stores/types/customerType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import customerTypeColumns from './customerTypeColumns';
 
 function CustomerTypePage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -50,18 +53,11 @@ function CustomerTypePage() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 40,
-      maxWidth: 40,
-    },
-    {
-      Header: format('customer_type.column.name'),
-      accessor: 'customer_type_name',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(customerTypeColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const dispatch = useDispatch();
 

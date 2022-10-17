@@ -29,9 +29,12 @@ import {
   PutModeOfTransportRequestPayload,
 } from 'stores/types/modeOfTransportType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import PageHeader from '../../types';
+
+import modeOfTransportColumns from './modeOfTransportColumns';
 
 function ModeOfTransportMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -54,22 +57,11 @@ function ModeOfTransportMasterPage() {
 
   const dispatch = useDispatch();
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 30,
-      maxWidth: 30,
-    },
-    {
-      Header: format('mode_of_transport.class.label'),
-      accessor: 'class_mode',
-    },
-    {
-      Header: format('mode_of_transport.vehicle_type.label'),
-      accessor: 'vehicle_type',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(modeOfTransportColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     mode,

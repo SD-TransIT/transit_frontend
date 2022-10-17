@@ -74,13 +74,13 @@ function TransporterDetailsForm({
                   {errors.mode_of_transport && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter_details.vehicle_number.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.vehicle_number.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('vehicle_number')}
                     name="vehicle_number"
                     id="floatingInput"
-                    placeholder={format('transporter_details.vehicle_number.label')}
+                    placeholder={format('shared.vehicle_number.label')}
                     type="text"
                   />
                 </div>

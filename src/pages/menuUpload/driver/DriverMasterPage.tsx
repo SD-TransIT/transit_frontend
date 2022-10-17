@@ -27,7 +27,10 @@ import {
   PutDriverRequestPayload,
 } from 'stores/types/driverType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import driverMasterColumns from './driverMasterColumns';
 
 function DriverMasterPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -50,22 +53,11 @@ function DriverMasterPage() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 30,
-      maxWidth: 30,
-    },
-    {
-      Header: format('transporter_details.column.name.label'),
-      accessor: 'transporter_name',
-    },
-    {
-      Header: format('transporter_details.column.driver.label'),
-      accessor: 'name',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(driverMasterColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     driver,

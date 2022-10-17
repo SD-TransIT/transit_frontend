@@ -35,7 +35,7 @@ function ShipmentOrderDetailsForm({
       maxWidth: 60,
     },
     {
-      Header: format('shipment.order_line_items.product.label'),
+      Header: format('shared.product_name.label'),
       accessor: 'product_name',
       width: 400,
       maxWidth: 400,

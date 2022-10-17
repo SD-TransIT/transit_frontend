@@ -5,7 +5,6 @@ import React, {
   useState,
 } from 'react';
 
-import { format as formatDate } from 'date-fns';
 import { FieldValues } from 'react-hook-form';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
@@ -25,7 +24,10 @@ import { itemDetailUrl } from 'stores/sagas/itemDetailSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteItemDetailRequestPayload, PostItemDetailRequestPayload, PutItemDetailRequestPayload } from 'stores/types/itemDetailType';
 import { getRequest } from 'utils/apiClient';
+import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
+
+import itemDetailColumns from './itemDetailColumns';
 
 function ItemDetailPage() {
   const [displayAddModal, setDisplayAddModal] = useState(false);
@@ -48,55 +50,11 @@ function ItemDetailPage() {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
-  const columns: ColumnType[] = React.useMemo(() => [
-    {
-      Header: 'ID',
-      accessor: 'id',
-      width: 40,
-      maxWidth: 40,
-    },
-    {
-      Header: format('item_details.name.label'),
-      accessor: 'item_name',
-      width: 350,
-      maxWidth: 350,
-    },
-    {
-      Header: format('item_details.manufacturing_date.label'),
-      accessor: 'manufacturing_date',
-      Cell: ({ value }: any) => formatDate(new Date(value), 'MM/dd/yyyy'),
-    },
-    {
-      Header: format('item_details.received_date.label'),
-      accessor: 'received_date',
-      Cell: ({ value }: any) => formatDate(new Date(value), 'MM/dd/yyyy'),
-    },
-    {
-      Header: format('item_details.expiry_date.label'),
-      accessor: 'expiry_date',
-      Cell: ({ value }: any) => formatDate(new Date(value), 'MM/dd/yyyy'),
-    },
-    {
-      Header: format('item_details.batch_namber.label'),
-      accessor: 'batch_number',
-    },
-    {
-      Header: format('item_details.gtin.label'),
-      accessor: 'gtin',
-    },
-    {
-      Header: format('item_details.funding_sources.label'),
-      accessor: 'funding_source',
-    },
-    {
-      Header: format('item_details.lot_number.label'),
-      accessor: 'lot_number',
-    },
-    {
-      Header: format('item_details.serial_number.label'),
-      accessor: 'serial_number',
-    },
-  ], [format]);
+  const columns: ColumnType[] = React.useMemo(
+    () => (columnsRender(itemDetailColumns, format)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [format],
+  );
 
   const {
     itemDetail,
