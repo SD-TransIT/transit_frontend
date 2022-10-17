@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import SimpleImageSlider from 'react-simple-image-slider';
@@ -9,6 +9,8 @@ import SubmitButton from 'shared/buttons/SubmitButton';
 import ViewButton from 'shared/buttons/ViewButton';
 import { getShipmentImagesRequest, resetShipmentImages } from 'stores/actions/shipmentImages/shipmentImagesActions';
 import { RootState } from 'stores/reducers/rootReducer';
+import { imagesZipName } from 'utils/consts';
+import saveZip from 'utils/saveZip';
 
 import 'styles/imageSlider.css';
 
@@ -22,6 +24,8 @@ function ShipmentImagesDataModal({
   } = useSelector(
     (state: RootState) => state.shipmentImages,
   );
+
+  const [degree, setDegree] = useState<number>(0);
 
   useEffect(() => {
     dispatch(resetShipmentImages());
@@ -40,14 +44,36 @@ function ShipmentImagesDataModal({
     }))
     : [];
 
+  const downloadZip = () => {
+    if (images.length > 0) {
+      saveZip(imagesZipName, images);
+    }
+  };
+
+  const flipLeft = () => {
+    if (images.length > 0) {
+      setDegree(degree - 90);
+      const containerDiv: any = document.getElementsByClassName('rsis-container')[0];
+      containerDiv.style.transform = `rotate(${degree - 90}deg)`;
+    }
+  };
+
+  const flipRight = () => {
+    if (images.length > 0) {
+      setDegree(degree + 90);
+      const containerDiv: any = document.getElementsByClassName('rsis-container')[0];
+      containerDiv.style.transform = `rotate(${degree + 90}deg)`;
+    }
+  };
+
   return (
     <div className="bg-transit-white w-full rounded-lg pt-4">
       <FormHeader title={title} onClick={onCancel} />
       {images.length > 0 ? (
-        <div className="pt-8">
+        <div id="photo-container" className="pt-8">
           <SimpleImageSlider
-            width={900}
-            height={634}
+            width={880}
+            height={550}
             images={images}
             showBullets
             showNavs
@@ -56,17 +82,17 @@ function ShipmentImagesDataModal({
           />
         </div>
       ) : (
-        <div className="pt-8" style={{ width: '900px', height: '634px' }} />
+        <div className="pt-8" style={{ width: '880px', height: '550px' }} />
       )}
       <div className="flex justify-between text-lg font-medium gap-6 pb-4 pt-8">
         <SubmitButton onClick={() => {}} className="w-fit" title="Load Customer" />
         <SubmitButton onClick={loadImages} className="w-fit" title="Uploaded Images" />
-        <SubmitButton onClick={() => {}} className="w-fit" title="Download Image" />
+        <SubmitButton onClick={downloadZip} className="w-fit" title="Download Image" />
         <SubmitButton onClick={() => {}} className="w-fit" title="Load EPOD" />
       </div>
       <div className="flex justify-between text-lg font-medium gap-6 pb-4 pt-2">
-        <ViewButton onClick={() => {}} className="w-fit" title="Flip left" />
-        <ViewButton onClick={() => {}} className="w-fit" title="Flip right" />
+        <ViewButton onClick={flipLeft} className="w-fit" title="Flip left" />
+        <ViewButton onClick={flipRight} className="w-fit" title="Flip right" />
       </div>
     </div>
   );
