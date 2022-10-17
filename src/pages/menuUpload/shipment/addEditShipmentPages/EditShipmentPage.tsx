@@ -29,6 +29,7 @@ function EditShipmentPage() {
     const paramsToPass: any = {};
     paramsToPass.id = dataForEdit.propsForEditPage[0].id;
     dispatch(deleteShipmentRequest(paramsToPass as DeleteShipmentRequestPayload));
+    window.localStorage.setItem('stateType', JSON.stringify(''));
     navigate(`${Paths.shipment_details}`);
   };
 

@@ -7,14 +7,17 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import {
   deleteItemRequest,
   postItemRequest,
   putItemRequest,
 } from 'stores/actions/item/itemActions';
+import ItemActionTypes from 'stores/actions/item/itemTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { itemUrl } from 'stores/sagas/itemSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import {
   DeleteItemRequestPayload, PostItemRequestPayload, PutItemRequestPayload,
 } from 'stores/types/itemType';
@@ -63,6 +66,9 @@ function ItemMasterPage() {
     (state: RootState) => state.item,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().item.type;
+
   const columns: ColumnType[] = React.useMemo(
     () => (columnsRender(itemMasterColumns, format)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,6 +112,22 @@ function ItemMasterPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
+
+  useEffect(() => {
+    if (
+      stateType === ItemActionTypes.PUT_ITEM_FAILURE
+      || stateType === ItemActionTypes.POST_ITEM_FAILURE
+      || stateType === ItemActionTypes.DELETE_ITEM_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === ItemActionTypes.POST_ITEM_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('item_master.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === ItemActionTypes.PUT_ITEM_SUCCESS
+      || stateType === ItemActionTypes.DELETE_ITEM_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

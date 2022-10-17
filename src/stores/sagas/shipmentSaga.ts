@@ -1,4 +1,3 @@
-import { FieldValues } from 'react-hook-form';
 import {
   all, call, put, takeLatest,
 } from 'redux-saga/effects';
@@ -9,7 +8,8 @@ import {
   deleteShipmentSuccess,
   getShipmentFailure, getShipmentSuccess,
   postShipmentFailure, postShipmentSuccess,
-  putShipmentFailure, putShipmentSuccess,
+  putShipmentFailure,
+  putShipmentSuccess,
 } from 'stores/actions/shipment/shipmentActions';
 import ShipmentActionTypes from 'stores/actions/shipment/shipmentTypes';
 import { sessionToken } from 'stores/reducers/tokenReducer';
@@ -20,17 +20,6 @@ import apiClient, {
 
 export const shipmentUrl = 'shipment_details/';
 export const shipmentDetailsFiles = 'shipment_details_files/';
-
-export const updateShipment = async (
-  payload: FieldValues,
-) => {
-  await refreshAccessToken();
-  await putRequest(
-    shipmentUrl,
-    payload,
-    payload.id,
-  );
-};
 
 export const addShipmentPhoto = async (
   id: number,
@@ -117,6 +106,9 @@ function* postShipmentSaga(action: any) {
 
 function* putShipmentSaga(action: any) {
   try {
+    const shipmentImage = action.payload.shipment_image;
+    // eslint-disable-next-line
+    delete action.payload.shipment_image;
     yield call(refreshAccessToken);
     const responsePut: { shipment: IShipment } = yield call(
       putRequest,
@@ -129,6 +121,11 @@ function* putShipmentSaga(action: any) {
       type: ShipmentActionTypes.PUT_SHIPMENT_SUCCESS,
       Shipment: responsePut,
     });
+    yield call(
+      addShipmentPhoto,
+      action.payload.id,
+      shipmentImage,
+    );
   } catch (error: any) {
     yield put(putShipmentFailure(error));
     yield put({

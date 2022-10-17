@@ -7,12 +7,16 @@ import { useNavigate } from 'react-router-dom';
 
 import FormHeader from 'components/shared/FormHeader';
 import { Paths } from 'routes/paths';
-import { postShipmentRequest } from 'stores/actions/shipment/shipmentActions';
 import {
-  addShipmentPhoto, shipmentUrl, updateShipment, updateShipmentOrders,
+  postShipmentRequest,
+  putShipmentRequest,
+} from 'stores/actions/shipment/shipmentActions';
+import {
+  addShipmentPhoto,
+  shipmentUrl,
 } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
-import { PostShipmentRequestPayload } from 'stores/types/shipmentType';
+import { PostShipmentRequestPayload, PutShipmentRequestPayload } from 'stores/types/shipmentType';
 import { postRequest } from 'utils/apiClient';
 
 import CancelButton from '../../../shared/buttons/CancelButton';
@@ -73,13 +77,11 @@ function ShipmentForm({
     payload.supplier = formValues.supplier.id;
     payload.delivery_status = formValues.delivery_status.value;
     payload.pod_status = formValues.pod_status.value;
-    if (mode === 'Add') {
-      payload.orders = orders;
-    } else {
+    payload.orders = orders;
+    if (mode === 'Edit') {
       payload.id = initialFormValue.id;
       delete payload.order_ids;
       delete payload.order_names;
-      delete payload.orders;
     }
     return payload;
   };
@@ -94,6 +96,7 @@ function ShipmentForm({
         const payload = formatShipmentPayload(formValues, orders);
         await createMultipleShipments(payload);
         if (index === customers.length - 1) {
+          window.localStorage.setItem('stateType', JSON.stringify(''));
           navigate(`${Paths.shipment_details}`);
         }
       });
@@ -101,16 +104,15 @@ function ShipmentForm({
       const orders = orderDetails.map((row: any) => (row.order_details_id));
       const payload = formatShipmentPayload(formValues, orders);
       dispatch(postShipmentRequest(payload as PostShipmentRequestPayload));
+      window.localStorage.setItem('stateType', JSON.stringify(''));
       navigate(`${Paths.shipment_details}`);
     }
   };
-
   const onSubmitEdit = async (formValues: FieldValues) => {
     const orders = orderDetails.map((row: any) => (row.order_details_id));
     const payload = formatShipmentPayload(formValues, orders);
-    await updateShipment(payload);
-    await updateShipmentOrders(payload.id, orders);
-    await addShipmentPhoto(payload.id, payload.shipment_image);
+    dispatch(putShipmentRequest(payload as PutShipmentRequestPayload));
+    window.localStorage.setItem('stateType', JSON.stringify(''));
     navigate(`${Paths.shipment_details}`);
   };
 

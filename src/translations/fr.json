@@ -246,6 +246,10 @@
     "supplier_master.address.placeholder": "Adresse",
     
     "table.of": "de",
+
+    "toast.success_saved.message": "Les modifications ont bien été enregistrées",
+    "toast.success_created.message": "créé avec succès",
+    "toast.failure_saved.message": "Impossible d'appliquer les modifications",
     
     "transporter": "Transporteur",
     "transporter.address_1.label": "Adresse 1",

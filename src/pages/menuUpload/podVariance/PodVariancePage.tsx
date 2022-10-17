@@ -12,13 +12,16 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deletePodVarianceRequest, postPodVarianceRequest, putPodVarianceRequest } from 'stores/actions/podVariance/podVarianceActions';
+import PodVarianceActionTypes from 'stores/actions/podVariance/podVarianceTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { podVarianceUrl } from 'stores/sagas/podVarianceSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import { DeletePodVarianceRequestPayload, PostPodVarianceRequestPayload, PutPodVarianceRequestPayload } from 'stores/types/podVarianceType';
 import { getRequest } from 'utils/apiClient';
 import columnsRender from 'utils/columnsRender';
@@ -59,6 +62,9 @@ function PodVariancePage() {
     (state: RootState) => state.podVariance,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().podVariance.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -96,6 +102,22 @@ function PodVariancePage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podVariance]);
+
+  useEffect(() => {
+    if (
+      stateType === PodVarianceActionTypes.PUT_POD_VARIANCE_FAILURE
+      || stateType === PodVarianceActionTypes.POST_POD_VARIANCE_FAILURE
+      || stateType === PodVarianceActionTypes.DELETE_POD_VARIANCE_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === PodVarianceActionTypes.POST_POD_VARIANCE_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('pod_variance')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === PodVarianceActionTypes.PUT_POD_VARIANCE_SUCCESS
+      || stateType === PodVarianceActionTypes.DELETE_POD_VARIANCE_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);

@@ -36,6 +36,7 @@ function ShipmentImagesDataModal({
     dispatch(getShipmentImagesRequest(
       { payload: { shipmentId } },
     ));
+    window.localStorage.setItem('stateType', JSON.stringify(''));
   };
 
   const images = shipmentImages !== undefined

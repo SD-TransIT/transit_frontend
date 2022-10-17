@@ -164,7 +164,8 @@
     "report.shipment_volume.label": "Volume de Remessa",
     "report.total_km.label": "Quilômetros Totais",
     "report.total_number_of_custom_routes.label": "Número total de rotas personalizadas",
-    "report.total_number_of_delayed_deliveries.label": "Número total de entregas justificadas atrasadas",        "report.total_number_of_eaches.label": "Número total de cada um",
+    "report.total_number_of_delayed_deliveries.label": "Número total de entregas justificadas atrasadas",
+    "report.total_number_of_eaches.label": "Número total de cada um",
     "report.total_number_of_km.label": "Número total de quilômetros",
     "report.total_number_of_ontime_deliveries.label": "Número total de entregas pontuais",
     "report.total_number_of_outstanding_pods.label": "Número total de PODs pendentes",
@@ -253,6 +254,10 @@
     "supplier_master.address.placeholder": "Endereço",
     
     "table.of": "de",
+
+    "toast.success_saved.message": "Alterações salvas com sucesso",
+    "toast.success_created.message": "criado com sucesso",
+    "toast.failure_saved.message": "Não foi possível aplicar as alterações",
     
     "transporter": "Transportador",
     "transporter.address_1.label": "Endereço 1",

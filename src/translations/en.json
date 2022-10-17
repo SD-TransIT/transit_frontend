@@ -246,7 +246,11 @@
     "supplier_master.address.placeholder": "Address",
     
     "table.of": "of",
-    
+
+    "toast.success_saved.message": "Changes successully saved",
+    "toast.success_created.message": "successully created",
+    "toast.failure_saved.message": "Could not apply changes",
+
     "transporter": "Transporter",
     "transporter.address_1.label": "Address 1",
     "transporter.address_2.label": "Address 2",

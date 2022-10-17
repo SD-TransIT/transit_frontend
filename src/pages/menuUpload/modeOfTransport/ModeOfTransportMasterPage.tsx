@@ -12,6 +12,7 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import { IModeOfTransport } from 'models/modeOfTransport/IModeOfTransport';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
@@ -20,9 +21,11 @@ import {
   postModeOfTransportRequest,
   putModeOfTransportRequest,
 } from 'stores/actions/modeOfTransport/modeOfTransportAction';
+import ModeOfTransportActionTypes from 'stores/actions/modeOfTransport/modeOfTransportTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { modeOfTransportUrl } from 'stores/sagas/modeOfTransport';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import {
   DeleteModeOfTransportRequestPayload,
   PostModeOfTransportRequestPayload,
@@ -69,6 +72,9 @@ function ModeOfTransportMasterPage() {
     (state: RootState) => state.modeOfTransport,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().modeOfTransport.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -106,6 +112,22 @@ function ModeOfTransportMasterPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
+
+  useEffect(() => {
+    if (
+      stateType === ModeOfTransportActionTypes.PUT_MODE_OF_TRANSPORT_FAILURE
+      || stateType === ModeOfTransportActionTypes.POST_MODE_OF_TRANSPORT_FAILURE
+      || stateType === ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === ModeOfTransportActionTypes.POST_MODE_OF_TRANSPORT_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('mode_of_transport.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === ModeOfTransportActionTypes.PUT_MODE_OF_TRANSPORT_SUCCESS
+      || stateType === ModeOfTransportActionTypes.DELETE_MODE_OF_TRANSPORT_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
