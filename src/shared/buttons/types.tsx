@@ -12,7 +12,8 @@ export type CancelButtonType = {
 
 export type ViewButtonType = {
   onClick: () => void,
-  className?: string
+  className?: string,
+  title?: string | null
 };
 
 export type ClearButtonType = {

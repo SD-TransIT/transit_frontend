@@ -12,6 +12,7 @@ import {
   putShipmentRequest,
 } from 'stores/actions/shipment/shipmentActions';
 import {
+  addShipmentPhoto,
   shipmentUrl,
 } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
@@ -65,7 +66,8 @@ function ShipmentForm({
     payload: FieldValues,
   ) => {
     await refreshAccessToken();
-    await postRequest(shipmentUrl, payload);
+    const responsePost = await postRequest(shipmentUrl, payload);
+    await addShipmentPhoto(responsePost.id, payload.shipment_image);
   };
 
   const formatShipmentPayload = (formValues: FieldValues, orders: string []) => {
@@ -94,6 +96,7 @@ function ShipmentForm({
         const payload = formatShipmentPayload(formValues, orders);
         await createMultipleShipments(payload);
         if (index === customers.length - 1) {
+          window.localStorage.setItem('stateType', JSON.stringify(''));
           navigate(`${Paths.shipment_details}`);
         }
       });
@@ -101,6 +104,7 @@ function ShipmentForm({
       const orders = orderDetails.map((row: any) => (row.order_details_id));
       const payload = formatShipmentPayload(formValues, orders);
       dispatch(postShipmentRequest(payload as PostShipmentRequestPayload));
+      window.localStorage.setItem('stateType', JSON.stringify(''));
       navigate(`${Paths.shipment_details}`);
     }
   };
@@ -108,6 +112,7 @@ function ShipmentForm({
     const orders = orderDetails.map((row: any) => (row.order_details_id));
     const payload = formatShipmentPayload(formValues, orders);
     dispatch(putShipmentRequest(payload as PutShipmentRequestPayload));
+    window.localStorage.setItem('stateType', JSON.stringify(''));
     navigate(`${Paths.shipment_details}`);
   };
 
@@ -150,7 +155,12 @@ function ShipmentForm({
             initialFormValue={initialFormValue}
           />
           <p className="text-left text-lg text-transit-black font-semibold" />
-          <ShipmentImagesData />
+          <ShipmentImagesData
+            register={register}
+            mode={mode}
+            title={format('shipment.customer_images.label')}
+            shipmentId={initialFormValue?.id ?? null}
+          />
         </div>
       </form>
       <div className="flex justify-end text-lg font-medium gap-2 pb-4">

@@ -15,7 +15,7 @@ const Input = React.forwardRef(({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={classNames({
-        'border-transit-red-primary': isInvalid, 'border-transit-grey-300': !isInvalid, 'border-none': disabled,
+        'border-transit-red-primary': isInvalid, 'border-transit-grey-300': !isInvalid, 'border-none': disabled || type === 'file',
       }, style, className, { 'w-full': type !== 'checkbox' })}
       name={name}
       id={id}

@@ -119,7 +119,7 @@ function ShipmentPage() {
       showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [format, stateType]);
+  }, [stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
@@ -143,6 +143,7 @@ function ShipmentPage() {
       paramsToPass.id = objectToDelete.id;
     }
     dispatch(deleteShipmentRequest(paramsToPass as DeleteShipmentRequestPayload));
+    window.localStorage.setItem('stateType', JSON.stringify(''));
     toggleDeleteModal();
   };
 

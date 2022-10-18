@@ -18,6 +18,7 @@ import orderDetailsSaga from './orderDetailsSaga';
 import orderLineDetailsSaga from './orderLineDetailsSaga';
 import podVarianceSaga from './podVarianceSaga';
 import reportsSaga from './reportsSaga';
+import shipmentImagesSaga from './shipmentImagesSaga';
 import shipmentSaga from './shipmentSaga';
 import transporterDetailsSaga from './transporterDetailsSaga';
 
@@ -32,6 +33,7 @@ export default function* rootSaga() {
     fork(itemSaga),
     fork(modeOfTransportSaga),
     fork(shipmentSaga),
+    fork(shipmentImagesSaga),
     fork(customerMasterSaga),
     fork(itemDetailSaga),
     fork(customerWeekDaysSaga),

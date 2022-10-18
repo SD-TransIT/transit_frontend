@@ -12,12 +12,39 @@ import {
   putShipmentSuccess,
 } from 'stores/actions/shipment/shipmentActions';
 import ShipmentActionTypes from 'stores/actions/shipment/shipmentTypes';
+import { sessionToken } from 'stores/reducers/tokenReducer';
 import refreshAccessToken from 'stores/sagas/utils';
-import {
+import apiClient, {
   deleteRequest, getRequest, postRequest, putRequest,
 } from 'utils/apiClient';
 
 export const shipmentUrl = 'shipment_details/';
+export const shipmentDetailsFiles = 'shipment_details_files/';
+
+export const addShipmentPhoto = async (
+  id: number,
+  file: any,
+) => {
+  if (file.length > 0) {
+    const fileData = new FormData();
+    fileData.append('file', file[0]);
+    fileData.append('shipment', `${id}`);
+    const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+    const { data } = await apiClient.post(
+      `${shipmentDetailsFiles}`,
+      fileData,
+      {
+        headers: {
+          'Content-type': 'multipart/form-data',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+    return data;
+  }
+
+  return null;
+};
 
 export const updateShipmentOrders = async (
   id: number,
@@ -49,6 +76,9 @@ function* getShipmentSaga(action: any) {
 
 function* postShipmentSaga(action: any) {
   try {
+    const shipmentImage = action.payload.shipment_image;
+    // eslint-disable-next-line
+    delete action.payload.shipment_image;
     yield call(refreshAccessToken);
     const responsePost: { shipment: IShipment } = yield call(
       postRequest,
@@ -60,6 +90,11 @@ function* postShipmentSaga(action: any) {
       type: ShipmentActionTypes.POST_SHIPMENT_SUCCESS,
       Shipment: responsePost,
     });
+    yield call(
+      addShipmentPhoto,
+      (responsePost as any).id,
+      shipmentImage,
+    );
   } catch (error: any) {
     yield put(postShipmentFailure(error));
     yield put({
@@ -71,6 +106,9 @@ function* postShipmentSaga(action: any) {
 
 function* putShipmentSaga(action: any) {
   try {
+    const shipmentImage = action.payload.shipment_image;
+    // eslint-disable-next-line
+    delete action.payload.shipment_image;
     yield call(refreshAccessToken);
     const responsePut: { shipment: IShipment } = yield call(
       putRequest,
@@ -83,6 +121,11 @@ function* putShipmentSaga(action: any) {
       type: ShipmentActionTypes.PUT_SHIPMENT_SUCCESS,
       Shipment: responsePut,
     });
+    yield call(
+      addShipmentPhoto,
+      action.payload.id,
+      shipmentImage,
+    );
   } catch (error: any) {
     yield put(putShipmentFailure(error));
     yield put({

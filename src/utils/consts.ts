@@ -2,6 +2,9 @@ export const DEFAULT_OFFSET = 10;
 export const FIRST_PAGE = 1;
 export const EMPTY_SEARCHER = '';
 
+export const imagesZipName = 'DownloadFiles.zip';
+export const zipFolder = 'files';
+
 export const timeOptionsForSelect = [
   { value: '00:00AM', label: '00:00AM' },
   { value: '00:30AM', label: '00:30AM' },

@@ -1,0 +1,37 @@
+.rsis-container div {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: 80% 80% !important;
+  background-color: #FFFFFF;  
+}
+
+#photo-container div {
+  background: #FFFFFF;
+}
+
+.rsis-container div {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: 80% 80% !important;
+  background-color: #FFFFFF;  
+  background: #FFFFFF;
+  transition: transform 1s;
+}
+
+img[alt="slide to right"] {
+  filter: invert(78%) sepia(68%) saturate(3874%) hue-rotate(169deg) brightness(93%) contrast(99%) !important;
+}
+
+.rsis-container ~ button > img {
+  filter: invert(78%) sepia(68%) saturate(3874%) hue-rotate(169deg) brightness(93%) contrast(99%) !important;
+}
+
+.rsis-container ~ div > button {
+  background: #80BCBF !important;
+  width: 15px !important;
+  height: 10px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  border: none !important;
+  margin: 0px 6px !important;
+}
