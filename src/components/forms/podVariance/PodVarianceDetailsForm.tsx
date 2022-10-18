@@ -103,7 +103,7 @@ function PodVarianceDetailsForm({
               <p>{orderLine.product_name}</p>
             </div>
             <div className="w-full pr-2">
-              <p>{mode === 'Add' ? orderLine.quantity : orderLine.old_quantity}</p>
+              <p>{orderLine.old_quantity}</p>
             </div>
             <div className="w-full pr-2">
               <Input
