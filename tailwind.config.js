@@ -28,7 +28,8 @@ module.exports = {
         disabled: "#F7F9FC",
         secondary: "#4A4E51",
         smallTableHeader: "#F4F7FC", 
-        100: "#F4F6F8"
+        100: "#F4F6F8",
+        toast: "#33AB80"
       },
       "transit-red": {
         DEFAULT: "#FF0000",

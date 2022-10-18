@@ -13,11 +13,13 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import { Paths } from 'routes/paths';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import { deleteShipmentRequest } from 'stores/actions/shipment/shipmentActions';
+import ShipmentActionTypes from 'stores/actions/shipment/shipmentTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { getOrdersByOrdersIdRequest } from 'stores/sagas/orderDetailsSaga';
 import { shipmentUrl } from 'stores/sagas/shipmentSaga';
@@ -59,6 +61,12 @@ function ShipmentPage() {
     (state: RootState) => state.shipment,
   );
 
+  const stateType = window.localStorage.getItem('stateType');
+
+  useEffect(() => {
+    window.localStorage.setItem('stateType', JSON.stringify(''));
+  }, []);
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -97,12 +105,29 @@ function ShipmentPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shipment]);
 
+  useEffect(() => {
+    if (
+      stateType === ShipmentActionTypes.PUT_SHIPMENT_FAILURE
+      || stateType === ShipmentActionTypes.POST_SHIPMENT_FAILURE
+      || stateType === ShipmentActionTypes.DELETE_SHIPMENT_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === ShipmentActionTypes.POST_SHIPMENT_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('shipment')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === ShipmentActionTypes.PUT_SHIPMENT_SUCCESS
+        || stateType === ShipmentActionTypes.DELETE_SHIPMENT_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
+
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
     setSearcher(formValues.search);
   };
 
-  const toggleDeleteModal = (object?:FieldValues) => {
+  const toggleDeleteModal = (object?: FieldValues) => {
+    window.localStorage.setItem('stateType', JSON.stringify(''));
     if (object) {
       setObjectToDelete((prevState) => ({
         ...prevState,
@@ -168,6 +193,7 @@ function ShipmentPage() {
     if (orders.length > 0) {
       await refreshAccessToken();
       const fetchedOrderDetails = await getOrdersByOrdersIdRequest(orders.toString());
+      window.localStorage.setItem('stateType', JSON.stringify(''));
       navigate(Paths.shipment_details_edit, {
         state: {
           propsForEditPage,
@@ -175,6 +201,7 @@ function ShipmentPage() {
         },
       });
     } else {
+      window.localStorage.setItem('stateType', JSON.stringify(''));
       navigate(Paths.shipment_details_edit, {
         state: {
           propsForEditPage,
@@ -201,7 +228,13 @@ function ShipmentPage() {
               0
               {format('app.results')}
             </p>
-            <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
+            <AddItemButton
+              onClick={() => {
+                window.localStorage.setItem('stateType', JSON.stringify(''));
+                navigate(Paths.shipment_details_add);
+              }}
+              className="w-fit p-2"
+            >
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
           </Table>
@@ -220,7 +253,13 @@ function ShipmentPage() {
             currentPage={page}
           >
             <p>{`${numberOfAvailableData} ${format('app.results')}`}</p>
-            <AddItemButton onClick={() => navigate(Paths.shipment_details_add)} className="w-fit p-2">
+            <AddItemButton
+              onClick={() => {
+                window.localStorage.setItem('stateType', JSON.stringify(''));
+                navigate(Paths.shipment_details_add);
+              }}
+              className="w-fit p-2"
+            >
               <AiOutlinePlus className="text-transit-white" />
             </AddItemButton>
           </Table>

@@ -12,15 +12,18 @@ import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
+import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
 import AddItemButton from 'shared/buttons/AddItemButton';
 import Dialog from 'shared/dialog/Dialog';
 import {
   deleteDriverRequest, postDriverRequest, putDriverRequest,
 } from 'stores/actions/driver/driverActions';
+import DriverActionTypes from 'stores/actions/driver/driverTypes';
 import { RootState } from 'stores/reducers/rootReducer';
 import { driverUrl } from 'stores/sagas/driverSaga';
 import refreshAccessToken from 'stores/sagas/utils';
+import store from 'stores/store';
 import {
   DeleteDriverRequestPayload,
   PostDriverRequestPayload,
@@ -65,6 +68,9 @@ function DriverMasterPage() {
     (state: RootState) => state.driver,
   );
 
+  // @ts-ignore
+  const stateType = store.getState().driver.type;
+
   const calculatePagesCount = (pageSize: number, totalCount: number) => (
     totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
   );
@@ -102,6 +108,22 @@ function DriverMasterPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [driver]);
+
+  useEffect(() => {
+    if (
+      stateType === DriverActionTypes.PUT_DRIVER_FAILURE
+      || stateType === DriverActionTypes.POST_DRIVER_FAILURE
+      || stateType === DriverActionTypes.DELETE_DRIVER_FAILURE) {
+      showToast(<ErrorMessage />, 'error');
+    } else if (stateType === DriverActionTypes.POST_DRIVER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={`${format('customer_type.header')} ${format('toast.success_created.message')}`} />, 'success');
+    } else if (
+      stateType === DriverActionTypes.PUT_DRIVER_SUCCESS
+      || stateType === DriverActionTypes.DELETE_DRIVER_SUCCESS) {
+      showToast(<SuccessSaved successMessage={format('toast.success_saved.message')} />, 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [format, stateType]);
 
   const refetch = (formValues: any) => {
     setPage(FIRST_PAGE);
