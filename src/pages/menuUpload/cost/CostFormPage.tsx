@@ -133,8 +133,6 @@ function CostFormPage() {
   };
 
   const toggleEditModal = (object?: FieldValues, datas?: any) => {
-    // toast.error('new modal', { toastId: new Date().toString() });
-
     if (object && object.id !== undefined) {
       const record = datas.find((data_record:any) => data_record.id === object.id);
       setObjectToEdit((prevState) => ({
