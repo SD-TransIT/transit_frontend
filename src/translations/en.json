@@ -17,7 +17,7 @@
     "app.results": "Results",
     "app.save": "Save",
     "app.select_day.label": "Select day",
-    "app.date.label": "Date (MM/DD/YYYY)",
+    "app.date.label": "Date (DD/MM/YYYY)",
     
     "cost": "Cost form",
     "cost.label": "Cost",
@@ -86,9 +86,9 @@
     
     "item_details": "Item Details",
     "item_details.header": "Item Details",
-    "item_details.manufacturing_date.label": "Manufacturing Date (MM/DD/YYYY)",
-    "item_details.received_date.label": "Received Date (MM/DD/YYYY)",
-    "item_details.expiry_date.label": "Expiry Date (MM/DD/YYYY)",
+    "item_details.manufacturing_date.label": "Manufacturing Date",
+    "item_details.received_date.label": "Received Date",
+    "item_details.expiry_date.label": "Expiry Date",
     "item_details.batch_namber.label": "Batch Number",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Funding Sources",
@@ -117,7 +117,7 @@
     
     "order_details": "Order Details",
     "order_details.header": "Order Details",
-    "order_details.received_date.label": "Order Received Date (MM/DD/YYYY)",
+    "order_details.received_date.label": "Order Received Date",
     "order_details.total_quantity.label": "Total Quantity",
     
     "pod_variance": "POD Variance",
@@ -201,7 +201,7 @@
     "shipment.customer_name_table.label": "Customer Name",
     "shipment.custom_route_number.label": "Custom Route Number",
     "shipment.delay_justified.label": "Delay Justified",
-    "shipment.delivery_date.label": "Delivery Date (DD/MM/YYYY)",
+    "shipment.delivery_date.label": "Delivery Date",
     "shipment.delivery_details.label": "Delivery Details",
     "shipment.delivery_status.delivered.label": "Delivered",
     "shipment.delivery_status.label": "Delivery Status",
@@ -210,7 +210,7 @@
     "shipment_details": "Shipment",
     "shipment.driver_name.label": "Driver Name",
     "shipment.edit.header": "Edit Shipment",
-    "shipment.expected_delivery_date.label": "Expected Delivery Date (DD/MM/YYYY)",
+    "shipment.expected_delivery_date.label": "Expected Delivery Date",
     "shipment.gps_coordinates.label": "GPS Coordinates",
     "shipment.header": "Shipment",
     "shipment.orders.label": "Orders",
@@ -227,7 +227,7 @@
     "shipment.pod_status.robbery.label": "Robbery",
     "shipment.ropo_number.label": "ROPO Number",
     "shipment.signed_by.label": "Signed by",
-    "shipment.ship_date.label": "Shipment Date (DD/MM/YYYY)",
+    "shipment.ship_date.label": "Shipment Date",
     "shipment.supplier_name.label": "Supplier Name",
     
     "supplier": "Supplier Master",

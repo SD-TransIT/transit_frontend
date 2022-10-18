@@ -6,8 +6,6 @@ const columnsRender = (columnArray: any[], format: any) => columnArray.map((colu
     return {
       Header: format(column.label),
       accessor: column.accessor,
-      width: 350,
-      maxWidth: 350,
     };
   } if (
     column.accessor === 'received_date'
@@ -21,9 +19,7 @@ const columnsRender = (columnArray: any[], format: any) => columnArray.map((colu
     return {
       Header: format(column.label),
       accessor: column.accessor,
-      Cell: ({ value }: any) => formatDate(new Date(value), 'MM/dd/yyyy'),
-      width: 450,
-      maxWidth: 450,
+      Cell: ({ value }: any) => formatDate(new Date(value), 'dd/MM/yyyy'),
     };
   } if (
     column.accessor === 'delay_justified' || column.accessor === 'pod'
@@ -32,15 +28,11 @@ const columnsRender = (columnArray: any[], format: any) => columnArray.map((colu
       Header: format(column.label),
       accessor: column.accessor,
       Cell: ({ value }: any) => (value ? value.toString() : 'false'),
-      width: 450,
-      maxWidth: 450,
     };
   }
   return {
     Header: format(column.label),
     accessor: column.accessor,
-    width: 450,
-    maxWidth: 450,
   };
 });
 

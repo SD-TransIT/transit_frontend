@@ -17,7 +17,7 @@
     "app.results": "Résultats",
     "app.save": "Enregistrer",
     "app.select_day.label": "Sélectionnez le jour",   
-    "app.date.label": "Date (MM/DD/YYYY)",
+    "app.date.label": "Date (DD/MM/YYYY)",
 
     "cost": "Formulaire de coût",
     "cost.label": "Coût",
@@ -86,9 +86,9 @@
     
     "item_details": "Détail de l'article",
     "item_details.header": "Détail de l'article",
-    "item_details.manufacturing_date.label": "Date de fabrication (MM/DD/YYYY)",
-    "item_details.received_date.label": "Date de réception (MM/DD/YYYY)",
-    "item_details.expiry_date.label": "Date d'expiration (MM/DD/YYYY)",
+    "item_details.manufacturing_date.label": "Date de fabrication",
+    "item_details.received_date.label": "Date de réception",
+    "item_details.expiry_date.label": "Date d'expiration",
     "item_details.batch_namber.label": "Numéro de lot",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Sources de financement",
@@ -117,7 +117,7 @@
     
     "order_details": "Commande / détail de la commande",
     "order_details.header": "Commande / détail de la commande",
-    "order_details.received_date.label": "Date de réception de la commande (MM/DD/YYYY)",
+    "order_details.received_date.label": "Date de réception de la commande",
     "order_details.total_quantity.label": "Quantité totale",
     
     "pod_variance": "Changement de lieu de livraison",
@@ -201,7 +201,7 @@
     "shipment.customer_name_table.label": "Nom du client",
     "shipment.custom_route_number.label": "Numéro de route du client",
     "shipment.delay_justified.label": "Retard justifié",
-    "shipment.delivery_date.label": "Date de livraison (DD/MM/YYYY)",
+    "shipment.delivery_date.label": "Date de livraison",
     "shipment.delivery_details.label": "Détails de livraison",
     "shipment.delivery_status.delivered.label": "Livré",
     "shipment.delivery_status.label": "Livrer le statut",
@@ -210,7 +210,7 @@
     "shipment_details": "Chargement / Chargement / Expédition",
     "shipment.driver_name.label": "Nom du conducteur",
     "shipment.edit.header": "Modifier expédition",
-    "shipment.expected_delivery_date.label": "Date de livraison prévue (DD/MM/YYYY)",
+    "shipment.expected_delivery_date.label": "Date de livraison prévue",
     "shipment.gps_coordinates.label": "Les coordonnées",
     "shipment.header": "Chargement / Chargement / Expédition",
     "shipment.orders.label": "Ordres",
@@ -226,7 +226,7 @@
     "shipment.pod_status.pod_signed_dso.label": "POD signé DSO",
     "shipment.pod_status.robbery.label": "Vol",
     "shipment.ropo_number.label": "Numéro RO / PO",
-    "shipment.ship_date.label": "Date d'expédition (DD/MM/YYYY)",
+    "shipment.ship_date.label": "Date d'expédition",
     "shipment.signed_by.label": "Name of signatory",
     "shipment.supplier_name.label": "Nom du fournisseur",
     
