@@ -12,6 +12,8 @@ import PaginationButton from '../../../shared/buttons/PaginationButton';
 
 import { TableInstanceWithHooks, TableProps } from './types';
 
+import 'styles/table.css';
+
 function ReportTable({ columns, data, children }: TableProps) {
   const {
     getTableProps,
@@ -53,18 +55,18 @@ function ReportTable({ columns, data, children }: TableProps) {
         <div className="flex flex-row justify-between items-center w-content px-4 py-2">
           {children}
         </div>
-        <div className="overflow-scroll w-full">
+        <div className="overflow-x-auto">
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <table {...getTableProps()} className="w-full">
-            <thead className="bg-transit-grey">
+          <table {...getTableProps()} className="table">
+            <thead className="whitespace-normal">
               {headerGroups.map((headerGroup) => {
                 const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
                 return (
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                  <tr {...restHeaderGroupProps} key={key}>
+                  <tr {...restHeaderGroupProps} key={key} className="trHead">
                     {headerGroup.headers.map((column) => (
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      <th {...column.getHeaderProps()} key={column.id} className="flex text-left items-center h-10 pl-4">
+                      <th {...column.getHeaderProps()} key={column.id} className="th">
                         {column.render('Header')}
                       </th>
                     ))}
@@ -73,14 +75,14 @@ function ReportTable({ columns, data, children }: TableProps) {
               })}
             </thead>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <tbody {...getTableBodyProps()} className="w-full">
+            <tbody {...getTableBodyProps()} className="tbody">
               {page.map((row) => {
                 prepareRow(row);
                 return (
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                  <tr {...row.getRowProps()} key={row.id} className="flex flex-row text-left items-center even:bg-transit-grey-light h-12 font-normal">
+                  <tr {...row.getRowProps()} key={row.id} className="trBody">
                     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                    {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="flex flex-row px-4">{cell.render('Cell')}</td>)}
+                    {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="td">{cell.render('Cell')}</td>)}
                   </tr>
                 );
               })}

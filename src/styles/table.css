@@ -1,0 +1,58 @@
+.table {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    white-space: nowrap;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.trHead {
+    background-color: #F2F2F2;
+    align-items: center;
+}
+
+.th {
+    padding: 15px;
+}
+
+.tbody {
+    position: relative;
+}
+
+.trBody {
+    background-color: #FFFFFF;
+}
+
+.trBody:nth-child(even) {
+    background-color: #F9FAFC;
+}
+
+.td {
+    padding: 15px;
+}
+
+.actionField {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 100%;
+    justify-content: flex-end;
+    height: 51px;
+    left:0px;
+    align-items: center
+}
+
+.trBody:hover {
+    background-color: #E0EEEF;
+}
+
+.actionIcons {
+    display: flex;
+    position: sticky;
+    right: 10px;
+    justify-content: flex-end;
+    gap: 8px;
+}

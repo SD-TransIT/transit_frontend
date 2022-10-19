@@ -48,9 +48,7 @@ function ReportsPage() {
           return {
             Header: format(column.label),
             accessor: column.accessor,
-            Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'MM/dd/yyyy') : 'Many'),
-            width: 350,
-            maxWidth: 350,
+            Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'dd/MM/yyyy') : 'Many'),
           };
         } if (currentColumnsLength < 4) {
           return {
@@ -61,8 +59,6 @@ function ReportsPage() {
         return {
           Header: format(column.label),
           accessor: column.accessor,
-          width: 450,
-          maxWidth: 450,
         };
       })
     ),

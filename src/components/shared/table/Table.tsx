@@ -7,7 +7,6 @@ import {
   RiPencilLine,
 } from 'react-icons/ri';
 import {
-  useFlexLayout,
   usePagination,
   useSortBy,
   useTable,
@@ -15,6 +14,8 @@ import {
 
 import { TableInstanceWithHooks, TableProps } from 'components/shared/table/types';
 import PaginationButton from 'shared/buttons/PaginationButton';
+
+import 'styles/table.css';
 
 function Table({
   columns, data, children, editAction, deleteAction,
@@ -47,7 +48,6 @@ function Table({
       pageCount: controlledPageCount,
       autoResetPage: false,
     },
-    useFlexLayout,
     useSortBy,
     usePagination,
   ) as TableInstanceWithHooks<Object>;
@@ -103,18 +103,18 @@ function Table({
         <div className="flex flex-row justify-between items-center w-content px-4 py-2">
           {children}
         </div>
-        <div className="overflow-scroll">
+        <div className="overflow-x-auto">
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <table {...getTableProps()} style={{ minWidth: '100%' }}>
-            <thead className="bg-transit-grey">
+          <table {...getTableProps()} className="table">
+            <thead>
               {headerGroups.map((headerGroup) => {
                 const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
                 return (
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                  <tr {...restHeaderGroupProps} key={key} className="px-4 py-2">
+                  <tr {...restHeaderGroupProps} key={key} className="trHead">
                     {headerGroup.headers.map((column) => (
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      <th {...column.getHeaderProps()} key={column.id} className="flex justify-start bg-transit-grey font-bold text-[13px]">
+                      <th {...column.getHeaderProps()} key={column.id} className="th">
                         {column.render('Header')}
                       </th>
                     ))}
@@ -123,42 +123,46 @@ function Table({
               })}
             </thead>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <tbody {...getTableBodyProps()}>
+            <tbody {...getTableBodyProps()} className="tbody">
               {page.map((row, index) => {
                 prepareRow(row);
                 return (
                   <tr
-                // eslint-disable-next-line react/jsx-props-no-spreading
+                  // eslint-disable-next-line react/jsx-props-no-spreading
                     {...row.getRowProps()}
                     key={row.id}
-                    className="px-4 h-12 items-center relative even:bg-transit-grey-light hover:bg-transit-green"
-                    onMouseEnter={() => {
-                      setTableRowsState((tableState) => {
-                        const nextTableState = [...tableState];
-                        nextTableState[index] = true;
-                        return nextTableState;
-                      });
-                    }}
-                    onMouseLeave={() => {
-                      setTableRowsState((tableState) => {
-                        const nextTableState = [...tableState];
-                        nextTableState[index] = false;
-                        return nextTableState;
-                      });
-                    }}
+                    className="trBody"
                   >
                     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                    {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="font-normal text-sm">{cell.render('Cell')}</td>)}
-                    {tableRowsState[index] && (
-                      <div className="flex flex-row sticky right-2 z-1000 gap-2">
-                        <IconContext.Provider
-                          // eslint-disable-next-line
-                          value={{ className: 'table-action-icons' }}>
-                          <RiPencilLine onClick={() => editAction?.(row.values, data)} />
-                          <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />
-                        </IconContext.Provider>
-                      </div>
-                    )}
+                    {row.cells.map((cell: any) => <td {...cell.getCellProps()} key={cell.id} className="td">{cell.render('Cell')}</td>)}
+                    <div
+                      className="actionField"
+                      onMouseEnter={() => {
+                        setTableRowsState((tableState) => {
+                          const nextTableState = [...tableState];
+                          nextTableState[index] = true;
+                          return nextTableState;
+                        });
+                      }}
+                      onMouseLeave={() => {
+                        setTableRowsState((tableState) => {
+                          const nextTableState = [...tableState];
+                          nextTableState[index] = false;
+                          return nextTableState;
+                        });
+                      }}
+                    >
+                      {tableRowsState[index] && (
+                        <div className="actionIcons">
+                          <IconContext.Provider
+                            // eslint-disable-next-line
+                            value={{ className: 'table-action-icons' }}>
+                            <RiPencilLine onClick={() => editAction?.(row.values, data)} />
+                            <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />
+                          </IconContext.Provider>
+                        </div>
+                      )}
+                    </div>
                   </tr>
                 );
               })}

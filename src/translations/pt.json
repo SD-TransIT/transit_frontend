@@ -17,7 +17,7 @@
     "app.results": "Resultados",
     "app.save": "Guardar",
     "app.select_day.label": "Selecionar dia",
-    "app.date.label": "Data (MM/DD/AAAA)",
+    "app.date.label": "Data (DD/MM/AAAA)",
 
     "cost": "Formulário de custo",
     "cost.label": "Custo",
@@ -86,9 +86,9 @@
     
     "item_details": "Detalhes do item",
     "item_details.header": "Detalhes do item",
-    "item_details.manufacturing_date.label": "Data de fabricação (MM/DD/AAAA)",
-    "item_details.received_date.label": "Data de recebimento (MM/DD/AAAA)",
-    "item_details.expiry_date.label": "Data de validade (MM/DD/AAAA)",
+    "item_details.manufacturing_date.label": "Data de fabricação",
+    "item_details.received_date.label": "Data de recebimento",
+    "item_details.expiry_date.label": "Data de validade",
     "item_details.batch_namber.label": "Número do lote",
     "item_details.gtin.label": "GTIN",
     "item_details.funding_sources.label": "Fontes de financiamento",
@@ -117,7 +117,7 @@
     
     "order_details": "Detalhes do pedido",
     "order_details.header": "Detalhes do pedido",
-    "order_details.received_date.label": "Dados de recebimento do pedido (MM/DD/AAAA)",
+    "order_details.received_date.label": "Dados de recebimento do pedido",
     "order_details.total_quantity.label": "Quantidade Total",
     
     "pod_variance": "Variação de PODe",
@@ -209,7 +209,7 @@
     "shipment.customer_name_table.label": "Nome do cliente",
     "shipment.custom_route_number.label": "Número de rota personalizado",
     "shipment.delay_justified.label": "Atraso justificado",
-    "shipment.delivery_date.label": "Data de entrega (DD/MM/AAAA)",
+    "shipment.delivery_date.label": "Data de entrega",
     "shipment.delivery_details.label": "Detalhes da entrega",
     "shipment.delivery_status.delivered.label": "Entregue",
     "shipment.delivery_status.label": "Status da entrega",
@@ -218,7 +218,7 @@
     "shipment_details": "Envio",
     "shipment.driver_name.label": "Nome do motorista",
     "shipment.edit.header": "Editar Remessa",
-    "shipment.expected_delivery_date.label": "Data de entrega prevista (DD/MM/AAAA)",
+    "shipment.expected_delivery_date.label": "Data de entrega prevista",
     "shipment.gps_coordinates.label": "Coordenadas GPS",
     "shipment.header": "Remessa",
     "shipment.orders.label": "Pedidos",
@@ -234,7 +234,7 @@
     "shipment.pod_status.pod_signed_dso.label": "POD assinado DSO",
     "shipment.pod_status.robbery.label": "Roubo",
     "shipment.ropo_number.label": "Número RO/PO",
-    "shipment.ship_date.label": "Data de envio (DD/MM/AAAA)",
+    "shipment.ship_date.label": "Data de envio",
     "shipment.signed_by.label": "Nome do signatário",
     "shipment.supplier_name.label": "Nome do Fornecedor",
     
