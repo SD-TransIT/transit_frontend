@@ -2,7 +2,6 @@ import React from 'react';
 
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import {
-  useFlexLayout,
   usePagination,
   useSortBy,
   useTable,
@@ -34,7 +33,6 @@ function ReportTable({ columns, data, children }: TableProps) {
       columns,
       data,
     },
-    useFlexLayout,
     useSortBy,
     usePagination,
   ) as TableInstanceWithHooks<Object>;
@@ -58,7 +56,7 @@ function ReportTable({ columns, data, children }: TableProps) {
         <div className="overflow-x-auto">
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <table {...getTableProps()} className="table">
-            <thead className="whitespace-normal">
+            <thead className="">
               {headerGroups.map((headerGroup) => {
                 const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
                 return (

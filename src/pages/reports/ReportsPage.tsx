@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useMemo, useState,
+  useCallback, useEffect, useState,
 } from 'react';
 
 import { format as formatDate } from 'date-fns';
@@ -37,23 +37,24 @@ function ReportsPage() {
     reportCurrentColumns.map((column) => setCurrentColumns(column.columns));
   }, [currentReport]);
 
-  const currentColumnsLength = useMemo(() => (
-    currentColumns.length
-  ), [currentColumns]);
-
   const columns: ColumnType[] = React.useMemo(
     () => (
-      currentColumns.map((column: { accessor: string, label: string }) => {
-        if (column.label === 'app.date.label') {
+      currentColumns.map((
+        column: {
+          accessor: string, label: string, withCommasSeparatorsFormat: boolean, dateFormat: boolean
+        },
+      ) => {
+        if (column.dateFormat) {
           return {
             Header: format(column.label),
             accessor: column.accessor,
             Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'dd/MM/yyyy') : 'Many'),
           };
-        } if (currentColumnsLength < 4) {
+        } if (column.withCommasSeparatorsFormat) {
           return {
             Header: format(column.label),
             accessor: column.accessor,
+            Cell: ({ value }: any) => Number(value).toLocaleString('en-US', { maximumFractionDigits: 10 }),
           };
         }
         return {
