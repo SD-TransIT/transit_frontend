@@ -6,7 +6,6 @@ import {
   RiFileInfoLine,
 } from 'react-icons/ri';
 import {
-  useFlexLayout,
   usePagination,
   useSortBy,
   useTable,
@@ -31,7 +30,6 @@ function TableWithoutPagination({
       columns,
       data,
     },
-    useFlexLayout,
     useSortBy,
     usePagination,
   ) as TableInstanceWithHooks<Object>;
