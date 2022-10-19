@@ -39,41 +39,18 @@ function ReportsPage() {
 
   const columns: ColumnType[] = React.useMemo(
     () => (
-      currentColumns.map((column: { accessor: string, label: string }) => {
-        if (column.label === 'app.date.label') {
+      currentColumns.map((
+        column: {
+          accessor: string, label: string, withCommasSeparatorsFormat: boolean, dateFormat: boolean
+        },
+      ) => {
+        if (column.dateFormat) {
           return {
             Header: format(column.label),
             accessor: column.accessor,
             Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'dd/MM/yyyy') : 'Many'),
           };
-        } if (column.accessor === 'ShipmentVolume'
-          || column.accessor === 'AverageTransporterCostPerRoute'
-          || column.accessor === 'TotalCost'
-          || column.accessor === 'AverageTransporterCostPerEach'
-          || column.accessor === 'TotalEaches'
-          || column.accessor === 'AverageTransporterCostPerCubicMeter'
-          || column.accessor === 'TotalVolume'
-          || column.accessor === 'NewQuantity'
-          || column.accessor === 'OldQuantity'
-          || column.accessor === 'TotalJustifiedDelayedDeliveries'
-          || column.accessor === 'TotalOnTimeDeliveries'
-          || column.accessor === 'Shipments'
-          || column.accessor === 'PercentageOfOutstandingPODs'
-          || column.accessor === 'OutstandingPODs'
-          || column.accessor === 'TotalPODs'
-          || column.accessor === 'TotalNumberOfKilometers'
-          || column.accessor === 'AverageTransporterCostPerShipment'
-          || column.accessor === 'TotalNumberOfShipments'
-          || column.accessor === 'TotalTransporterCost'
-          || column.accessor === 'AverageCost'
-          || column.accessor === 'AverageKilometersPerShipment'
-          || column.accessor === 'TotalNumberOfShipments'
-          || column.accessor === 'TotalKilometers'
-          || column.accessor === 'PercentUtilization'
-          || column.accessor === 'volume'
-          || column.accessor === 'VehicleCapacityVolume'
-          || column.accessor === 'Cost'
-        ) {
+        } if (column.withCommasSeparatorsFormat) {
           return {
             Header: format(column.label),
             accessor: column.accessor,
