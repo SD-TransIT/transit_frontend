@@ -39,8 +39,8 @@
     flex-direction: row;
     position: absolute;
     width: 100%;
-    justify-content: end;
-    height: 46px;
+    justify-content: flex-end;
+    height: 51px;
     left:0px;
     align-items: center
 }
@@ -53,6 +53,6 @@
     display: flex;
     position: sticky;
     right: 10px;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 8px;
 }
