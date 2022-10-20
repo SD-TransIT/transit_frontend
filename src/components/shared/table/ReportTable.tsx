@@ -1,8 +1,9 @@
 import React from 'react';
 
 import classNames from 'classnames';
-import { GoTriangleDown, GoTriangleUp } from 'react-icons/go';
-import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
+import {
+  RiArrowDownSFill, RiArrowLeftSLine, RiArrowRightSLine, RiArrowUpSFill,
+} from 'react-icons/ri';
 import {
   usePagination,
   useSortBy,
@@ -71,13 +72,13 @@ function ReportTable({ columns, data, children }: TableProps) {
                         {/* eslint-disable */}
                         <span>
                           {column.isSorted ? (
-                            <div className='h-5'>  
-                              <GoTriangleUp className={classNames({ 'text-transit-green-dark': column.isSortedDesc === true, 'text-transit-grey-300': column.isSortedDesc === false },)} />
-                              <GoTriangleDown className={classNames({ 'text-transit-grey-300': column.isSortedDesc === true, 'text-transit-green-dark': column.isSortedDesc === false },)} />
+                            <div className='flex flex-col text-xl ml-1'>  
+                              <RiArrowUpSFill className={classNames({ 'text-transit-green-dark': column.isSortedDesc === true, 'text-transit-grey-300': column.isSortedDesc === false }, "-mb-2")} />
+                              <RiArrowDownSFill className={classNames({ 'text-transit-grey-300': column.isSortedDesc === true, 'text-transit-green-dark': column.isSortedDesc === false }, "-mt-1.5")} />
                             </div>) : (
-                            <div className='h-5'>
-                              <GoTriangleUp className='text-transit-grey-300' />
-                              <GoTriangleDown className='text-transit-grey-300' />
+                            <div className='flex flex-col text-xl ml-1'>
+                              <RiArrowUpSFill className='text-transit-grey-300 -mb-2' />
+                              <RiArrowDownSFill className='text-transit-grey-300 -mt-1.5' />
                             </div>
                           )}
                        </span>
