@@ -2,7 +2,9 @@ import React, { useCallback } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
+import Select, { GroupBase } from 'react-select';
 
+import customPickerStyles from 'components/pickers/customPickerStyles';
 import ShipmentPicker from 'components/pickers/ShipmentPicker';
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
 import FormHeader from 'components/shared/FormHeader';
@@ -30,6 +32,13 @@ function PodVarianceForm({
 
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
+
+  const options = [
+    { value: 'damaged', label: format('pod_variance.dso_damaged.label') },
+    { value: 'short', label: format('pod_variance.dso_short.label') },
+    { value: 'over', label: format('pod_variance.dso_over.label') },
+    { value: 'other', label: format('pod_variance.dso_other.label') },
+  ];
 
   return (
     <>
@@ -64,13 +73,25 @@ function PodVarianceForm({
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('pod_variance.description_dso.label')}</p>
-                  <Input
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register('dso_type')}
+                  <Controller
+                    control={control}
+                    render={({
+                      field: {
+                        onChange, value, name, ref,
+                      },
+                    }) => (
+                      <Select<Object, true, GroupBase<Object>>
+                        name={name}
+                        ref={ref}
+                        value={options.find((option) => option.value === value)}
+                        onChange={onChange}
+                        options={options}
+                        placeholder={format('pod_variance.description_dso.label')}
+                        className="border border-transit-grey-300 rounded"
+                        styles={customPickerStyles}
+                      />
+                    )}
                     name="dso_type"
-                    id="floatingInput"
-                    placeholder={format('pod_variance.description_dso.label')}
-                    type="text"
                   />
                 </div>
               </div>
