@@ -122,6 +122,10 @@
     
     "pod_variance": "Variação de PODe",
     "pod_variance.description_dso.label": "Descrição DSO",
+    "pod_variance.dso_damaged.label": "Danificado",
+    "pod_variance.dso_other.label": "Outro",
+    "pod_variance.dso_over.label": "Sobre",
+    "pod_variance.dso_short.label": "Curto",
     "pod_variance.header": "Variação de POD",
     "pod_variance.order.order_number.label": "Número do pedido",
     "pod_variance.order.quantity.total.label": "Quantidade Total",

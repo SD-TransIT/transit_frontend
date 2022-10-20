@@ -163,6 +163,7 @@ function PodVariancePage() {
     const payload = formValues;
     payload.pod_variance_details = buildPodDetailsPayload(formValues, 'Add');
     payload.shipment = payload.shipment.id;
+    payload.dso_type = formValues.dso_type.value;
     dispatch(postPodVarianceRequest(payload as PostPodVarianceRequestPayload));
     toggleAddModal();
   };
@@ -174,6 +175,7 @@ function PodVariancePage() {
     }
     payload.shipment = formValues.shipment.id;
     payload.pod_variance_details = buildPodDetailsPayload(payload, 'Edit');
+    payload.dso_type = formValues.dso_type.value;
     dispatch(putPodVarianceRequest(payload as PutPodVarianceRequestPayload));
     toggleEditModal();
   };
