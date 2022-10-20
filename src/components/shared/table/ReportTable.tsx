@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+import { GoTriangleDown, GoTriangleUp } from 'react-icons/go';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import {
   usePagination,
@@ -64,8 +66,21 @@ function ReportTable({ columns, data, children }: TableProps) {
                   <tr {...restHeaderGroupProps} key={key} className="trHead">
                     {headerGroup.headers.map((column) => (
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      <th {...column.getHeaderProps()} key={column.id} className="th">
+                      <th {...column.getHeaderProps(column.getSortByToggleProps())} key={column.id} className="th">
                         {column.render('Header')}
+                        {/* eslint-disable */}
+                        <span>
+                          {column.isSorted ? (
+                            <div className='h-5'>  
+                              <GoTriangleUp className={classNames({ 'text-transit-green-dark': column.isSortedDesc === true, 'text-transit-grey-300': column.isSortedDesc === false },)} />
+                              <GoTriangleDown className={classNames({ 'text-transit-grey-300': column.isSortedDesc === true, 'text-transit-green-dark': column.isSortedDesc === false },)} />
+                            </div>) : (
+                            <div className='h-5'>
+                              <GoTriangleUp className='text-transit-grey-300' />
+                              <GoTriangleDown className='text-transit-grey-300' />
+                            </div>
+                          )}
+                       </span>
                       </th>
                     ))}
                   </tr>

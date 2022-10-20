@@ -18,6 +18,11 @@
     padding: 15px;
 }
 
+.th > span {
+    padding-left: 5px;
+    display: inline-flex;
+}
+
 .tbody {
     position: relative;
 }
