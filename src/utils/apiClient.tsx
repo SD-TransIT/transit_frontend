@@ -40,10 +40,11 @@ export const getRequest = async (url: string, parameters: any, isPagination: boo
   return Object.prototype.hasOwnProperty.call(data, 'results') ? data.results : data;
 };
 
-export const getRequestFetchById = async (url: string, id: number) => {
+export const getRequestFetchByParameters = async (url: string, parameters: any) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  const customerParamString = parameters.customer !== null ? `customer=${parameters.customer}` : '';
   const { data } = await apiClient.get(
-    `${url}${id}/`,
+    `${url}?${customerParamString}`,
     {
       headers: {
         'Content-type': 'application/json',
@@ -86,6 +87,7 @@ export const putRequest = async (url: string, payload: object, id: number) => {
 
 export const patchRequest = async (url: string, payload: object, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
+  console.log('XXXXX', accessToken);
   const { data } = await apiClient.patch(
     `${url}${id}/`,
     payload,

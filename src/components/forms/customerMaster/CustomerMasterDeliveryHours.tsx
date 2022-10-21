@@ -10,12 +10,9 @@ import SimpleSelect from 'components/shared/SimpleSelect';
 import EditableTable from 'components/shared/table/EditableTable';
 import { ICustomerWeekDaysType } from 'models/customerWeekDays/ICustomerWeekDaysType';
 import { RootState } from 'stores/reducers/rootReducer';
-import { customerWeekDaysUrl } from 'stores/sagas/customerWeekDaysSaga';
 import refreshAccessToken from 'stores/sagas/utils';
-import { getRequest } from 'utils/apiClient';
-import {
-  DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE, timeOptionsForSelect,
-} from 'utils/consts';
+import { getRequestFetchByParameters } from 'utils/apiClient';
+import { timeOptionsForSelect } from 'utils/consts';
 import dayNumberToLabel from 'utils/dayNumberToLabel';
 
 type Props = {
@@ -26,11 +23,7 @@ type Props = {
 function CustomerMasterDeliveryHours(
   { onDeliveryHoursChange, customerId }: Props,
 ) {
-  const [, setPageCount] = useState(0);
-  const [, setNumberOfAvailableData] = useState(0);
-  const [, setPage] = useState(FIRST_PAGE);
   const [data, setData] = useState<any>();
-  const [, setSearcher] = useState(EMPTY_SEARCHER);
 
   const isCleanupRef = useRef(false);
   const fetchIdRef = useRef(0);
@@ -63,11 +56,7 @@ function CustomerMasterDeliveryHours(
     (state: RootState) => state.customerWeekDays,
   );
 
-  const calculatePagesCount = (pageSize: number, totalCount: number) => (
-    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
-  );
-
-  const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
+  const fetchData = useCallback(async () => {
     /* eslint-disable-next-line no-plusplus */
     const fetchId = ++fetchIdRef.current;
 
@@ -76,15 +65,11 @@ function CustomerMasterDeliveryHours(
     try {
       if (fetchId === fetchIdRef.current) {
         await refreshAccessToken();
-        const result = await getRequest(customerWeekDaysUrl, {
-          page: pageNumber,
-          searcher: search,
-        }, true);
+        const result = await getRequestFetchByParameters('/customer_week_days/', {
+          customer: customerId,
+        });
 
-        setPage(pageNumber);
-        setData(result.results);
-        setPageCount(calculatePagesCount(DEFAULT_OFFSET, result.count));
-        setNumberOfAvailableData(result.count);
+        setData(result);
       }
     } catch (error) {
       setData(data);
@@ -93,18 +78,13 @@ function CustomerMasterDeliveryHours(
   }, []);
 
   useEffect(() => {
-    setPage(FIRST_PAGE);
-    setSearcher(EMPTY_SEARCHER);
-    fetchData(FIRST_PAGE, DEFAULT_OFFSET, EMPTY_SEARCHER);
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customerWeekDay, customerId]);
 
   useEffect(() => {
     if (data !== undefined) {
-      const currentDeliveryHours = data.filter(
-        (deliveryHour: any) => deliveryHour.customer === customerId,
-      );
-      setDeliveryHours(currentDeliveryHours.map((currentDeliveryHour: any) => ({
+      setDeliveryHours(data.map((currentDeliveryHour: any) => ({
         id: currentDeliveryHour.id,
         day: currentDeliveryHour.day,
         customer: currentDeliveryHour.customer,
