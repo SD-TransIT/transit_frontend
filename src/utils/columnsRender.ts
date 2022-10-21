@@ -1,7 +1,14 @@
 import { format as formatDate } from 'date-fns';
+import { capitalize } from 'lodash';
 
 const columnsRender = (columnArray: any[], format: any) => columnArray.map((column:
-{ accessor: string, label: string, withCommasSeparatorsFormat: boolean, dateFormat: boolean }) => {
+{
+  accessor: string,
+  label: string,
+  withCommasSeparatorsFormat: boolean,
+  dateFormat: boolean,
+  renderFirstLetterUpperCase: boolean
+}) => {
   if (column.accessor === 'id') {
     return {
       Header: format(column.label),
@@ -26,6 +33,12 @@ const columnsRender = (columnArray: any[], format: any) => columnArray.map((colu
       Header: format(column.label),
       accessor: column.accessor,
       Cell: ({ value }: any) => Number(value).toLocaleString('en-US', { maximumFractionDigits: 10 }),
+    };
+  } if (column.renderFirstLetterUpperCase) {
+    return {
+      Header: format(column.label),
+      accessor: column.accessor,
+      Cell: ({ value }: any) => capitalize(value),
     };
   }
   return {
