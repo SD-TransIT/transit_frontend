@@ -87,7 +87,6 @@ export const putRequest = async (url: string, payload: object, id: number) => {
 
 export const patchRequest = async (url: string, payload: object, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  console.log('XXXXX', accessToken);
   const { data } = await apiClient.patch(
     `${url}${id}/`,
     payload,
