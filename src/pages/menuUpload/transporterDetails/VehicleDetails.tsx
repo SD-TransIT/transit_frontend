@@ -11,12 +11,12 @@ import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TransporterDetailsForm from 'components/forms/transporterDetails/transporterDetailsForm';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
-import AddItemButton from 'components/shared/buttons/AddItemButton';
-import Dialog from 'components/shared/dialog/Dialog';
 import { deleteTransporterDetailsRequest, postTransporterDetailsRequest, putTransporterDetailsRequest } from 'stores/actions/transporterDetails/transporterDetailsActions';
 import TransporterDetailsActionTypes from 'stores/actions/transporterDetails/transporterDetailsTypes';
 import { RootState } from 'stores/reducers/rootReducer';

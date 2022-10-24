@@ -8,14 +8,14 @@ import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ModeOfTransportForm from 'components/forms/modeOfTransport/ModeOfTransportForm';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import { IModeOfTransport } from 'models/modeOfTransport/IModeOfTransport';
-import AddItemButton from 'components/shared/buttons/AddItemButton';
-import Dialog from 'components/shared/dialog/Dialog';
 import {
   deleteModeOfTransportRequest,
   postModeOfTransportRequest,

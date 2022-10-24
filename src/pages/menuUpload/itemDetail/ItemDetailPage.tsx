@@ -11,14 +11,14 @@ import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ItemDetailForm from 'components/forms/itemDetail/ItemDetailForm';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
-import AddItemButton from 'components/shared/buttons/AddItemButton';
-import Dialog from 'components/shared/dialog/Dialog';
 import { deleteItemDetailRequest, postItemDetailRequest, putItemDetailRequest } from 'stores/actions/item_detail/itemDetailActions';
 import ItemDetailActionTypes from 'stores/actions/item_detail/itemDetailTypes';
 import { RootState } from 'stores/reducers/rootReducer';

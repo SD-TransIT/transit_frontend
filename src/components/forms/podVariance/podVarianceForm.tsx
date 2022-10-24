@@ -6,13 +6,13 @@ import Select, { GroupBase } from 'react-select';
 
 import customPickerStyles from 'components/pickers/customPickerStyles';
 import ShipmentPicker from 'components/pickers/ShipmentPicker';
-import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
-import FormHeader from 'components/shared/FormHeader';
-import ValidationError from 'components/shared/ValidationError';
 import CancelButton from 'components/shared/buttons/CancelButton';
 import DeleteButton from 'components/shared/buttons/DeleteButton';
 import SubmitButton from 'components/shared/buttons/SubmitButton';
+import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
+import FormHeader from 'components/shared/FormHeader';
 import Input from 'components/shared/inputs/input';
+import ValidationError from 'components/shared/ValidationError';
 
 import { ManualFormProps } from '../types';
 
