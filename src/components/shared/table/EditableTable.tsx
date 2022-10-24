@@ -20,15 +20,17 @@ function EditableTable({
         </AddItemButton>
         )}
       </div>
-      <div className="w-full flex flex-row justify-around px-8 content-center bg-transit-grey-light">
+      <div className="w-full flex flex-row justify-around pl-4 pr-10 content-center bg-transit-grey-light ">
         {columnHeaders.map((header) => (
-          <div className="flex w-full h-12 items-center">
+          <div className={classNames({ 'justify-center': header.label === 'Closed' }, 'flex w-full h-12 items-center')}>
             <p className="">{header.label}</p>
           </div>
         ))}
       </div>
-      <div className="w-full flex flex-col justify-around bg-transit-white">
-        {children}
+      <div className="overflow-auto max-h-56">
+        <div className="w-full flex flex-col justify-around bg-transit-white">
+          {children}
+        </div>
       </div>
     </div>
   );

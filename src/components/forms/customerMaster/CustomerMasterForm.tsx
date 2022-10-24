@@ -41,7 +41,7 @@ function CustomerMasterForm({
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-4">
               <FormHeader title={title} onClick={onCancel} />
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 w-full">
                 <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('customer_type')}</p>
                   <Controller
@@ -57,7 +57,7 @@ function CustomerMasterForm({
                   />
                   {errors.customer_type && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('customer_type.column.name')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -70,7 +70,7 @@ function CustomerMasterForm({
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('customer_master.first_name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -83,7 +83,7 @@ function CustomerMasterForm({
                   />
                   {errors.first_name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium required-field">{format('customer_master.last_name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -100,8 +100,8 @@ function CustomerMasterForm({
               <div className="pt-4">
                 <p className="text-lg">{format('app.details.label')}</p>
               </div>
-              <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2 w-full">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.phone.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -112,7 +112,7 @@ function CustomerMasterForm({
                     type="text"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium ">{format('customer_master.address_1.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -123,7 +123,7 @@ function CustomerMasterForm({
                     type="text"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.address_2.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -134,7 +134,7 @@ function CustomerMasterForm({
                     type="text"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.address_3.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -146,8 +146,8 @@ function CustomerMasterForm({
                   />
                 </div>
               </div>
-              <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2 w-full">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.city.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -158,7 +158,7 @@ function CustomerMasterForm({
                     type="text"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium ">{format('customer_master.state.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -169,7 +169,7 @@ function CustomerMasterForm({
                     type="text"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.country.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -180,7 +180,7 @@ function CustomerMasterForm({
                     type="text"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.email.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -192,8 +192,8 @@ function CustomerMasterForm({
                   />
                 </div>
               </div>
-              <div className="flex flex-row gap-2">
-                <div className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2 w-full">
+                <div className="flex flex-col gap-2 w-1/4">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('customer_master.gps.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading

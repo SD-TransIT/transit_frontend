@@ -85,7 +85,7 @@ function TransporterDetailsForm({
                   />
                 </div>
               </div>
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 w-full">
                 <div className="flex flex-col gap-2 w-1/3">
                   <p className="text-xs text-transit-black-secondary font-medium">{format('transporter_details.vehicle_volume.label')}</p>
                   <Input

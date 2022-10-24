@@ -198,41 +198,43 @@ function CustomerMasterDeliveryHours(
       columnHeaders={columnHeaders}
     >
       {deliveryHours.map((deliveryHour) => (
-        <div className="flex w-full h-12 px-8 items-center even:bg-transit-grey-light" key={deliveryHour.id}>
-          <div className="w-full pr-2">
-            <SimpleSelect
-              options={options}
-              onChange={(dayValue) => dayValue && handleUpdateDay(dayValue.value, deliveryHour)}
-              placeholder={format(dayNumberToLabel(deliveryHour.day)) ?? format('app.select_day.label')}
-            />
-          </div>
-          <div className="w-full pr-2">
-            <input
-              type="checkbox"
-              checked={deliveryHour.closed}
-              onChange={() => handleUpdateOpening(deliveryHour)}
-              className="w-full h-5 border border-transit-green-dark accent-transit-green-dark"
-            />
-          </div>
-          <div className="w-full h-4/5 pr-2">
-            <SimpleSelect
-              options={timeOptionsForSelect}
-              onChange={(openingHour) => openingHour
+        <div className="flex pl-4 py-2 even:bg-transit-grey-light" key={deliveryHour.id}>
+          <div className="flex flex-row w-full">
+            <div className="w-1/4 pr-4">
+              <SimpleSelect
+                options={options}
+                onChange={(dayValue) => dayValue && handleUpdateDay(dayValue.value, deliveryHour)}
+                placeholder={format(dayNumberToLabel(deliveryHour.day)) ?? format('app.select_day.label')}
+              />
+            </div>
+            <div className="w-1/4">
+              <input
+                type="checkbox"
+                checked={deliveryHour.closed}
+                onChange={() => handleUpdateOpening(deliveryHour)}
+                className="w-full h-5 border border-transit-green-dark accent-transit-green-dark"
+              />
+            </div>
+            <div className="w-1/4 h-4/5 pr-4">
+              <SimpleSelect
+                options={timeOptionsForSelect}
+                onChange={(openingHour) => openingHour
                 && handleUpdateOpenHour(openingHour.value, deliveryHour)}
-              placeholder={deliveryHour.closed ? '' : deliveryHour.opening_time}
-              isDisabled={deliveryHour.closed}
-            />
-          </div>
-          <div className="w-full h-4/5 pr-2">
-            <SimpleSelect
-              options={timeOptionsForSelect}
-              onChange={(closedHour) => closedHour
+                placeholder={deliveryHour.closed ? '' : deliveryHour.opening_time}
+                isDisabled={deliveryHour.closed}
+              />
+            </div>
+            <div className="w-1/4 h-4/5 pr-4">
+              <SimpleSelect
+                options={timeOptionsForSelect}
+                onChange={(closedHour) => closedHour
                 && handleUpdateClosedHour(closedHour.value, deliveryHour)}
-              placeholder={deliveryHour.closed ? '' : deliveryHour.closing_time}
-              isDisabled={deliveryHour.closed}
-            />
+                placeholder={deliveryHour.closed ? '' : deliveryHour.closing_time}
+                isDisabled={deliveryHour.closed}
+              />
+            </div>
           </div>
-          <div>
+          <div className="w-fit pr-4">
             <RiDeleteBin7Line className="table-action-icons" onClick={() => removeDeliveryHour(deliveryHour.id)} />
           </div>
         </div>
