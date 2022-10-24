@@ -4,13 +4,13 @@ import { Controller, useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
 import CustomerPicker from 'components/pickers/CustomerPicker';
+import CancelButton from 'components/shared/buttons/CancelButton';
+import DeleteButton from 'components/shared/buttons/DeleteButton';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
 import DatePick from 'components/shared/DatePicker';
 import FormHeader from 'components/shared/FormHeader';
 import ValidationError from 'components/shared/ValidationError';
-import CancelButton from 'shared/buttons/CancelButton';
-import DeleteButton from 'shared/buttons/DeleteButton';
-import SubmitButton from 'shared/buttons/SubmitButton';
 
 import { ManualFormProps } from '../types';
 

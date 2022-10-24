@@ -15,8 +15,8 @@ import { ColumnType } from 'components/shared/table/types';
 import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import { ISupplierMaster } from 'models/supplierMaster/ISupplierMasterType';
 import PageHeader from 'pages/types';
-import AddItemButton from 'shared/buttons/AddItemButton';
-import Dialog from 'shared/dialog/Dialog';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import {
   deleteSupplierMasterRequest,
   postSupplierMasterRequest,

@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react';
 
 import { useIntl } from 'react-intl';
 
-import SubmitButton from 'shared/buttons/SubmitButton';
-import Dialog from 'shared/dialog/Dialog';
-import Input from 'shared/inputs/input';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import Dialog from 'components/shared/dialog/Dialog';
+import Input from 'components/shared/inputs/input';
 
 import ShipmentImagesDataModal from './ShipmentImagesDataModal';
 

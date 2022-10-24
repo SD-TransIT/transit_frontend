@@ -7,8 +7,8 @@ import { useIntl } from 'react-intl';
 
 import BatchNumberPicker from 'components/pickers/BatchNumberPicker';
 import ItemPickerOutsideForm from 'components/pickers/ItemPickerOutsideForm';
+import Input from 'components/shared/inputs/input';
 import EditableTable from 'components/shared/table/EditableTable';
-import Input from 'shared/inputs/input';
 import { orderLineDetailsUrl } from 'stores/sagas/orderLineDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequest } from 'utils/apiClient';

@@ -3,8 +3,8 @@ import React, { useCallback, useEffect } from 'react';
 import ReactDropzone from 'react-dropzone';
 import { useIntl } from 'react-intl';
 
-import SubmitButton from 'shared/buttons/SubmitButton';
-import ViewButton from 'shared/buttons/ViewButton';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import ViewButton from 'components/shared/buttons/ViewButton';
 
 export default function Dropzone({
   acceptedFileExt,

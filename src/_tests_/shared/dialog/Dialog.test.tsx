@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
 import MockObserverImplementation, { defaultLocale, locale, messages } from '_tests_/test-utils';
-import Dialog from 'shared/dialog/Dialog';
+import Dialog from 'components/shared/dialog/Dialog';
 
 describe('Unit test for the Dialog component.', () => {
   const DIALOG_TEST_ID = 'dialog';

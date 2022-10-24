@@ -4,9 +4,9 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { FiSearch } from 'react-icons/fi';
 import { useIntl } from 'react-intl';
 
-import ClearButton from 'shared/buttons/ClearButton';
-import SubmitButton from 'shared/buttons/SubmitButton';
-import Input from 'shared/inputs/input';
+import ClearButton from 'components/shared/buttons/ClearButton';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import Input from 'components/shared/inputs/input';
 
 interface SearcherProps {
   refetch: (params: FieldValues) => void;

@@ -3,10 +3,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { ManualFormProps } from 'components/forms/types';
+import CancelButton from 'components/shared/buttons/CancelButton';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
 import FormHeader from 'components/shared/FormHeader';
-import CancelButton from 'shared/buttons/CancelButton';
-import SubmitButton from 'shared/buttons/SubmitButton';
 
 function ShipmentDeleteForm({
   onSubmit, onCancel, title, initialFormValue, submitButtonText,

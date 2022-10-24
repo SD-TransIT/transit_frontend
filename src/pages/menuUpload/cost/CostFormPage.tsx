@@ -19,8 +19,8 @@ import {
   SuccessSaved,
 } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
-import AddItemButton from 'shared/buttons/AddItemButton';
-import Dialog from 'shared/dialog/Dialog';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import { bulkPutCostRequest, putCostRequest } from 'stores/actions/cost/costActions';
 import CostActionTypes from 'stores/actions/cost/costTypes';
 import { RootState } from 'stores/reducers/rootReducer';

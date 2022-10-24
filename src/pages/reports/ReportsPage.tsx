@@ -6,10 +6,10 @@ import { format as formatDate } from 'date-fns';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 
+import DownloadButton from 'components/shared/buttons/downloadButton';
 import PageBody from 'components/shared/PageBody';
 import ReportTable from 'components/shared/table/ReportTable';
 import { ColumnType } from 'components/shared/table/types';
-import DownloadButton from 'shared/buttons/downloadButton';
 import { RootState } from 'stores/reducers/rootReducer';
 import { getReportsRequest, reportsUrl } from 'stores/sagas/reportsSaga';
 import { reportsColumns } from 'utils/consts';

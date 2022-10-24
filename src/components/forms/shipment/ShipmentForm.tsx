@@ -19,9 +19,9 @@ import refreshAccessToken from 'stores/sagas/utils';
 import { PostShipmentRequestPayload, PutShipmentRequestPayload } from 'stores/types/shipmentType';
 import { postRequest } from 'utils/apiClient';
 
-import CancelButton from '../../../shared/buttons/CancelButton';
-import DeleteButton from '../../../shared/buttons/DeleteButton';
-import SubmitButton from '../../../shared/buttons/SubmitButton';
+import CancelButton from '../../shared/buttons/CancelButton';
+import DeleteButton from '../../shared/buttons/DeleteButton';
+import SubmitButton from '../../shared/buttons/SubmitButton';
 
 import ShipmentBaseData from './ShipmentBaseData';
 import ShipmentDetailsData from './ShipmentDetailsData';

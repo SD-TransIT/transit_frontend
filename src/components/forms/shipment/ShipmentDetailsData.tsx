@@ -6,7 +6,7 @@ import Select, { GroupBase } from 'react-select';
 
 import customPickerStyles from 'components/pickers/customPickerStyles';
 import DatePick from 'components/shared/DatePicker';
-import Input from 'shared/inputs/input';
+import Input from 'components/shared/inputs/input';
 
 function ShipmentDetailsData({
   control, register, watch, setValue, initialFormValue, mode,
