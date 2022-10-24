@@ -8,14 +8,14 @@ import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CustomerMasterForm from 'components/forms/customerMaster/CustomerMasterForm';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import PageBody from 'components/shared/PageBody';
 import Searcher from 'components/shared/Searcher';
 import Table from 'components/shared/table/Table';
 import { ColumnType } from 'components/shared/table/types';
 import { ErrorMessage, showToast, SuccessSaved } from 'components/shared/Toast';
 import PageHeader from 'pages/types';
-import AddItemButton from 'shared/buttons/AddItemButton';
-import Dialog from 'shared/dialog/Dialog';
 import {
   deleteCustomerMasterRequest,
   postCustomerMasterRequest,

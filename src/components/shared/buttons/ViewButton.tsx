@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
-import { ViewButtonType } from 'shared/buttons/types';
+import { ViewButtonType } from 'components/shared/buttons/types';
 
 const style = 'cancel-button';
 

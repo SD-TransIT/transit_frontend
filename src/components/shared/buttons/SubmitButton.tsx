@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { SubmitButtonType } from 'shared/buttons/types';
+import { SubmitButtonType } from 'components/shared/buttons/types';
 
 function SubmitButton({
   onClick, title, className, disabled = false,

@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
+import { RiDownloadLine } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
 
-import { ClearButtonType } from 'shared/buttons/types';
+import { DownloadButtonType } from 'components/shared/buttons/types';
 
-const style = 'clear-button';
+const style = 'cancel-button';
 
-function ClearButton({ onClick, className }: ClearButtonType) {
+function DownloadButton({ onClick, className }: DownloadButtonType) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -16,11 +17,12 @@ function ClearButton({ onClick, className }: ClearButtonType) {
       type="button"
       onClick={onClick}
       className={classNames(style, className)}
-      data-testid="clear-button"
+      data-testid="download-button"
     >
-      <p className="text-center">{format('search.clear')}</p>
+      <RiDownloadLine />
+      <p>{format('report.download_excel.label')}</p>
     </button>
   );
 }
 
-export default ClearButton;
+export default DownloadButton;

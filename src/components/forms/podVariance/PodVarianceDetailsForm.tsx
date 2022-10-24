@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useIntl } from 'react-intl';
 
+import Input from 'components/shared/inputs/input';
 import EditableTable from 'components/shared/table/EditableTable';
 import { IOrderDetails } from 'models/orderDetails/IOrderDetails';
-import Input from 'shared/inputs/input';
 import { getOrdersByOrdersIdRequest } from 'stores/sagas/orderDetailsSaga';
 import { getPodDetailsByOrdersIdRequest } from 'stores/sagas/podVarianceSaga';
 import refreshAccessToken from 'stores/sagas/utils';

@@ -9,10 +9,10 @@ import customPickerStyles from 'components/pickers/customPickerStyles';
 import ConfirmDeleteMessage from 'components/shared/ConfirmDeleteMessage';
 import FormHeader from 'components/shared/FormHeader';
 
-import CancelButton from '../../../shared/buttons/CancelButton';
-import DeleteButton from '../../../shared/buttons/DeleteButton';
-import SubmitButton from '../../../shared/buttons/SubmitButton';
-import Input from '../../../shared/inputs/input';
+import CancelButton from '../../shared/buttons/CancelButton';
+import DeleteButton from '../../shared/buttons/DeleteButton';
+import SubmitButton from '../../shared/buttons/SubmitButton';
+import Input from '../../shared/inputs/input';
 import ValidationError from '../../shared/ValidationError';
 
 import ItemFormType from './types';

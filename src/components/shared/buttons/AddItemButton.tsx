@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
-import { AddItemButtonType } from 'shared/buttons/types';
+import { AddItemButtonType } from 'components/shared/buttons/types';
 
 const style = 'add-item';
 

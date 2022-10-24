@@ -7,11 +7,11 @@ import { useIntl } from 'react-intl';
 import { connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import Input from 'components/shared/inputs/input';
 import ValidationError from 'components/shared/ValidationError';
 import { ITokenInput } from 'models/token/ITokenInput';
 import { Paths } from 'routes/paths';
-import SubmitButton from 'shared/buttons/SubmitButton';
-import Input from 'shared/inputs/input';
 import { fetchTokenRequest, refreshTokenRequest } from 'stores/actions/token/tokenActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { sessionToken } from 'stores/reducers/tokenReducer';

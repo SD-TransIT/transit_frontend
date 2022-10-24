@@ -59,7 +59,7 @@ module.exports = {
         transparent: "rgba(90, 91, 106, 0.0)",
       },
       backgroundImage: {
-        'hero-image': "url('../shared/images/heroImage.jpg')",
+        'hero-image': "url('../images/heroImage.jpg')",
       }
     },
   },

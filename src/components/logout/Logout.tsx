@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 
+import vector from 'images/vector.svg';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { Paths } from 'routes/paths';
-import vector from 'shared/images/vector.svg';
 import { sessionToken } from 'stores/reducers/tokenReducer';
 
 function Logout() {

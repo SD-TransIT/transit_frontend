@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react';
 
 import { useIntl } from 'react-intl';
 
-import SubmitButton from 'shared/buttons/SubmitButton';
-import Dialog from 'shared/dialog/Dialog';
-import Input from 'shared/inputs/input';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import Dialog from 'components/shared/dialog/Dialog';
+import Input from 'components/shared/inputs/input';
 
 import ShipmentImagesDataModal from './ShipmentImagesDataModal';
 
@@ -24,7 +24,7 @@ function ShipmentImagesData({
 
   return (
     <>
-      <div className="flex justify-between text-lg font-medium gap-2 pb-4">
+      <div className="flex justify-between items-center text-lg font-medium gap-2 pb-4">
         <Input
             // eslint-disable-next-line react/jsx-props-no-spreading
           {...register('shipment_image')}
@@ -33,7 +33,7 @@ function ShipmentImagesData({
           id="fileBrowser"
           type="file"
         />
-        <SubmitButton onClick={mode === 'Edit' ? toggleShowImagesModal : () => {}} className="w-fit w-1/3" title={format('shipment.customer_images.label')} />
+        <SubmitButton onClick={mode === 'Edit' ? toggleShowImagesModal : () => {}} className="w-1/3" title={format('shipment.customer_images.label')} />
       </div>
       <div className="flex flex-row gap-2" />
       <Dialog

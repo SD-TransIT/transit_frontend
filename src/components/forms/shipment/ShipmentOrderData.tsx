@@ -3,10 +3,10 @@ import React, { useCallback, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import Dialog from 'components/shared/dialog/Dialog';
 import TableWithoutPagination from 'components/shared/table/TableWithoutPagination';
 import { ColumnType } from 'components/shared/table/types';
-import SubmitButton from 'shared/buttons/SubmitButton';
-import Dialog from 'shared/dialog/Dialog';
 
 import ShipmentOrderDetailsForm from './ShipmentOrderDetailsForm';
 
