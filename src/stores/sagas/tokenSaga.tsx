@@ -4,7 +4,12 @@ import {
 
 import { IToken } from 'models/token/IToken';
 import { ITokenInput, ITokenRefreshInput } from 'models/token/ITokenInput';
-import { fetchTokenFailure, fetchTokenSuccess } from 'stores/actions/token/tokenActions';
+import {
+  fetchTokenFailure,
+  fetchTokenSuccess,
+  refreshTokenFailure,
+  refreshTokenSuccess,
+} from 'stores/actions/token/tokenActions';
 import TokenActionTypes from 'stores/actions/token/tokenActionTypes';
 import { sessionToken } from 'stores/reducers/tokenReducer';
 import apiClient from 'utils/apiClient';
@@ -51,14 +56,14 @@ function* refreshTokenSaga(action: any) {
       refresh: action.payload.values.refresh,
     });
 
-    yield put(fetchTokenSuccess(response));
+    yield put(refreshTokenSuccess(response));
     yield put({ type: TokenActionTypes.REFRESH_TOKEN_SUCCESS, token: response });
 
     localStorage.setItem(sessionToken, JSON.stringify(response));
 
     action.payload.callback(response.token);
   } catch (error: any) {
-    yield put(fetchTokenFailure(error));
+    yield put(refreshTokenFailure(error));
     yield put({ type: TokenActionTypes.REFRESH_TOKEN_FAILURE, error });
   }
 }
