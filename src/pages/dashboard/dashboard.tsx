@@ -38,8 +38,6 @@ function DashboardPage() {
       dashboardUiConfig: { hideTitle: true, hideChartControls: true },
     });
     changeIframeProperty();
-    // changeSupersetButtonFilterProperty();
-    // changeSupersetButtonClearProperty();
   }, []);
 
   return (
