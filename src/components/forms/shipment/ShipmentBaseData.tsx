@@ -8,8 +8,8 @@ import SupplierPicker from 'components/pickers/SupplierPicker';
 import TransporterDetailsPicker from 'components/pickers/TransporterDetailsPicker';
 import TransporterPicker from 'components/pickers/TransporterPicker';
 import DatePick from 'components/shared/DatePicker';
+import Input from 'components/shared/inputs/input';
 import ValidationError from 'components/shared/ValidationError';
-import Input from 'shared/inputs/input';
 
 function ShipmentBaseData({
   control, register, errors, watch, setValue, mode, initialFormValue,

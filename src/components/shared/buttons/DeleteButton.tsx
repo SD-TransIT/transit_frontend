@@ -3,11 +3,11 @@ import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
-import { CancelButtonType } from 'shared/buttons/types';
+import { DeleteButtonType } from 'components/shared/buttons/types';
 
-const style = 'cancel-button';
+const style = 'delete-button';
 
-function CancelButton({ onClick, className }: CancelButtonType) {
+function DeleteButton({ onClick, className }: DeleteButtonType) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -16,11 +16,10 @@ function CancelButton({ onClick, className }: CancelButtonType) {
       type="button"
       onClick={onClick}
       className={classNames(style, className)}
-      data-testid="cancel-button"
     >
-      <p>{format('app.cancel')}</p>
+      <p>{format('app.delete')}</p>
     </button>
   );
 }
 
-export default CancelButton;
+export default DeleteButton;

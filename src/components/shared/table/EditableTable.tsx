@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import AddItemButton from 'shared/buttons/AddItemButton';
+import AddItemButton from 'components/shared/buttons/AddItemButton';
 
 import { EditableTableTypes } from '../types';
 

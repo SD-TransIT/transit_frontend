@@ -10,7 +10,7 @@ import {
   useTable,
 } from 'react-table';
 
-import PaginationButton from '../../../shared/buttons/PaginationButton';
+import PaginationButton from '../buttons/PaginationButton';
 
 import { TableInstanceWithHooks, TableProps } from './types';
 

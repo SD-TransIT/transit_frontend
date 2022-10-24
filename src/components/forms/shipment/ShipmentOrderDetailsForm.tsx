@@ -6,12 +6,12 @@ import { useIntl } from 'react-intl';
 import { ManualFormProps } from 'components/forms/types';
 import CustomerPicker from 'components/pickers/CustomerPicker';
 import OrderPicker from 'components/pickers/OrderPicker';
+import CancelButton from 'components/shared/buttons/CancelButton';
+import SubmitButton from 'components/shared/buttons/SubmitButton';
 import FormHeader from 'components/shared/FormHeader';
 import TableWithoutPagination from 'components/shared/table/TableWithoutPagination';
 import { ColumnType } from 'components/shared/table/types';
 import ValidationError from 'components/shared/ValidationError';
-import CancelButton from 'shared/buttons/CancelButton';
-import SubmitButton from 'shared/buttons/SubmitButton';
 
 function ShipmentOrderDetailsForm({
   onSubmit, onCancel, title, initialFormValue, submitButtonText, mode, currentData,

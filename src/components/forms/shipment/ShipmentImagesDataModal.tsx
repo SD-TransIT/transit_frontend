@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SimpleImageSlider from 'react-simple-image-slider';
 
+import SubmitButton from 'components/shared/buttons/SubmitButton';
+import ViewButton from 'components/shared/buttons/ViewButton';
 import FormHeader from 'components/shared/FormHeader';
 import { IShipmentImages } from 'models/shipment/IShipmentImages';
-import SubmitButton from 'shared/buttons/SubmitButton';
-import ViewButton from 'shared/buttons/ViewButton';
 import { getShipmentImagesRequest, resetShipmentImages } from 'stores/actions/shipmentImages/shipmentImagesActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { imagesZipName } from 'utils/consts';

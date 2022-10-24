@@ -12,8 +12,8 @@ import {
   useTable,
 } from 'react-table';
 
+import PaginationButton from 'components/shared/buttons/PaginationButton';
 import { TableInstanceWithHooks, TableProps } from 'components/shared/table/types';
-import PaginationButton from 'shared/buttons/PaginationButton';
 
 import 'styles/table.css';
 

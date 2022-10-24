@@ -26,13 +26,13 @@ import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
 import ItemForm from '../../../components/forms/item/ItemForm';
+import AddItemButton from '../../../components/shared/buttons/AddItemButton';
+import Dialog from '../../../components/shared/dialog/Dialog';
 import PageBody from '../../../components/shared/PageBody';
 import Searcher from '../../../components/shared/Searcher';
 import Table from '../../../components/shared/table/Table';
 import { ColumnType } from '../../../components/shared/table/types';
 import { IItem } from '../../../models/item/IItem';
-import AddItemButton from '../../../shared/buttons/AddItemButton';
-import Dialog from '../../../shared/dialog/Dialog';
 import PageHeader from '../../types';
 
 import itemMasterColumns from './itemMasterColumns';

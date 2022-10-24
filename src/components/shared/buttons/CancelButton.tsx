@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
-import { RiDownloadLine } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
 
-import { DownloadButtonType } from 'shared/buttons/types';
+import { CancelButtonType } from 'components/shared/buttons/types';
 
 const style = 'cancel-button';
 
-function DownloadButton({ onClick, className }: DownloadButtonType) {
+function CancelButton({ onClick, className }: CancelButtonType) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
 
@@ -17,12 +16,11 @@ function DownloadButton({ onClick, className }: DownloadButtonType) {
       type="button"
       onClick={onClick}
       className={classNames(style, className)}
-      data-testid="download-button"
+      data-testid="cancel-button"
     >
-      <RiDownloadLine />
-      <p>{format('report.download_excel.label')}</p>
+      <p>{format('app.cancel')}</p>
     </button>
   );
 }
 
-export default DownloadButton;
+export default CancelButton;

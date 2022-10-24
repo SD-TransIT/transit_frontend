@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { useIntl } from 'react-intl';
 
+import Input from 'components/shared/inputs/input';
 import { IShipment } from 'models/shipment/IShipment';
 import { ITransporterDetails } from 'models/transporterDetails/ITransporterDetails';
-import Input from 'shared/inputs/input';
 import { getShipmentWithoutCostRequest } from 'stores/sagas/costSaga';
 import { getVehiclesByTransporterRequest } from 'stores/sagas/transporterDetailsSaga';
 import refreshAccessToken from 'stores/sagas/utils';
