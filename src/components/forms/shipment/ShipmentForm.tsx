@@ -125,10 +125,10 @@ function ShipmentForm({
   };
 
   return (
-    <div className="bg-transit-white w-3/4 m-auto rounded-lg pt-8 px-4">
+    <div className="bg-transit-white w-full pt-8 px-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4">
-          <FormHeader title={title} onClick={onCancel} />
+          <FormHeader title={title} />
           <ShipmentBaseData
             control={control}
             register={register}
@@ -163,10 +163,12 @@ function ShipmentForm({
           />
         </div>
       </form>
-      <div className="flex justify-end text-lg font-medium gap-2 pb-4">
-        { mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} className="left-5 h-fit w-fit" /> }
-        <CancelButton onClick={onCancel} className="w-fit" />
-        <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
+      <div className="flex justify-between text-lg font-medium gap-2 pb-4">
+        {mode === 'Edit' && <DeleteButton onClick={() => onDelete?.({})} />}
+        <div className="flex flex-row gap-2 justify-end w-full">
+          <CancelButton onClick={onCancel} className="w-fit" />
+          <SubmitButton onClick={handleSubmit(onSubmit)} className="w-fit" title={submitButtonText} />
+        </div>
       </div>
     </div>
   );

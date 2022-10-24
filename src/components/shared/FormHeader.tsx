@@ -13,7 +13,7 @@ function FormHeader({ title, onClick } : FormHeaderType) {
             // eslint-disable-next-line
             value={{ className: 'float-right h-8 w-12 justify-end' }}
       >
-        <RiCloseFill onClick={onClick} />
+        {onClick && <RiCloseFill onClick={onClick} />}
       </IconContext.Provider>
     </div>
   );
