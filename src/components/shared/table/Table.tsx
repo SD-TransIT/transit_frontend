@@ -158,8 +158,7 @@ function Table({
                             // eslint-disable-next-line
                             value={{ className: 'table-action-icons' }}>
                             <RiPencilLine onClick={() => editAction?.(row.values, data)} />
-                            {deleteAction
-                              && <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />}
+                            <RiDeleteBin7Line onClick={() => deleteAction?.(row.values)} />
                           </IconContext.Provider>
                         </div>
                       )}

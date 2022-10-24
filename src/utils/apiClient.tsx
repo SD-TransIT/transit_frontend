@@ -40,11 +40,10 @@ export const getRequest = async (url: string, parameters: any, isPagination: boo
   return Object.prototype.hasOwnProperty.call(data, 'results') ? data.results : data;
 };
 
-export const getRequestFetchByParameters = async (url: string, parameters: any) => {
+export const getRequestFetchById = async (url: string, id: number) => {
   const accessToken = JSON.parse(localStorage.getItem(sessionToken) as string).access;
-  const customerParamString = parameters.customer !== null ? `customer=${parameters.customer}` : '';
   const { data } = await apiClient.get(
-    `${url}?${customerParamString}`,
+    `${url}${id}/`,
     {
       headers: {
         'Content-type': 'application/json',

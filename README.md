@@ -43,3 +43,10 @@ Application can be deployed in docker container by running
 ```shell
 docker-compose up
 ```
+
+## Superset configuration
+In order to have working integration with Superset TransIT dashboard you have to follow those steps:
+- Superset UI - Go to Dashboards -> select ```TransIT Dasbboard``` -> select ```...``` -> select ```Embed Dashboard`` 
+- Superset UI - allow Embedding dashboard. Copy this uuid to use this in next steps
+- frontend app - create env variable ```SUPERSET_HOST``` in order to access Superset app
+- frontend app - create env variable ```SUPERSET_EMBEDDED_ID``` in order to access embedded dashboard id

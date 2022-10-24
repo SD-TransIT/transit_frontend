@@ -209,6 +209,7 @@ function CostFormPage() {
           columns={columns}
           data={data}
           editAction={toggleEditModal}
+          deleteAction={() => {}}
           fetchData={fetchData}
           search={searcher}
           isCleanupRef={isCleanupRef}
