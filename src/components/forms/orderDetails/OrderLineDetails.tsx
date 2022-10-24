@@ -191,49 +191,51 @@ function OrderLineDetails(
       columnHeaders={columnHeaders}
     >
       {lineItems?.map((lineItem: any) => (
-        <div className="flex h-12 px-8 items-center even:bg-transit-grey-light" key={lineItem.id}>
-          <div className="w-1/3 pr-2">
-            <ItemPickerOutsideForm
-              field={mode === 'Add' ? {
-                id: Math.floor(Math.random() * 10000),
-                name: null,
-                lineItem,
-              } : {
-                id: lineItem.product,
-                name: lineItem.product_name,
-                lineItem,
-              }}
-              onChangeItemName={handleNewItemName}
-            />
+        <div className="flex pl-4 py-2 items-center even:bg-transit-grey-light" key={lineItem.id}>
+          <div className="flex flex-row w-full">
+            <div className="w-1/3 pr-4">
+              <ItemPickerOutsideForm
+                field={mode === 'Add' ? {
+                  id: Math.floor(Math.random() * 10000),
+                  name: null,
+                  lineItem,
+                } : {
+                  id: lineItem.product,
+                  name: lineItem.product_name,
+                  lineItem,
+                }}
+                onChangeItemName={handleNewItemName}
+              />
+            </div>
+            <div className="w-1/3 pr-4">
+              <BatchNumberPicker
+                field={mode === 'Add' ? {
+                  id: lineItem.id,
+                  batch_number: lineItem.batch_number,
+                  lineItem,
+                } : {
+                  id: lineItem.item_details,
+                  batch_number: lineItem.batch_number,
+                  lineItem,
+                }}
+                watch={itemName}
+                onChangeBatchNumber={handleNewItemBatchNumber}
+              />
+            </div>
+            <div className="w-1/3 pr-4">
+              <Input
+                type="number"
+                className="w-full"
+                isInvalid={lineItem.quantity.trim().length < 1}
+                placeholder={format('order_details.total_quantity.label')}
+                defaultValue={mode === 'Add' ? null : lineItem.quantity}
+                onChange={(event: any) => {
+                  handleUpdateQuantity(event.target.value, lineItem);
+                }}
+              />
+            </div>
           </div>
-          <div className="w-1/3 pr-2">
-            <BatchNumberPicker
-              field={mode === 'Add' ? {
-                id: lineItem.id,
-                batch_number: lineItem.batch_number,
-                lineItem,
-              } : {
-                id: lineItem.item_details,
-                batch_number: lineItem.batch_number,
-                lineItem,
-              }}
-              watch={itemName}
-              onChangeBatchNumber={handleNewItemBatchNumber}
-            />
-          </div>
-          <div className="w-1/3 pr-2">
-            <Input
-              type="number"
-              className="w-full"
-              isInvalid={lineItem.quantity.trim().length < 1}
-              placeholder={format('order_details.total_quantity.label')}
-              defaultValue={mode === 'Add' ? null : lineItem.quantity}
-              onChange={(event: any) => {
-                handleUpdateQuantity(event.target.value, lineItem);
-              }}
-            />
-          </div>
-          <div>
+          <div className="w-fit pr-4">
             <RiDeleteBin7Line className="table-action-icons" onClick={() => removeLineItem(lineItem.id)} />
           </div>
         </div>

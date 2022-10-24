@@ -30,11 +30,11 @@ function Dialog({
             leaveTo="opacity-0 scale-95"
           >
             <DialogHeadlessui.Panel
-              className="max-h-screen md:w-2/5 md:min-w-fit lg:w-2/6 lg:min-w-fit p-2 transform bg-transit-white rounded-xl flex flex-col"
+              className="max-h-[900px] md:w-3/5 lg:w-3/5 xl:w-3/5 p-2 transform bg-transit-white rounded-xl flex flex-col"
             >
               <DialogHeadlessui.Description
                 as="div"
-                className=" px-4 flex flex-col gap-3"
+                className="px-4 flex flex-col gap-3"
               >
                 {setCustomDialogContent === false ? (
                   <div>

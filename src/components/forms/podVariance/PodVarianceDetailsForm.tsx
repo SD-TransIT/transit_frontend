@@ -95,28 +95,31 @@ function PodVarianceDetailsForm({
         columnHeaders={columnHeaders}
       >
         {orderLines.map((orderLine: any) => (
-          <div className="flex w-full h-12 px-8 items-center even:bg-transit-grey-light" key={orderLine.id}>
-            <div className="w-full pr-2">
-              <p>{mode === 'Add' ? orderLine.id : orderLine.order_line_details}</p>
+          <div className="flex pl-4 py-2 items-center even:bg-transit-grey-light" key={orderLine.id}>
+            <div className="flex flex-row w-full">
+              <div className="w-1/4 pr-3">
+                <p>{mode === 'Add' ? orderLine.id : orderLine.order_line_details}</p>
+              </div>
+              <div className="w-1/4 pr-4">
+                <p>{orderLine.product_name}</p>
+              </div>
+              <div className="w-1/4 pr-4">
+                <p>{orderLine.old_quantity}</p>
+              </div>
+              <div className="w-1/4 pr-4">
+                <Input
+                  type="number"
+                  className=""
+                  isInvalid={false}
+                  placeholder={format('pod_variance.order.quantity.new.label')}
+                  defaultValue={orderLine.quantity}
+                  onChange={(event: any) => {
+                    handleUpdateNewQuantity(event.target.value, orderLine);
+                  }}
+                />
+              </div>
             </div>
-            <div className="w-full pr-2">
-              <p>{orderLine.product_name}</p>
-            </div>
-            <div className="w-full pr-2">
-              <p>{orderLine.old_quantity}</p>
-            </div>
-            <div className="w-full pr-2">
-              <Input
-                type="number"
-                className="w-full"
-                isInvalid={false}
-                placeholder={format('pod_variance.order.quantity.new.label')}
-                defaultValue={orderLine.quantity}
-                onChange={(event: any) => {
-                  handleUpdateNewQuantity(event.target.value, orderLine);
-                }}
-              />
-            </div>
+            <div className="w-10 pr-4" />
           </div>
         ))}
       </EditableTable>
