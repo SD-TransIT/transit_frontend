@@ -106,31 +106,31 @@ function CostAddDetailForm({
 
   return (
     <div className="flex flex-row">
-      <div className="flex flex-col w-1/2 border-y-4 border-l-4 border-y-transit-grey border-l-transit-grey p-2">
-        <p className="text-lg text-transit-black-secondary">{format('shared.vehicle_number.label')}</p>
+      <div className="flex flex-col w-1/2 border border-transit-grey-300 p-3 max-h-80 overflow-auto">
+        <p className="text-lg text-transit-black-secondary pb-2">{format('shared.vehicle_number.label')}</p>
         {vehicles.map(
           (vehicle: ITransporterDetails) => (
-            <div className="flex inline-block gap-2">
+            <div className="flex inline-block gap-2 items-center p-2">
               <Input
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register(`vehicle-${vehicle.id}`)}
                 name={`vehicle-${vehicle.id}`}
                 type="checkbox"
                 value={selectedVehicles.has(vehicle.id)}
-                className="h-6 border border-transit-green-dark accent-transit-green-dark"
+                className="border border-transit-green-dark accent-transit-green-dark w-5 h-5 flex items-center"
                 checked={selectedVehicles.has(vehicle.id)}
                 onChange={() => handleVehicleCheckboxChange(vehicle.id)}
               />
-              <p className="text-base text-transit-black-secondary">{vehicle.vehicle_number}</p>
+              <p className="text-base text-transit-black-secondary font-medium">{vehicle.vehicle_number}</p>
             </div>
           ),
         )}
       </div>
-      <div className="flex flex-col w-1/2 border-y-4 border-r-4 border-y-transit-grey border-r-transit-grey p-2">
-        <p className="text-lg text-transit-black-secondary">{format('shared.shipment_number.label')}</p>
+      <div className="flex flex-col w-1/2 border border-transit-grey-300 p-3 max-h-80 overflow-auto">
+        <p className="text-lg text-transit-black-secondary pb-2">{format('shared.shipment_number.label')}</p>
         {shipments.map(
           (shipment: IShipment) => (
-            <div className="flex inline-block gap-2">
+            <div className="flex inline-block gap-2 items-center p-2">
               <Input
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register(`shipment-${shipment.id}`, {
@@ -140,10 +140,10 @@ function CostAddDetailForm({
                 value={selectedShipments.has(shipment.id)}
                 defaultValue={selectedShipments.has(shipment.id)}
                 name={`shipment-${shipment.id}`}
-                className="h-6 border border-transit-green-dark accent-transit-green-dark"
+                className="border border-transit-green-dark accent-transit-green-dark w-5 h-5 flex items-center"
                 onChange={() => handleShipmentCheckboxChange(shipment.id)}
               />
-              <p className="text-base text-transit-black-secondary">{shipment.id}</p>
+              <p className="text-base text-transit-black-secondary font-medium">{shipment.id}</p>
             </div>
           ),
         )}

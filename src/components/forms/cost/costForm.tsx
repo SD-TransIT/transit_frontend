@@ -124,14 +124,14 @@ function CostForm({
             </div>
           </div>
           {
-              mode === 'Add' && watch('transporter') !== undefined && (
+            mode === 'Add' && watch('transporter') !== undefined && (
               <CostAddDetailForm
                 transporter={watch('transporter')}
                 setValue={setValue}
                 register={register}
                 getValues={getValues}
               />
-              )
+            )
             }
         </form>
       </div>
