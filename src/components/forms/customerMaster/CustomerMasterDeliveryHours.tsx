@@ -187,7 +187,7 @@ function CustomerMasterDeliveryHours(
                 placeholder={format(dayNumberToLabel(deliveryHour.day)) ?? format('app.select_day.label')}
               />
             </div>
-            <div className="w-1/4">
+            <div className="flex w-1/4 h-full items-center">
               <input
                 type="checkbox"
                 checked={deliveryHour.closed}
