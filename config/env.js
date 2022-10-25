@@ -90,6 +90,9 @@ function getClientEnvironment(publicUrl) {
         // Whether or not react-refresh is enabled.
         // It is defined here so it is available in the webpackHotDevClient.
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
+        // Superset configuration - host and uuid of embedded dashboard
+        SUPERSET_HOST: process.env.SUPERSET_HOST || 'http://localhost:8088',
+        SUPERSET_EMBEDDED_ID: process.env.SUPERSET_EMBEDDED_ID || '1',
       }
     );
   // Stringify all values so we can feed into webpack DefinePlugin
