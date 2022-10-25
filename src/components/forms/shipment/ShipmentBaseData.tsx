@@ -141,26 +141,26 @@ function ShipmentBaseData({
           />
         </div>
       </div>
-      <div className="flex gap-2">
-        <div className="flex gap-2 w-1/4">
+      <div className="flex gap-2 pt-4">
+        <div className="flex gap-2 w-1/4 items-center">
           <Input
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('delay_justified')}
             name="delay_justified"
             id="floatingInput"
             type="checkbox"
-            className="h-5 border border-transit-green-dark accent-transit-green-dark"
+            className="w-5 h-5 border border-transit-green-dark accent-transit-green-dark flex items-center"
           />
           <p className="text-xs text-transit-black-secondary text-center font-medium">{format('shipment.delay_justified.label')}</p>
         </div>
-        <div className="flex gap-2 w-1/4">
+        <div className="flex gap-2 w-1/4 items-center">
           <Input
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('pod')}
             name="pod"
             id="floatingInput"
             type="checkbox"
-            className="h-5 border border-transit-green-dark accent-transit-green-dark"
+            className="w-5 h-5 border border-transit-green-dark accent-transit-green-dark flex items-center"
           />
           <p className="text-xs text-transit-black-secondary text-center font-medium">{format('shipment.pod.label')}</p>
         </div>
