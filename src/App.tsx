@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 import React from 'react';
 
 import { useCookies } from 'react-cookie';
@@ -19,6 +21,8 @@ function App() {
   const [cookies] = useCookies();
 
   const EN = 'en';
+
+  window.Buffer = window.Buffer || Buffer;
 
   return (
     <IntlProvider
