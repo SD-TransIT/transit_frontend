@@ -71,7 +71,7 @@ function ShipmentImagesDataModal({
     <div className="bg-transit-white w-full rounded-lg pt-4">
       <FormHeader title={title} onClick={onCancel} />
       {images.length > 0 ? (
-        <div id="photo-container" className="pt-8">
+        <div id="photo-container" className="pt-8 flex justify-center">
           <SimpleImageSlider
             width={880}
             height={550}
