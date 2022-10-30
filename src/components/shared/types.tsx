@@ -51,4 +51,5 @@ export type SimpleSelectType = {
   value?: any
   className?: string
   isInvalid?: boolean
+  shouldDropdownBeFixed?: boolean
 };

@@ -135,11 +135,11 @@ function OrderLineDetails(
     const variables = {
       id: lineItem.id,
       order_details: lineItem.order_details,
-      product: newItemName.id,
+      product: newItemName?.id,
       item_details: lineItem.item_details,
       quantity: lineItem.quantity,
       old_quantity: lineItem.old_quantity,
-      product_name: newItemName.name,
+      product_name: newItemName?.name,
       batch_number: '',
     };
 

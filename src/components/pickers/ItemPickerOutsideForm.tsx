@@ -11,6 +11,16 @@ import { getRequest } from 'utils/apiClient';
 import customPickerStyles from './customPickerStyles';
 import { ItemPickerOutsideFormProp } from './types';
 
+const customMenuStyle = {
+  menu: (base: any) => ({
+    ...base,
+    width: '29%',
+    position: 'fixed',
+    top: 'auto',
+    zIndex: '10',
+  }),
+};
+
 function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFormProp) {
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -60,7 +70,10 @@ function ItemPickerOutsideForm({ field, onChangeItemName }: ItemPickerOutsideFor
       getOptionValue={(item: any) => item.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
-      styles={customPickerStyles}
+      styles={{
+        ...customPickerStyles,
+        ...customMenuStyle,
+      }}
       value={value?.name !== null && value}
       onChange={onChange}
     />

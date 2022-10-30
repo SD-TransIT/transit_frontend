@@ -6,7 +6,15 @@ import Select from 'react-select';
 import { SimpleSelectType } from './types';
 
 function SimpleSelect({
-  options, placeholder, onChange, isDisabled, ref, value, className, isInvalid,
+  options,
+  placeholder,
+  onChange,
+  isDisabled,
+  ref,
+  value,
+  className,
+  isInvalid,
+  shouldDropdownBeFixed,
 }: SimpleSelectType) {
   const customStyles = {
     control: (provided: any) => ({
@@ -40,6 +48,13 @@ function SimpleSelect({
       display: 'flex',
       alignContent: 'center',
       height: '35px',
+    }),
+    menu: (base: any) => ({
+      ...base,
+      width: shouldDropdownBeFixed ? '22%' : '100%',
+      position: shouldDropdownBeFixed ? 'fixed' : 'absolute',
+      top: 'auto',
+      zIndex: '10',
     }),
   };
 
