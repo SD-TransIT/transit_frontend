@@ -11,6 +11,16 @@ import { getRequest } from 'utils/apiClient';
 import customPickerStyles from './customPickerStyles';
 import { BatchNumberPickerProp } from './types';
 
+const customMenuStyle = {
+  menu: (base: any) => ({
+    ...base,
+    width: '29%',
+    position: 'fixed',
+    top: 'auto',
+    zIndex: '10',
+  }),
+};
+
 function BatchNumberPicker({
   field, watch, onChangeBatchNumber,
 }: BatchNumberPickerProp) {
@@ -72,7 +82,10 @@ function BatchNumberPicker({
       getOptionValue={(item: any) => item.id}
       isClearable
       className={classNames({ 'border border-transit-red rounded h-9': isInvalid, 'border border-transit-grey-300 rounded h-9': !isInvalid })}
-      styles={customPickerStyles}
+      styles={{
+        ...customPickerStyles,
+        ...customMenuStyle,
+      }}
       value={value?.batch_number !== '' && value}
       onChange={onChange}
     />

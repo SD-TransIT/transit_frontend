@@ -185,6 +185,7 @@ function CustomerMasterDeliveryHours(
                 options={options}
                 onChange={(dayValue) => dayValue && handleUpdateDay(dayValue.value, deliveryHour)}
                 placeholder={format(dayNumberToLabel(deliveryHour.day)) ?? format('app.select_day.label')}
+                shouldDropdownBeFixed
               />
             </div>
             <div className="flex w-1/4 h-full items-center">
@@ -202,6 +203,7 @@ function CustomerMasterDeliveryHours(
                 && handleUpdateOpenHour(openingHour.value, deliveryHour)}
                 placeholder={deliveryHour.closed ? '' : deliveryHour.opening_time}
                 isDisabled={deliveryHour.closed}
+                shouldDropdownBeFixed
               />
             </div>
             <div className="w-1/4 h-4/5 pr-4">
@@ -211,6 +213,7 @@ function CustomerMasterDeliveryHours(
                 && handleUpdateClosedHour(closedHour.value, deliveryHour)}
                 placeholder={deliveryHour.closed ? '' : deliveryHour.closing_time}
                 isDisabled={deliveryHour.closed}
+                shouldDropdownBeFixed
               />
             </div>
           </div>
