@@ -70,15 +70,15 @@ function ReportTable({ columns, data, children }: TableProps) {
                       <th {...column.getHeaderProps(column.getSortByToggleProps())} key={column.id} className="th">
                         {column.render('Header')}
                         {/* eslint-disable */}
-                        <span>
+                        <span className='flex items-center'>
                           {column.isSorted ? (
-                            <div className='flex flex-col text-xl ml-1'>  
-                              <RiArrowUpSFill className={classNames({ 'text-transit-green-dark': column.isSortedDesc === true, 'text-transit-grey-300': column.isSortedDesc === false }, "-mb-2")} />
-                              <RiArrowDownSFill className={classNames({ 'text-transit-grey-300': column.isSortedDesc === true, 'text-transit-green-dark': column.isSortedDesc === false }, "-mt-1.5")} />
+                            <div className='flex flex-col text-2xl ml-1 absolute top-4.5'>  
+                              <RiArrowUpSFill className={classNames({ 'text-transit-green-dark': column.isSortedDesc === true, 'text-transit-grey-300': column.isSortedDesc === false }, "-mt-2 -mb-2")} />
+                              <RiArrowDownSFill className={classNames({ 'text-transit-grey-300': column.isSortedDesc === true, 'text-transit-green-dark': column.isSortedDesc === false }, "-mt-2")} />
                             </div>) : (
-                            <div className='flex flex-col text-xl ml-1'>
-                              <RiArrowUpSFill className='text-transit-grey-300 -mb-2' />
-                              <RiArrowDownSFill className='text-transit-grey-300 -mt-1.5' />
+                            <div className='flex flex-col text-2xl ml-1 absolute top-4.5'>
+                              <RiArrowUpSFill className='text-transit-grey-300 -mt-2 -mb-2' />
+                              <RiArrowDownSFill className='text-transit-grey-300 -mt-2' />
                             </div>
                           )}
                        </span>

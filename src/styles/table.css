@@ -16,6 +16,7 @@
 
 .th {
     padding: 15px;
+    position: relative;
 }
 
 .th > span {
