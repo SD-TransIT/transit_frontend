@@ -17,7 +17,7 @@
     "app.results": "Resultados",
     "app.save": "Guardar",
     "app.select_day.label": "Selecionar dia",
-    "app.date.label": "Data (DD/MM/AAAA)",
+    "app.date.label": "Data (MM/DD/AAAA)",
 
     "cost": "Formulário de custo",
     "cost.label": "Custo",

@@ -34,6 +34,7 @@
     /* native HTML input */
     input.date-input {
         @apply w-full;
+        @apply h-full;
         @apply px-2;
         @apply py-2;
         @apply text-start;
