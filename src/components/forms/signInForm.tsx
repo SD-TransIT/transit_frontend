@@ -41,7 +41,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   );
 
   const callback = () => {
-    navigate(Paths.landing);
+    navigate(Paths.dashboard);
   };
 
   const callbackRefresh = () => {
@@ -62,7 +62,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   useEffect(() => {
     const isToken = !!localStorage.getItem(sessionToken);
     if (isAuthenticated()) {
-      navigate(Paths.landing);
+      navigate(Paths.dashboard);
     } else if (isToken) {
       refreshToken();
     }
