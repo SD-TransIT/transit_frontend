@@ -25,6 +25,7 @@ function SimpleSelect({
         borderColor: '#B8BBBF',
       },
       minHeight: '100%',
+      height: 'inherit',
       fontSize: '14px',
       overflow: 'hidden',
       outline: 'none',

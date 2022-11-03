@@ -196,7 +196,7 @@ function CustomerMasterDeliveryHours(
                 className="w-full h-5 border border-transit-green-dark accent-transit-green-dark"
               />
             </div>
-            <div className="w-1/4 h-4/5 pr-4">
+            <div className="w-1/4 pr-4">
               <SimpleSelect
                 options={timeOptionsForSelect}
                 onChange={(openingHour) => openingHour
@@ -206,7 +206,7 @@ function CustomerMasterDeliveryHours(
                 shouldDropdownBeFixed
               />
             </div>
-            <div className="w-1/4 h-4/5 pr-4">
+            <div className="w-1/4 pr-4">
               <SimpleSelect
                 options={timeOptionsForSelect}
                 onChange={(closedHour) => closedHour

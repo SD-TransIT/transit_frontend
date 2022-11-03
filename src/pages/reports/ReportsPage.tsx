@@ -48,7 +48,7 @@ function ReportsPage() {
           return {
             Header: format(column.label),
             accessor: column.accessor,
-            Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'dd/MM/yyyy') : 'Many'),
+            Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'MM/dd/yyyy') : 'Many'),
           };
         } if (column.withCommasSeparatorsFormat) {
           return {
