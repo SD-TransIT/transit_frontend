@@ -6,11 +6,10 @@ import { RiArrowLeftSLine } from 'react-icons/ri';
 import { PageBodyType } from 'components/shared/types';
 
 function PageBody({
-  title, children, onClick, isArrow = false, isFullScreenRequired = false,
+  title, children, onClick, isArrow = false,
 }: PageBodyType) {
-  const heightPropertyClassName = isFullScreenRequired ? 'h-full' : 'h-screen';
   return (
-    <div className={`flex flex-col m-auto px-10 py-10 md:px-20 lg:px-40 gap-5 ${heightPropertyClassName}`}>
+    <div className="flex flex-col m-auto px-10 py-10 md:px-20 lg:px-40 gap-5 min-h-screen h-full">
       <div onClick={onClick} role="presentation" className="inline-block">
         <p className="text-2xl text-transit-black">
           {
