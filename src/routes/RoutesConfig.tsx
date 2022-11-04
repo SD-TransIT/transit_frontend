@@ -6,7 +6,6 @@ import Forbidden from 'components/shared/Forbidden';
 import Unauthorized from 'components/shared/Unauthorized';
 import DashboardPage from 'pages/dashboard/dashboard';
 import ExcelUploadPage from 'pages/excelUpload/ExcelUpload';
-import LandingPage from 'pages/landing/LandingPage';
 import CostFormPage from 'pages/menuUpload/cost/CostFormPage';
 import CustomerMasterPage from 'pages/menuUpload/customerMaster/CustomerMasterPage';
 import CustomerTypePage from 'pages/menuUpload/customerType/CustomerTypePage';
@@ -33,12 +32,6 @@ function RoutesConfig() {
       <Route
         path={Paths.sign_in}
         element={<SignInPage />}
-      />
-      <Route
-        path={Paths.landing}
-        element={
-          <ProtectedRoute authenticationPath={Paths.sign_in} outlet={<LandingPage />} />
-        }
       />
       <Route
         path={Paths.dashboard}
