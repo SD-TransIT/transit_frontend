@@ -22,9 +22,6 @@ import {
   putCustomerMasterRequest,
 } from 'stores/actions/customerMaster/customerMasterActions';
 import CustomerMasterActionTypes from 'stores/actions/customerMaster/customerMasterTypes';
-import {
-  postCustomerWeekDaysRequest,
-} from 'stores/actions/customerWeekDays/customerWeekDaysActions';
 import { RootState } from 'stores/reducers/rootReducer';
 import { customerMasterUrl } from 'stores/sagas/customerMasterSaga';
 import refreshAccessToken from 'stores/sagas/utils';
@@ -34,9 +31,6 @@ import {
   PostCustomerMasterRequestPayload,
   PutCustomerMasterRequestPayload,
 } from 'stores/types/customerMasterType';
-import {
-  PostCustomerWeekDaysRequestPayload,
-} from 'stores/types/customerWeekDays';
 import { getRequest } from 'utils/apiClient';
 import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
@@ -196,15 +190,8 @@ function CustomerMasterPage() {
       payload.id = objectToEdit.id;
     }
     payload.customer_type = formValues.customer_type.id;
+    payload.week_days = customerDeliveryHours;
     dispatch(putCustomerMasterRequest(payload as PutCustomerMasterRequestPayload));
-
-    if (customerDeliveryHours) {
-      const payloadDeliveryHours = { week_days: customerDeliveryHours, id: objectToEdit.id };
-      dispatch(
-        // @ts-ignore
-        postCustomerWeekDaysRequest(payloadDeliveryHours as PostCustomerWeekDaysRequestPayload),
-      );
-    }
     toggleEditModal();
   };
 
