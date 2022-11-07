@@ -17,7 +17,7 @@ function HeaderMenu() {
 
   const currentRoute: null | keyof typeof Paths = useMemo(() => {
     switch (true) {
-      case location.pathname.startsWith(Paths.dashboard): {
+      case location.pathname === Paths.dashboard: {
         return menuOptions.dashboard.id;
       }
       case location.pathname.startsWith(Paths.reports): {
