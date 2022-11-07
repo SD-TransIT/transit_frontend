@@ -38,7 +38,7 @@ function OrderLineDetails(
   const columnHeaders = [
     { label: format('shared.item_name.label') },
     { label: format('item_details.batch_namber.label') },
-    { label: format('order_details.total_quantity.label') },
+    { label: format('shared.total_quantity.label') },
   ];
 
   const fetchData = useCallback(async () => {
@@ -227,7 +227,7 @@ function OrderLineDetails(
                 type="number"
                 className="w-full"
                 isInvalid={lineItem.quantity.trim().length < 1}
-                placeholder={format('order_details.total_quantity.label')}
+                placeholder={format('shared.total_quantity.label')}
                 defaultValue={mode === 'Add' ? null : lineItem.quantity}
                 onChange={(event: any) => {
                   handleUpdateQuantity(event.target.value, lineItem);

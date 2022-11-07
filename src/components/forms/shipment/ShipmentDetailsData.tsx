@@ -22,14 +22,14 @@ function ShipmentDetailsData({
   const podStatusDeliveredOptions = [
     { value: 'pod_signed_complete', label: format('shipment.pod_status.pod_signed_complete.label') },
     { value: 'pod_signed_dso', label: format('shipment.pod_status.pod_signed_dso.label') },
-    { value: 'other', label: format('shipment.pod_status.other.label') },
+    { value: 'other', label: format('shared.other.label') },
   ];
 
   const podStatusNotDeliveredOptions = [
     { value: 'client_not_present', label: format('shipment.pod_status.client.label') },
     { value: 'accident', label: format('shipment.pod_status.accident.label') },
     { value: 'robbery', label: format('shipment.pod_status.robbery.label') },
-    { value: 'other', label: format('shipment.pod_status.other.label') },
+    { value: 'other', label: format('shared.other.label') },
   ];
 
   const deliveryStatus = watch('delivery_status');
@@ -124,13 +124,13 @@ function ShipmentDetailsData({
           />
         </div>
         <div className="flex flex-col gap-2 w-1/3">
-          <p className="text-xs text-transit-black-secondary font-medium">{format('shipment.gps_coordinates.label')}</p>
+          <p className="text-xs text-transit-black-secondary font-medium">{format('shared.gps.label')}</p>
           <Input
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('gps_coordinates')}
             name="gps_coordinates"
             id="floatingInput"
-            placeholder={format('shipment.gps_coordinates.label')}
+            placeholder={format('shared.gps.label')}
             type="text"
           />
         </div>

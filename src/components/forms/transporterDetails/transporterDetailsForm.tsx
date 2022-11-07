@@ -44,7 +44,7 @@ function TransporterDetailsForm({
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('transporter_details.transporter_name.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('transporter.transporter_name.label')}</p>
                   <Controller
                     rules={{ required: true }}
                     control={control}

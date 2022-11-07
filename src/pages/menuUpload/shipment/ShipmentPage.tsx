@@ -26,6 +26,7 @@ import { shipmentUrl } from 'stores/sagas/shipmentSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import { DeleteShipmentRequestPayload } from 'stores/types/shipmentType';
 import { getRequest } from 'utils/apiClient';
+import calculatePagesCount from 'utils/calculatePageCount';
 import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
@@ -66,10 +67,6 @@ function ShipmentPage() {
   useEffect(() => {
     window.localStorage.setItem('stateType', JSON.stringify(''));
   }, []);
-
-  const calculatePagesCount = (pageSize: number, totalCount: number) => (
-    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
-  );
 
   const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
     /* eslint-disable-next-line no-plusplus */
@@ -156,7 +153,7 @@ function ShipmentPage() {
     { value: 'client_not_present', label: format('shipment.pod_status.client.label') },
     { value: 'accident', label: format('shipment.pod_status.accident.label') },
     { value: 'robbery', label: format('shipment.pod_status.robbery.label') },
-    { value: 'other', label: format('shipment.pod_status.other.label') },
+    { value: 'other', label: format('shared.other.label') },
     { value: 'pod_signed_complete', label: format('shipment.pod_status.pod_signed_complete.label') },
     { value: 'pod_signed_dso', label: format('shipment.pod_status.pod_signed_dso.label') },
   ];

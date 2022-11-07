@@ -1,7 +1,7 @@
 const shipmentColumns = [
   { label: 'shared.shipment_number.label', accessor: 'id' },
   { label: 'shared.transporter_name.label', accessor: 'transporter_name' },
-  { label: 'shipment.driver_name.label', accessor: 'driver_name' },
+  { label: 'shared.driver_name.label', accessor: 'driver_name' },
   { label: 'shared.vehicle_number.label', accessor: 'vehicle_number' },
   { label: 'shipment.ship_date.label', accessor: 'ship_date', dateFormat: true },
   { label: 'shipment.expected_delivery_date.label', accessor: 'expected_delivery_date', dateFormat: true },

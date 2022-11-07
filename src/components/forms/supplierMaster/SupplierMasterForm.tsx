@@ -40,20 +40,20 @@ function SupplierMasterForm({
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('supplier_master.name.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.supplier_name.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('name', { required: true })}
                     name="name"
                     id="floatingInput"
-                    placeholder={format('supplier_master.name.label')}
+                    placeholder={format('shared.supplier_name.label')}
                     type="text"
                     isInvalid={Boolean(errors.name)}
                   />
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.address_1.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.address_1.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('address_1')}
@@ -64,7 +64,7 @@ function SupplierMasterForm({
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.address_2.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.address_2.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('address_2')}
@@ -77,7 +77,7 @@ function SupplierMasterForm({
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.address_3.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.address_3.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('address_3')}
@@ -88,72 +88,72 @@ function SupplierMasterForm({
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium ">{format('supplier_master.city.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium ">{format('shared.city.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('city')}
                     name="city"
                     id="floatingInput"
-                    placeholder={format('supplier_master.city.label')}
+                    placeholder={format('shared.city.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.state.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.state.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('state')}
                     name="state"
                     id="floatingInput"
-                    placeholder={format('supplier_master.state.label')}
+                    placeholder={format('shared.state.label')}
                     type="text"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.country.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.country.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('country')}
                     name="country"
                     id="floatingInput"
-                    placeholder={format('supplier_master.country.label')}
+                    placeholder={format('shared.country.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.phone_number.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.phone_number.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('phone')}
                     name="phone"
                     id="floatingInput"
-                    placeholder={format('supplier_master.phone_number.label')}
+                    placeholder={format('shared.phone_number.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.email.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.email.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('email')}
                     name="email"
                     id="floatingInput"
-                    placeholder={format('supplier_master.email.label')}
+                    placeholder={format('shared.email.label')}
                     type="text"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('supplier_master.gps.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.gps.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('latitude_longitude')}
                     name="latitude_longitude"
                     id="floatingInput"
-                    placeholder={format('supplier_master.gps.label')}
+                    placeholder={format('shared.gps.label')}
                     type="text"
                   />
                 </div>

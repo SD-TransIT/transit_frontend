@@ -42,7 +42,7 @@ function OrderDetailsForm({
               <FormHeader title={title} onClick={onCancel} />
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('customer_type.column.name')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.customer_name.name')}</p>
                   <Controller
                     rules={{ required: true }}
                     control={control}
