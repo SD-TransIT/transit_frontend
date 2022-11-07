@@ -23,7 +23,7 @@ describe('Unit tests for the HeaderMenu component.', () => {
     );
     const dashboard = screen.getByTestId(DASHBOARD_TEST_ID);
     expect(dashboard).toBeInTheDocument();
-    expect(dashboard).toHaveAttribute('href', '/dashboard');
+    expect(dashboard).toHaveAttribute('href', '/');
   });
 
   test('Reports link should to have specific href attribute.', () => {
