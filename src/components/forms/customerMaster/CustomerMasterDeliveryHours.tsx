@@ -4,19 +4,17 @@ import React, {
 
 import { RiDeleteBin7Line } from 'react-icons/ri';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
 
 import SimpleSelect from 'components/shared/SimpleSelect';
 import EditableTable from 'components/shared/table/EditableTable';
 import { ICustomerWeekDaysType } from 'models/customerWeekDays/ICustomerWeekDaysType';
-import { RootState } from 'stores/reducers/rootReducer';
 import refreshAccessToken from 'stores/sagas/utils';
 import { getRequestFetchByParameters } from 'utils/apiClient';
 import { timeOptionsForSelect } from 'utils/consts';
 import dayNumberToLabel from 'utils/dayNumberToLabel';
 
 type Props = {
-  customerId: any,
+  customerId: number | undefined | null,
   onDeliveryHoursChange: (deliveryHours: any) => void,
 };
 
@@ -50,12 +48,6 @@ function CustomerMasterDeliveryHours(
     { label: format('customer_master.closing_time.label') },
   ];
 
-  const {
-    customerWeekDay,
-  } = useSelector(
-    (state: RootState) => state.customerWeekDays,
-  );
-
   const fetchData = useCallback(async () => {
     /* eslint-disable-next-line no-plusplus */
     const fetchId = ++fetchIdRef.current;
@@ -80,14 +72,13 @@ function CustomerMasterDeliveryHours(
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customerWeekDay, customerId]);
+  }, [customerId]);
 
   useEffect(() => {
     if (data !== undefined) {
       setDeliveryHours(data.map((currentDeliveryHour: any) => ({
         id: currentDeliveryHour.id,
         day: currentDeliveryHour.day,
-        customer: currentDeliveryHour.customer,
         opening_time: currentDeliveryHour.opening_time,
         closing_time: currentDeliveryHour.closing_time,
         closed: currentDeliveryHour.closed,
@@ -103,7 +94,9 @@ function CustomerMasterDeliveryHours(
   const addNewDeliveryHours = () => {
     if (customerId) {
       setDeliveryHours([...deliveryHours, {
-        id: Math.floor(Math.random() * 10000), day: 1, closed: false, customer: customerId,
+        id: Math.floor(Math.random() * 10000),
+        day: 1,
+        closed: false,
       }]);
     } else {
       setDeliveryHours([...deliveryHours, {
@@ -118,7 +111,6 @@ function CustomerMasterDeliveryHours(
         ? {
           id: deliveryHour.id,
           day: dayValue,
-          customer: deliveryHour.customer,
           opening_time: deliveryHour.opening_time,
           closing_time: deliveryHour.closing_time,
           closed: deliveryHour.closed,
@@ -131,7 +123,6 @@ function CustomerMasterDeliveryHours(
         ? {
           id: deliveryHour.id,
           day: deliveryHour.day,
-          customer: deliveryHour.customer,
           opening_time: deliveryHour.opening_time,
           closing_time: deliveryHour.closing_time,
           closed: !deliveryHour.closed,
@@ -144,7 +135,6 @@ function CustomerMasterDeliveryHours(
         ? {
           id: deliveryHour.id,
           day: deliveryHour.day,
-          customer: deliveryHour.customer,
           opening_time: openingHour,
           closing_time: deliveryHour.closing_time,
           closed: deliveryHour.closed,
@@ -157,7 +147,6 @@ function CustomerMasterDeliveryHours(
         ? {
           id: deliveryHour.id,
           day: deliveryHour.day,
-          customer: deliveryHour.customer,
           opening_time: deliveryHour.opening_time,
           closing_time: closedHour,
           closed: deliveryHour.closed,

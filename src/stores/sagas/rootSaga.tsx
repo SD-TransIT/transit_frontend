@@ -11,7 +11,6 @@ import transporterSaga from 'stores/sagas/transporterSaga';
 
 import costSaga from './costSaga';
 import customerMasterSaga from './customerMasterSaga';
-import customerWeekDaysSaga from './customerWeekDaysSaga';
 import excelUploadSaga from './excelUploadSaga';
 import itemDetailSaga from './itemDetailSaga';
 import orderDetailsSaga from './orderDetailsSaga';
@@ -36,7 +35,6 @@ export default function* rootSaga() {
     fork(shipmentImagesSaga),
     fork(customerMasterSaga),
     fork(itemDetailSaga),
-    fork(customerWeekDaysSaga),
     fork(transporterDetailsSaga),
     fork(costSaga),
     fork(orderDetailsSaga),
