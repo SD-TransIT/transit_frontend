@@ -8,7 +8,7 @@ const style = 'text-sm border rounded text-black-light focus:outline-none focus:
 
 const Input = React.forwardRef(({
   id, name, placeholder, type, className, isInvalid = false, checked,
-  disabled, onChange, defaultValue, ...props
+  disabled, onChange, defaultValue, onFocus, ...props
 }: InputProps, ref: ForwardedRef<HTMLInputElement>) => (
   <label htmlFor="floatingInput">
     <input
@@ -26,6 +26,7 @@ const Input = React.forwardRef(({
       onChange={onChange}
       defaultValue={defaultValue}
       checked={checked}
+      onFocus={onFocus}
     />
   </label>
 ));

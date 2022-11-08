@@ -9,4 +9,5 @@ export type InputProps = {
   onChange?: any,
   defaultValue?: string,
   checked?: boolean,
+  onFocus?: () => void
 };
