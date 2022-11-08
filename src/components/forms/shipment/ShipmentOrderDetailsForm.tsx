@@ -76,7 +76,7 @@ function ShipmentOrderDetailsForm({
               <div className="flex flex-col gap-4">
                 <FormHeader title={title} onClick={onCancel} />
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.customer_name_table.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.customer_name.name')}</p>
                   <Controller
                     rules={{ required: true }}
                     control={control}
@@ -92,7 +92,7 @@ function ShipmentOrderDetailsForm({
                   {errors.customer && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.order_number.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.order_number.label')}</p>
                   <Controller
                     rules={{
                       required: true,

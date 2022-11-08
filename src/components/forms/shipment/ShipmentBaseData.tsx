@@ -21,7 +21,7 @@ function ShipmentBaseData({
     <>
       <div className="flex flex-row gap-4">
         <div className="flex flex-col gap-2 w-1/4">
-          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.supplier_name.label')}</p>
+          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.supplier_name.label')}</p>
           <Controller
             rules={{ required: true }}
             control={control}
@@ -51,7 +51,7 @@ function ShipmentBaseData({
           {errors.transporter && <ValidationError value={format('validation.error.field_required')} />}
         </div>
         <div className="flex flex-col gap-2 w-1/4">
-          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shipment.driver_name.label')}</p>
+          <p className="text-xs text-transit-black-secondary font-medium required-field">{format('shared.driver_name.label')}</p>
           <Controller
             rules={{ required: true }}
             control={control}

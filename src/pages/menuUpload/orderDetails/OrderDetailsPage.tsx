@@ -26,6 +26,7 @@ import store from 'stores/store';
 import { DeleteOrderDetailsRequestPayload, PostOrderDetailsRequestPayload, PutOrderDetailsRequestPayload } from 'stores/types/orderDetailsType';
 import { PostOrderLineDetailsRequestPayload } from 'stores/types/orderLineDetails';
 import { getRequest } from 'utils/apiClient';
+import calculatePagesCount from 'utils/calculatePageCount';
 import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
@@ -69,10 +70,6 @@ function OrderDetailsPage() {
 
   // @ts-ignore
   const stateType = store.getState().orderDetails.type;
-
-  const calculatePagesCount = (pageSize: number, totalCount: number) => (
-    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
-  );
 
   const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
     /* eslint-disable-next-line no-plusplus */

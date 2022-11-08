@@ -30,6 +30,7 @@ import {
   PutDriverRequestPayload,
 } from 'stores/types/driverType';
 import { getRequest } from 'utils/apiClient';
+import calculatePagesCount from 'utils/calculatePageCount';
 import columnsRender from 'utils/columnsRender';
 import { DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE } from 'utils/consts';
 
@@ -70,10 +71,6 @@ function DriverMasterPage() {
 
   // @ts-ignore
   const stateType = store.getState().driver.type;
-
-  const calculatePagesCount = (pageSize: number, totalCount: number) => (
-    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
-  );
 
   const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
     /* eslint-disable-next-line no-plusplus */

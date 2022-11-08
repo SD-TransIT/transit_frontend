@@ -54,94 +54,94 @@ function TransporterForm({
                   {errors.name && <ValidationError value={format('validation.error.field_required')} />}
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.address_1.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.address_1.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('address_1')}
                     name="address_1"
                     id="floatingInput"
-                    placeholder={format('transporter.address_1.label')}
+                    placeholder={format('shared.address_1.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.address_2.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.address_2.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('address_2')}
                     name="address_2"
                     id="floatingInput"
-                    placeholder={format('transporter.address_2.label')}
+                    placeholder={format('shared.address_2.label')}
                     type="text"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.address_3.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.address_3.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('address_3')}
                     name="address_3"
                     id="floatingInput"
-                    placeholder={format('transporter.address_3.label')}
+                    placeholder={format('shared.address_3.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium ">{format('transporter.city.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium ">{format('shared.city.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('city')}
                     name="city"
                     id="floatingInput"
-                    placeholder={format('transporter.city.label')}
+                    placeholder={format('shared.city.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.state.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.state.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('state')}
                     name="state"
                     id="floatingInput"
-                    placeholder={format('transporter.state.label')}
+                    placeholder={format('shared.state.label')}
                     type="text"
                   />
                 </div>
               </div>
               <div className="flex flex-row gap-2">
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.country.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.country.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('country')}
                     name="country"
                     id="floatingInput"
-                    placeholder={format('transporter.country.label')}
+                    placeholder={format('shared.country.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.phone_number.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.phone_number.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('phone')}
                     name="phone"
                     id="floatingInput"
-                    placeholder={format('transporter.phone_number.label')}
+                    placeholder={format('shared.phone_number.label')}
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-1/3">
-                  <p className="text-xs text-transit-black-secondary font-medium">{format('transporter.gps.label')}</p>
+                  <p className="text-xs text-transit-black-secondary font-medium">{format('shared.gps.label')}</p>
                   <Input
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('latitude_longitude')}
                     name="latitude_longitude"
                     id="floatingInput"
-                    placeholder={format('transporter.gps.label')}
+                    placeholder={format('shared.gps.label')}
                     type="text"
                   />
                 </div>

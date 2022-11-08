@@ -1,7 +1,7 @@
 const driverMasterColumns = [
   { label: 'app.id', accessor: 'id' },
-  { label: 'transporter_details.column.name.label', accessor: 'transporter_name' },
-  { label: 'transporter_details.column.driver.label', accessor: 'name' },
+  { label: 'transporter.transporter_name.label', accessor: 'transporter_name' },
+  { label: 'shared.driver_name.label', accessor: 'name' },
 ];
 
 export default driverMasterColumns;

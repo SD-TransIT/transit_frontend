@@ -28,6 +28,7 @@ import { getCostRequest } from 'stores/sagas/costSaga';
 import refreshAccessToken from 'stores/sagas/utils';
 import store from 'stores/store';
 import { BulkPutCostRequestPayload, PutCostRequestPayload } from 'stores/types/costType';
+import calculatePagesCount from 'utils/calculatePageCount';
 import columnsRender from 'utils/columnsRender';
 import {
   DEFAULT_OFFSET, EMPTY_SEARCHER, FIRST_PAGE,
@@ -68,10 +69,6 @@ function CostFormPage() {
 
   // @ts-ignore
   const stateType = store.getState().cost.type;
-
-  const calculatePagesCount = (pageSize: number, totalCount: number) => (
-    totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize)
-  );
 
   const fetchData = useCallback(async (pageNumber: number, pageSize: number, search: string) => {
     /* eslint-disable-next-line no-plusplus */

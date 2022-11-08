@@ -37,7 +37,7 @@ function PodVarianceForm({
     { value: 'damaged', label: format('pod_variance.dso_damaged.label') },
     { value: 'short', label: format('pod_variance.dso_short.label') },
     { value: 'over', label: format('pod_variance.dso_over.label') },
-    { value: 'other', label: format('pod_variance.dso_other.label') },
+    { value: 'other', label: format('shared.other.label') },
   ];
 
   return (

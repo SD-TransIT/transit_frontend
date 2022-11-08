@@ -62,7 +62,7 @@ function ShipmentOrderData({
       accessor: 'customer_name',
     },
     {
-      Header: format('shipment.order_number.label'),
+      Header: format('shared.order_number.label'),
       accessor: 'order_details_id',
     },
   ], [format]);
