@@ -120,6 +120,7 @@ function RaportGenerator({ currentReport }: ReportGeneratorType) {
                   startDate: '',
                   endDate: '',
                 });
+                currentReport(null);
               }}
             />
             <SubmitButton
