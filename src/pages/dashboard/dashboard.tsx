@@ -23,8 +23,8 @@ function DashboardPage() {
 
   const changeIframeProperty = () => {
     const iFrame: HTMLElement = document.querySelectorAll('iframe')[0];
-    iFrame.style.width = '1600px';
-    iFrame.style.height = '800px';
+    iFrame.style.width = '100%';
+    iFrame.style.height = '100%';
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function DashboardPage() {
 
   return (
     <PageBody title="">
-      <div id="containerId" />
+      <div id="containerId" className="w-full h-[80vh]" />
     </PageBody>
   );
 }
