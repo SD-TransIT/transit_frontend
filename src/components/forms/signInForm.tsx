@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -30,6 +30,8 @@ type AuthAction = {
 
 function SignInForm({ refresh, signIn }: ISignInFormProps) {
   const navigate = useNavigate();
+
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
 
   const { formatMessage } = useIntl();
   const format = useCallback((id: string, values: any = '') => formatMessage({ id }, values), [formatMessage]);
@@ -84,18 +86,23 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
   } = useForm();
 
   const onSubmit = (formValues: FieldValues) => {
+    setIsInputFocused(false);
     login(formValues as ITokenInput);
   };
 
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
   return (
-    <div className="bg-transit-white m-auto w-full max-w-lg h-full max-h-96 rounded-lg py-8 px-4 gap-y-4">
+    <div className="bg-transit-white m-auto w-full max-w-lg rounded-lg py-8 px-4 gap-y-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <p className="text-2xl">{format('sign_in.label')}</p>
             <p className="text-sm text-transit-black-light">{format('sign_in.massage')}</p>
           </div>
-          {credentialsError
+          {!isInputFocused && credentialsError
           && (
           <div className="flex flex-row h-12 border border-transit-red-primary rounded w-full items-center px-3 gap-3">
             <RiErrorWarningLine className="text-xl text-transit-red-primary" />
@@ -112,6 +119,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               type="text"
               isInvalid={Boolean(errors.username)}
               className="min-h-full"
+              onFocus={handleInputFocus}
             />
             <div className="pb-2">
               {errors.username && <ValidationError value={format('validation.error.field_required')} />}
@@ -127,6 +135,7 @@ function SignInForm({ refresh, signIn }: ISignInFormProps) {
               type="password"
               isInvalid={Boolean(errors.password)}
               className="min-h-full"
+              onFocus={handleInputFocus}
             />
             <div className="pb-2">
               {errors.password && <ValidationError value={format('validation.error.field_required')} />}

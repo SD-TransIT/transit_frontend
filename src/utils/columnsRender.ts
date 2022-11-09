@@ -18,7 +18,7 @@ const columnsRender = (columnArray: any[], format: any) => columnArray.map((colu
     return {
       Header: format(column.label),
       accessor: column.accessor,
-      Cell: ({ value }: any) => formatDate(new Date(value), 'MM/dd/yyyy'),
+      Cell: ({ value }: any) => (value !== 'Many' ? formatDate(new Date(value), 'MM/dd/yyyy') : 'Many'),
     };
   } if (
     column.accessor === 'delay_justified' || column.accessor === 'pod'
